@@ -1,0 +1,11 @@
+{
+  "name": "cinefied-referee",
+  "description": "Cinefied cloud referee (Cloud Functions for Firebase)",
+  "private": true,
+  "main": "index.js",
+  "engines": { "node": "22" },
+  "dependencies": {
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  }
+}
