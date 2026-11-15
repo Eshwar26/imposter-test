@@ -42,7 +42,7 @@
           }
         },
         "state": {
-          ".write": "auth != null && root.child('rooms').child($code).child('leader').val() === auth.uid && root.child('rooms').child($code).child('ref').val() !== true"
+          ".write": "auth != null && root.child('rooms').child($code).child('ref').val() !== true && ((root.child('rooms').child($code).child('game').val() !== 'tictactoe' && root.child('rooms').child($code).child('leader').val() === auth.uid) || (root.child('rooms').child($code).child('game').val() === 'tictactoe' && ((root.child('rooms').child($code).child('leader').val() === auth.uid && (!data.exists() || !newData.exists() || data.child('over').exists())) || (data.exists() && newData.exists() && !data.child('over').exists() && (auth.uid === data.child('x').val() || auth.uid === data.child('o').val()) && newData.child('x').val() === data.child('x').val() && newData.child('o').val() === data.child('o').val() && newData.child('seq').val() === data.child('seq').val() + 1 && (data.child('result').exists() || data.child(data.child('turn').val()).val() === auth.uid || (newData.child('claim').val() === auth.uid && (root.child('rooms').child($code).child('players').child(data.child(data.child('turn').val()).val()).child('online').val() === false || !root.child('rooms').child($code).child('players').child(data.child(data.child('turn').val()).val()).exists())))))))"
         },
         "players": {
           "$uid": {
