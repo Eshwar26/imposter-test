@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied shared game screens · v0.2
+   Cinefied shared game screens · v0.2.1
    The entry page, the code pad and the waiting room, drawn once
    for every multiplayer game. A game page calls:
 
@@ -41,6 +41,17 @@
   const avColor = uid => { let h = 0; for (const ch of uid) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return AV[h % AV.length]; };
   const initial = n => esc((String(n || '?').match(/[A-Za-z0-9]/) || ['?'])[0].toUpperCase());
 
+  // The entry page's room buttons, and (for games with other ways to play) the Online / Local / Computer tabs.
+  const WHO = '<div><button class="who-chip" type="button" data-open="namesheet"><span class="pfp" id="cfMeAv"></span>Playing as <b id="cfMeName"></b> · change</button></div>';
+  const ROOM_BTNS = '<button class="btn" type="button" id="cfCreate">CREATE ROOM</button><button class="btn outline" type="button" data-open="pad">JOIN WITH CODE</button>';
+  function modesHTML() {
+    return `<div class="seg" role="tablist">${G.modes.map((m, i) =>
+      `<button type="button" role="tab" class="${i ? '' : 'on'}" data-mode="${esc(m.id)}">${m.icon || ''}${esc(m.label)}</button>`).join('')}</div>
+      <div class="panes">${G.modes.map((m, i) => `<div class="pane${i ? '' : ' on'}" data-pane="${esc(m.id)}">
+        <p class="pnote">${m.note || ''}${m.id === 'online' ? '<br>' + WHO.replace('class="who-chip"', 'class="who-chip mini-who"') : ''}</p>
+        ${m.id === 'online' ? ROOM_BTNS : (m.html || '')}</div>`).join('')}</div>`;
+  }
+
   function build() {
     const glyph = G.glyph || (G.name.replace(/[^A-Za-z]/g, '')[0] || 'C');
     const sets = (G.settings || []).map(s => `
@@ -60,12 +71,9 @@
       <h1>${esc(G.name.toUpperCase())}</h1>
       <p>${esc(G.pitch || '')}</p>
       <div class="facts">${(G.facts || []).map(f => `<span class="fact">${esc(f)}</span>`).join('')}</div>
-      <div><button class="who-chip" type="button" data-open="namesheet"><span class="pfp" id="cfMeAv"></span>Playing as <b id="cfMeName"></b> · change</button></div>
+      ${G.modes ? '' : WHO}
     </div>
-    <div class="actions">
-      <button class="btn" type="button" id="cfCreate">CREATE ROOM</button>
-      <button class="btn outline" type="button" data-open="pad">JOIN WITH CODE</button>
-    </div>
+    ${G.modes ? modesHTML() : `<div class="actions">${ROOM_BTNS}</div>`}
   </section>
 
   <section class="screen" id="s-wait">
@@ -242,6 +250,12 @@
     document.addEventListener('click', e => {
       if (!e.target.closest('#cinefied-ui')) return;
       const o = e.target.closest('[data-open]'); if (o) return openSheet(o.dataset.open);
+      const tab = e.target.closest('.seg [data-mode]');
+      if (tab) {
+        document.querySelectorAll('#cinefied-ui .seg [data-mode]').forEach(x => x.classList.toggle('on', x === tab));
+        document.querySelectorAll('#cinefied-ui .pane').forEach(x => x.classList.toggle('on', x.dataset.pane === tab.dataset.mode));
+        return;
+      }
       if (e.target.closest('#cfSummary')) return openSheet('setsheet');
       if (e.target.closest('[data-close]')) return closeSheets();
       const opt = e.target.closest('#cfSets .opt');
@@ -262,7 +276,7 @@
       if (e.target.closest('#cfKick')) { const p = picked; closeSheets(); C.kick(p.uid).then(() => say(`${p.name} was removed`)).catch(err => say(C.message(err))); return; }
       const goBtn = e.target.closest('#cfGo');
       if (goBtn && !starting) {
-        if (!G.referee) return void C.setPhase(G.startPhase || 'playing').catch(err => say(C.message(err)));
+        if (!G.referee) return void C.setPhase(G.startPhase || 'playing', G.startState ? G.startState(last) : undefined).catch(err => say(C.message(err)));
         // refereed game: the server deals the first round
         starting = true; goBtn.classList.add('busy'); goBtn.textContent = 'STARTING…';
         C.referee('start').then(r => { if (!r.ok && r.error !== 'phase') say(C.message({ code: r.error })); })
