@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied core · v0.2
+   Cinefied core · v0.2.1
    Everything every multiplayer game needs, written once:
    sign-in, player name, rooms, joining, online/offline,
    rejoining after a refresh, one leader at a time, removing
@@ -14,7 +14,7 @@
 (function (global) {
   'use strict';
 
-  const VERSION = '0.2.0';
+  const VERSION = '0.2.1';
   const REGION = 'asia-southeast1';   // where the cloud referee runs
 
   const CONFIG = {
@@ -293,6 +293,16 @@
   }
   async function updateMe(patch) { if (!code) return; await db.ref(`rooms/${code}/players/${me.uid}`).update(patch); }
 
+  // Change the game state in one safe step (both players may move, but never at the same moment).
+  // fn gets the current state and returns the new one, or undefined to give up. Resolves to { committed }.
+  async function txnState(fn) {
+    if (!code) return { committed: false };
+    try {
+      const r = await db.ref(`rooms/${code}/state`).transaction(cur => (cur === null || cur === undefined ? undefined : fn(cur)), undefined, false);
+      return { committed: !!(r && r.committed) };
+    } catch (e) { return { committed: false, error: e }; }
+  }
+
   // ── cloud referee ────────────────────────────────────────────
   // Ask the referee to do something in this room. Resolves to { ok: true } or { ok: false, error: 'reason' }.
   async function referee(action, extra) {
@@ -307,7 +317,7 @@
   global.Cinefied = {
     version: VERSION, CODE_CHARS, CODE_LEN, NAME_MAX,
     init, me, getName, setName,
-    createRoom, joinRoom, resume, leave, kick, updateSettings, setPhase, updateMe, referee,
+    createRoom, joinRoom, resume, leave, kick, updateSettings, setPhase, updateMe, referee, txnState,
     onChange, message, esc, sid,
     get state() { return view(); },
   };
