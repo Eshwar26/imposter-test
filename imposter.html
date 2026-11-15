@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/core.css?v=0.2.0">
+<link rel="stylesheet" href="core/core.css?v=0.2.1">
 <style>
   /* Imposter in-game screens. Entry page and waiting room come from the core.
      Every screen fits the phone: sizes follow the screen height, nothing scrolls. */
@@ -48,6 +48,7 @@
   .face.back small{font-size:10.5px;letter-spacing:3px;color:var(--muted);text-transform:uppercase}
   .face.back h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,min(13vw,7dvh),60px);letter-spacing:2px;line-height:.95;overflow-wrap:anywhere}
   .face.back h2.long{font-size:clamp(24px,min(9vw,5dvh),40px)}
+  .face.back h2.longer{font-size:clamp(20px,min(7vw,3.8dvh),30px)}
   .face.back.imp h2{color:var(--accent);letter-spacing:2px;font-size:clamp(28px,min(10.5vw,6dvh),52px);white-space:nowrap;overflow-wrap:normal}
   .face.back p{font-size:12px;color:var(--muted);line-height:1.6;max-width:24ch}
   .sitout{width:min(78vw,300px);border:1.5px dashed var(--border);border-radius:22px;padding:28px 20px;text-align:center}
@@ -227,8 +228,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-functions-compat.js"></script>
-<script src="core/core.js?v=0.2.0"></script>
-<script src="core/core-ui.js?v=0.2.0"></script>
+<script src="core/core.js?v=0.2.1"></script>
+<script src="core/core-ui.js?v=0.2.1"></script>
 <script>
 (() => {
   'use strict';
@@ -323,7 +324,7 @@
         back.innerHTML = `<small>You are the</small><h2>IMPOSTER</h2><p>Everyone else has the same ${esc(noun())}. Blend in and figure it out.</p>`;
       } else {
         back.className = 'face back';
-        back.innerHTML = `<small>Your ${esc(noun())}</small><h2 class="${mine.word.length > 16 ? 'long' : ''}">${esc(mine.word.toUpperCase())}</h2><p>One player doesn't know this. Describe it without giving it away.</p>`;
+        back.innerHTML = `<small>Your ${esc(noun())}</small><h2 class="${mine.word.length > 30 ? 'long longer' : mine.word.length > 16 ? 'long' : ''}">${esc(mine.word.toUpperCase())}</h2><p>One player doesn't know this. Describe it without giving it away.</p>`;
       }
     }
     // Same words for everyone, so nobody can tell the imposter from a glance at their screen.
