@@ -78,7 +78,8 @@
           ".validate": "newData.val() === true && !data.exists()"
         },
         "open": {
-          ".validate": false
+          ".write": "auth != null && root.child('rooms').child($code).child('leader').val() === auth.uid && root.child('rooms').child($code).child('ref').val() !== true",
+          ".validate": "newData.isBoolean() && newData.parent().child('ref').val() !== true"
         },
         "$other": {
           ".validate": false
