@@ -326,7 +326,8 @@
         back.innerHTML = `<small>Your ${esc(noun())}</small><h2 class="${mine.word.length > 16 ? 'long' : ''}">${esc(mine.word.toUpperCase())}</h2><p>One player doesn't know this. Describe it without giving it away.</p>`;
       }
     }
-    $('wordNote').textContent = !playing ? '' : mine && mine.imposter ? "Listen closely. Describe something vague when it's your turn." : "Take turns describing it out loud. Don't say it.";
+    // Same words for everyone, so nobody can tell the imposter from a glance at their screen.
+    $('wordNote').textContent = playing ? "Take turns describing it out loud. Don't give it away." : '';
     const first = s.starter;
     $('starter').innerHTML = first && P(first) ? `${av(first)}<b>${isMe(first) ? 'YOU GO' : esc(nameOf(first).toUpperCase()) + ' GOES'} FIRST</b>` : '';
     $('starter').hidden = !(first && P(first));
