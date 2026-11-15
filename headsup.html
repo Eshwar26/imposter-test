@@ -219,7 +219,7 @@
   const pool = k => (k === 'mixed' ? ['movies', 'actors', 'actresses', 'directors', 'characters'].flatMap(c => W[c]) : W[k]);
 
   const rail = $('rail');
-  $('rail').innerHTML = CATS.map(c => `<div class="poster" style="--k:${c.col}" data-cat="${c.k}"><span class="big">${c.n[0]}</span><div class="line"></div><span class="nm">${c.n.toUpperCase()}</span><small>${pool(c.k).length} NAMES</small></div>`).join('');
+  $('rail').innerHTML = CATS.map(c => `<div class="poster" style="--k:${c.col}" data-cat="${c.k}"><span class="big">${c.n[0]}</span><div class="line"></div><span class="nm">${c.n.toUpperCase()}</span></div>`).join('');
   $('dots').innerHTML = CATS.map(() => '<i></i>').join('');
   const posterAt = () => Math.max(0, Math.min(CATS.length - 1, Math.round(rail.scrollLeft / (rail.firstElementChild.offsetWidth + 14))));
   function setCat(i) {
