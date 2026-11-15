@@ -79,6 +79,30 @@
           ".read": "auth != null && auth.uid === $uid"
         }
       }
+    },
+    "draw": {
+      "$code": {
+        ".read": "auth != null",
+        ".write": "auth != null && root.child('rooms').child($code).child('state').child('drawer').val() === auth.uid && root.child('rooms').child($code).child('phase').val() === 'draw'",
+        "$id": {
+          ".validate": "$id.length <= 40 && newData.hasChildren(['c', 'w', 'p'])",
+          "c": {
+            ".validate": "newData.isString() && newData.val().length <= 9"
+          },
+          "w": {
+            ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= 100"
+          },
+          "e": {
+            ".validate": "newData.isBoolean()"
+          },
+          "p": {
+            ".validate": "newData.isString() && newData.val().length <= 20000"
+          },
+          "$other": {
+            ".validate": false
+          }
+        }
+      }
     }
   }
 }
