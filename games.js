@@ -3,11 +3,12 @@
   'use strict';
   const CODE_RE = /^[23456789ABCDEFGHJKMNPQRSTUVWXYZ]{6}$/;
   function makeGames(env, parts) {
-    // parts: { Referee, ImposterWords, Pictionary, PictionaryMovies }
+    // parts: { Referee, ImposterWords, Pictionary, PictionaryMovies, Wavelength, WavelengthScales }
     const games = {
       imposter: parts.Referee.makeReferee(Object.assign({}, env, { words: parts.ImposterWords })),
       pictionary: parts.Pictionary.makePictionary(Object.assign({}, env, { movies: parts.PictionaryMovies })),
     };
+    if (parts.Wavelength) games.wavelength = parts.Wavelength.makeWavelength(Object.assign({}, env, { scales: parts.WavelengthScales }));
     async function which(code) {
       if (!CODE_RE.test(String(code || ''))) return null;
       const g = await env.db.get(`rooms/${code}/game`);
