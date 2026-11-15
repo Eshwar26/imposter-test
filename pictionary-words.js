@@ -1,0 +1,61 @@
+/* Pictionary movies, sorted by difficulty. Lives only on the server.
+   Easy = one short word. Hard = three or more words, or 14+ letters. Medium = the rest.
+   Move titles between the lists freely; a title should appear in only one list. */
+(function (root) {
+  const MOVIES = {
+    easy: [
+      "Gangotri", "Arya", "Bunny", "Happy", "Parugu", "Varudu", "Vedam", "Julayi", "Yevadu", "Thammudu",
+      "Badri", "Kushi", "Johnny", "Balu", "Bangaram", "Jalsa", "Panjaa", "Bro", "Chirutha", "Orange", "Racha",
+      "Naayak", "Zanjeer", "Thoofan", "Dhruva", "RRR", "Acharya", "Peddi", "Murari", "Okkadu", "Arjun",
+      "Athadu", "Pokiri", "Athidhi", "Khaleja", "Dookudu", "Aagadu", "Spyder", "Maharshi", "Varanasi", "Aadi",
+      "Simhadri", "Ashok", "Rakhi", "Kantri", "Adhurs", "Shakthi", "Dammu", "Baadshah", "Rabhasa", "Temper",
+      "Eeswar", "Varsham", "Yogi", "Munna", "Billa", "Darling", "Rebel", "Mirchi", "Saaho", "Kannappa",
+      "Mirai", "Fauzi", "Spirit", "Leader", "Godavari", "Anand", "Fidaa", "Majili", "Manam", "Lakshmi",
+      "Dhee", "Ready", "Kick", "Balupu", "Power", "Krack", "Baby", "MAD", "Major", "Kshanam", "Evaru",
+      "Dasara", "Jersey", "Liger", "Akhanda", "Legend", "Simha", "Veera", "Lion", "Khaidi", "Indra", "Tagore",
+      "Stalin", "Annayya", "Master", "Daddy", "Saindhav", "Dictator", "King", "Ragada", "Gaganam", "Oopiri",
+      "Premam", "Devadas", "Kuberaa", "Coolie", "Supreme", "Beast", "Varasudu", "Leo", "Ghajini", "24",
+      "Singham", "Yamudu", "Robo", "Lingaa", "Kabali", "Kaala", "2.0", "Peta", "Darbar", "Jailer", "Hanu-Man",
+      "Oy", "Paradise", "Ishq", "Majnu", "V",
+    ],
+    medium: [
+      "Desamuduru", "Arya 2", "Badrinath", "Race Gurram", "S/O Satyamurthy", "Rudhramadevi", "Sarrainodu",
+      "Suswagatham", "Tholi Prema", "Annavaram", "Teen Maar", "Gabbar Singh", "Gopala Gopala", "Katamarayudu",
+      "Vakeel Saab", "Bheemla Nayak", "Magadheera", "Rangasthalam", "Game Changer", "Sainikudu",
+      "Businessman", "1: Nenokkadine", "Srimanthudu", "Brahmotsavam", "Guntur Kaaram", "Yamadonga",
+      "Brindavanam", "Oosaravelli", "Janatha Garage", "War 2", "Chatrapathi", "Bujjigadu", "Ek Niranjan",
+      "Mr. Perfect", "Radhe Shyam", "Adipurush", "The RajaSaab", "Happy Days", "Love Story", "Manmadhudu",
+      "Geethanjali", "Hello Brother", "Malliswari", "Dubai Seenu", "Kick 2", "Don Seenu", "Disco Raja",
+      "Pelli Choopulu", "Jathi Ratnalu", "DJ Tillu", "Tillu Square", "Color Photo", "Goodachari",
+      "Mathu Vadalara", "Hi Nanna", "Nenu Local", "Gang Leader", "Taxiwaala", "Dear Comrade", "Arjun Reddy",
+      "Paisa Vasool", "Challenge", "Gharana Mogudu", "Andarivaadu", "GodFather", "Bhola Shankar",
+      "Daaku Maharaj", "Damarukam", "Greeku Veerudu", "Manmadhudu 2", "Bangarraju", "Chitralahari",
+      "Virupaksha", "Thuppakki", "7th Sense", "Singham 3", "Vettaiyan", "Ala Modalaindi", "Nenu Sailaja",
+      "Gentleman", "Ninnu Kori", "Tuck Jagadish",
+    ],
+    hard: [
+      "Shankar Dada Zindabad", "Iddarammayilatho", "DJ: Duvvada Jagannadham", "Naa Peru Surya Naa Illu India",
+      "Ala Vaikunthapurramuloo", "Akkada Ammayi Ikkada Abbayi", "Gokulamlo Seeta", "Gudumba Shankar",
+      "Shankar Dada M.B.B.S.", "Cameraman Gangatho Rambabu", "Attarintiki Daredi", "Sardaar Gabbar Singh",
+      "Agnyaathavaasi", "Hari Hara Veera Mallu", "They Call Him OG", "Ustaad Bhagat Singh",
+      "Govindudu Andarivadele", "Bruce Lee: The Fighter", "Khaidi No. 150", "Vinaya Vidheya Rama",
+      "Seethamma Vakitlo Sirimalle Chettu", "Bharat Ane Nenu", "Sarileru Neekevvaru", "Sarkaru Vaari Paata",
+      "Chintakayala Ravi", "Rama Rama Krishna Krishna", "Ramayya Vasthavayya", "Nannaku Prematho",
+      "Jai Lava Kusa", "Aravinda Sametha Veera Raghava", "Devara: Part 1", "Baahubali: The Beginning",
+      "Baahubali 2: The Conclusion", "Salaar: Part 1 – Ceasefire", "Kalki 2898 AD", "Baahubali: The Epic",
+      "Ye Maaya Chesave", "Nuvvu Naaku Nachav", "Raja The Great", "Tiger Nageswara Rao", "Touch Chesi Chudu",
+      "Brochevarevarura", "Ee Nagaraniki Emaindi", "Agent Sai Srinivasa Athreya", "HIT: The First Case",
+      "HIT: The Second Case", "Mathu Vadalara 2", "Ante Sundaraniki", "Middle Class Abbayi",
+      "Krishna Gaadi Veera Prema Gaadha", "Shyam Singha Roy", "Bhale Bhale Magadivoy", "Geetha Govindam",
+      "World Famous Lover", "Pushpa: The Rise", "Pushpa 2: The Rule", "Waltair Veerayya", "Veera Simha Reddy",
+      "Bhagavanth Kesari", "Jagadeka Veerudu Athiloka Sundari", "Choodalani Vundi", "Jai Chiranjeeva",
+      "Sye Raa Narasimha Reddy", "F2: Fun and Frustration", "F3: Fun and Frustration",
+      "Mana Shankara Varaprasad Garu", "Sankranthiki Vasthunnam", "Akhanda 2: Thaandavam",
+      "Chennakesava Reddy", "Gautamiputra Satakarni", "NTR: Kathanayakudu", "NTR: Mahanayakudu",
+      "Soggade Chinni Nayana", "Naa Saami Ranga", "Pilla Nuvvu Leni Jeevitham", "Subramanyam for Sale",
+      "Prati Roju Pandage", "Solo Brathuke So Better", "Greatest of All Time", "Surya S/O Krishnan",
+      "Saripodhaa Sanivaaram",
+    ],
+  };
+  if (typeof module !== 'undefined' && module.exports) module.exports = MOVIES; else root.PictionaryMovies = MOVIES;
+})(typeof self !== 'undefined' ? self : this);
