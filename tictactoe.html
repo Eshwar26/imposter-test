@@ -144,7 +144,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.1"></script>
+<script src="core/core-ui.js?v=0.2.2"></script>
 <script>
 (() => {
   'use strict';
@@ -498,7 +498,6 @@
       },
     },
     gameNames: { pictionary: 'Pictionary', imposter: 'Imposter', cluepool: 'Clue Pool', tierd: "Tier'd", tictactoe: 'Tic Tac Toe' },
-    onBack: () => UI.say('In the app this goes back to the home screen'),
     onStart: v => { if (M && M.mode !== 'online') endSolo(); shown = null; game.classList.add('on'); fromRoom(v); },
     onUpdate: v => fromRoom(v),
     onLobby: () => { V = null; M = null; shown = null; clearNext(); closeLeave(); game.classList.remove('on'); },
