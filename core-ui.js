@@ -222,6 +222,8 @@
       ? `<button class="btn${starting ? ' busy' : ''}" type="button" id="cfGo" ${need > 0 ? 'disabled' : ''}>${starting ? 'STARTING…' : 'START GAME'}</button>`
       : `<p class="waiting">Waiting for ${esc(leader ? leader.name : 'the leader')} to start<span class="dots"></span></p>`;
     if (!v.isLeader && $('setsheet').classList.contains('open')) closeSheets();
+    // a game may draw its own seats (Clue Pool: two team columns)
+    if (G.wait) G.wait(v, { seats: $('cfSeats'), status: $('cfStatus'), go: $('cfGo') });
   }
 
   // ── room events from the core ───────────────────────────────
