@@ -235,7 +235,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-functions-compat.js"></script>
 <script src="data/cluepool-names.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.1"></script>
+<script src="core/core-ui.js?v=0.2.2"></script>
 <script>
 (() => {
   'use strict';
@@ -486,7 +486,6 @@
       wait: (v, els) => { V0 = v; drawTeams(v, els); },
     },
     gameNames: { pictionary: 'Pictionary', imposter: 'Imposter', tictactoe: 'Tic Tac Toe', tierd: "Tier'd", likely: "Who's More Likely", wavelength: 'Wavelength', blindspot: 'Blindspot', cluepool: 'Clue Pool' },
-    onBack: () => UI.say('In the app this goes back to the home screen'),
     onStart: v => { V = v; shown = null; lastPhase = null; onlineSig = ''; game.classList.add('on'); fitViewport(); render(); },
     onUpdate: v => { V = v; render(); },
     onLobby: () => { V = null; shown = null; closeLeave(); game.classList.remove('on'); },
