@@ -500,6 +500,9 @@
   addEventListener('resize', () => { if ($('s-guess').classList.contains('on')) fitGuess(); });
 
   buildToday(); drawToday(); tickCountdown(); setInterval(tickCountdown, 1000);
+  // opened from the home page's Daily tab with a puzzle picked (daily.html#dlg): go straight to it
+  const want = location.hash.slice(1);
+  if (PUZ.some(p => p.id === want)) { history.replaceState(null, '', location.pathname + location.search); want === 'hol' ? openHol() : openGuess(want); }
   // test helper: ?day=2026-12-01 shows that day's puzzles (does not change what is saved for other days)
   const qd = new URLSearchParams(location.search).get('day');
   if (qd && /^\d{4}-\d{2}-\d{2}$/.test(qd)) { TODAY = qd; forced = true; buildToday(); drawToday(); }
