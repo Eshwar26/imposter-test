@@ -10,6 +10,11 @@
    ════════════════════════════════════════════════════════════════ */
 (function (global) {
   'use strict';
+  // back to the home page: step back if we came from it, otherwise open it (e.g. the game was opened from a shared link)
+  function goHome() {
+    let ours = false; try { ours = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
+    if (ours && history.length > 1) history.back(); else location.href = 'index.html';
+  }
   const C = global.Cinefied;
   const esc = C.esc;
   const $ = id => document.getElementById(id);
@@ -294,7 +299,7 @@
       finally { busy = false; $('cfCreate').classList.remove('busy'); $('cfCreate').textContent = 'CREATE ROOM'; }
     });
     $('cfLeave').addEventListener('click', async () => { closeSheets(); await C.leave(); last = null; go('s-entry', true); say('You left the room'); });
-    $('cfBack').addEventListener('click', () => opts.onBack ? opts.onBack() : history.back());
+    $('cfBack').addEventListener('click', () => opts.onBack ? opts.onBack() : goHome());
     $('cfCopy').addEventListener('click', async () => { const c = $('cfCode').textContent; try { await navigator.clipboard.writeText(c); say('Code copied'); } catch (e) { say('Code: ' + c); } });
     const share = async () => {
       const c = $('cfCode').textContent, text = `Join my ${G.name} room on Cinefied. Code: ${c}`;
