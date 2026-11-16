@@ -1,5 +1,5 @@
 /* Cinefied cloud referee · Cloud Functions (2nd gen), Singapore.
-   The game rules are in referee.js (Imposter), pictionary.js and wavelength.js. This file only connects them to Firebase. */
+   The game rules are in referee.js (Imposter), pictionary.js, wavelength.js and cluepool.js. This file only connects them to Firebase. */
 const { onCall, HttpsError } = require('firebase-functions/v2/https');
 const { onValueDeleted } = require('firebase-functions/v2/database');
 const { onSchedule } = require('firebase-functions/v2/scheduler');
@@ -11,6 +11,7 @@ const PARTS = {
   Referee: require('./referee.js'), ImposterWords: require('./words.js'),
   Pictionary: require('./pictionary.js'), PictionaryMovies: require('./pictionary-words.js'),
   Wavelength: require('./wavelength.js'), WavelengthScales: require('./wavelength-scales.js'),
+  CluePool: require('./cluepool.js'), CluePoolMovies: require('./cluepool-movies.js'), CluePoolNames: require('./cluepool-names.js'),
 };
 
 const REGION = 'asia-southeast1';
