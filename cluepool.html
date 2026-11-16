@@ -312,6 +312,8 @@
         <button class="wjoin" type="button" data-join="${t}"${me && me.team === t ? ' hidden' : ''}>JOIN TEAM ${t}</button></div>`;
     };
     els.seats.classList.add('cp'); document.getElementById('s-wait').classList.add('cpw');
+    // the core has just drawn its own seats here, so always write the team columns over them
+    els.seats.dataset.h = '';
     setHTML(els.seats, `<div class="wteams">${col('A')}${col('B')}</div>${v.isLeader ? '<button class="btn outline bal" type="button" data-balance>AUTO-BALANCE</button>' : ''}`);
     const on = t => ps.filter(p => p.team === t && p.online !== false).length;
     const ready = on('A') >= 1 && on('B') >= 1;
