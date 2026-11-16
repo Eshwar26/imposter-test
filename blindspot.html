@@ -102,7 +102,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="data/words.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.1"></script>
+<script src="core/core-ui.js?v=0.2.2"></script>
 <script>
 (() => {
   'use strict';
@@ -237,7 +237,6 @@
       startState: v => ({ cat: CATS[(v.room.settings || {}).cat] ? v.room.settings.cat : 'actors', gid: Date.now() + Math.random().toString(36).slice(2, 6), cycle: 0 }),
     },
     gameNames: { pictionary: 'Pictionary', imposter: 'Imposter', tictactoe: 'Tic Tac Toe', tierd: "Tier'd", likely: "Who's More Likely", wavelength: 'Wavelength', blindspot: 'Blindspot' },
-    onBack: () => UI.say('In the app this goes back to the home screen'),
     onStart: v => {
       V = v; code = v.code; gameId = null; game.classList.add('on'); render();
       // friends can join while the game is going (the leader opens the room)
