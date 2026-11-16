@@ -9,6 +9,7 @@
       pictionary: parts.Pictionary.makePictionary(Object.assign({}, env, { movies: parts.PictionaryMovies })),
     };
     if (parts.Wavelength) games.wavelength = parts.Wavelength.makeWavelength(Object.assign({}, env, { scales: parts.WavelengthScales }));
+    if (parts.CluePool) games.cluepool = parts.CluePool.makeCluePool(Object.assign({}, env, { movies: parts.CluePoolMovies, names: parts.CluePoolNames }));
     async function which(code) {
       if (!CODE_RE.test(String(code || ''))) return null;
       const g = await env.db.get(`rooms/${code}/game`);
