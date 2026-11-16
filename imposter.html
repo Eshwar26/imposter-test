@@ -229,7 +229,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-functions-compat.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.1"></script>
+<script src="core/core-ui.js?v=0.2.2"></script>
 <script>
 (() => {
   'use strict';
@@ -501,7 +501,6 @@
       ],
     },
     gameNames: { pictionary: 'Pictionary', imposter: 'Imposter', cluepool: 'Clue Pool', tierd: "Tier'd" },
-    onBack: () => UI.say('In the app this goes back to the home screen'),
     onStart: v => { V = v; shown = null; game.classList.add('on'); render(); },
     onUpdate: v => { V = v; render(); },
     onLobby: () => { V = null; shown = null; drawnResult = null; busy.clear(); closeLeave(); game.classList.remove('on'); },
