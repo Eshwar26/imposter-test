@@ -228,7 +228,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-functions-compat.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.1"></script>
+<script src="core/core-ui.js?v=0.2.2"></script>
 <script>
 (() => {
   'use strict';
@@ -539,7 +539,6 @@
       settings: [{ key: 'rounds', label: 'Rounds', options: [4, 6, 8], default: 6, summary: v => `${v} rounds` }],
     },
     gameNames: { pictionary: 'Pictionary', imposter: 'Imposter', tictactoe: 'Tic Tac Toe', tierd: "Tier'd", likely: "Who's More Likely", wavelength: 'Wavelength' },
-    onBack: () => UI.say('In the app this goes back to the home screen'),
     onStart: v => { V = v; code = v.code; shown = null; game.classList.add('on'); fitViewport(); render(); },
     onUpdate: v => { V = v; code = v.code; render(); },
     onLobby: () => { V = null; shown = null; closeLeave(); game.classList.remove('on'); },
