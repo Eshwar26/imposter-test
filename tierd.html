@@ -168,7 +168,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="data/words.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.1"></script>
+<script src="core/core-ui.js?v=0.2.2"></script>
 <script>
 (() => {
   'use strict';
@@ -392,7 +392,6 @@
       startState: v => newList(v, 1),
     },
     gameNames: { pictionary: 'Pictionary', imposter: 'Imposter', tictactoe: 'Tic Tac Toe', tierd: "Tier'd", cluepool: 'Clue Pool' },
-    onBack: () => UI.say('In the app this goes back to the home screen'),
     onStart: v => { V = v; code = v.code; shown = null; advancing = null; game.classList.add('on'); V.players.forEach(p => { seenSay[p.uid] = Number(String(p.say || '0').split('|')[0]) || 0; }); render(); },
     onUpdate: v => { V = v; code = v.code; render(); },
     onLobby: () => { V = null; shown = null; closeSheets(); game.classList.remove('on'); },
