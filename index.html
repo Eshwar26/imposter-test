@@ -265,6 +265,30 @@
        font-family:var(--display);font-size:17px;letter-spacing:1.2px;cursor:pointer;text-align:left}
   .pick button:active{border-color:var(--accent)}
 
+  /* Daily tab: today's four puzzles (the puzzles themselves are on daily.html) */
+  .dstreak{margin:14px 20px 0;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:14px 16px;box-shadow:var(--lift)}
+  .dstreak .s{display:flex;align-items:center;gap:14px}
+  .dstreak .n{font-family:var(--display);font-size:52px;line-height:.85;color:var(--accent)}
+  .dstreak .t{font-size:10.5px;letter-spacing:1px;line-height:1.5;color:var(--muted)}
+  .dstreak .t b{display:block;font-family:var(--display);font-weight:400;font-size:19px;letter-spacing:1.2px;color:var(--text)}
+  .marks{display:flex;align-items:center;gap:6px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+  .marks i{flex:1;height:6px;border-radius:6px;background:var(--surface2)}
+  .marks i.on{background:var(--k)}
+  .marks small{flex:none;font-size:10px;letter-spacing:2px;color:var(--muted);margin-left:6px}
+  .dlist{margin:12px 20px 0;display:flex;flex-direction:column;gap:8px}
+  .drow{display:flex;align-items:center;gap:12px;padding:12px 14px 12px 16px;border-radius:14px;background:color-mix(in srgb,var(--k) 6%,var(--surface));border:1px solid var(--border);
+        color:var(--text);text-decoration:none;position:relative;overflow:hidden}
+  .drow::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--k)}
+  .drow .tx{flex:1;min-width:0}
+  .drow b{display:block;font-family:var(--display);font-weight:400;font-size:22px;letter-spacing:1.2px;line-height:1}
+  .drow small{display:block;font-size:9.5px;letter-spacing:2px;color:var(--kt,var(--k));margin-top:5px}
+  .drow .st{flex:none;font-family:var(--display);font-size:16px;letter-spacing:1px;padding:6px 12px 4px;border-radius:999px;background:var(--k);color:#fff}
+  .drow.done .st{background:none;border:1.5px solid var(--border);color:var(--muted)}
+  .drow.won .st{border-color:color-mix(in srgb,var(--green) 60%,transparent);color:var(--green)}
+  .dgo{display:block;text-align:center;text-decoration:none;margin:14px 20px 0;width:auto;background:var(--accent);color:#fff;box-shadow:0 10px 26px color-mix(in srgb,var(--accent) 30%,transparent)}
+  .dnext{text-align:center;font-size:10.5px;letter-spacing:2px;color:var(--muted);margin-top:10px}
+  .dnext b{font-weight:500;color:var(--text);font-variant-numeric:tabular-nums}
+
   /* Coming soon blocks */
   .soon{margin:14px 20px 0;position:relative;overflow:hidden;border-radius:18px;padding:26px 20px 24px;min-height:220px;display:flex;flex-direction:column;justify-content:flex-end;
         background:radial-gradient(110% 80% at 100% 0%, color-mix(in srgb,var(--c) 18%,transparent), transparent 60%),var(--surface);
@@ -395,7 +419,7 @@
 
     <button class="daily rise" type="button" data-tab="daily" style="animation-delay:.08s">
       <span class="num" id="daynum"></span>
-      <span class="t">Daily puzzles<span>Coming soon · a new set every day</span></span>
+      <span class="t" id="dTeaser">Daily puzzles<span>4 new puzzles today</span></span>
     </button>
 
     <main id="shelves"></main>
@@ -404,12 +428,13 @@
   <!-- ═════════ DAILY ═════════ -->
   <div class="view" id="v-daily">
     <div class="page-title"><h1>DAILY</h1><span id="dDate"></span></div>
-    <div class="soon" style="--c:var(--green)">
-      <span class="g" aria-hidden="true">D</span>
-      <div class="eyebrow">Coming soon</div>
-      <h2>A NEW SET OF PUZZLES EVERY DAY</h2>
-      <p>The same puzzles for everyone, one try each. Play every day to build your streak.</p>
+    <div class="dstreak">
+      <div class="s"><span class="n" id="dsN">0</span><span class="t"><b>DAY STREAK</b>Play any puzzle each day to keep it going</span></div>
+      <div class="marks" id="dsMarks"></div>
     </div>
+    <div class="dlist" id="dList"></div>
+    <a class="btn dgo" id="dGo" href="daily.html">PLAY TODAY'S PUZZLES</a>
+    <p class="dnext">NEW PUZZLES IN <b id="dCd">--:--:--</b></p>
   </div>
 
   <!-- ═════════ FRIENDS ═════════ -->
@@ -643,7 +668,37 @@
     if (name === 'home') schedule(); else clearTimeout(timer);
   }
 
-  // ── Daily (coming soon) ──
+  // ── Daily: reads what daily.html saved on this phone (cf_daily) ──
+  const DPUZ = [
+    {id:'hol', n:'Higher or Lower', k:'var(--blue)'},
+    {id:'dlg', n:'Dialogue', k:'var(--accent)'},
+    {id:'sto', n:'Story', k:'var(--accent2)'},
+    {id:'cast', n:'Cast', k:'#8e1f33', kt:'#d4566b'},
+  ];
+  const IST = 330 * 60000, dKey = (ms = Date.now()) => new Date(ms + IST).toISOString().slice(0, 10);
+  function readDaily(){ try { const v = JSON.parse(localStorage.getItem('cf_daily') || '{}'); return v.days || {}; } catch(e) { return {}; } }
+  function drawDaily(){
+    const D = readDaily(), today = dKey(), fin = (k, id) => !!(D[k] && D[k][id] && D[k][id].done);
+    let n = 0, ms = Date.parse(today); if (!DPUZ.some(p => fin(today, p.id))) ms -= 864e5;
+    for (;;) { const k = new Date(ms).toISOString().slice(0, 10); if (!DPUZ.some(p => fin(k, p.id))) break; n++; ms -= 864e5; }
+    const done = DPUZ.filter(p => fin(today, p.id)).length;
+    const streakOf = id => { let c = 0, m = Date.parse(today); if (!fin(today, id)) m -= 864e5; for (;;) { const k = new Date(m).toISOString().slice(0, 10); if (!fin(k, id)) break; c++; m -= 864e5; } return c; };
+    document.getElementById('dsN').textContent = n;
+    document.getElementById('dsMarks').innerHTML = DPUZ.map(p => `<i class="${fin(today, p.id) ? 'on' : ''}" style="--k:${p.k}"></i>`).join('') + `<small>${done === 4 ? 'ALL DONE TODAY' : done + ' OF 4 TODAY'}</small>`;
+    document.getElementById('dList').innerHTML = DPUZ.map(p => {
+      const r = D[today] && D[today][p.id], sk = streakOf(p.id);
+      const st = r && r.done ? (p.id === 'hol' ? r.s + '/10' : r.win ? 'GOT IT' : 'MISSED') : 'PLAY';
+      const cls = r && r.done ? ' done' + ((p.id === 'hol' ? r.s >= 5 : r.win) ? ' won' : '') : '';
+      return `<a class="drow${cls}" href="daily.html#${p.id}" style="--k:${p.k}${p.kt ? ';--kt:' + p.kt : ''}"><span class="tx"><b>${p.n}</b><small>${sk ? sk + (sk === 1 ? ' DAY' : ' DAYS') + ' IN A ROW' : 'NO STREAK YET'}</small></span><span class="st">${st}</span></a>`;
+    }).join('');
+    document.getElementById('dGo').textContent = done === 4 ? "SEE TODAY'S RESULTS" : done ? 'CARRY ON' : "PLAY TODAY'S PUZZLES";
+    document.getElementById('daynum').textContent = n || new Date(Date.now() + IST).getUTCDate();
+    document.getElementById('dTeaser').innerHTML = 'Daily puzzles<span>' + (n ? n + ' day streak · ' : '') + (done === 4 ? 'all done today' : done ? done + ' of 4 done today' : '4 new puzzles today') + '</span>';
+  }
+  function dTick(){ const left = 864e5 - ((Date.now() + IST) % 864e5); const h = Math.floor(left / 36e5), m = Math.floor(left % 36e5 / 6e4), sc = Math.floor(left % 6e4 / 1e3);
+    document.getElementById('dCd').textContent = [h, m, sc].map(v => String(v).padStart(2, '0')).join(':'); }
+  drawDaily(); dTick(); setInterval(dTick, 1000);
+  window.addEventListener('pageshow', drawDaily);
   const now = new Date();
   document.getElementById('dDate').textContent = now.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'}).toUpperCase();
 
