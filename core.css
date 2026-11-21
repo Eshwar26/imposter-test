@@ -190,3 +190,28 @@
   .opts.sm .opt{padding:8px 12px;font-size:11.5px;border-radius:10px}
   .who-chip.mini-who{margin-top:8px;padding:4px 10px 4px 4px;font-size:11px}
   .who-chip.mini-who .pfp{width:22px;height:22px;font-size:11px}
+
+  /* ═════ How to play: animated steps (core/howto.js) ═════ */
+  .sheet.ht-sheet{max-height:96dvh;overflow-y:auto;overscroll-behavior:contain}
+  .ht-head{display:flex;align-items:baseline;justify-content:space-between}
+  .ht-n{font-family:var(--display);font-size:18px;letter-spacing:2px;color:var(--muted)}
+  .ht-n b{color:var(--c);font-weight:400}
+  .ht-prog{display:flex;gap:5px;margin:12px 0}
+  .ht-prog i{flex:1;height:3px;border-radius:2px;background:var(--border);overflow:hidden;position:relative}
+  .ht-prog i b{position:absolute;inset:0;background:var(--c);transform-origin:left;transform:scaleX(0)}
+  .ht-stage{position:relative;width:100%;aspect-ratio:32/25;max-height:46dvh;border-radius:20px;background:var(--surface2);overflow:hidden}
+  .ht-stage svg{position:absolute;inset:0;width:100%;height:100%}
+  .ht-stage svg text.d{font-family:var(--display)}
+  .ht-stage svg text.m{font-family:var(--mono)}
+  .ht-tap{position:absolute;top:0;bottom:0;width:50%;background:none;border:0;cursor:pointer;z-index:2}
+  .ht-tap.l{left:0} .ht-tap.r{right:0}
+  .ht-cap{display:flex;gap:12px;align-items:flex-start;min-height:62px;margin-top:14px;font-size:13px;line-height:1.55}
+  .ht-cap b{font-family:var(--display);font-weight:400;font-size:30px;line-height:.95;color:var(--c);min-width:20px}
+  .ht-cap.in span,.ht-cap.in b{animation:htin .45s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes htin{from{opacity:0;transform:translateY(8px)}}
+  .ht-btns{display:grid;grid-template-columns:1fr 1.4fr;gap:10px;margin-top:8px}
+  .ht-btns .btn{margin:0;font-size:19px;padding:13px}
+  .ht-btns .btn:not(.outline){background:var(--c);box-shadow:0 10px 26px color-mix(in srgb,var(--c) 30%,transparent)}
+  .ht-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  @media (prefers-reduced-motion:reduce){.ht-cap.in span,.ht-cap.in b{animation:none}}
+  @media (orientation:landscape) and (max-height:540px){.ht-stage{height:52dvh;width:auto;max-height:none;margin:0 auto}}
