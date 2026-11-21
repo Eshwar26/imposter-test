@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/core.css?v=0.2.1">
+<link rel="stylesheet" href="core/core.css?v=0.2.3">
 <style>
   /* Charades: one phone, act out the movie. No rooms, no database. */
   :root{--c:var(--accent)}
@@ -70,15 +70,9 @@
 </div>
 
 <div class="scrim" id="scrim"></div>
-<section class="sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><h3>HOW TO PLAY</h3>
-  <div class="rules">
-    <div class="rule"><b>1</b><span>Press START. A movie name appears. Only the actor looks at the phone.</span></div>
-    <div class="rule"><b>2</b><span>Act it out with no words and no sounds. Everyone else guesses.</span></div>
-    <div class="rule"><b>3</b><span>Someone got it? Tap NEXT MOVIE and pass the phone to the next actor.</span></div>
-  </div>
-  <button class="btn outline" type="button" data-close>GOT IT</button>
-</section>
+<section class="sheet ht-sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><div id="howto"></div></section>
 
+<script src="core/howto.js?v=0.2.0"></script>
 <script>
 (() => {
   'use strict';
@@ -126,14 +120,87 @@
   document.addEventListener('visibilitychange', () => { if (!document.hidden && $('s-play').classList.contains('on')) grab(); });
 
   function show(id) { document.querySelectorAll('#game .gs').forEach(s => s.classList.toggle('on', s.id === id)); theme(); }
-  const closeSheet = () => { $('rulesSheet').classList.remove('open'); $('scrim').classList.remove('open'); };
+  // ── how to play: the animated steps (drawn by core/howto.js) ──
+  const HOWTO = {
+    steps: [
+      { d: 3600, t: 'Press START. A movie name appears. Only the actor looks at the phone.' },
+      { d: 4800, t: 'Act it out without saying a word. Everyone else guesses.' },
+      { d: 4800, t: 'Someone got it? Tap NEXT MOVIE and pass the phone to the next actor.' }
+    ],
+    build(svg, K) {
+      const { el, op, cl, pr, ease, back, lerp, Player, Phone, Chip, Label, WidePill, Ripple, COLORS } = K;
+      const AX = 160, AY = 172, F = [[44, 62], [276, 62], [44, 186]], FC = [[44, 28], [276, 28], [44, 220]];
+      const arms = el('g', { opacity: 0, stroke: 'var(--accent2)', 'stroke-width': 6, 'stroke-linecap': 'round', fill: 'none' }, svg);
+      const armL = el('path', {}, arms), armR = el('path', {}, arms);
+      const pl = el('g', {}, svg);
+      const actor = Player(pl, AX, AY, 'R', COLORS[0]), friends = F.map((p, i) => Player(pl, p[0], p[1], 'SBA'[i], COLORS[i + 1]));
+      const ph = Phone(svg);
+      const lbl = Label(svg, 'm'), name = Label(svg);
+      const start = WidePill(svg, 'START', 'var(--accent)', 44), nextP = WidePill(svg, 'NEXT MOVIE', '#fff', 58, 'var(--accent)');
+      const tap = Ripple(svg), chips = F.map(() => Chip(svg)), hush = Chip(svg);
+      const pop = (u, a) => back(pr(u, a, 260));
+      const P0 = [160, 92, 2.3];
+      return (s, u) => {
+        lbl.hide(); name.hide(); start.hide(); nextP.hide(); chips.forEach(c => c.hide()); hush.hide(); tap.set(0, 0, 0); op(arms, 0);
+        actor.set({ x: AX, y: AY, s: 1.8 }); friends.forEach(f => f.set());
+        ph.show(1); ph.screen('var(--accent)');
+        if (s === 0) {
+          friends.forEach(f => f.set({ o: .18 }));
+          ph.at(P0[0], P0[1], P0[2] * (.85 + .15 * back(pr(u, 0, 500))));
+          ph.screen(u < 900 ? '#13131a' : 'var(--accent)');
+          start.set(P0[0], P0[1], 1 - pr(u, 850, 150), pr(u, 520, 140) - pr(u, 660, 140));
+          tap.set(P0[0], P0[1], pr(u, 560, 600), 30);
+          if (u > 900) { lbl.set('ACT IT OUT', P0[0], 66, 5.4, 'rgba(255,255,255,.75)', { o: pr(u, 900, 250) }); name.set('BAAHUBALI', P0[0], 92, 16, '#fff', { s: pop(u, 1000), maxW: 60 }); }
+          if (u > 1900) hush.set('Only the actor looks', 160, 226, pop(u, 1900));
+        } else if (s === 1) {
+          const k = ease(pr(u, 0, 600));
+          ph.at(lerp(P0[0], 236, k), lerp(P0[1], 214, k), lerp(P0[2], .9, k), 90 * k); ph.screen(k > .5 ? '#13131a' : 'var(--accent)');
+          // the actor acts it out: arms gesturing, body swaying, no props
+          const sway = Math.sin(u / 380) * 6, bob = Math.abs(Math.sin(u / 300)) * 4;
+          const hx = AX + sway, hy = AY - bob;
+          actor.set({ x: hx, y: hy, s: 1.8 });
+          op(arms, pr(u, 300, 300));
+          const aL = Math.sin(u / 290), aR = Math.sin(u / 290 + 2.2);
+          armL.setAttribute('d', `M${hx - 22} ${hy + 4} Q${hx - 46} ${hy - 6 - 16 * aL} ${hx - 40 - 6 * aL} ${hy - 30 - 22 * aL}`);
+          armR.setAttribute('d', `M${hx + 22} ${hy + 4} Q${hx + 46} ${hy - 6 - 16 * aR} ${hx + 40 + 6 * aR} ${hy - 30 - 22 * aR}`);
+          hush.set('No words', 160, 236, pop(u, 500));
+          ['Magadheera?', 'Eega?', 'Baahubali!'].forEach((g, i) => {
+            const a = 900 + i * 1100; if (u < a) return;
+            chips[i].set(g, FC[i][0], FC[i][1], pop(u, a), i === 2 && u > a + 500 ? 'ok' : undefined);
+            friends[i].set({ ring: u < a + 1100 ? 1 : 0, ringC: i === 2 && u > a + 500 ? 'var(--green)' : 'var(--text)' });
+          });
+        } else {
+          const k = ease(pr(u, 0, 500)), kp = ease(pr(u, 2300, 900));
+          const x = lerp(lerp(236, P0[0], k), 86, kp), y = lerp(lerp(214, P0[1], k), 178, kp), sc = lerp(lerp(.9, P0[2], k), 1.1, kp);
+          ph.at(x, y, sc, 90 * (1 - k)); ph.screen(k > .5 ? 'var(--accent)' : '#13131a');
+          chips[2].set('Baahubali!', FC[2][0], FC[2][1], 1 - pr(u, 300, 300), 'ok');
+          if (u < 2300) {
+            const nm = u < 1150 ? 'BAAHUBALI' : 'EEGA';
+            lbl.set('ACT IT OUT', x, y - 26 * sc / 2.3, 5.4 * sc / 2.3, 'rgba(255,255,255,.75)', { o: k });
+            name.set(nm, x, y, 16 * sc / 2.3, '#fff', { o: k, s: u >= 1150 ? pop(u, 1150) : 1, maxW: 60 * sc / 2.3 });
+            nextP.set(x, y + 30, pr(u, 400, 250) * (1 - pr(u, 1100, 150)), pr(u, 800, 120) - pr(u, 920, 120));
+            tap.set(x, y + 30, pr(u, 850, 600), 30);
+          }
+          actor.set({ x: AX, y: AY, s: 1.8, ring: 1 - kp });
+          friends[2].set({ ring: kp, ringC: 'var(--accent)' });
+          if (u > 3300) hush.set('Your turn to act', 110, 236, pop(u, 3300));
+        }
+      };
+    }
+  };
+
+  const HT = CinefiedHowTo.create($('howto'), HOWTO);
+  const openSheet = () => { $('rulesSheet').classList.add('open'); $('scrim').classList.add('open'); HT.play(); };
+  const closeSheet = () => { HT.stop(); $('rulesSheet').classList.remove('open'); $('scrim').classList.remove('open'); };
+  // every time the game is opened, the how-to-play plays first
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(() => { if ($('s-home').classList.contains('on')) openSheet(); }, 450));
   document.addEventListener('click', e => {
     const t = e.target;
     if (t.closest('#startBtn')) { played = 0; show('s-play'); grab(); return nextMovie(); }
     if (t.closest('#nextBtn')) return nextMovie();
     if (t.closest('#stopBtn')) { drop(); return show('s-home'); }
     if (t.closest('#homeBtn')) return void history.back();
-    if (t.closest('[data-rules]')) { $('rulesSheet').classList.add('open'); $('scrim').classList.add('open'); return; }
+    if (t.closest('[data-rules]')) return openSheet();
     if (t.closest('#scrim') || t.closest('[data-close]')) return closeSheet();
   });
 })();
