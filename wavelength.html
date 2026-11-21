@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/core.css?v=0.2.1">
+<link rel="stylesheet" href="core/core.css?v=0.2.3">
 <style>
   :root{--c:var(--blue);--lo:var(--blue);--hi:var(--accent);--b4:var(--green);--b3:var(--yellow);--b2:var(--accent2);--bt:#10101a}
   [hidden]{display:none!important}
@@ -228,7 +228,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-functions-compat.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.2"></script>
+<script src="core/howto.js?v=0.2.0"></script>
+<script src="core/core-ui.js?v=0.2.3"></script>
 <script>
 (() => {
   'use strict';
@@ -526,8 +527,75 @@
   gbox.addEventListener('pointerup', stop); gbox.addEventListener('pointercancel', stop);
 
   // ══ hand-off with the core ═══════════════════════════════════
+  // ── how to play: the animated steps (drawn by core/howto.js) ──
+  const HOWTO = {
+    steps: [
+      { d: 3800, t: 'Each round one player is the psychic. Only they see where the target is on a scale like Flop ↔ Blockbuster.' },
+      { d: 3600, t: 'The psychic has 60 seconds to type a clue that sits at that spot. No words from the scale.' },
+      { d: 4600, t: "Everyone else drags their own dial to where they think the target is and locks in. Nobody sees the others' dials until the reveal." },
+      { d: 3600, t: 'The target is revealed. The closer your dial, the more you score: bullseye 4, close 3, near 2.' }
+    ],
+    build(svg, K) {
+      const { el, op, cl, pr, ease, back, lerp, fitLines, Phone, Player, Chip, Label, WidePill, Ripple, COLORS } = K;
+      const cx = 160, cy = 168, R0 = 34, R1 = 104, T = .68;
+      const pt = (t, r) => { const a = Math.PI * (1 - t); return [cx + r * Math.cos(a), cy - r * Math.sin(a)]; };
+      const wedge = (t0, t1) => { const [a, b] = [pt(t0, R1), pt(t1, R1)], [c, d] = [pt(t1, R0), pt(t0, R0)];
+        return `M${a[0].toFixed(1)} ${a[1].toFixed(1)}A${R1} ${R1} 0 0 1 ${b[0].toFixed(1)} ${b[1].toFixed(1)}L${c[0].toFixed(1)} ${c[1].toFixed(1)}A${R0} ${R0} 0 0 0 ${d[0].toFixed(1)} ${d[1].toFixed(1)}Z`; };
+      el('path', { d: `M${cx - R1} ${cy}A${R1} ${R1} 0 0 1 ${cx + R1} ${cy}Z`, fill: 'var(--surface)', stroke: 'var(--border)', 'stroke-width': 1.5 }, svg);
+      const clip = el('clipPath', { id: 'wlclip' }, svg); el('path', { d: `M${cx - R1} ${cy}A${R1} ${R1} 0 0 1 ${cx + R1} ${cy}Z` }, clip);
+      const tg = el('g', { 'clip-path': 'url(#wlclip)' }, svg), band = el('g', {}, tg);
+      // bands drawn around t = 0; the group is rotated to put them on the target
+      [[.17, .45, '2'], [.10, .7, '3'], [.04, 1, '4']].forEach(([w, o, n]) => {
+        el('path', { d: wedge(.5 - w, .5 + w), fill: 'var(--blue)', opacity: o }, band);
+      });
+      [['2', -.135], ['3', -.07], ['4', 0], ['3', .07], ['2', .135]].forEach(([n, dt]) => { const [x, y] = pt(.5 + dt, R1 - 12); el('text', { class: 'd', 'text-anchor': 'middle', x: x.toFixed(1), y: (y + 4).toFixed(1), 'font-size': 11, fill: '#10101a' }, band, n); });
+      el('text', { class: 'm', 'text-anchor': 'start', x: cx - R1, y: cy + 15, 'font-size': 9, fill: 'var(--muted)', 'letter-spacing': 1 }, svg, 'FLOP');
+      el('text', { class: 'm', 'text-anchor': 'end', x: cx + R1, y: cy + 15, 'font-size': 9, fill: 'var(--muted)', 'letter-spacing': 1 }, svg, 'BLOCKBUSTER');
+      const guesses = [[.70, 2, '+4'], [.53, 1, '+2']];   // needle colours that stand out on the target
+      const needles = guesses.map(([, i]) => el('line', { x1: cx, y1: cy, stroke: COLORS[i], 'stroke-width': 4, 'stroke-linecap': 'round', opacity: 0 }, svg));
+      el('circle', { cx, cy, r: 6, fill: 'var(--text)' }, svg);
+      const pl = el('g', {}, svg), psy = Player(pl, 160, 214, 'R', COLORS[0]);
+      const G = [[32, 70, 'S', 2], [288, 70, 'B', 1]].map(([x, y, l, i]) => Player(pl, x, y, l, COLORS[i]));
+      const GC = [[32, 38], [288, 38]];
+      const only = Chip(svg), clue = Chip(svg), timer = Label(svg, 'm'), gc = G.map(() => Chip(svg)), pc = Chip(svg);
+      const pop = (u, a) => back(pr(u, a, 260));
+      const setBand = (t, o) => { band.setAttribute('transform', `rotate(${((t - .5) * 180).toFixed(2)} ${cx} ${cy})`); op(band, o); };
+      const needle = (n, t, o) => { const [x, y] = pt(t, R1 - 6); n.setAttribute('x2', x.toFixed(1)); n.setAttribute('y2', y.toFixed(1)); op(n, o); };
+      // the target slides in from the left, overshoots a little and settles
+      const slide = k => k <= 0 ? 0 : T * back(k);
+      return (s, u) => {
+        [only, clue, pc, ...gc].forEach(c => c.hide()); timer.hide(); setBand(T, 0); needles.forEach(n => op(n, 0));
+        psy.set({ ring: s < 2 ? 1 : 0 }); G.forEach(g => g.set({ o: s === 0 ? .25 : 1 }));
+        if (s === 0) {
+          setBand(Math.max(.04, slide(pr(u, 300, 1100))), pr(u, 300, 200));
+          if (u > 1500) only.set('Only R sees this', 160, 242, pop(u, 1500));
+        } else if (s === 1) {
+          setBand(T, 1 - .75 * pr(u, 0, 300));
+          const word = 'Pokiri', n = Math.min(word.length, Math.floor((u - 400) / 180));
+          clue.set((n > 0 ? word.slice(0, n) : '') + (n < word.length && Math.floor(u / 300) % 2 ? '|' : ' '), 160, 242, pop(u, 300));
+          timer.set('0:' + String(Math.max(0, 58 - Math.floor(u / 1000))).padStart(2, '0'), 160, 196, 9, 'var(--muted)');
+        } else if (s === 2) {
+          clue.set('Pokiri', 160, 242, 1);
+          guesses.forEach(([t], j) => {
+            const a = 300 + j * 1500, k = pr(u, a, 1100), wob = Math.sin(u / 120 + j) * .06 * (1 - k);
+            if (u < a) return;
+            needle(needles[j], lerp(.2 + j * .1, t, ease(k)) + wob, 1);
+            G[j].set({ ring: 1, ringC: k >= 1 ? 'var(--green)' : 'var(--text)' });
+          });
+        } else {
+          clue.set('Pokiri', 160, 242, 1);
+          guesses.forEach(([t], j) => needle(needles[j], t, 1));
+          setBand(Math.max(.04, slide(pr(u, 200, 1100))), pr(u, 200, 200));
+          guesses.forEach(([, , p], j) => { if (u > 1500 + j * 300) gc[j].set(p, GC[j][0], GC[j][1], pop(u, 1500 + j * 300), 'ok'); });
+        
+        }
+      };
+    }
+  };
+
   UI.mount({
     game: {
+      howto: HOWTO,
       id: 'wavelength', name: 'Wavelength', shelf: 'Play together', color: 'var(--blue)', glyph: 'W', referee: true,
       pitch: 'One player sees a hidden spot on a movie scale and gives a clue. Everyone else reads their mind.',
       facts: ['2 to 8 players', 'Each on own phone', '~10 min'],
