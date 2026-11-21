@@ -1,12 +1,14 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied shared game screens · v0.2.1
+   Cinefied shared game screens · v0.2.3
    The entry page, the code pad and the waiting room, drawn once
    for every multiplayer game. A game page calls:
 
      CinefiedUI.mount({ game: {...}, onStart(view), onUpdate(view), onLobby() })
 
    and gets control back (onStart) when the leader starts the game.
-   Needs core.js and core.css.
+   Needs core.js and core.css. A game that passes game.howto (a scene for
+   core/howto.js, loaded before this file) gets the animated HOW TO PLAY,
+   which also opens by itself every time the game page is opened.
    ════════════════════════════════════════════════════════════════ */
 (function (global) {
   'use strict';
@@ -20,7 +22,7 @@
   const $ = id => document.getElementById(id);
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  let G = null, opts = null, last = null, inGame = false, picked = null, busy = false, starting = false;
+  let G = null, opts = null, last = null, inGame = false, picked = null, busy = false, starting = false, HT = null;
 
   // ── theme: follows the phone unless the player chose one in Profile ──
   function theme() {
@@ -115,11 +117,13 @@
   <p class="padnote" id="cfPadNote"></p>
 </section>
 
-<section class="sheet" id="rules" aria-label="How to play">
+${G.howto && global.CinefiedHowTo
+  ? '<section class="sheet ht-sheet" id="rules" aria-label="How to play"><div class="grab"></div><div id="cfHowTo"></div></section>'
+  : `<section class="sheet" id="rules" aria-label="How to play">
   <div class="grab"></div>
   <h3>HOW TO PLAY</h3>
   <div class="rules">${(G.rules || []).map((r, i) => `<div class="rule"><b>${i + 1}</b><span>${esc(r)}</span></div>`).join('')}</div>
-</section>
+</section>`}
 
 <section class="sheet" id="invite" aria-label="Invite">
   <div class="grab"></div>
@@ -149,7 +153,9 @@
 <div class="toast" id="cfToast" role="status"></div>
 <div class="rejoin hide" id="cfRejoin"><p>REJOINING</p></div>`;
     const host = document.createElement('div'); host.id = 'cinefied-ui'; host.innerHTML = html;
+    host.style.setProperty('--c', G.color || 'var(--accent)');   // sheets sit outside #cf-app, so they get the game's colour here
     document.body.appendChild(host);
+    if (G.howto && global.CinefiedHowTo) HT = global.CinefiedHowTo.create($('cfHowTo'), G.howto);
   }
 
   // ── little UI tools ─────────────────────────────────────────
@@ -163,11 +169,14 @@
   function hideScreens() { document.querySelectorAll('#cf-app .screen').forEach(s => { s.className = 'screen'; }); closeSheets(); }
   function openSheet(id) {
     if (id === 'setsheet' && !(last && last.isLeader)) return say('Only the room leader can change settings');
+    if (id !== 'rules' && HT) HT.stop();
+    document.querySelectorAll('#cinefied-ui .sheet.open').forEach(x => { if (x.id !== id) x.classList.remove('open'); });
     $(id).classList.add('open'); $('cfScrim').classList.add('open');
+    if (id === 'rules' && HT) HT.play();
     if (id === 'pad') { padReset(); setTimeout(() => $('cfCodeIn').focus(), 250); }
     if (id === 'namesheet') { $('cfNameIn').value = C.getName(); setTimeout(() => $('cfNameIn').select(), 250); }
   }
-  function closeSheets() { document.querySelectorAll('#cinefied-ui .sheet').forEach(s => s.classList.remove('open')); $('cfScrim').classList.remove('open'); $('cfCodeIn').blur(); }
+  function closeSheets() { if (HT) HT.stop(); document.querySelectorAll('#cinefied-ui .sheet').forEach(s => s.classList.remove('open')); $('cfScrim').classList.remove('open'); $('cfCodeIn').blur(); }
   function drawMe() { const n = C.getName(); $('cfMeName').textContent = n; const av = $('cfMeAv'); av.textContent = (n.match(/[A-Za-z0-9]/) || ['?'])[0].toUpperCase(); av.style.setProperty('--pc', 'linear-gradient(135deg,var(--accent),var(--accent2))'); }
 
   // ── code pad ────────────────────────────────────────────────
@@ -321,11 +330,18 @@
     try {
       await C.init();
       const code = await C.resume(G.id);
-      if (!code) go('s-entry', true);
+      if (!code) { go('s-entry', true); showHowTo(); }
     } catch (e) {
-      go('s-entry', true); say(C.message({ code: 'offline' }));
+      go('s-entry', true); say(C.message({ code: 'offline' })); showHowTo();
     }
     $('cfRejoin').classList.add('hide');
+  }
+
+  // Every time the game page is opened, the how-to-play plays first (not when rejoining a room in progress).
+  function showHowTo() {
+    if (!HT) return;
+    const open = () => { if ($('s-entry').classList.contains('on') && !document.querySelector('#cinefied-ui .sheet.open')) openSheet('rules'); };
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(open, 450));
   }
 
   // Leave from inside a game (the game page calls this from its own leave button).
