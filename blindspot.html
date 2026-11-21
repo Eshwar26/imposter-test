@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/core.css?v=0.2.1">
+<link rel="stylesheet" href="core/core.css?v=0.2.3">
 <style>
   :root{--c:var(--blue);--ct:#fff}
   #game{display:none}
@@ -102,7 +102,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="data/words.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.2"></script>
+<script src="core/howto.js?v=0.1.0"></script>
+<script src="core/core-ui.js?v=0.2.3"></script>
 <script>
 (() => {
   'use strict';
@@ -222,13 +223,96 @@
   });
 
   // ══ hand-off with the core ═══════════════════════════════════
+  // ── how to play: the animated steps (drawn by core/howto.js) ──
+  const HOWTO = {
+    steps: [
+      { d: 4400, t: 'Press START and put the phone on your forehead, screen facing out. Your name shows after a 3-second countdown.' },
+      { d: 3600, t: 'Everyone can see your name except you.' },
+      { d: 7600, t: 'Take turns going around the room. On your turn, ask one yes or no question about your own name.' },
+      { d: 4600, t: 'Got it? Tap NEXT and put the phone back on. A new name shows after the countdown.' }
+    ],
+    build(svg, K) {
+      const { el, op, cl, pr, ease, back, lerp, wrap, fitLines, pass, Phone, Player, Chip, Label, Pill, Ripple, COLORS } = K;
+      const X = [46, 122, 198, 274], AY = 160, ME = 1, PY = AY - 44;
+      const names = ['NANI', 'CHIRANJEEVI', 'SAMANTHA', 'PRABHAS'];
+      const sight = el('g', { opacity: 0 }, svg);
+      const sl = X.map((x, i) => i === ME ? null : el('path', { d: `M${x} ${AY - 18}L${X[ME] + (i < ME ? -12 : 12) * (i === 0 ? 1 : 1)} ${PY + 12}`, stroke: 'var(--muted)', 'stroke-width': 1.3, 'stroke-dasharray': '3 4', 'stroke-linecap': 'round', fill: 'none' }, sight));
+      const pl = el('g', {}, svg), players = X.map((x, i) => Player(pl, x, AY, 'RSBA'[i], COLORS[i]));
+      const you = el('text', { class: 'm', 'text-anchor': 'middle', 'font-size': 10, fill: 'var(--muted)', 'letter-spacing': 1.5, x: X[ME], y: AY + 31, opacity: 0 }, svg, 'YOU');
+      const phones = X.map(() => { const p = Phone(svg); p.screen('#13131a'); return p; });
+      const lbl = X.map(() => Label(svg)), cnt = Label(svg), next = Pill(svg, 'NEXT', 'var(--blue)'), start = Pill(svg, 'START', 'var(--blue)');
+      const q = Chip(svg), ans = X.map(() => Chip(svg)), tap = Ripple(svg);
+      const pop = (u, a) => back(pr(u, a, 260));
+      const count = (u, a, x, y, s) => { // 3 · 2 · 1 on the phone, from time a
+        const i = Math.floor((u - a) / 650); if (u < a || i > 2) return false;
+        cnt.set(String(3 - i), x, y, 26 * s / 1.75, 'var(--blue)', { s: .6 + .4 * pop(u, a + i * 650) }); return true;
+      };
+      return (s, u) => {
+        lbl.forEach(l => l.hide()); cnt.hide(); next.hide(); start.hide(); q.hide(); ans.forEach(c => c.hide()); tap.set(0, 0, 0); op(sight, 0); op(you, 0);
+        const me = phones[ME];
+        if (s === 0) {
+          players.forEach((p, i) => p.set({ o: i === ME ? 1 : 0 })); phones.forEach((p, i) => p.show(i === ME ? 1 : 0));
+          players[ME].set({ x: 160, y: 190, s: 2.1 });
+          const k = ease(pr(u, 1000, 800));
+          const x = 160, y = lerp(112, 140, k), sc = lerp(2.2, 1.75, k), rot = 90 * k;
+          me.at(x, y, sc, rot);
+          start.set(x, y + 13 * sc, sc * .9, 1 - pr(u, 800, 200), pr(u, 450, 150) - pr(u, 600, 150));
+          tap.set(x, y + 13 * sc, pr(u, 500, 600), 30);
+          if (!count(u, 1800, x, y, sc) && u >= 3750) lbl[ME].set(names[ME], x, y, 17, '#fff', { s: pop(u, 3750), maxW: 76 });
+        } else if (s === 1) {
+          const k = ease(pr(u, 0, 700));
+          players[ME].set({ x: lerp(160, X[ME], k), y: lerp(190, AY, k), s: lerp(2.1, 1, k), ring: k });
+          me.at(lerp(160, X[ME], k), lerp(140, PY, k), lerp(1.75, 1.15, k), 90);
+          lbl[ME].set(names[ME], lerp(160, X[ME], k), lerp(140, PY, k), lerp(17, 12, k), '#fff', { maxW: lerp(76, 46, k) });
+          X.forEach((x, i) => {
+            if (i === ME) return;
+            const o = pr(u, 350 + i * 120, 380), dy = 10 * (1 - ease(o));
+            players[i].set({ o }); phones[i].show(o); phones[i].at(x, PY + dy, 1.15, 90);
+            lbl[i].set(names[i], x, PY + dy, 12, '#fff', { o, maxW: 46 });
+          });
+          op(you, k); const sk = pr(u, 1300, 500); op(sight, sk);
+          sl.forEach(p => p && p.setAttribute('stroke-dashoffset', (-u / 40).toFixed(1)));
+          if (u > 1900) q.set('Who am I?', X[ME], AY + 46, pop(u, 1900));
+        } else if (s === 2) {
+          X.forEach((x, i) => { players[i].set(); phones[i].show(1); phones[i].at(x, PY, 1.15, 90); lbl[i].set(names[i], x, PY, 12, '#fff', { maxW: 46 }); });
+          op(you, 1);
+          const seq = [[0, 'Am I a hero?'], [2, 'Am I the Megastar?'], [3, 'Am I a heroine?'], [0, 'Am I a villain?'], [1, 'Am I Chiranjeevi?']];
+          const reply = ['Yes', 'Yes!', 'Yes', 'No', 'Yes!'];
+          const ask = [0, 1, 2, 3, 1];
+          const T = 1500, i = Math.min(4, Math.floor(u / T)), r = u - i * T, who = ask[i];
+          players[who].set({ ring: 1, ringC: i === 4 && r > 900 ? 'var(--green)' : 'var(--text)' });
+          if (r < 900) q.set(seq[i][1], X[who], AY + 46, pop(r, 0));
+          else X.forEach((x, j) => { if (j !== who) { ans[j].set(reply[i], x, AY + 46, pop(r, 900 + j * 70), i === 4 ? 'ok' : undefined); } });
+        } else {
+          const out = pr(u, 0, 600), back2 = pr(u, 2700, 500);
+          X.forEach((x, i) => {
+            if (i === ME) return;
+            const o = 1 - .75 * ease(out) + .75 * ease(back2);
+            players[i].set({ o }); phones[i].show(o); phones[i].at(x, PY, 1.15, 90); lbl[i].set(names[i], x, PY, 12, '#fff', { o, maxW: 46 });
+          });
+          op(you, 1); players[ME].set({ ring: 1 });
+          const kd = ease(pr(u, 0, 700)), ku = ease(pr(u, 1250, 850)), k = kd - ku;
+          const x = lerp(X[ME], 160, k), y = lerp(PY, 116, k), sc = lerp(1.15, 2.3, k), rot = 90 * (1 - k);
+          me.at(x, y, sc, rot);
+          if (u < 1150) {
+            lbl[ME].set(names[ME], x, y - 5 * sc, lerp(12, 16, kd), '#fff', { maxW: lerp(46, 44, kd) });
+            next.set(x, y + 12 * sc, sc * .85, pr(u, 450, 200), pr(u, 950, 120) - pr(u, 1070, 120));
+            tap.set(x, y + 12 * sc, pr(u, 1000, 600), 30);
+          }
+          if (!count(u, 1250, x, y, sc) && u >= 3200) lbl[ME].set('MAHESH BABU', x, y, 12, '#fff', { s: pop(u, 3200), maxW: 46 });
+        }
+      };
+    }
+  };
+
   UI.mount({
     game: {
+      howto: HOWTO,
       id: 'blindspot', name: 'Blindspot', shelf: 'Play together', color: 'var(--blue)', glyph: 'B',
       pitch: "A name on your forehead. Everyone can see it except you.",
       facts: ['2 to 12 players', 'Each on own phone', 'No timer'],
       rules: ['Each phone shows one name. Hold it on your forehead, screen facing out.',
-              'Everyone can see your name except you. Ask yes or no questions to work out who you are.',
+              'Everyone can see your name except you. Take turns going around the room: on your turn, ask one yes or no question about your own name.',
               'Got it? Tap NEXT for a new name. It shows after a 3-second countdown, so put the phone back on first.',
               'Nobody in the room gets the same name twice until the list runs out.'],
       min: 2, max: 12,
