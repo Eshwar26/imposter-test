@@ -95,7 +95,7 @@
 <div class="scrim" id="scrim"></div>
 <section class="sheet ht-sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><div id="howto"></div></section>
 
-<script src="core/howto.js?v=0.1.0"></script>
+<script src="core/howto.js?v=0.2.0"></script>
 <script>
 (() => {
   'use strict';
@@ -214,7 +214,7 @@
       const P = [[160, 44], [262, 124], [160, 204], [58, 124]], C = [160, 124];
       const CH = [[160, 13], [262, 158], [160, 236], [58, 158]];
       const near = i => { const p = P[i % 4]; return [lerp(p[0], C[0], .6), lerp(p[1], C[1], .6)]; };
-      const names = ['Pokiri', 'Okkadu', 'Athadu', 'Dookudu', 'Khaleja', 'Murari', 'Srimanthudu', 'Businessman', 'Arjun', 'Spyder', 'Nijam', 'Takkari Donga'];
+      const names = ['Pokiri', 'Okkadu', 'Athadu', 'Dookudu', 'Khaleja', 'Murari', 'Srimanthudu', 'Businessman', 'Arjun', 'Spyder', 'Nijam', 'Takkari Donga', 'Maharshi'];
       const flash = el('rect', { width: 320, height: 250, fill: 'var(--accent)', opacity: 0 }, svg);
       const ringsG = el('g', {}, svg), rings = [0, 1, 2].map(() => Ripple(ringsG, '#fff', 3));
       const pl = el('g', {}, svg), players = P.map((p, i) => Player(pl, p[0], p[1], 'RSBA'[i], COLORS[i]));
@@ -269,7 +269,7 @@
           waves.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${(1 + .25 * (1 - pulse)).toFixed(3)})`);
           if (r.h >= 0) {
             players[r.h].set({ ring: 1, ringC: 'var(--accent)' });
-            chip.set(names[(r.n + 3) % names.length], CH[r.h][0], CH[r.h][1], back(pr(r.r, 0, 180)));
+            chip.set(names[r.n % names.length], CH[r.h][0], CH[r.h][1], back(pr(r.r, 0, 180)));
           }
         } else {
           const [nx, ny] = near(0); x = nx; y = ny; red = 1; sc = 1.2;
