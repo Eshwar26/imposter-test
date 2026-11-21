@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/core.css?v=0.2.1">
+<link rel="stylesheet" href="core/core.css?v=0.2.3">
 <style>
   /* Director's Cut (Guess the Director): one phone. Three movies by one director appear; everyone shouts the director. */
   :root{--c:var(--accent)}
@@ -95,15 +95,9 @@
 </div>
 
 <div class="scrim" id="scrim"></div>
-<section class="sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><h3>HOW TO PLAY</h3>
-  <div class="rules">
-    <div class="rule"><b>1</b><span>Press START. Three Telugu movies made by the same director appear.</span></div>
-    <div class="rule"><b>2</b><span>Read them out loud. Everyone shouts the director they think it is.</span></div>
-    <div class="rule"><b>3</b><span>Tap SHOW ANSWER to check, then NEXT for a new one. Tapping NEXT first shows the answer for a moment.</span></div>
-  </div>
-  <button class="btn outline" type="button" data-close>GOT IT</button>
-</section>
+<section class="sheet ht-sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><div id="howto"></div></section>
 
+<script src="core/howto.js?v=0.2.0"></script>
 <script>
 (() => {
   'use strict';
@@ -194,7 +188,20 @@
   addEventListener('resize', () => { if ($('s-play').classList.contains('on')) fit(); });
 
   function show(id) { document.querySelectorAll('#game .gs').forEach(s => s.classList.toggle('on', s.id === id)); }
-  const closeSheet = () => { $('rulesSheet').classList.remove('open'); $('scrim').classList.remove('open'); };
+  // ── how to play: the animated steps (drawn by core/howto.js) ──
+  const HOWTO = CinefiedHowTo.templates.readGuess({
+    c: 'var(--accent)', t1: 'Press START. Three Telugu movies made by the same director appear.', t2: 'Read them out loud. Everyone shouts the director they think it is.',
+    head: 'GUESS THE DIRECTOR', gap: 15,
+    lines: [['MAGADHEERA', 'd', 13, '#fff'], ['EEGA', 'd', 13, '#fff'], ['BAAHUBALI', 'd', 13, '#fff']],
+    lines2: [['POKIRI', 'd', 13, '#fff'], ['BUSINESSMAN', 'd', 13, '#fff'], ['TEMPER', 'd', 13, '#fff']],
+    guesses: ['Sukumar?', 'Rajamouli!', 'Trivikram?'], mine: 'Puri?', right: 1, answer: 'RAJAMOULI'
+  });
+
+  const HT = CinefiedHowTo.create($('howto'), HOWTO);
+  const openSheet = () => { $('rulesSheet').classList.add('open'); $('scrim').classList.add('open'); HT.play(); };
+  const closeSheet = () => { HT.stop(); $('rulesSheet').classList.remove('open'); $('scrim').classList.remove('open'); };
+  // every time the game is opened, the how-to-play plays first
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(() => { if ($('s-home').classList.contains('on')) openSheet(); }, 450));
   document.addEventListener('click', e => {
     const t = e.target;
     if (t.closest('#startBtn')) { played = 0; show('s-play'); return nextMovie(); }
@@ -202,7 +209,7 @@
     if (t.closest('#nextBtn')) return onNext();
     if (t.closest('#stopBtn')) return show('s-home');
     if (t.closest('#homeBtn')) return void history.back();
-    if (t.closest('[data-rules]')) { $('rulesSheet').classList.add('open'); $('scrim').classList.add('open'); return; }
+    if (t.closest('[data-rules]')) return openSheet();
     if (t.closest('#scrim') || t.closest('[data-close]')) return closeSheet();
   });
 })();
