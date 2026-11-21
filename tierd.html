@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/core.css?v=0.2.1">
+<link rel="stylesheet" href="core/core.css?v=0.2.3">
 <style>
   /* Tier'd game screens. Entry page and waiting room come from the core.
      Tier'd is the one game whose screens scroll: every name in a tier is always visible. */
@@ -168,7 +168,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="data/words.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.2"></script>
+<script src="core/howto.js?v=0.2.0"></script>
+<script src="core/core-ui.js?v=0.2.3"></script>
 <script>
 (() => {
   'use strict';
@@ -374,8 +375,70 @@
   });
 
   // ══ hand-off with the core ═══════════════════════════════════
+  // ── how to play: the animated steps (drawn by core/howto.js) ──
+  const HOWTO = {
+    steps: [
+      { d: 3200, t: 'Everyone gets the same list: actors, movies, directors and more.' },
+      { d: 5600, t: 'Drag each name into a tier, S at the top, D at the bottom. Anyone can move anything, so argue it out.' },
+      { d: 3400, t: 'When everything is placed and everyone taps DONE, the list is final.' },
+      { d: 4200, t: "Everyone votes APPROVE or RATIO. More approves than ratios and the list is APPROVED; otherwise it's RATIO'D." }
+    ],
+    build(svg, K) {
+      const { el, op, cl, pr, ease, back, lerp, fitLines, Phone, Player, Chip, Label, WidePill, Ripple, COLORS } = K;
+      const TI = [['S', 'var(--accent)'], ['A', 'var(--accent2)'], ['B', 'var(--yellow)'], ['C', 'var(--green)'], ['D', 'var(--blue)']];
+      const Y = i => 26 + i * 30;
+      TI.forEach(([t, c], i) => {
+        el('rect', { x: 14, y: Y(i), width: 292, height: 26, rx: 6, fill: 'var(--surface)', stroke: 'var(--border)' }, svg);
+        el('rect', { x: 14, y: Y(i), width: 28, height: 26, rx: 6, fill: c }, svg);
+        el('text', { class: 'd', 'text-anchor': 'middle', x: 28, y: Y(i) + 18, 'font-size': 16, fill: '#16161f' }, svg, t);
+      });
+      const names = ['Prabhas', 'Mahesh', 'Nani', 'Ravi Teja'];
+      const pool = [[58, 196], [130, 196], [196, 196], [262, 196]];
+      // where each name ends up: [tier, x]
+      const dest = [[0, 82], [1, 82], [2, 82], [3, 82]];
+      const chips = names.map(() => Chip(svg));
+      const fing = el('circle', { r: 7, opacity: 0 }, svg);
+      const pl = el('g', {}, svg), P = [[100, 228, 'R', 0], [160, 228, 'S', 1], [220, 228, 'B', 2]].map(([x, y, l, i]) => Player(pl, x, y, l, COLORS[i]));
+      const say = Chip(svg), stamp = Label(svg), votes = P.map(() => Chip(svg)), done = P.map(() => Chip(svg));
+      const pop = (u, a) => back(pr(u, a, 260));
+      const place = (i, k, from, to) => { const x = lerp(from[0], to[0], ease(k)), y = lerp(from[1], to[1], ease(k)); chips[i].set(names[i], x, y, 1); return [x, y]; };
+      const at = (i, tier) => [dest[i][1] + 0, Y(tier) + 13];
+      return (s, u) => {
+        chips.forEach(c => c.hide()); say.hide(); stamp.hide(); votes.forEach(c => c.hide()); done.forEach(c => c.hide()); op(fing, 0);
+        P.forEach(p => p.set());
+        if (s === 0) {
+          names.forEach((n, i) => chips[i].set(n, pool[i][0], pool[i][1], pop(u, 300 + i * 250)));
+        } else if (s === 1) {
+          // R drags Prabhas to S, S drags Mahesh to A, B drags Nani to B and Ravi Teja to C; then S moves Nani up to A
+          const plan = [[0, 0, 0, 200], [1, 1, 1, 1100], [2, 2, 2, 2000], [3, 3, 2, 2700]];
+          plan.forEach(([i, tier, who, a]) => {
+            const k = pr(u, a, 700), p = place(i, k, pool[i], at(i, tier));
+            if (k > 0 && k < 1) { op(fing, 1); fing.setAttribute('cx', p[0] - 26); fing.setAttribute('cy', p[1] + 6); fing.setAttribute('fill', COLORS[who]); P[who].set({ ring: 1 }); }
+          });
+          if (u > 3500) {
+            const k = pr(u, 4100, 700), from = at(2, 2), to = [160, Y(1) + 13];
+            const p = place(2, k, from, to);
+            say.set('Nani is A tier!', 230, 196, pop(u, 3500)); P[1].set({ ring: 1 });
+            if (k > 0 && k < 1) { op(fing, 1); fing.setAttribute('cx', p[0] - 26); fing.setAttribute('cy', p[1] + 6); fing.setAttribute('fill', COLORS[1]); }
+          }
+        } else {
+          [[0, 0, 82], [1, 1, 82], [2, 1, 160], [3, 3, 82]].forEach(([i, t, x]) => chips[i].set(names[i], x, Y(t) + 13, 1));
+          if (s === 2) {
+            P.forEach((p, i) => { if (u > 300 + i * 600) { p.set({ ring: 1, ringC: 'var(--green)' }); done[i].set('DONE', p.x, 200, pop(u, 300 + i * 600), 'ok'); } });
+            if (u > 2300) stamp.set('FINAL', 236, 106, 34, 'var(--accent2)', { s: pop(u, 2300), maxW: 120 });
+          } else {
+            const v = ['APPROVE', 'APPROVE', 'RATIO'];
+            P.forEach((p, i) => { if (u > 300 + i * 500) { votes[i].set(v[i], p.x, 200, pop(u, 300 + i * 500), v[i] === 'RATIO' ? 'acc' : 'ok'); p.set({ ring: 1, ringC: v[i] === 'RATIO' ? 'var(--accent)' : 'var(--green)' }); } });
+            if (u > 2000) stamp.set('APPROVED', 236, 106, 34, 'var(--green)', { s: pop(u, 2000), maxW: 120 });
+          }
+        }
+      };
+    }
+  };
+
   UI.mount({
     game: {
+      howto: HOWTO,
       id: 'tierd', name: "Tier'd", shelf: 'Play together', color: 'var(--accent2)', glyph: 'T',
       pitch: 'Rank Telugu cinema together, S to D. Then everyone votes: approved, or ratio\'d?',
       facts: ['2 to 8 players', 'Each on own phone', '~10 min'],
