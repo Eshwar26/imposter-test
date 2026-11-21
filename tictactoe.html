@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/core.css?v=0.2.1">
+<link rel="stylesheet" href="core/core.css?v=0.2.3">
 <style>
   /* Tic Tac Toe game screens. Entry page and waiting room come from the core.
      Every screen fits the phone: sizes follow the screen height, nothing scrolls. */
@@ -144,7 +144,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.2"></script>
+<script src="core/howto.js?v=0.2.0"></script>
+<script src="core/core-ui.js?v=0.2.3"></script>
 <script>
 (() => {
   'use strict';
@@ -471,8 +472,63 @@
     cpu: '<svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9.5 16h5"/></svg>',
   };
   const FIRST = '<div class="prow"><span>First to</span><div class="opts sm" data-lset="target"><button class="opt on" type="button" data-v="3">3</button><button class="opt" type="button" data-v="5">5</button><button class="opt" type="button" data-v="7">7</button><button class="opt" type="button" data-v="0">Endless</button></div></div>';
+  // ── how to play: the animated steps (drawn by core/howto.js) ──
+  const HOWTO = {
+    steps: [
+      { d: 3700, t: 'Take turns placing your X or O. Three in a row wins the round.' },
+      { d: 4200, t: 'You only ever have 3 pieces. Your oldest one shows faded, and your next move erases it.' },
+      { d: 3600, t: 'Line up three to win the round. The loser starts the next one. First to the target wins the match.' }
+    ],
+    build(svg, K) {
+      const { el, op, cl, pr, ease, back, lerp, fitLines, Phone, Player, Chip, Label, WidePill, Ripple, COLORS } = K;
+      const CX = i => 116 + 44 * (i % 3), CY = i => 72 + 44 * Math.floor(i / 3);
+      const grid = el('g', { stroke: 'var(--border)', 'stroke-width': 2.5, 'stroke-linecap': 'round' }, svg);
+      [138, 182].forEach(x => el('path', { d: `M${x} 52V180` }, grid));
+      [94, 138].forEach(y => el('path', { d: `M96 ${y}H224` }, grid));
+      const XC = 'var(--accent)', OC = 'var(--blue)';
+      const moves = [['X', 0], ['O', 4], ['X', 8], ['O', 2], ['X', 6], ['O', 3], ['X', 7]];
+      const pieces = moves.map(([k, c]) => {
+        const g = el('g', { opacity: 0, fill: 'none', 'stroke-width': 5, 'stroke-linecap': 'round', stroke: k === 'X' ? XC : OC }, svg);
+        if (k === 'X') el('path', { d: 'M-11 -11L11 11M11 -11L-11 11' }, g); else el('circle', { r: 12 }, g);
+        return { g, c, set(o, s = 1) { op(g, o); g.setAttribute('transform', `translate(${CX(c)} ${CY(c)}) scale(${Math.max(.01, s).toFixed(3)})`); } };
+      });
+      const win = el('path', { d: 'M100 160H220', stroke: XC, 'stroke-width': 6, 'stroke-linecap': 'round', 'stroke-dasharray': 120, 'stroke-dashoffset': 120, opacity: .9 }, svg);
+      const pl = el('g', {}, svg), R = Player(pl, 40, 116, 'R', COLORS[0]), S = Player(pl, 280, 116, 'S', COLORS[1]);
+      const tagX = el('text', { class: 'd', 'text-anchor': 'middle', x: 40, y: 150, 'font-size': 14, fill: XC }, svg, 'X');
+      const tagO = el('text', { class: 'd', 'text-anchor': 'middle', x: 280, y: 150, 'font-size': 14, fill: OC }, svg, 'O');
+      const cR = Chip(svg), cS = Chip(svg), tap = Ripple(svg);
+      const pop = (u, a) => back(pr(u, a, 260));
+      return (s, u) => {
+        cR.hide(); cS.hide(); tap.set(0, 0, 0); win.setAttribute('stroke-dashoffset', 120);
+        R.set(); S.set();
+        if (s === 0) {
+          pieces.forEach((p, k) => { const a = 300 + k * 520; p.set(k < 6 && u >= a ? 1 : 0, pop(u, a)); });
+          const k = Math.min(5, Math.floor((u - 300) / 520)); if (k >= 0) (moves[k][0] === 'X' ? R : S).set({ ring: 1 });
+        } else if (s === 1) {
+          const f = pr(u, 300, 400);
+          pieces.forEach((p, k) => {
+            if (k === 6) return p.set(u >= 1900 ? 1 : 0, pop(u, 1900));
+            if (k === 0) { const gone = pr(u, 2050, 450); return p.set((1 - .65 * f) * (1 - gone), 1 - .6 * gone); }
+            if (k === 1) return p.set(1 - .65 * f);
+            p.set(1);
+          });
+          if (u > 500) cR.set('Oldest X is faded', 70, 212, pop(u, 500));
+          R.set({ ring: 1 }); tap.set(CX(7), CY(7), pr(u, 1850, 500), 22);
+          if (u > 2500) cR.set('It disappears', 70, 212, pop(u, 2500));
+        } else {
+          pieces.forEach((p, k) => p.set(k === 0 ? 0 : k === 1 ? .35 : 1));
+          win.setAttribute('stroke-dashoffset', (120 * (1 - ease(pr(u, 200, 500)))).toFixed(1));
+          R.set({ ring: 1, ringC: 'var(--green)' });
+          if (u > 600) cR.set('R wins the round', 70, 212, pop(u, 600), 'ok');
+          if (u > 1800) { cS.set('S starts next', 250, 238, pop(u, 1800)); S.set({ ring: 1 }); }
+        }
+      };
+    }
+  };
+
   UI.mount({
     game: {
+      howto: HOWTO,
       id: 'tictactoe', name: 'Tic Tac Toe', shelf: 'Duels', color: 'var(--purple)', glyph: 'X',
       pitch: 'Three pieces each. Your fourth move erases your oldest one. Line up three to win.',
       facts: ['2 players', '~5 min'],
