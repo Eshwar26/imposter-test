@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/core.css?v=0.2.1">
+<link rel="stylesheet" href="core/core.css?v=0.2.3">
 <style>
   /* Spoiler (was Guess by Story): one phone. A plot line appears, everyone shouts the movie, then reveal the answer. */
   :root{--c:var(--accent)}
@@ -87,15 +87,9 @@
 </div>
 
 <div class="scrim" id="scrim"></div>
-<section class="sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><h3>HOW TO PLAY</h3>
-  <div class="rules">
-    <div class="rule"><b>1</b><span>Press START. A story line from a Telugu movie appears.</span></div>
-    <div class="rule"><b>2</b><span>Read it out loud. Everyone shouts the movie they think it is.</span></div>
-    <div class="rule"><b>3</b><span>Tap SHOW ANSWER to check, then NEXT for a new story. Tapping NEXT first shows the answer for a moment.</span></div>
-  </div>
-  <button class="btn outline" type="button" data-close>GOT IT</button>
-</section>
+<section class="sheet ht-sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><div id="howto"></div></section>
 
+<script src="core/howto.js?v=0.2.0"></script>
 <script>
 (() => {
   'use strict';
@@ -271,7 +265,20 @@
   addEventListener('resize', () => { if ($('s-play').classList.contains('on')) fit(); });
 
   function show(id) { document.querySelectorAll('#game .gs').forEach(s => s.classList.toggle('on', s.id === id)); }
-  const closeSheet = () => { $('rulesSheet').classList.remove('open'); $('scrim').classList.remove('open'); };
+  // ── how to play: the animated steps (drawn by core/howto.js) ──
+  const HOWTO = CinefiedHowTo.templates.readGuess({
+    c: 'var(--accent)', t1: 'Press START. A story line from a Telugu movie appears.', t2: 'Read it out loud. Everyone shouts the movie they think it is.',
+    head: 'GUESS THE MOVIE', gap: 10,
+    lines: [['A cop hides', 'm', 7, '#fff'], ['inside a gang', 'm', 7, '#fff'], ['to bring down', 'm', 7, '#fff'], ['the big don.', 'm', 7, '#fff']],
+    lines2: [['A man is reborn', 'm', 7, '#fff'], ['as a fly to take', 'm', 7, '#fff'], ['his revenge.', 'm', 7, '#fff']],
+    guesses: ['Athadu?', 'Pokiri!', 'Okkadu?'], mine: 'Dookudu?', right: 1, answer: 'POKIRI'
+  });
+
+  const HT = CinefiedHowTo.create($('howto'), HOWTO);
+  const openSheet = () => { $('rulesSheet').classList.add('open'); $('scrim').classList.add('open'); HT.play(); };
+  const closeSheet = () => { HT.stop(); $('rulesSheet').classList.remove('open'); $('scrim').classList.remove('open'); };
+  // every time the game is opened, the how-to-play plays first
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(() => { if ($('s-home').classList.contains('on')) openSheet(); }, 450));
   document.addEventListener('click', e => {
     const t = e.target;
     if (t.closest('#startBtn')) { played = 0; show('s-play'); return nextStory(); }
@@ -279,7 +286,7 @@
     if (t.closest('#nextBtn')) return onNext();
     if (t.closest('#stopBtn')) return show('s-home');
     if (t.closest('#homeBtn')) return void history.back();
-    if (t.closest('[data-rules]')) { $('rulesSheet').classList.add('open'); $('scrim').classList.add('open'); return; }
+    if (t.closest('[data-rules]')) return openSheet();
     if (t.closest('#scrim') || t.closest('[data-close]')) return closeSheet();
   });
 })();
