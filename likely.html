@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/core.css?v=0.2.1">
+<link rel="stylesheet" href="core/core.css?v=0.2.3">
 <style>
   /* Who's More Likely game screens. Entry page and waiting room come from the core. Every screen fits the phone. */
   :root{--c:var(--blue)}
@@ -125,7 +125,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="data/likely-questions.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.2"></script>
+<script src="core/howto.js?v=0.2.0"></script>
+<script src="core/core-ui.js?v=0.2.3"></script>
 <script>
 (() => {
   'use strict';
@@ -258,8 +259,60 @@
   });
 
   // ══ hand-off with the core ═══════════════════════════════════
+  // ── how to play: the animated steps (drawn by core/howto.js) ──
+  const HOWTO = {
+    steps: [
+      { d: 3000, t: "A question appears: \"Who's more likely to…\"" },
+      { d: 5000, t: 'Everyone votes for the player who fits it best. You can even vote for yourself, and change your vote until everyone has voted.' },
+      { d: 3800, t: 'Then the results show who the group picked. It goes on until the leader ends the game.' }
+    ],
+    build(svg, K) {
+      const { el, op, cl, pr, ease, back, lerp, fitLines, Phone, Player, Chip, Label, WidePill, Ripple, COLORS } = K;
+      const card = el('g', { opacity: 0 }, svg);
+      el('rect', { x: 50, y: 22, width: 220, height: 82, rx: 14, fill: 'var(--surface)', stroke: 'var(--border)', 'stroke-width': 1.5 }, card);
+      const qa = Label(svg, 'm'), q1 = Label(svg), q2 = Label(svg);
+      const X = [52, 124, 196, 268], Y = 176;
+      const pl = el('g', {}, svg), P = X.map((x, i) => Player(pl, x, Y, 'RSBA'[i], COLORS[i]));
+      // each vote is a dot in the voter's colour that flies to the player they pick
+      const dots = X.map((x, i) => el('circle', { r: 5, fill: COLORS[i], stroke: 'var(--surface2)', 'stroke-width': 1.5, opacity: 0 }, svg));
+      const me = Chip(svg), res = Chip(svg), tap = Ripple(svg);
+      const pop = (u, a) => back(pr(u, a, 260));
+      // votes: [voter, first pick, final pick, time]
+      const V = [[0, 2, 2, 400], [1, 2, 2, 1000], [2, 2, 2, 1600], [3, 1, 2, 2200]];
+      const slot = (target, n) => [X[target] - 15 + 10 * n, Y - 30];
+      const fly = (d, from, to, k) => { const e = ease(k), x = lerp(from[0], to[0], e), y = lerp(from[1], to[1], e) - 26 * Math.sin(Math.PI * e); d.setAttribute('cx', x.toFixed(1)); d.setAttribute('cy', y.toFixed(1)); op(d, k > 0 ? 1 : 0); };
+      return (s, u) => {
+        me.hide(); res.hide(); tap.set(0, 0, 0); dots.forEach(d => op(d, 0)); P.forEach(p => p.set());
+        const k = s === 0 ? pr(u, 0, 400) : 1;
+        op(card, k);
+        qa.set("WHO'S MORE LIKELY TO", 160, 46, 8.5, 'var(--muted)', { o: k });
+        q1.set('WHISTLE THE LOUDEST', 160, 68, 20, 'var(--text)', { o: s === 0 ? pr(u, 500, 300) : 1, maxW: 190 });
+        q2.set('IN THE THEATRE?', 160, 88, 20, 'var(--text)', { o: s === 0 ? pr(u, 700, 300) : 1, maxW: 190 });
+        if (s === 1) {
+          V.forEach(([v, first, last, a], n) => {
+            const from = [X[v], Y], k1 = pr(u, a, 500);
+            if (u < a) return;
+            P[v].set({ ring: k1 < 1 ? 1 : 0 });
+            if (v === 3 && u > 3300) fly(dots[v], slot(first, 3), slot(last, 3), pr(u, 3300, 600));
+            else fly(dots[v], from, slot(first, n), k1);
+          });
+          if (u > 1700) me.set('Me!', X[2], 222, pop(u, 1700));
+          if (u > 2900 && u < 3300) me.set('Changed my mind', X[3] - 20, 222, pop(u, 2900));
+          if (u >= 3300) me.set('Changed my mind', X[3] - 20, 222, 1);
+        } else if (s === 2) {
+          V.forEach(([v, , last], n) => { const [x, y] = slot(last, n); dots[v].setAttribute('cx', x); dots[v].setAttribute('cy', y); op(dots[v], 1); });
+          const g = pr(u, 300, 500);
+          P[2].set({ s: 1 + .25 * back(g), ring: g, ringC: 'var(--blue)' });
+          P.forEach((p, i) => { if (i !== 2) p.set({ o: 1 - .55 * g }); });
+          if (u > 900) res.set('B · 4 votes', X[2], 222, pop(u, 900), 'ok');
+        }
+      };
+    }
+  };
+
   UI.mount({
     game: {
+      howto: HOWTO,
       id: 'likely', name: "Who's More Likely", shelf: 'Play together', color: 'var(--blue)', glyph: 'W',
       pitch: 'A question about the group. Everyone votes. The truth comes out.',
       facts: ['3 to 8 players', 'Each on own phone', 'Endless'],
