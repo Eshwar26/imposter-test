@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/core.css?v=0.2.1">
+<link rel="stylesheet" href="core/core.css?v=0.2.3">
 <style>
   /* Pictionary game screens. Entry page and waiting room come from the core.
      Every screen fits the phone (and stays above the keyboard): nothing scrolls. */
@@ -280,7 +280,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-functions-compat.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.2"></script>
+<script src="core/howto.js?v=0.2.0"></script>
+<script src="core/core-ui.js?v=0.2.3"></script>
 <script>
 (() => {
   'use strict';
@@ -597,8 +598,75 @@
     if (code !== v.code) { code = v.code; listenDrawing(code); }
     render();
   }
+  // ── how to play: the animated steps (drawn by core/howto.js) ──
+  const HOWTO = {
+    steps: [
+      { d: 3200, t: 'On your turn, pick one of three movies: easy, medium or hard. Harder ones are worth more.' },
+      { d: 4200, t: 'Draw it. No letters or numbers!' },
+      { d: 5000, t: 'Everyone else types guesses. The faster you guess, the more points you get. Letters appear as time runs out.' },
+      { d: 3800, t: 'The drawer scores for every player who guesses it. Everyone draws once each round.' }
+    ],
+    build(svg, K) {
+      const { el, op, cl, pr, ease, back, lerp, fitLines, Phone, Player, Chip, Label, WidePill, Ripple, COLORS } = K;
+      const ph = Phone(svg); ph.screen('#13131a');
+      const opts = [['EEGA', 'EASY'], ['MAGADHEERA', 'MEDIUM'], ['SAINIKUDU', 'HARD']].map(() => ({ g: el('g', { opacity: 0 }, svg) }));
+      opts.forEach((o, i) => {
+        o.r = el('rect', { x: -27, y: -10, width: 54, height: 20, rx: 6, fill: '#22222e', stroke: '#3a3a52' }, o.g);
+        el('text', { class: 'd', 'text-anchor': 'middle', y: -.5, 'font-size': 9, fill: '#fff' }, o.g, ['EEGA', 'MAGADHEERA', 'SAINIKUDU'][i]);
+        el('text', { class: 'm', 'text-anchor': 'middle', y: 6.5, 'font-size': 4.6, fill: '#9a9ab8' }, o.g, ['EASY · ×1', 'MEDIUM · ×1.5', 'HARD · ×2'][i]);
+      });
+      const board = el('g', { opacity: 0 }, svg);
+      el('rect', { x: 92, y: 18, width: 136, height: 128, rx: 12, fill: '#fff', stroke: 'var(--border)' }, board);
+      // a housefly, drawn stroke by stroke
+      const strokes = ['M160 92m-14 0a14 18 0 1 0 28 0a14 18 0 1 0 -28 0', 'M160 66m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0',
+        'M148 84C118 60 110 92 146 96', 'M172 84C202 60 210 92 174 96', 'M150 104L136 120M170 104L184 120M152 110L144 128M168 110L176 128', 'M155 59L148 46M165 59L172 46'];
+      const lines = strokes.map(d => el('path', { d, fill: 'none', stroke: '#14141c', 'stroke-width': 2.6, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-dasharray': 300, 'stroke-dashoffset': 300 }, board));
+      const bar = el('rect', { x: 92, y: 152, height: 4, rx: 2, fill: 'var(--purple)', opacity: 0 }, svg);
+      const hint = Label(svg, 'm');
+      const pen = el('circle', { r: 4, fill: 'var(--purple)', opacity: 0 }, svg);
+      const pl = el('g', {}, svg), drawer = Player(pl, 160, 214, 'R', COLORS[0]);
+      const G = [[36, 60, 'S', 1], [284, 60, 'B', 2], [36, 150, 'A', 3]].map(([x, y, l, i]) => Player(pl, x, y, l, COLORS[i]));
+      const GC = [[40, 28], [280, 28], [40, 182]];
+      const gc = G.map(() => Chip(svg)), pts = G.map(() => Chip(svg)), no = Chip(svg), dc = Chip(svg), tap = Ripple(svg);
+      const pop = (u, a) => back(pr(u, a, 260));
+      const drawUpTo = k => lines.forEach((l, i) => l.setAttribute('stroke-dashoffset', (300 * (1 - cl(k * lines.length - i))).toFixed(1)));
+      return (s, u) => {
+        opts.forEach(o => op(o.g, 0)); op(board, 0); op(bar, 0); op(pen, 0); hint.hide(); [no, dc, ...gc, ...pts].forEach(c => c.hide()); tap.set(0, 0, 0); ph.show(0);
+        drawer.set({ ring: 1 }); G.forEach(g => g.set({ o: s === 0 ? .2 : 1 }));
+        if (s === 0) {
+          ph.show(1); ph.at(160, 106, 2.6 * (.85 + .15 * back(pr(u, 0, 450))));
+          opts.forEach((o, i) => { op(o.g, pr(u, 300 + i * 150, 250)); o.g.setAttribute('transform', `translate(160 ${70 + i * 30})`); o.r.setAttribute('stroke', i === 0 && u > 1500 ? 'var(--purple)' : '#3a3a52'); });
+          tap.set(160, 70, pr(u, 1450, 600), 30);
+        } else {
+          op(board, 1);
+          if (s === 1) {
+            const k = pr(u, 300, 3300); drawUpTo(k);
+            const L = lines[Math.min(lines.length - 1, Math.floor(k * lines.length))];
+            if (k < 1) { const len = L.getTotalLength(), p = L.getPointAtLength(len * cl(k * lines.length % 1)); op(pen, 1); pen.setAttribute('cx', p.x.toFixed(1)); pen.setAttribute('cy', p.y.toFixed(1)); }
+            no.set('No letters or numbers', 160, 244, pop(u, 600));
+          } else {
+            drawUpTo(1);
+            const tk = s === 2 ? u / 5000 : 1; op(bar, 1); bar.setAttribute('width', (136 * (1 - .8 * tk)).toFixed(1));
+            hint.set(s === 2 && u < 2600 ? '_ _ _ _' : 'E _ _ A', 160, 172, 11, 'var(--muted)');
+            if (s === 2) {
+              if (u > 400) gc[0].set('Fly?', GC[0][0], GC[0][1], pop(u, 400));
+              if (u > 1400) { gc[1].set('Eega', GC[1][0], GC[1][1], pop(u, 1400), 'ok'); G[1].set({ ring: 1, ringC: 'var(--green)' }); pts[1].set('+90', 280, 92, pop(u, 1700), 'ok'); }
+              if (u > 3200) { gc[2].set('Eega', GC[2][0], GC[2][1], pop(u, 3200), 'ok'); G[2].set({ ring: 1, ringC: 'var(--green)' }); pts[2].set('+50', 40, 120, pop(u, 3500), 'ok'); }
+            } else {
+              gc[1].set('Eega', GC[1][0], GC[1][1], 1, 'ok'); gc[2].set('Eega', GC[2][0], GC[2][1], 1, 'ok');
+              G[1].set({ ring: 1, ringC: 'var(--green)' }); G[2].set({ ring: 1, ringC: 'var(--green)' });
+              if (u > 400) dc.set('R scores for 2 guessers', 160, 244, pop(u, 400), 'ok');
+              if (u > 2200) { drawer.set({ ring: 0 }); G[0].set({ ring: 1, ringC: 'var(--purple)' }); gc[0].set('S draws next', GC[0][0], GC[0][1], pop(u, 2200)); }
+            }
+          }
+        }
+      };
+    }
+  };
+
   UI.mount({
     game: {
+      howto: HOWTO,
       id: 'pictionary', name: 'Pictionary', shelf: 'Play together', color: 'var(--purple)', glyph: 'P', referee: true,
       pitch: 'One draws a Telugu movie, everyone else races to guess it.',
       facts: ['3 to 8 players', 'Each on own phone', '~15 min'],
