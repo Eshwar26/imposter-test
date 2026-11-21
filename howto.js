@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied how-to-play animations · v0.1.0
+   Cinefied how-to-play animations · v0.2.0
    One shared kit for every game's HOW TO PLAY sheet: the pieces
    (phone, player, chip, label, pill, ripple), small motion helpers,
    and the player that runs a game's steps with a progress bar,
@@ -143,6 +143,83 @@ function pass(u, dur, hold, start, near) {
 const COLORS = ['var(--accent2)', 'var(--blue)', 'var(--purple)', 'var(--green)'];
 
 
+function WidePill(parent, txt, color, w, tc = '#fff') {
+  const g = el('g', { opacity: 0 }, parent);
+  el('rect', { x: -w / 2, y: -8, width: w, height: 16, rx: 8, fill: color }, g);
+  el('text', { class: 'd', 'text-anchor': 'middle', y: 3.8, 'font-size': 10.5, fill: tc, 'letter-spacing': .8 }, g, txt);
+  return { hide() { op(g, 0); }, set(x, y, o = 1, press = 0) { g.setAttribute('transform', `translate(${x} ${y}) scale(${(1 - .1 * press).toFixed(3)})`); op(g, cl(o)); } };
+}
+/* ═════════════ shared scene: one phone shows a clue, everyone shouts a guess ═════════════
+   Used by Spoiler, Starring, Dialogue Detective and Director's Cut. cfg: c (colour), t1, t2,
+   head, lines / lines2 ([text, 'd'|'m', size, colour]), gap, shift, say, guesses, mine, right, answer. */
+function readGuess(cfg) {
+  return {
+    steps: [
+      { d: 3200, t: cfg.t1 },
+      { d: 4400, t: cfg.t2 },
+      { d: 5400, t: 'Tap SHOW ANSWER to check, then NEXT for a new one.' }
+    ],
+    build(svg) {
+      const PX = 160, PY = 110, PS = 2.85, F = [[42, 66], [278, 66], [278, 170]], FC = [[42, 32], [278, 32], [278, 204]];
+      const pl = el('g', {}, svg);
+      const reader = Player(pl, 160, 214, 'R', COLORS[0]), friends = F.map((p, i) => Player(pl, p[0], p[1], 'SBA'[i], COLORS[i + 1]));
+      const ph = Phone(svg); ph.screen('#13131a');
+      const head = Label(svg, 'm'), lines = Array.from({ length: 7 }, (_, i) => Label(svg, 'd')), ans = Label(svg);
+      const start = WidePill(svg, 'START', cfg.c, 44), show = WidePill(svg, 'SHOW ANSWER', cfg.c, 62), next = WidePill(svg, 'NEXT', cfg.c, 44);
+      const tap = Ripple(svg), chips = F.map(() => Chip(svg)), say = Chip(svg);
+      const pop = (u, a) => back(pr(u, a, 260));
+      const drawClue = (L, o, a, u) => {
+        const n = L.length, gap = cfg.gap || 11, top = 92 - (n - 1) * gap / 2 + (cfg.shift || 0);
+        lines.forEach((l, i) => {
+          if (i >= n) return l.hide();
+          const [t, f, s, c] = L[i]; l.t.setAttribute('class', f);
+          l.set(t, PX, top + i * gap, s, c || '#fff', { o: o * pr(u, a + i * 140, 280), maxW: 62 });
+        });
+      };
+      return (s, u) => {
+        [head, ans, ...lines].forEach(l => l.hide()); [start, show, next].forEach(p => p.hide()); chips.forEach(c => c.hide()); say.hide(); tap.set(0, 0, 0);
+        reader.set({ s: 1.2 }); friends.forEach(f => f.set());
+        ph.at(PX, PY, PS); ph.screen('#13131a');
+        if (s === 0) {
+          friends.forEach(f => f.set({ o: .18 }));
+          ph.at(PX, PY, PS * (.85 + .15 * back(pr(u, 0, 500))));
+          start.set(PX, PY, 1 - pr(u, 850, 200), pr(u, 520, 140) - pr(u, 660, 140));
+          tap.set(PX, PY, pr(u, 560, 600), 30);
+          if (u > 1000) { head.set(cfg.head, PX, 62, 5.2, '#9a9ab8', { o: pr(u, 1000, 250) }); drawClue(cfg.lines, 1, 1100, u); }
+        } else if (s === 1) {
+          head.set(cfg.head, PX, 62, 5.2, '#9a9ab8'); drawClue(cfg.lines, 1, -1e4, u);
+          friends.forEach((f, i) => f.set({ o: lerp(.18, 1, pr(u, i * 100, 400)) }));
+          reader.set({ s: 1.2, ring: 1 });
+          // the reader is a player too: they read it out, then guess like everyone else
+          if (cfg.say && u < 3500) say.set(cfg.say, 160, 240, pop(u, 200));
+          if (u >= 3500) say.set(cfg.mine, 160, 240, pop(u, 3500));
+          cfg.guesses.forEach((g, i) => {
+            const a = 900 + i * 900; if (u < a) return;
+            chips[i].set(g, FC[i][0], FC[i][1], pop(u, a)); friends[i].set({ ring: u < a + 900 ? 1 : 0 });
+          });
+        } else {
+          head.set(cfg.head, PX, 62, 5.2, '#9a9ab8');
+          const swap = u >= 3500;
+          if (!swap) {
+            drawClue(cfg.lines, 1, -1e4, u);
+            cfg.guesses.forEach((g, i) => chips[i].set(g, FC[i][0], FC[i][1], 1, u > 1300 && i === cfg.right ? 'ok' : undefined));
+            say.set(cfg.mine, 160, 240, 1);
+            if (u < 1100) { show.set(PX, 160, pr(u, 0, 250), pr(u, 700, 120) - pr(u, 820, 120)); tap.set(PX, 160, pr(u, 750, 600), 30); }
+            else {
+              ans.set(cfg.answer, PX, 143, 17, 'var(--green)', { s: pop(u, 1100), maxW: 62 });
+              if (u > 1300) friends[cfg.right].set({ ring: 1, ringC: 'var(--green)' });
+              next.set(PX, 162, pr(u, 2300, 250), pr(u, 3050, 120) - pr(u, 3170, 120));
+              tap.set(PX, 162, pr(u, 3100, 600), 30);
+            }
+          } else {
+            drawClue(cfg.lines2, 1, 3500, u);
+          }
+        }
+      };
+    }
+  };
+}
+
 /* ═════════════ the player ═════════════ */
 function create(host, scene) {
   const steps = scene.steps;
@@ -189,6 +266,6 @@ function create(host, scene) {
   return { play, stop };
 }
 
-const K = { NS, RM, el, op, cl, pr, ease, back, lerp, wrap, fitLines, pass, Phone, Player, Chip, Label, Pill, Ripple, COLORS };
-global.CinefiedHowTo = { create, kit: K };
+const K = { NS, RM, el, op, cl, pr, ease, back, lerp, wrap, fitLines, pass, Phone, Player, Chip, Label, Pill, WidePill, Ripple, COLORS };
+global.CinefiedHowTo = { create, kit: K, templates: { readGuess } };
 })(window);
