@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="core/core.css?v=0.2.1">
 <style>
-  /* Daily: the same four puzzles for everyone, new every midnight (India time). One try each. Streaks per puzzle. */
+  /* Daily: the same five puzzles for everyone, new every midnight (India time). One try each. Streaks per puzzle. */
   :root{--c:var(--accent);--maroon:#8e1f33;--maroonT:#d4566b}
   [data-theme=light]{--maroon:#7a1a2c;--maroonT:#7a1a2c}
   [hidden]{display:none!important}
@@ -40,18 +40,21 @@
   .marks i{flex:1;height:6px;border-radius:6px;background:var(--surface2);position:relative;overflow:hidden}
   .marks i.on{background:var(--k)}
   .marks small{flex:none;font-size:10px;letter-spacing:2px;color:var(--muted);margin-left:6px}
-  .list{flex:1;min-height:0;display:flex;flex-direction:column;gap:clamp(8px,1.4dvh,12px);margin-top:clamp(10px,2dvh,16px)}
-  .pz{flex:1;min-height:0;max-height:120px;display:flex;align-items:center;gap:14px;width:100%;text-align:left;cursor:pointer;color:var(--text);font:inherit;
-      background:color-mix(in srgb,var(--k) 6%,var(--surface));border:1px solid var(--border);border-radius:18px;padding:0 16px;box-shadow:var(--lift);position:relative;overflow:hidden}
-  .pz::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--k)}
-  .pz .g{font-family:var(--display);font-size:clamp(34px,6dvh,46px);line-height:1;width:1.1em;text-align:center;color:transparent;-webkit-text-stroke:1.2px var(--kt,var(--k))}
-  .pz .tx{flex:1;min-width:0}
-  .pz .tx b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(20px,3.6dvh,27px);letter-spacing:1.5px;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .pz .tx small{display:block;font-size:10.5px;color:var(--muted);margin-top:4px;letter-spacing:.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .pz .tx em{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;font-style:normal;font-size:9.5px;letter-spacing:2px;color:var(--kt,var(--k));margin-top:5px}
-  .pz .st{flex:none;font-family:var(--display);font-size:18px;letter-spacing:1.5px;padding:8px 14px 6px;border-radius:999px;background:var(--k);color:#fff}
+  /* the puzzles as tiles: Higher or Lower across the top, the rest two by two; scrolls if the phone is short */
+  .list{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:minmax(118px,auto);align-content:start;gap:10px;margin-top:clamp(10px,2dvh,16px);padding-bottom:4px}
+  .pz{display:flex;flex-direction:column;justify-content:space-between;gap:12px;min-width:0;text-align:left;cursor:pointer;color:var(--text);font:inherit;
+      background:color-mix(in srgb,var(--k) 7%,var(--surface));border:1px solid var(--border);border-radius:18px;padding:14px;box-shadow:var(--lift);position:relative;overflow:hidden}
+  .pz.wide{grid-column:1/-1;flex-direction:row;align-items:center;gap:14px}
+  .pz.wide .tx{flex:1}
+  .pz .row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .pz .g{font-family:var(--display);font-size:46px;line-height:.8;color:transparent;-webkit-text-stroke:1.2px var(--kt,var(--k))}
+  .pz .tx{min-width:0}
+  .pz .tx b{display:block;font-family:var(--display);font-weight:400;font-size:24px;letter-spacing:1.5px;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pz .tx small{display:block;font-size:10.5px;color:var(--muted);margin-top:5px}
+  .pz .tx em{display:block;font-style:normal;font-size:9.5px;letter-spacing:2px;color:var(--kt,var(--k));margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pz .st{flex:none;font-family:var(--display);font-size:16px;letter-spacing:1.5px;padding:6px 12px 4px;border-radius:999px;background:var(--k);color:#fff}
   .pz.done{cursor:default}
-  .pz.done .st{background:none;border:1.5px solid var(--border);color:var(--text);padding:6px 11px 4px;font-size:15px;letter-spacing:1px}
+  .pz.done .st{background:none;border:1.5px solid var(--border);color:var(--text);padding:5px 10px 3px;font-size:14px;letter-spacing:1px}
   .pz.done.won .st{border-color:color-mix(in srgb,var(--green) 60%,transparent);color:var(--green)}
   .pz.done.lost .st{color:var(--muted)}
   .foot{display:flex;gap:10px;margin-top:clamp(10px,2dvh,16px)}
@@ -127,6 +130,17 @@
   .hres .big span{font-size:.4em;color:var(--muted)}
   .hres .btn{width:min(320px,100%);margin-top:16px}
   .gbtn{width:min(520px,100%);margin:clamp(10px,2dvh,14px) auto 0}
+
+  /* ── Hangman of the day ── */
+  #s-hang{--c:var(--yellow);--ct:#0a0a0f;background:radial-gradient(70% 40% at 20% 6%,color-mix(in srgb,var(--yellow) 8%,transparent),transparent 70%),var(--bg)}
+  [data-theme=light] #s-hang{--ct:#fff}
+  #hmBoard{flex:1;min-height:0}
+  .hmres{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;animation:fwd .4s both}
+  .hmres h3{font-family:var(--display);font-weight:400;font-size:clamp(30px,8vw,42px);letter-spacing:3px;line-height:1;color:var(--yellow)}
+  .hmres.lost h3{color:var(--accent)}
+  .hmres small{font-size:11px;letter-spacing:2px;color:var(--muted)}
+  #s-hang .gbtn{background:var(--yellow);color:var(--ct);box-shadow:none}
+  [data-theme=dark] .pz[data-pz=hang]:not(.done) .st{color:#0a0a0f}
 </style>
 </head>
 <body>
@@ -174,7 +188,20 @@
     </div>
   </section>
 
-  <!-- 3. HIGHER OR LOWER: today's 10 match-ups -->
+  <!-- 3. HANGMAN OF THE DAY -->
+  <section class="gs" id="s-hang">
+    <div class="col">
+      <div class="gtop">
+        <button class="icon-btn" type="button" data-back aria-label="Back to today"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="ttl">HANGMAN OF THE DAY</span>
+      </div>
+      <div id="hmBoard"></div>
+      <div class="hmres" id="hmRes" hidden></div>
+      <button class="btn gbtn" type="button" data-back id="hmDone" hidden>BACK TO DAILY</button>
+    </div>
+  </section>
+
+  <!-- 4. HIGHER OR LOWER: today's 10 match-ups -->
   <section class="gs" id="s-hol">
     <div class="gtop" style="max-width:900px;width:100%;margin:0 auto">
       <button class="icon-btn" type="button" data-back aria-label="Back to today"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
@@ -195,14 +222,16 @@
 <div class="scrim" id="scrim"></div>
 <section class="sheet" id="rulesSheet" aria-label="How it works"><div class="grab"></div><h3>HOW IT WORKS</h3>
   <div class="rules">
-    <div class="rule"><b>1</b><span>Four puzzles a day, the same for everyone. New ones at midnight, India time.</span></div>
+    <div class="rule"><b>1</b><span>Five puzzles a day, the same for everyone. New ones at midnight, India time.</span></div>
     <div class="rule"><b>2</b><span>Dialogue, Story and Cast: type the movie and pick it from the list. You get 3 tries, and every wrong try shows a new clue.</span></div>
     <div class="rule"><b>3</b><span>Higher or Lower: today's 10 match-ups. One wrong tap ends the run.</span></div>
-    <div class="rule"><b>4</b><span>One go at each. Play a puzzle every day to keep its streak going.</span></div>
+    <div class="rule"><b>4</b><span>Hangman: guess today's movie title one letter at a time. Six wrong letters and it's a cut.</span></div>
+    <div class="rule"><b>5</b><span>One go at each. Play a puzzle every day to keep its streak going.</span></div>
   </div>
   <button class="btn outline" type="button" data-close>GOT IT</button>
 </section>
 
+<script src="core/hangman.js?v=0.1.0"></script>
 <script>
 (() => {
   'use strict';
@@ -222,7 +251,10 @@
     { id: 'dlg',  name: 'Dialogue of the Day', short: 'Dialogue', g: 'D', k: 'var(--accent)', line: 'Guess the movie from the line' },
     { id: 'sto',  name: 'Story of the Day', short: 'Story', g: 'S', k: 'var(--accent2)', line: 'Guess the film from its plot' },
     { id: 'cast', name: 'Cast of the Day', short: 'Cast', g: 'C', k: 'var(--maroon)', kt: 'var(--maroonT)', line: 'Hero, heroine, music director' },
+    { id: 'hang', name: 'Hangman of the Day', short: 'Hangman', g: '_', k: 'var(--yellow)', line: 'Guess the title letter by letter' },
   ];
+  // Hangman of the day: titles to pick from (moves to data/movies.js in the data migration)
+  const HANG = ["Geethanjali", "Shiva", "Gharana Mogudu", "Hello Brother", "Ninne Pelladata", "Annamayya", "Tholi Prema", "Narasimha", "Thammudu", "Badri", "Kushi", "Murari", "Narasimha Naidu", "Nuvvu Naaku Nachav", "Student No. 1", "Aadi", "Chennakesava Reddy", "Idiot", "Indra", "Jayam", "Khadgam", "Manmadhudu", "Gangotri", "Okkadu", "Simhadri", "Tagore", "Arjun", "Arya", "Gudumba Shankar", "Malliswari", "Shankar Dada M.B.B.S.", "Varsham", "Venky", "Athadu", "Balu", "Bhadra", "Bunny", "Chatrapathi", "Annavaram", "Ashok", "Bommarillu", "Godavari", "Happy", "Pokiri", "Stalin", "Vikramarkudu", "Athidhi", "Chirutha", "Desamuduru", "Dhee", "Dubai Seenu", "Happy Days", "Shivaji", "Yamadonga", "Ashta Chamma", "Bujjigadu", "Jalsa", "King", "Kotha Bangaru Lokam", "Parugu", "Ready", "Surya S/O Krishnan", "Arundhati", "Arya 2", "Billa", "Kick", "Magadheera", "Adhurs", "Brindavanam", "Darling", "Khaleja", "Leader", "Maryada Ramanna", "Orange", "Simha", "Vedam", "Ye Maaya Chesave", "100% Love", "Ala Modalaindi", "Badrinath", "Dookudu", "Mirapakay", "Mr. Perfect", "Panjaa", "Businessman", "Eega", "Gabbar Singh", "Ishq", "Julayi", "Racha", "Rebel", "Attarintiki Daredi", "Baadshah", "Balupu", "Mirchi", "Naayak", "Aagadu", "Drushyam", "Govindudu Andarivadele", "Karthikeya", "Legend", "Manam", "Race Gurram", "Run Raja Run", "Yevadu", "Bhale Bhale Magadivoy", "Gopala Gopala", "Premam", "Rudhramadevi", "S/O Satyamurthy", "Srimanthudu", "Temper", "Babu Bangaram", "Brahmotsavam", "Dhruva", "Janatha Garage", "Kshanam", "Nannaku Prematho", "Nenu Sailaja", "Oopiri", "Pelli Choopulu", "Sardaar Gabbar Singh", "Sarrainodu", "Soggade Chinni Nayana", "Arjun Reddy", "Fidaa", "Gautamiputra Satakarni", "Jai Lava Kusa", "Katamarayudu", "Khaidi No. 150", "Middle Class Abbayi", "Nenu Local", "Ninnu Kori", "Raja The Great", "Spyder", "Agnyaathavaasi", "Bharat Ane Nenu", "Ee Nagaraniki Emaindi", "Geetha Govindam", "Goodachari", "Mahanati", "Rangasthalam", "Taxiwaala", "Dear Comrade", "Evaru", "Gaddalakonda Ganesh", "Gang Leader", "iSmart Shankar", "Jersey", "Maharshi", "Majili", "Mathu Vadalara", "Prati Roju Pandage", "Saaho", "Sye Raa Narasimha Reddy", "Vinaya Vidheya Rama", "Ala Vaikunthapurramuloo", "Bheeshma", "Color Photo", "Sarileru Neekevvaru", "World Famous Lover", "Akhanda", "Jathi Ratnalu", "Krack", "Love Story", "Shyam Singha Roy", "Uppena", "Vakeel Saab", "Acharya", "Ante Sundaraniki", "Bangarraju", "Bheemla Nayak", "Bimbisara", "Dhamaka", "DJ Tillu", "GodFather", "Karthikeya 2", "Liger", "Major", "Radhe Shyam", "Sarkaru Vaari Paata", "Sita Ramam", "Adipurush", "Baby", "Bhagavanth Kesari", "Bhola Shankar", "Dasara", "Hi Nanna", "Veera Simha Reddy", "Virupaksha", "Waltair Veerayya", "Family Star", "Guntur Kaaram", "Hanu-Man", "Kalki 2898 AD", "Lucky Baskhar", "Saripodhaa Sanivaaram", "Tillu Square", "Daaku Maharaj", "Game Changer", "Hari Hara Veera Mallu", "Kingdom", "Kuberaa", "Mirai", "Sankranthiki Vasthunnam", "Thandel", "They Call Him OG"];
   const TRIES = 3, HOL_ROUNDS = 10;
   const TRY_WORD = ['FIRST TRY', 'SECOND TRY', 'FINAL TRY'];   // what a win on try 1, 2 or 3 is called
 
@@ -257,7 +289,8 @@
     const taken = [];
     P.dlg = today(DATA.dlg, 11, taken); taken.push(P.dlg[0]);
     P.sto = today(DATA.sto, 23, taken); taken.push(P.sto[0]);
-    P.cast = today(DATA.cast, 37, taken);
+    P.cast = today(DATA.cast, 37, taken); taken.push(P.cast[0]);
+    P.hang = today(HANG.map(t => [t]), 53, taken);
     P.hol = holRun();
   }
   // Higher or Lower: 10 fixed match-ups for the day, stat changes every round
@@ -302,6 +335,7 @@
   function resultText(id) {
     const r = day()[id]; if (!r || !r.done) return null;
     if (id === 'hol') return r.s + '/' + HOL_ROUNDS;
+    if (id === 'hang') return r.win ? 'GOT IT' : 'CUT';
     return r.win ? 'GOT IT' : 'MISSED';
   }
   function drawToday() {
@@ -310,14 +344,15 @@
     const all = streakAll();
     $('sAll').textContent = all;
     const doneN = PUZ.filter(p => finished(TODAY, p.id)).length;
-    $('marks').innerHTML = PUZ.map(p => `<i class="${finished(TODAY, p.id) ? 'on' : ''}" style="--k:${p.k}"></i>`).join('') + `<small>${doneN === PUZ.length ? 'ALL DONE TODAY' : doneN + ' OF 4 TODAY'}</small>`;
+    $('marks').innerHTML = PUZ.map(p => `<i class="${finished(TODAY, p.id) ? 'on' : ''}" style="--k:${p.k}"></i>`).join('') + `<small>${doneN === PUZ.length ? 'ALL DONE TODAY' : doneN + ' OF ' + PUZ.length + ' TODAY'}</small>`;
     $('list').innerHTML = PUZ.map(p => {
       const r = day()[p.id], res = resultText(p.id), sk = streakOf(p.id);
       const cls = res ? ' done ' + (p.id === 'hol' ? (r.s >= 5 ? 'won' : 'lost') : (r.win ? 'won' : 'lost')) : '';
-      return `<button class="pz${cls}" type="button" data-pz="${p.id}" style="--k:${p.k}${p.kt ? ';--kt:' + p.kt : ''}">
-        <span class="g">${p.g}</span>
-        <span class="tx"><b>${esc(p.short)}</b><small>${esc(p.line)}</small><em>${sk ? sk + (sk === 1 ? ' DAY' : ' DAYS') + ' IN A ROW' : 'NO STREAK YET'}</em></span>
-        <span class="st">${res || (r && r.g && r.g.length || r && r.r ? 'GO ON' : 'PLAY')}</span></button>`;
+      const wide = p.id === 'hol' ? ' wide' : '';
+      const st = `<span class="st">${res || (r && r.g && r.g.length || r && r.r ? 'GO ON' : 'PLAY')}</span>`;
+      const tx = `<span class="tx"><b>${esc(p.short)}</b>${wide ? `<small>${esc(p.line)}</small>` : ''}<em>${sk ? sk + (sk === 1 ? ' DAY' : ' DAYS') + ' IN A ROW' : 'NO STREAK YET'}</em></span>`;
+      return `<button class="pz${wide}${cls}" type="button" data-pz="${p.id}" style="--k:${p.k}${p.kt ? ';--kt:' + p.kt : ''}">
+        ${wide ? `<span class="g">${p.g}</span>${tx}${st}` : `<span class="row"><span class="g">${p.g}</span>${st}</span>${tx}`}</button>`;
     }).join('');
     $('shareBtn').disabled = !doneN;
   }
@@ -455,10 +490,31 @@
     $('hres').classList.add('on');
   }
 
+  // ═════ HANGMAN OF THE DAY ═════
+  let HM = null;
+  function openHang() {
+    if (!HM) HM = CinefiedHangman.create($('hmBoard'), {
+      onGuess(S) { const r = day().hang = day().hang || { g: [] }; r.g = S.guessed.slice(); r.m = S.wrong; if (S.over) { r.done = 1; r.win = S.over === 'win' ? 1 : 0; } save(); },
+      onEnd() { hangResult(); },
+    });
+    const r = day().hang || {};
+    show('s-hang'); $('hmRes').hidden = true; $('hmDone').hidden = true;
+    HM.start(P.hang[0], r.g || []);
+    if (r.done) hangResult();
+  }
+  function hangResult() {
+    const r = day().hang || {}, sk = streakOf('hang'), res = $('hmRes');
+    res.hidden = false; $('hmDone').hidden = false; res.className = 'hmres' + (r.win ? '' : ' lost');
+    res.innerHTML = r.win
+      ? `<h3>GOT IT</h3><small>${r.m ? r.m + (r.m === 1 ? ' MISS' : ' MISSES') : 'NO MISSES'} · ${sk} ${sk === 1 ? 'DAY' : 'DAYS'} IN A ROW</small>`
+      : `<h3>CUT!</h3><small>A NEW TITLE AT MIDNIGHT</small>`;
+  }
+
   // ═════ SHARE ═════
   async function share() {
     const lines = ['Cinefied Daily #' + dailyNo()];
     PUZ.forEach(p => { const r = day()[p.id]; if (!r || !r.done) return;
+      if (p.id === 'hang') return void lines.push('Hangman - ' + (r.win ? 'got it, ' + (r.m ? r.m + (r.m === 1 ? ' miss' : ' misses') : 'no misses') : 'cut'));
       lines.push((p.id === 'hol' ? 'Higher or Lower - ' + r.s + ' of ' + HOL_ROUNDS : p.short + ' ' + (r.win ? '- got it ' + TRY_WORD[r.g.length - 1].toLowerCase() : '- missed'))); });
     lines.push('Streak ' + streakAll()); lines.push(SITE);
     const text = lines.join('\n');
@@ -489,7 +545,7 @@
     const t = e.target;
     const s = t.closest('[data-sug]'); if (s) return submit(s.dataset.sug);
     const pz = t.closest('[data-pz]');
-    if (pz) { const id = pz.dataset.pz, r = day()[id]; if (id === 'hol') return openHol(); return openGuess(id); }
+    if (pz) { const id = pz.dataset.pz, r = day()[id]; if (id === 'hol') return openHol(); if (id === 'hang') return openHang(); return openGuess(id); }
     const h = t.closest('#pair .m'); if (h) return holTap(+h.dataset.h);
     if (t.closest('[data-back]')) return back();
     if (t.closest('#shareBtn')) return share();
@@ -502,7 +558,7 @@
   buildToday(); drawToday(); tickCountdown(); setInterval(tickCountdown, 1000);
   // opened from the home page's Daily tab with a puzzle picked (daily.html#dlg): go straight to it
   const want = location.hash.slice(1);
-  if (PUZ.some(p => p.id === want)) { history.replaceState(null, '', location.pathname + location.search); want === 'hol' ? openHol() : openGuess(want); }
+  if (PUZ.some(p => p.id === want)) { history.replaceState(null, '', location.pathname + location.search); want === 'hol' ? openHol() : want === 'hang' ? openHang() : openGuess(want); }
   // test helper: ?day=2026-12-01 shows that day's puzzles (does not change what is saved for other days)
   const qd = new URLSearchParams(location.search).get('day');
   if (qd && /^\d{4}-\d{2}-\d{2}$/.test(qd)) { TODAY = qd; forced = true; buildToday(); drawToday(); }
