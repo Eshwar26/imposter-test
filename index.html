@@ -283,6 +283,8 @@
   .drow b{display:block;font-family:var(--display);font-weight:400;font-size:22px;letter-spacing:1.2px;line-height:1}
   .drow small{display:block;font-size:9.5px;letter-spacing:2px;color:var(--kt,var(--k));margin-top:5px}
   .drow .st{flex:none;font-family:var(--display);font-size:16px;letter-spacing:1px;padding:6px 12px 4px;border-radius:999px;background:var(--k);color:#fff}
+  .drow[href$="#hang"]:not(.done) .st{color:#0a0a0f}
+  [data-theme=light] .drow[href$="#hang"]:not(.done) .st{color:#fff}
   .drow.done .st{background:none;border:1.5px solid var(--border);color:var(--muted)}
   .drow.won .st{border-color:color-mix(in srgb,var(--green) 60%,transparent);color:var(--green)}
   .dgo{display:block;text-align:center;text-decoration:none;margin:14px 20px 0;width:auto;background:var(--accent);color:#fff;box-shadow:0 10px 26px color-mix(in srgb,var(--accent) 30%,transparent)}
@@ -370,7 +372,6 @@
 <body>
 
 <!-- ═════ SPLASH ═════ -->
-<div class="sp-gate" id="spGate"><p><b>TAP TO START</b>sound on for the full effect</p></div>
 <div class="sp" id="sp" aria-label="Cinefied by Midnight Labs">
   <svg viewBox="0 0 360 350">
     <defs>
@@ -419,7 +420,7 @@
 
     <button class="daily rise" type="button" data-tab="daily" style="animation-delay:.08s">
       <span class="num" id="daynum"></span>
-      <span class="t" id="dTeaser">Daily puzzles<span>4 new puzzles today</span></span>
+      <span class="t" id="dTeaser">Daily puzzles<span>5 new puzzles today</span></span>
     </button>
 
     <main id="shelves"></main>
@@ -521,6 +522,7 @@
       {n:'Clue Pool',m:'Team vs team',p:'cluepool.html'},
       {n:'Blindspot',m:'Word on your forehead',p:'blindspot.html'},
       {n:'Tic Tac Toe',m:'Two players, three pieces',p:'tictactoe.html'},
+      {n:'Lines',m:'Sneak in your line',p:'lines.html'},
     ]},
     { title:'Pass one phone', note:'gather round', color:'var(--accent2)', games:[
       {n:'Heads Up!',m:'Phone on your forehead',p:'headsup.html'},
@@ -530,10 +532,12 @@
       {n:'Dialogue Detective',m:'Guess the movie from the line',p:'dialoguedetective.html'},
       {n:'Starring',m:'Guess by cast',p:'starring.html'},
       {n:"Director's Cut",m:'Guess the director',p:'directorscut.html'},
+      {n:'Questions Only',m:'Speak only in questions',p:'questions.html'},
     ]},
     { title:'Solo', note:'just you', color:'var(--blue)', games:[
       {n:'Higher or Lower',m:'Beat your best run',p:'higherlower.html'},
       {n:'Memory Match',m:'Actors and their films',p:'memorymatch.html'},
+      {n:'Hangman',m:'Guess the title',p:'hangman.html'},
     ]},
   ];
   const PAGE = {}, COLOR = {};
@@ -591,6 +595,9 @@
     ["Director's Cut",'Three movies, one director. Who made them?'],
     ['Higher or Lower','Which movie wins this stat? One miss ends it.'],
     ['Memory Match','Flip cards. Match actors to their films.'],
+    ['Lines','Act out a scene. Sneak your secret line in.'],
+    ['Questions Only','Act out a scene, but only in questions.'],
+    ['Hangman','Guess the movie title, one letter at a time.'],
   ];
   const SHOW_MS = 5000, BAR_N = 5;
   const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -674,7 +681,9 @@
     {id:'dlg', n:'Dialogue', k:'var(--accent)'},
     {id:'sto', n:'Story', k:'var(--accent2)'},
     {id:'cast', n:'Cast', k:'#8e1f33', kt:'#d4566b'},
+    {id:'hang', n:'Hangman', k:'var(--yellow)'},
   ];
+  const DN = DPUZ.length;
   const IST = 330 * 60000, dKey = (ms = Date.now()) => new Date(ms + IST).toISOString().slice(0, 10);
   function readDaily(){ try { const v = JSON.parse(localStorage.getItem('cf_daily') || '{}'); return v.days || {}; } catch(e) { return {}; } }
   function drawDaily(){
@@ -684,16 +693,16 @@
     const done = DPUZ.filter(p => fin(today, p.id)).length;
     const streakOf = id => { let c = 0, m = Date.parse(today); if (!fin(today, id)) m -= 864e5; for (;;) { const k = new Date(m).toISOString().slice(0, 10); if (!fin(k, id)) break; c++; m -= 864e5; } return c; };
     document.getElementById('dsN').textContent = n;
-    document.getElementById('dsMarks').innerHTML = DPUZ.map(p => `<i class="${fin(today, p.id) ? 'on' : ''}" style="--k:${p.k}"></i>`).join('') + `<small>${done === 4 ? 'ALL DONE TODAY' : done + ' OF 4 TODAY'}</small>`;
+    document.getElementById('dsMarks').innerHTML = DPUZ.map(p => `<i class="${fin(today, p.id) ? 'on' : ''}" style="--k:${p.k}"></i>`).join('') + `<small>${done === DN ? 'ALL DONE TODAY' : done + ' OF ' + DN + ' TODAY'}</small>`;
     document.getElementById('dList').innerHTML = DPUZ.map(p => {
       const r = D[today] && D[today][p.id], sk = streakOf(p.id);
-      const st = r && r.done ? (p.id === 'hol' ? r.s + '/10' : r.win ? 'GOT IT' : 'MISSED') : 'PLAY';
+      const st = r && r.done ? (p.id === 'hol' ? r.s + '/10' : r.win ? 'GOT IT' : p.id === 'hang' ? 'CUT' : 'MISSED') : 'PLAY';
       const cls = r && r.done ? ' done' + ((p.id === 'hol' ? r.s >= 5 : r.win) ? ' won' : '') : '';
       return `<a class="drow${cls}" href="daily.html#${p.id}" style="--k:${p.k}${p.kt ? ';--kt:' + p.kt : ''}"><span class="tx"><b>${p.n}</b><small>${sk ? sk + (sk === 1 ? ' DAY' : ' DAYS') + ' IN A ROW' : 'NO STREAK YET'}</small></span><span class="st">${st}</span></a>`;
     }).join('');
-    document.getElementById('dGo').textContent = done === 4 ? "SEE TODAY'S RESULTS" : done ? 'CARRY ON' : "PLAY TODAY'S PUZZLES";
+    document.getElementById('dGo').textContent = done === DN ? "SEE TODAY'S RESULTS" : done ? 'CARRY ON' : "PLAY TODAY'S PUZZLES";
     document.getElementById('daynum').textContent = n || new Date(Date.now() + IST).getUTCDate();
-    document.getElementById('dTeaser').innerHTML = 'Daily puzzles<span>' + (n ? n + ' day streak · ' : '') + (done === 4 ? 'all done today' : done ? done + ' of 4 done today' : '4 new puzzles today') + '</span>';
+    document.getElementById('dTeaser').innerHTML = 'Daily puzzles<span>' + (n ? n + ' day streak · ' : '') + (done === DN ? 'all done today' : done ? done + ' of ' + DN + ' done today' : DN + ' new puzzles today') + '</span>';
   }
   function dTick(){ const left = 864e5 - ((Date.now() + IST) % 864e5); const h = Math.floor(left / 36e5), m = Math.floor(left % 36e5 / 6e4), sc = Math.floor(left % 6e4 / 1e3);
     document.getElementById('dCd').textContent = [h, m, sc].map(v => String(v).padStart(2, '0')).join(':'); }
@@ -821,14 +830,12 @@
     setTimeout(() => { document.body.classList.remove('splashing'); f.remove(); }, 760);
   }
   document.getElementById('sp').addEventListener('click', splashToHome);   // tap to skip
-  document.getElementById('spGate').addEventListener('click', () => {
-    audio();
-    document.getElementById('spGate').remove(); playSplash();
-  });
   // the intro plays once per visit; coming back from a game skips it
   let seen = false; try { seen = sessionStorage.getItem('cf_intro') === '1'; } catch(e) {}
-  if (seen) { document.getElementById('spGate').remove(); document.getElementById('sp').classList.add('on','lit','gone'); }
-  else { document.body.classList.add('splashing'); try { sessionStorage.setItem('cf_intro', '1'); } catch(e) {} }
+  // it starts on its own. Phones don't let a page make sound before the first tap, so the first run is silent
+  // (the app version can play it); "Replay intro" in Profile plays it with sound.
+  if (seen) document.getElementById('sp').classList.add('on','lit','gone');
+  else { document.body.classList.add('splashing'); try { sessionStorage.setItem('cf_intro', '1'); } catch(e) {} audio(); playSplash(); }
 
   // ═════ Games: tap a card → it grows to fill the screen, then the game's page opens ═════
   let opening = false;
