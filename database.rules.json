@@ -46,13 +46,13 @@
           "used": {
             "$cycle": {
               "$k": {
-                ".write": "auth != null && root.child('rooms').child($code).child('game').val() === 'blindspot' && root.child('rooms').child($code).child('phase').val() === 'play' && root.child('rooms').child($code).child('players').child(auth.uid).exists() && !data.exists()",
-                ".validate": "newData.val() === true && $cycle.length <= 8 && $k.length <= 8"
+                ".write": "auth != null && (root.child('rooms').child($code).child('game').val() === 'blindspot' || root.child('rooms').child($code).child('game').val() === 'lines') && root.child('rooms').child($code).child('phase').val() === 'play' && root.child('rooms').child($code).child('players').child(auth.uid).exists() && !data.exists()",
+                ".validate": "(newData.val() === true || newData.val() === auth.uid) && $cycle.length <= 8 && $k.length <= 8"
               }
             }
           },
           "cycle": {
-            ".write": "auth != null && root.child('rooms').child($code).child('game').val() === 'blindspot' && root.child('rooms').child($code).child('phase').val() === 'play' && root.child('rooms').child($code).child('players').child(auth.uid).exists()",
+            ".write": "auth != null && (root.child('rooms').child($code).child('game').val() === 'blindspot' || root.child('rooms').child($code).child('game').val() === 'lines') && root.child('rooms').child($code).child('phase').val() === 'play' && root.child('rooms').child($code).child('players').child(auth.uid).exists()",
             ".validate": "newData.isNumber() && (root.child('rooms').child($code).child('leader').val() === auth.uid || newData.val() === data.val() + 1)"
           },
           "items": {
