@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied how-to-play animations · v0.2.0
+   Cinefied how-to-play animations · v0.3.0
    One shared kit for every game's HOW TO PLAY sheet: the pieces
    (phone, player, chip, label, pill, ripple), small motion helpers,
    and the player that runs a game's steps with a progress bar,
@@ -23,6 +23,14 @@
 'use strict';
 const NS = 'http://www.w3.org/2000/svg';
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const HOLD = 2500;   // ms each step stays on its last frame before moving on
+(function style() {
+  const css = `.ht-pause{position:absolute;top:10px;right:10px;z-index:3;width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--text);display:grid;place-items:center;cursor:pointer;padding:0}
+    .ht-pause svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+    .ht-paused .ht-pause{background:var(--c);border-color:var(--c);color:#fff}.ht-paused .ht-pause svg{fill:currentColor}
+    .ht-paused .ht-prog i b{opacity:.55}`;
+  const el = document.createElement('style'); el.textContent = css; document.head.appendChild(el);
+})();
 
 /* ═════════════ KIT: helpers ═════════════ */
 const cl = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
@@ -231,17 +239,27 @@ function create(host, scene) {
        <svg viewBox="0 0 320 250" aria-hidden="true"></svg>
        <button class="ht-tap l" type="button" aria-label="Previous step"></button>
        <button class="ht-tap r" type="button" aria-label="Next step"></button>
+       <button class="ht-pause" type="button" aria-label="Pause"></button>
      </div>
      <div class="ht-cap"><b></b><span></span></div>
      <ol class="ht-sr">${steps.map(s => `<li>${String(s.t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))}</li>`).join('')}</ol>
      <div class="ht-btns"><button class="btn outline" type="button" data-ht="replay">REPLAY</button><button class="btn" type="button" data-close>GOT IT</button></div>`;
   const q = s => host.querySelector(s);
   const svg = q('svg'), bars = [...host.querySelectorAll('.ht-prog b')], cap = q('.ht-cap');
-  let draw = null, step = 0, t0 = 0, raf = 0, rmT = 0, on = false;
+  let draw = null, step = 0, t0 = 0, raf = 0, rmT = 0, on = false, paused = false, pausedAt = 0;
+  const pb = q('.ht-pause');
+  const ICON_PAUSE = '<svg viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></svg>', ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg>';
+  function setPaused(v) {
+    if (v === paused) return;
+    if (v) pausedAt = performance.now(); else t0 += performance.now() - pausedAt;
+    paused = v; pb.innerHTML = v ? ICON_PLAY : ICON_PAUSE; pb.setAttribute('aria-label', v ? 'Play' : 'Pause');
+    host.classList.toggle('ht-paused', v);
+  }
+  pb.innerHTML = ICON_PAUSE;
   const ensure = () => { if (!draw) draw = scene.build(svg, K); };
 
   function go(i) {
-    step = cl(i, 0, steps.length - 1); t0 = performance.now();
+    step = cl(i, 0, steps.length - 1); t0 = performance.now(); pausedAt = t0;
     q('.ht-n').innerHTML = `<b>${step + 1}</b> / ${steps.length}`;
     cap.querySelector('b').textContent = step + 1;
     cap.querySelector('span').textContent = steps[step].t;
@@ -251,18 +269,21 @@ function create(host, scene) {
   }
   function tick(now) {
     if (!on) return;
-    const d = steps[step].d; let u = now - t0;
-    if (u >= d) { if (step < steps.length - 1 && !RM) { go(step + 1); u = 0; } else u = d; }
-    bars.forEach((b, j) => { b.style.transform = `scaleX(${j < step ? 1 : j > step ? 0 : (RM ? 1 : u / d).toFixed(3)})`; });
-    try { draw(step, RM ? steps[step].d : u); } catch (e) { console.error(e); on = false; return; }
+    // each step plays its animation, then holds on the last frame for a moment before the next one
+    const d = steps[step].d, full = d + HOLD; let u = (paused ? pausedAt : now) - t0;
+    if (u >= full && !paused) { if (step < steps.length - 1 && !RM) { go(step + 1); u = 0; } else u = full; }
+    bars.forEach((b, j) => { b.style.transform = `scaleX(${j < step ? 1 : j > step ? 0 : (RM ? 1 : Math.min(1, u / full)).toFixed(3)})`; });
+    try { draw(step, RM ? d : Math.min(u, d)); } catch (e) { console.error(e); on = false; return; }
     raf = requestAnimationFrame(tick);
   }
-  function play() { ensure(); on = true; cancelAnimationFrame(raf); go(0); raf = requestAnimationFrame(tick); }
+  function play() { ensure(); on = true; setPaused(false); cancelAnimationFrame(raf); go(0); raf = requestAnimationFrame(tick); }
   function stop() { on = false; cancelAnimationFrame(raf); clearTimeout(rmT); }
 
   q('.ht-tap.r').addEventListener('click', () => go(step + 1));
   q('.ht-tap.l').addEventListener('click', () => go(step - 1));
-  q('[data-ht="replay"]').addEventListener('click', () => go(0));
+  q('[data-ht="replay"]').addEventListener('click', () => { setPaused(false); go(0); });
+  pb.addEventListener('click', () => setPaused(!paused));
+  if (RM) pb.hidden = true;
   return { play, stop };
 }
 
