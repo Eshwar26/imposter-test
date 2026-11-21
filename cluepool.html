@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/core.css?v=0.2.1">
+<link rel="stylesheet" href="core/core.css?v=0.2.3">
 <style>
   :root{--ta:var(--accent);--tb:var(--blue);--t:var(--ta);--o:var(--tb)}
   [hidden]{display:none!important}
@@ -235,7 +235,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-functions-compat.js"></script>
 <script src="data/cluepool-names.js"></script>
 <script src="core/core.js?v=0.2.1"></script>
-<script src="core/core-ui.js?v=0.2.2"></script>
+<script src="core/howto.js?v=0.2.0"></script>
+<script src="core/core-ui.js?v=0.2.3"></script>
 <script>
 (() => {
   'use strict';
@@ -474,8 +475,66 @@
 
   // ══ hand-off with the core ═══════════════════════════════════
   let V0 = null;   // the room as last seen in the waiting room
+  // ── how to play: the animated steps (drawn by core/howto.js) ──
+  const HOWTO = {
+    steps: [
+      { d: 3600, t: 'Both teams get the same hidden movie and 7 tokens. The actor clue is free.' },
+      { d: 3800, t: 'More hints cost 1 token each. A hint opens when everyone on your team taps HINT.' },
+      { d: 5200, t: 'The captain proposes a movie and the team votes. More than half locks it in. A wrong guess costs 1 token.' },
+      { d: 3600, t: 'The first team to get it scores its leftover tokens. At 0 tokens you get one final guess: +1 if right, −1 if wrong.' }
+    ],
+    build(svg, K) {
+      const { el, op, cl, pr, ease, back, lerp, fitLines, Phone, Player, Chip, Label, WidePill, Ripple, COLORS } = K;
+      // one column per team: a colour bar, players, tokens, then one message slot
+      const COL = [70, 250], TC = ['var(--accent)', 'var(--blue)'];
+      const card = el('g', {}, svg);
+      el('rect', { x: 104, y: 20, width: 112, height: 50, rx: 12, fill: 'var(--surface)', stroke: 'var(--border)', 'stroke-width': 1.5 }, card);
+      const q = Label(svg), ans = Label(svg), clue = Chip(svg);
+      const bars = COL.map((x, t) => el('rect', { x: x - 44, y: 112, width: 88, height: 3, rx: 1.5, fill: TC[t], opacity: 0 }, svg));
+      const pl = el('g', {}, svg);
+      const P = [[COL[0] - 18, 0], [COL[0] + 18, 1], [COL[1] - 18, 2], [COL[1] + 18, 3]].map(([x, i]) => Player(pl, x, 142, 'RSBA'[i], COLORS[i]));
+      const crown = [0, 2].map(i => el('path', { d: 'M-7 3L-7 -4L-3.5 0L0 -6L3.5 0L7 -4L7 3Z', fill: 'var(--yellow)', opacity: 0, transform: `translate(${P[i].x} 121)` }, svg));
+      const tok = COL.map(x => Array.from({ length: 7 }, (_, i) => el('circle', { cx: x - 33 + 11 * i, cy: 176, r: 4.2, fill: 'var(--yellow)', opacity: 0 }, svg)));
+      const slot = [Chip(svg), Chip(svg)], big = Label(svg), taps = [Ripple(svg), Ripple(svg)];
+      const pop = (u, a) => back(pr(u, a, 260));
+      const tokens = (t, n) => tok[t].forEach((c, i) => { op(c, i < n ? 1 : .15); c.setAttribute('r', 4.2); });
+      const spend = (t, i, u, a) => { const k = pr(u, a, 350); op(tok[t][i], 1 - .85 * k); tok[t][i].setAttribute('r', (4.2 * (1 + .6 * Math.sin(Math.PI * k))).toFixed(2)); };
+      return (s, u) => {
+        [clue, ...slot].forEach(c => c.hide()); [q, ans, big].forEach(l => l.hide()); taps.forEach(t => t.set(0, 0, 0));
+        P.forEach(p => p.set()); bars.forEach(b => op(b, 1)); crown.forEach(c => op(c, s === 2 ? 1 : 0)); op(card, 1);
+        q.set('? ? ?', 160, 45, 22, 'var(--muted)');
+        if (s > 0) clue.set('Actor: Mahesh Babu', 160, 86, 1);
+        if (s === 0) {
+          const k = pr(u, 0, 400); op(card, k); q.set('? ? ?', 160, 45, 22, 'var(--muted)', { o: k });
+          P.forEach((p, i) => p.set({ o: pr(u, 300 + i * 100, 300) })); bars.forEach(b => op(b, pr(u, 300, 300)));
+          tok.forEach(row => row.forEach((c, i) => { op(c, pr(u, 900 + i * 80, 200)); c.setAttribute('r', 4.2); }));
+          if (u > 1900) clue.set('Actor: Mahesh Babu', 160, 86, pop(u, 1900));
+        } else if (s === 1) {
+          tokens(0, 7); tokens(1, 7); spend(0, 6, u, 1500);
+          [0, 1].forEach(i => { const a = 400 + i * 550; taps[i].set(P[i].x, 142, pr(u, a, 500), 22); if (u > a) P[i].set({ ring: 1, ringC: 'var(--green)' }); });
+          if (u > 1700) slot[0].set('Genre: Action', COL[0], 204, pop(u, 1700));
+        } else if (s === 2) {
+          tokens(0, 6); tokens(1, 7); spend(0, 5, u, 1700);
+          if (u < 1400) { slot[0].set('Athadu?', COL[0], 204, pop(u, 300)); P[0].set({ ring: 1 }); if (u > 800) P[1].set({ ring: 1, ringC: 'var(--green)' }); }
+          else slot[0].set('Wrong', COL[0], 204, pop(u, 1400), 'acc');
+          if (u > 2600) {
+            const right = u > 3800;
+            slot[1].set('Pokiri?', COL[1], 204, pop(u, 2600), right ? 'ok' : undefined);
+            P[2].set({ ring: 1, ringC: right ? 'var(--green)' : 'var(--text)' }); if (u > 3100) P[3].set({ ring: 1, ringC: 'var(--green)' });
+            if (right) { q.hide(); ans.set('POKIRI', 160, 45, 22, 'var(--green)', { s: pop(u, 3800) }); }
+          }
+        } else {
+          tokens(0, 5); tokens(1, 7); q.hide(); ans.set('POKIRI', 160, 45, 22, 'var(--green)');
+          tok[1].forEach((c, i) => c.setAttribute('r', (4.2 * (1 + .4 * Math.sin(Math.PI * pr(u, 200 + i * 80, 300)))).toFixed(2)));
+          if (u > 900) big.set('+7', COL[1], 210, 28, 'var(--green)', { s: pop(u, 900) });
+        }
+      };
+    }
+  };
+
   UI.mount({
     game: {
+      howto: HOWTO,
       id: 'cluepool', name: 'Clue Pool', shelf: 'Play together', color: 'var(--green)', glyph: 'C', referee: true,
       pitch: 'Two teams, one hidden movie. Buy hints with tokens, and guess before the other team does.',
       facts: ['2 to 10 players', 'Team vs team', '~10 min'],
