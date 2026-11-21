@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="core/core.css?v=0.2.1">
+<link rel="stylesheet" href="core/core.css?v=0.2.3">
 <style>
   /* Heads Up! — one phone, on your forehead. No room, no database. */
   :root{--c:var(--accent2)}
@@ -56,14 +56,6 @@
     .seg{grid-column:2;grid-row:3}
     #startBtn{grid-column:2;grid-row:4}
   }
-  /* how to play */
-  .tilt2{display:flex;gap:8px;margin-top:14px}
-  .tilt2 div{flex:1;border-radius:14px;padding:10px;display:flex;align-items:center;gap:8px;background:var(--surface2)}
-  .tilt2 b{font-family:var(--display);font-weight:400;font-size:17px;letter-spacing:1.5px;display:block;white-space:nowrap}
-  .tilt2 small{font-size:11px;color:var(--muted)}
-  .tilt2 svg{width:24px;height:24px;flex:none;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .tilt2 .g b{color:var(--green)} .tilt2 .g svg{stroke:var(--green)} .tilt2 .p b{color:var(--accent2)} .tilt2 .p svg{stroke:var(--accent2)}
-  #rulesSheet{--c:var(--accent2)}
 
   /* ── 2. get ready ── */
   #s-ready{align-items:center;justify-content:center;text-align:center;gap:10px;background:var(--bg)}
@@ -175,20 +167,10 @@
 </div>
 
 <div class="scrim" id="scrim"></div>
-<section class="sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><h3>HOW TO PLAY</h3>
-  <div class="rules">
-    <div class="rule"><b>1</b><span>Pick a category and a time, then press START.</span></div>
-    <div class="rule"><b>2</b><span>Turn the phone sideways and hold it on your forehead, screen facing your friends.</span></div>
-    <div class="rule"><b>3</b><span>Your friends give clues without saying the name. Guess as many as you can before time runs out.</span></div>
-  </div>
-  <div class="tilt2">
-    <div class="g"><svg viewBox="0 0 24 24"><path d="M12 4v14M6 12l6 6 6-6"/></svg><span><b>TILT DOWN</b><small>Got it</small></span></div>
-    <div class="p"><svg viewBox="0 0 24 24"><path d="M12 20V6M6 12l6-6 6 6"/></svg><span><b>TILT UP</b><small>Pass</small></span></div>
-  </div>
-  <button class="btn outline" type="button" data-close>GOT IT</button>
-</section>
+<section class="sheet ht-sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><div id="howto"></div></section>
 
 <script src="data/words.js"></script>
+<script src="core/howto.js?v=0.1.0"></script>
 <script>
 (() => {
   'use strict';
@@ -421,12 +403,100 @@
     release(); drawSetup(); show('s-setup'); requestAnimationFrame(() => { fitNames(); toCat(); });
   }
 
+  // ── how to play: the animated steps (drawn by core/howto.js) ──
+  const HOWTO = {
+    steps: [
+      { d: 3400, t: 'Pick a category and a time, then press START.' },
+      { d: 3000, t: 'Turn the phone sideways and hold it on your forehead, screen facing your friends.' },
+      { d: 3400, t: 'Your friends shout clues without saying the name.' },
+      { d: 5000, t: 'Got it? Tilt the phone down. Stuck? Tilt it up to pass.' },
+      { d: 3800, t: "When time's up, see how many you got." }
+    ],
+    build(svg, K) {
+      const { el, op, cl, pr, ease, back, lerp, wrap, fitLines, pass, Phone, Player, Chip, Label, Pill, Ripple, COLORS } = K;
+      const H = [160, 196], F = [[46, 70], [274, 70], [46, 206]], FC = [[46, 36], [274, 36], [46, 238]];
+      const pl = el('g', {}, svg);
+      const holder = Player(pl, H[0], H[1], 'R', COLORS[0]), friends = F.map((p, i) => Player(pl, p[0], p[1], 'SBA'[i], COLORS[i + 1]));
+      const defs = el('defs', {}, svg), mk = el('marker', { id: 'ar2', viewBox: '0 0 10 10', refX: 6, refY: 5, markerWidth: 5, markerHeight: 5, orient: 'auto-start-reverse' }, defs);
+      el('path', { d: 'M1 1L8 5L1 9', fill: 'none', stroke: 'var(--accent2)', 'stroke-width': 2.2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, mk);
+      const down = el('path', { d: 'M226 118Q240 140 226 162', fill: 'none', stroke: 'var(--green)', 'stroke-width': 2.4, 'stroke-linecap': 'round', 'marker-end': 'url(#ar2)', opacity: 0 }, svg);
+      const up = el('path', { d: 'M226 162Q240 140 226 118', fill: 'none', stroke: 'var(--accent2)', 'stroke-width': 2.4, 'stroke-linecap': 'round', 'marker-end': 'url(#ar2)', opacity: 0 }, svg);
+      const ph = Phone(svg);
+      const letter = Label(svg), cat = Label(svg, 'm'), word = Label(svg), timer = Label(svg, 'm'), flash = Label(svg), small = Label(svg, 'm'), big = Label(svg), sub = Label(svg, 'm');
+       letter.t.setAttribute('stroke-width', 1.4);
+      const start = Pill(svg, 'START', 'var(--accent2)'), tap = Ripple(svg), tilt = Chip(svg), clues = F.map(() => Chip(svg));
+      const swipe = el('circle', { r: 6, fill: 'var(--text)', opacity: 0 }, svg);
+      const pop = (u, a) => back(pr(u, a, 260));
+      const P0 = [160, 112, 2.5], P1 = [160, 146, 1.8];
+      const clock = sec => '0:' + String(Math.max(0, sec)).padStart(2, '0');
+      return (s, u) => {
+        [letter, cat, word, timer, flash, small, big, sub].forEach(l => l.hide()); start.hide(); tap.set(0, 0, 0); tilt.hide(); clues.forEach(c => c.hide());
+        op(down, 0); op(up, 0); op(swipe, 0); ph.screen('#13131a'); holder.set({ x: H[0], y: H[1], s: 2 }); friends.forEach(f => f.set());
+        if (s === 0) {
+          holder.set({ x: H[0], y: H[1], s: 2, o: .15 }); friends.forEach(f => f.set({ o: .15 }));
+          const [x, y, sc] = P0; ph.at(x, y, sc);
+          const out = pr(u, 900, 220), inn = pr(u, 1120, 260), second = u >= 1120;
+          const dx = second ? 14 * (1 - ease(inn)) : -14 * ease(out), o = second ? inn : 1 - out;
+          letter.t.setAttribute('stroke', second ? 'var(--accent)' : 'var(--blue)'); letter.set(second ? 'M' : 'A', x + dx, y - 18, 60, 'none', { o });
+          cat.set(second ? 'MOVIES' : 'ACTORS', x + dx, y + 13, 10, '#e8e8f0', { o });
+          if (u > 500 && u < 1150) { op(swipe, .5 * (1 - pr(u, 950, 200))); swipe.setAttribute('cx', (x + 26 - 52 * ease(pr(u, 550, 500))).toFixed(1)); swipe.setAttribute('cy', y + 4); }
+          start.set(x, y + 40, sc * .75, pr(u, 1500, 250), pr(u, 2350, 120) - pr(u, 2470, 120));
+          tap.set(x, y + 40, pr(u, 2400, 600), 30);
+        } else if (s === 1) {
+          const k = ease(pr(u, 200, 900)), fo = 1 - pr(u, 0, 250);
+          const x = lerp(P0[0], P1[0], k), y = lerp(P0[1], P1[1], k), sc = lerp(P0[2], P1[2], k);
+          ph.at(x, y, sc, 90 * k);
+          letter.t.setAttribute('stroke', 'var(--accent)'); letter.set('M', x, y - 18, 60, 'none', { o: fo }); cat.set('MOVIES', x, y + 13, 10, '#e8e8f0', { o: fo });
+          holder.set({ x: H[0], y: H[1], s: 2, o: lerp(.15, 1, k) }); friends.forEach((f, i) => f.set({ o: lerp(.15, 1, pr(u, 700 + i * 120, 400)) }));
+          if (u > 1300) { word.set('PRABHAS', x, y - 3, 22, '#fff', { s: pop(u, 1300), maxW: 76 }); timer.set('1:00', x, y + 15, 7, '#9a9ab8', { o: pr(u, 1400, 300) }); }
+        } else if (s === 2) {
+          ph.at(...P1.slice(0, 2), P1[2], 90);
+          word.set('PRABHAS', P1[0], P1[1] - 3, 22, '#fff', { maxW: 76 }); timer.set(clock(58 - Math.floor(u / 1000)), P1[0], P1[1] + 15, 7, '#9a9ab8');
+          ['Baahubali!', 'Darling!', 'Rebel star!'].forEach((c, i) => {
+            if (u < 250 + i * 850) return;
+            clues[i].set(c, FC[i][0], FC[i][1], pop(u, 250 + i * 850));
+            friends[i].set({ ring: u < 250 + (i + 1) * 850 ? 1 : 0 });
+          });
+        } else if (s === 3) {
+          const td = pr(u, 300, 600), tu = pr(u, 2800, 600), b = Math.sin(Math.PI * td), c = Math.sin(Math.PI * tu);
+          const sx = 1 - .45 * (b + c), y = P1[1] + 9 * b - 9 * c;
+          ph.at(P1[0], y, P1[2], 90, sx);
+          const t = clock(54 - Math.floor(u / 1000));
+          if (u < 1500 && u >= 750) { ph.screen('#12b86d'); flash.set('GOT IT!', P1[0], y, 20, '#fff', { s: pop(u, 750), sy: sx, maxW: 76 }); }
+          else if (u >= 3250 && u < 4000) { ph.screen('#f07a26'); flash.set('PASS', P1[0], y, 22, '#fff', { s: pop(u, 3250), sy: sx }); }
+          else {
+            const w = u < 750 ? 'PRABHAS' : u < 3250 ? 'SAMANTHA' : 'NANI', a = u < 750 ? -1e4 : u < 3250 ? 1500 : 4000;
+            word.set(w, P1[0], y - 3, 22, '#fff', { s: pop(u, a), sy: sx, maxW: 76 }); timer.set(t, P1[0], y + 15, 7, '#9a9ab8', { sy: sx });
+          }
+          if (u < 1700) { op(down, pr(u, 0, 250)); tilt.set('TILT DOWN · GOT IT', 250, 234, pop(u, 50)); }
+          else if (u >= 2300 && u < 4300) { op(up, pr(u, 2300, 250)); tilt.set('TILT UP · PASS', 250, 234, pop(u, 2350)); }
+        } else {
+          const k = ease(pr(u, 1300, 800)), x = lerp(P1[0], P0[0], k), y = lerp(P1[1], P0[1], k), sc = lerp(P1[2], P0[2], k);
+          ph.at(x, y, sc, 90 * (1 - k));
+          if (u < 1300) { ph.screen('#e52b2b'); flash.set("TIME'S UP!", x, y, 20, '#fff', { s: pop(u, 0), maxW: 78 }); }
+          holder.set({ x: H[0], y: H[1], s: 2, o: 1 - .8 * k }); friends.forEach(f => f.set({ o: 1 - .8 * k }));
+          if (u > 2000) {
+            small.set('YOU GOT', x, y - 28, 8, '#9a9ab8', { o: pr(u, 2000, 250) });
+            big.set('7', x, y - 2, 58, 'var(--green)', { s: pop(u, 2150) });
+            sub.set('7 got · 3 passed', x, y + 28, 6.5, '#9a9ab8', { o: pr(u, 2400, 300) });
+          }
+        }
+      };
+    }
+  };
+
+  const HT = CinefiedHowTo.create($('howto'), HOWTO);
+  const openRules = () => { $('rulesSheet').classList.add('open'); $('scrim').classList.add('open'); HT.play(); };
+  const closeRules = () => { HT.stop(); $('rulesSheet').classList.remove('open'); $('scrim').classList.remove('open'); };
+  // every time the game is opened, the how-to-play plays first
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(() => { if (state === 'setup') openRules(); }, 450));
+
   // ── touches + keys ──
   document.addEventListener('click', e => {
     const t = e.target;
     const c = t.closest('.poster'); if (c) { if (c.dataset.cat === cat) return void start(); cat = c.dataset.cat; return toCat('smooth'); }
-    if (t.closest('[data-rules]')) { $('rulesSheet').classList.add('open'); $('scrim').classList.add('open'); return; }
-    if (t.closest('#scrim') || t.closest('[data-close]')) { $('rulesSheet').classList.remove('open'); $('scrim').classList.remove('open'); return; }
+    if (t.closest('[data-rules]')) return openRules();
+    if (t.closest('#scrim') || t.closest('[data-close]')) return closeRules();
     const tm = t.closest('[data-time]'); if (tm) { secs = +tm.dataset.time; save('cf_hu_time', String(secs)); return drawSetup(); }
     if (t.closest('#startBtn') || t.closest('#againBtn')) return void start();
     if (t.closest('#homeBtn')) return void history.back();
