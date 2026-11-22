@@ -11295,38 +11295,7 @@
         scene: '',
       },
     },
-    {
-      id: 'virupaksha',
-      title: 'Virupaksha',
-      aka: [],
-      year: 2023,
-      level: 'medium',
-
-      hero: 'Sai Dharam Tej',
-      heroine: 'Samyuktha',
-      director: 'Karthik Varma Dandu',
-      music: 'Ajaneesh Loknath',
-      villain: '',
-      banner: 'Sri Venkateswara Cine Chitra',
-      genre: 'Mystery horror',
-      roles: ['Surya', 'Nandini'],   // check
-
-      stats: { imdb: 7.4, songs: 3, runtime: 145 },   // check
-
-      spoiler: [
-        'Mysterious deaths strike a village in the 1990s, and a young man digs into the dark magic behind them.',
-        'A village is cursed after a couple is burnt alive.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: '',
-        location: 'Rudravanam',
-        song: '',
-        scene: '',
-      },
-    },
-    {
+       {
       id: 'waltair-veerayya',
       title: 'Waltair Veerayya',
       aka: [],
@@ -11342,15 +11311,14 @@
       genre: 'Action comedy',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 5.9, songs: 5, runtime: 160 },   // check
+      stats: { imdb: 6.2, songs: 5, runtime: 160 },   // check
 
       spoiler: [
-        'A rowdy fisherman of Visakhapatnam goes undercover and unites with his estranged brother to take down a drug lord.',
-        'A fisherman from Vizag goes to Malaysia on a mission to catch a drug lord, and his brother is a cop.',
+         'A fisherman from Vizag goes to Malaysia on a mission to catch a drug lord,',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {
         job: 'Fisherman',
         location: 'Vizag and Malaysia',
         song: 'Boss Party',
@@ -11369,21 +11337,19 @@
       director: 'Koratala Siva',
       music: 'Anirudh Ravichander',
       villain: 'Saif Ali Khan',
-      banner: 'Yuvasudha Arts',
+      banner: '',
       genre: 'Action drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 6.4, songs: 4, runtime: 176 },   // check
-
+      stats: { imdb: 6.0, songs: 4, runtime: 176 },   
       spoiler: [
-        'A fearless man protects his coastal people from the dangers of smuggling at sea, until his own son pays the price.',
         'A coastal leader stops his men from smuggling, and the sea becomes a place of fear for anyone who tries.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Coastal leader',
-        location: 'Ratnagiri coast',
+      clues: {   
+        job: '',
+        location: '',
         song: 'Chuttamalle',
         scene: 'A feared man of the coast turns against smuggling at sea',
       },
@@ -11400,53 +11366,22 @@
       director: 'Parasuram',
       music: 'Gopi Sundar',
       villain: '',
-      banner: 'Sri Venkateswara Creations',
+      banner: '',
       genre: 'Family drama',
-      roles: ['Govardhan', 'Indu'],   // check
+      roles: ['Govardhan', 'Indu'],   
 
       stats: { imdb: 4.5, songs: 5, runtime: 160 },   // check
 
       spoiler: [
         'A middle-class man who carries his whole family\'s responsibilities finds out his tenant is writing a thesis about him.',
-        'A responsible elder son falls for a girl who studies his life.',
+        
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {  
         job: 'Architect',
         location: 'Hyderabad and New York',
         song: 'Kalyani Vaccha Vacchaa',
-        scene: 'A man fixes his family\'s tight budget on a whiteboard',
-      },
-    },
-    {
-      id: 'greatest-of-all-time',
-      title: 'Greatest of All Time',
-      aka: [],
-      year: 2024,
-      level: 'medium',
-
-      hero: 'Vijay',
-      heroine: 'Meenakshi Chaudhary',   // check
-      director: 'Venkat Prabhu',
-      music: 'Yuvan Shankar Raja',
-      villain: 'Vijay',
-      banner: 'AGS Entertainment',
-      genre: 'Sci-fi action',
-      roles: [],
-
-      stats: { imdb: 6, songs: 4, runtime: 183 },   // check
-
-      spoiler: [
-        'A former spy discovers that his son, believed dead, is alive and has become his enemy.',
-        'Father and son, both played by one actor, face off.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Anti-terror agent',
-        location: 'Chennai',
-        song: '',
         scene: '',
       },
     },
@@ -11461,12 +11396,12 @@
       heroine: 'Sreeleela',
       director: 'Trivikram Srinivas',
       music: 'S. Thaman',
-      villain: 'Jagapathi Babu',
-      banner: 'Haarika & Hassine Creations',
+      villain: '',
+      banner: '',
       genre: 'Family action drama',
-      roles: ['Ramana', 'Amu'],   // check
+      roles: ['Ramana', 'Amu'],  
 
-      stats: { imdb: 5.1, songs: 5, runtime: 159 },   // check
+      stats: { imdb: 5.4, songs: 5, runtime: 159 },   
 
       spoiler: [
         'A man estranged from his mother and her powerful family is forced to confront the past and the family he never knew.',
@@ -11474,9 +11409,9 @@
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Chilli trader',
-        location: 'Guntur',
+      clues: {  
+        job: '',
+        location: '',
         song: 'Kurchi Madathapetti',
         scene: 'A man refuses to sign away his relationship with his mother',
       },
@@ -11492,24 +11427,22 @@
       heroine: 'Amritha Aiyer',
       director: 'Prasanth Varma',
       music: 'Gowra Hari',
-      villain: 'Vinay Rai',
-      banner: 'Primeshow Entertainment',
+      villain: '',
+      banner: '',
       genre: 'Superhero fantasy',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7.8, songs: 4, runtime: 158 },
+      stats: { imdb: 7.7, songs: 5, runtime: 158 },
 
       spoiler: [
-        'A small-time thief in a village gets superpowers from a magical gem and has to face a rich man who wants the same power.',
-        'A thief in a village called Anjanadri gets superpowers from a gem containing a drop of a god\'s blood.',
-      ],
+         ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Small-time thief',
-        location: 'Anjanadri',
+      clues: {   
+        job: '',
+        location: '',
         song: 'Avakaya Anjaneya',
-        scene: 'A small-town thief gets powers from a magical gem',
+        scene: '',
       },
     },
     {
@@ -11526,7 +11459,7 @@
       villain: 'Kamal Haasan',
       banner: 'Vyjayanthi Movies',
       genre: 'Sci-fi epic',
-      roles: ['Bhairava', 'Sumathi', 'Ashwatthama'],   // check
+      roles: ['Bhairava', 'Sumathi', 'Ashwatthama'],   
 
       stats: { imdb: 7, songs: 3, runtime: 181 },
 
@@ -11536,7 +11469,7 @@
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Bounty hunter',
         location: 'Kasi',
         song: 'Bhairava Anthem',
@@ -11555,11 +11488,11 @@
       director: 'Venky Atluri',
       music: 'G. V. Prakash Kumar',
       villain: '',
-      banner: 'Sithara Entertainments',
+      banner: '',
       genre: 'Crime drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 8.1, songs: 3, runtime: 150 },   // check
+      stats: { imdb: 8.1, songs: 3, runtime: 150 },  
 
       spoiler: [
         'A struggling bank cashier in 1990s Bombay gets involved in a financial scam and becomes rich.',
@@ -11567,41 +11500,10 @@
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Bank cashier',
         location: 'Bombay',
         song: 'Srimathi Garu',
-        scene: 'A bank cashier counts money he secretly made',
-      },
-    },
-    {
-      id: 'mathu-vadalara-2',
-      title: 'Mathu Vadalara 2',
-      aka: [],
-      year: 2024,
-      level: 'hard',
-
-      hero: 'Sri Simha Koduri',
-      heroine: 'Faria Abdullah',
-      director: 'Ritesh Rana',
-      music: 'Kaala Bhairava',
-      villain: '',
-      banner: 'Clap Entertainment',
-      genre: 'Crime comedy',
-      roles: [],
-
-      stats: { imdb: 7.2, songs: 1, runtime: 140 },   // check
-
-      spoiler: [
-        'Two delivery agents now work as special agents and get framed in a kidnapping case.',
-        'The delivery boys return in a new con.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Special agent',
-        location: 'Hyderabad',
-        song: '',
         scene: '',
       },
     },
@@ -11616,53 +11518,22 @@
       heroine: 'Bhagyashri Borse',
       director: 'Harish Shankar',
       music: 'Mickey J. Meyer',
-      villain: 'Jagapathi Babu',
-      banner: 'People Media Factory',
+      villain: '',
+      banner: '',
       genre: 'Action drama',
       roles: [],
 
-      stats: { imdb: 4, songs: 5, runtime: 160 },   // check
+      stats: { imdb: 3.4, songs: 4, runtime: 160 },   
 
       spoiler: [
         'An honest income tax officer raids the home of a powerful politician.',
-        'A tax officer who loves old songs takes on a corrupt MP.',
+       
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Income tax officer',
-        location: 'Uttar Pradesh',
-        song: '',
-        scene: '',
-      },
-    },
-    {
-      id: 'naa-saami-ranga',
-      title: 'Naa Saami Ranga',
-      aka: [],
-      year: 2024,
-      level: 'hard',
-
-      hero: 'Nagarjuna',
-      heroine: 'Ashika Ranganath',
-      director: 'Vijay Binni',
-      music: 'M. M. Keeravani',
-      villain: '',
-      banner: 'Srinivasaa Silver Screen',
-      genre: 'Action drama',
-      roles: [],
-
-      stats: { imdb: 5.8, songs: 5, runtime: 145 },   // check
-
-      spoiler: [
-        'A loyal village man protects his friend and his village through the 1980s.',
-        'A man who once gave his word to a landlord\'s family.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Village youth',
-        location: 'A Godavari village',
+        location: '',
         song: '',
         scene: '',
       },
@@ -11681,9 +11552,9 @@
       villain: 'Fahadh Faasil',
       banner: 'Mythri Movie Makers',
       genre: 'Action drama',
-      roles: ['Pushpa Raj', 'Srivalli', 'Bhanwar Singh Shekhawat'],   // check
+      roles: ['Pushpa Raj', 'Srivalli', 'Bhanwar Singh Shekhawat'],  
 
-      stats: { imdb: 6.1, songs: 6, runtime: 200 },
+      stats: { imdb: 6, songs: 5, runtime: 200 },
 
       spoiler: [
         'The labourer who became a smuggling kingpin now faces a rival police officer and a growing empire that refuses to bow.',
@@ -11691,42 +11562,11 @@
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Smuggling kingpin',
-        location: 'Seshachalam and Japan',
+        location: 'Tirupati',
         song: 'Peelings',
         scene: 'A smuggler who now runs the syndicate wants one photo with the chief minister',
-      },
-    },
-    {
-      id: 'saindhav',
-      title: 'Saindhav',
-      aka: [],
-      year: 2024,
-      level: 'hard',
-
-      hero: 'Venkatesh',
-      heroine: 'Shraddha Srinath',
-      director: 'Sailesh Kolanu',
-      music: 'Santhosh Narayanan',
-      villain: 'Nawazuddin Siddiqui',
-      banner: 'Niharika Entertainment',
-      genre: 'Action thriller',
-      roles: [],
-
-      stats: { imdb: 5, songs: 3, runtime: 140 },   // check
-
-      spoiler: [
-        'A crane operator with a violent past needs money for his daughter\'s rare disease and takes on a drug cartel.',
-        'A father\'s past returns when his child needs costly medicine.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Crane operator',
-        location: 'Chandraprastha port',
-        song: '',
-        scene: '',
       },
     },
     {
@@ -11741,11 +11581,11 @@
       director: 'Vivek Athreya',
       music: 'Jakes Bejoy',
       villain: 'S. J. Suryah',
-      banner: 'DVV Entertainment',
+      banner: '',
       genre: 'Action thriller',
-      roles: ['Surya', 'Charulatha', 'Daya'],   // check
+      roles: ['Surya', 'Charulatha', 'Daya'],  
 
-      stats: { imdb: 7.6, songs: 4, runtime: 174 },   // check
+      stats: { imdb: 7.1, songs: 4, runtime: 174 },   // check
 
       spoiler: [
         'A man who lets out his anger only on Saturdays takes on a cruel police officer.',
@@ -11755,7 +11595,7 @@
 
       clues: {   // check
         job: 'Insurance agent',
-        location: 'Sokulapalem',
+        location: '',
         song: '',
         scene: '',
       },
@@ -11772,19 +11612,19 @@
       director: 'Mallik Ram',
       music: 'Ram Miriyala',
       villain: '',
-      banner: 'Sithara Entertainments',
+      banner: '',
       genre: 'Crime comedy',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7, songs: 4, runtime: 124 },   // check
+      stats: { imdb: 6.6, songs: 4, runtime: 124 }, 
 
       spoiler: [
         'A local DJ falls for another mysterious woman and is dragged into a new crime.',
-        'The DJ is back with a new girl and new trouble.',
+        
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'DJ',
         location: 'Hyderabad',
         song: 'Ticket Eh Konakunda',
@@ -11803,18 +11643,18 @@
       director: 'T. J. Gnanavel',
       music: 'Anirudh Ravichander',
       villain: 'Rana Daggubati',
-      banner: 'Lyca Productions',
+      banner: '',
       genre: 'Action drama',
       roles: [],
 
-      stats: { imdb: 6.5, songs: 4, runtime: 163 },   // check
+      stats: { imdb: 6.8, songs: 3, runtime: 163 },   
 
       spoiler: [
         'An encounter specialist kills the wrong man and must find the real killer.',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Police officer',
         location: 'Kanyakumari',
         song: '',
@@ -11825,63 +11665,32 @@
       id: 'akhanda-2-thaandavam',
       title: 'Akhanda 2: Thaandavam',
       aka: [],
-      year: 2025,   // check
+      year: 2025,   
       level: 'easy',
 
       hero: 'Balakrishna',
-      heroine: 'Samyuktha',   // check
+      heroine: 'Samyuktha',   
       director: 'Boyapati Srinu',
       music: 'S. Thaman',
-      villain: 'Aadhi Pinisetty',   // check
-      banner: '14 Reels Plus',   // check
+      villain: '',   
+      banner: '',  
       genre: 'Action drama',
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 0, songs: 0, runtime: 0 },   
 
-      spoiler: [   // check
+      spoiler: [   
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Aghora',
+      clues: {   
+        job: '',
         location: '',
         song: '',
         scene: '',
       },
     },
-    {
-      id: 'baahubali-the-epic',
-      title: 'Baahubali: The Epic',
-      aka: [],
-      year: 2025,
-      level: 'easy',
-
-      hero: 'Prabhas',
-      heroine: 'Anushka Shetty',
-      director: 'S. S. Rajamouli',
-      music: 'M. M. Keeravani',
-      villain: 'Rana Daggubati',
-      banner: 'Arka Media Works',
-      genre: 'Epic action',
-      roles: [],   // the character names give the title away, so this movie uses the STARRING round only
-
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
-
-      spoiler: [   // check
-        'Both parts of a royal saga are re-cut into one long film for a re-release.',
-        'A prince\'s story, from the waterfall to the war, in one sitting.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Prince',
-        location: 'Mahishmati',
-        song: '',
-        scene: '',
-      },
-    },
-    {
+        {
       id: 'coolie',
       title: 'Coolie',
       aka: [],
@@ -11889,21 +11698,21 @@
       level: 'easy',
 
       hero: 'Rajinikanth',
-      heroine: 'Shruti Haasan',   // check
+      heroine: 'Shruti Haasan',   
       director: 'Lokesh Kanagaraj',
       music: 'Anirudh Ravichander',
-      villain: 'Nagarjuna',   // check
+      villain: 'Nagarjuna',   
       banner: 'Sun Pictures',
       genre: 'Action thriller',
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 6, songs: 4, runtime: 170 },   
 
-      spoiler: [   // check
+      spoiler: [  'Former union leader Deva infiltrates a ruthless port smuggling syndicate to avenge his murdered friend and protect his estranged daughter.' 
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: '',
         location: '',
         song: '',
@@ -11918,25 +11727,23 @@
       level: 'medium',
 
       hero: 'Balakrishna',
-      heroine: 'Pragya Jaiswal',   // check
+      heroine: 'Pragya Jaiswal',  
       director: 'Bobby Kolli',
       music: 'S. Thaman',
-      villain: 'Bobby Deol',   // check
-      banner: 'Sithara Entertainments',
+      villain: 'Bobby Deol', 
+      banner: '',
       genre: 'Action drama',
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 5.9, songs: 5, runtime: 150 },   
 
-      spoiler: [   // check
-        'A dreaded dacoit from the Chambal valley becomes a driver to protect a little girl.',
-        'A man with a dacoit past hides as a driver while his enemies close in.',
+      spoiler: [   
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Driver and former dacoit',
-        location: 'Chambal',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -11953,19 +11760,19 @@
       director: 'Shankar',
       music: 'S. Thaman',
       villain: 'S. J. Suryah',
-      banner: 'Sri Venkateswara Creations',
+      banner: '',
       genre: 'Political action drama',
-      roles: ['Ram Nandan', 'Deepika', 'Mopidevi'],   // check
+      roles: ['Ram Nandan', 'Deepika', 'Mopidevi'],   
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 5, songs: 5, runtime: 165 },   
 
-      spoiler: [   // check
+      spoiler: [   
         'An honest IAS officer takes on a corrupt minister, and a story from his father\'s past is revealed.',
         'A district collector fights corruption with the election commission behind him.',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {  
         job: 'IAS officer',
         location: 'Visakhapatnam',
         song: 'Jaragandi',
@@ -11981,24 +11788,22 @@
 
       hero: 'Pawan Kalyan',
       heroine: 'Nidhhi Agerwal',
-      director: 'Jyothi Krishna',   // check
+      director: 'Jyothi Krishna',  
       music: 'M. M. Keeravani',
       villain: 'Bobby Deol',
-      banner: 'Mega Surya Production',
+      banner: '',
       genre: 'Period action',
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 5, songs: 3, runtime: 150 },  
 
-      spoiler: [   // check
-        'An outlaw in the Mughal era sets out to steal the Kohinoor diamond from the emperor.',
-        'A Robin Hood of the 17th century challenges Aurangzeb.',
+      spoiler: [   
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Outlaw',
-        location: 'Mughal India',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -12015,21 +11820,21 @@
       director: 'Mukesh Kumar Singh',
       music: 'Stephen Devassy',
       villain: '',
-      banner: 'AVA Entertainment',
+      banner: '',
       genre: 'Mythological drama',
-      roles: ['Thinnadu', 'Nemali'],   // check
+      roles: ['Thinnadu', 'Nemali'],   
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 4.6, songs: 6, runtime: 183 },  
 
-      spoiler: [   // check
+      spoiler: [   
         'A tribal hunter who does not believe in God becomes one of Lord Shiva\'s greatest devotees.',
-        'An atheist hunter offers his own eyes to a Shiva lingam.',
+        'An atheist hunter offers his own eyes to Shiva ',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Hunter',
-        location: 'Srikalahasti',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -12042,23 +11847,23 @@
       level: 'medium',
 
       hero: 'Vijay Deverakonda',
-      heroine: 'Bhagyashri Borse',   // check
+      heroine: 'Bhagyashri Borse', 
       director: 'Gowtam Tinnanuri',
       music: 'Anirudh Ravichander',
       villain: '',
-      banner: 'Sithara Entertainments',
+      banner: '',
       genre: 'Spy action',
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 5.5, songs: 3, runtime: 160 },   
 
-      spoiler: [   // check
+      spoiler: [  
         'A police constable is sent undercover to Sri Lanka, where he finds his long-lost brother leading a gang.',
-        'A spy\'s mission leads him to his own family.',
+      
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Police constable',
         location: 'Sri Lanka',
         song: '',
@@ -12077,21 +11882,19 @@
       director: 'Sekhar Kammula',
       music: 'Devi Sri Prasad',
       villain: 'Jim Sarbh',
-      banner: 'Sree Venkateswara Cinemas',
+      banner: '',
       genre: 'Crime drama',
-      roles: ['Deva', 'Sameera', 'Deepak'],   // check
+      roles: ['Deva', 'Sameera', 'Deepak'],   
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 6.4, songs: 4, runtime: 182 },  
 
-      spoiler: [   // check
-        'A beggar becomes a pawn in a billionaire\'s plan to move black money.',
-        'A homeless man and a jailed officer are caught in a money scam.',
+      spoiler: [   
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Beggar',
-        location: 'Mumbai',
+        location: '',
         song: '',
         scene: '',
       },
@@ -12104,23 +11907,23 @@
       level: 'medium',
 
       hero: 'Teja Sajja',
-      heroine: 'Ritika Nayak',   // check
+      heroine: 'Ritika Nayak',   
       director: 'Karthik Gattamneni',
       music: 'Gowra Hari',
       villain: 'Manchu Manoj',
-      banner: 'People Media Factory',
+      banner: '',
       genre: 'Superhero fantasy',
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 6.8, songs: 6, runtime: 169 },  
 
-      spoiler: [   // check
+      spoiler: [  
         'A young man must protect nine ancient scriptures that could make an evil man immortal.',
-        'A warrior is chosen to guard sacred books from a dark sorcerer.',
+        
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: '',
         location: '',
         song: '',
@@ -12141,19 +11944,19 @@
       villain: '',
       banner: 'Sri Venkateswara Creations',
       genre: 'Family action comedy',
-      roles: ['YD Raju', 'Bhagyam', 'Meenakshi'],   // check
+      roles: ['YD Raju', 'Bhagyam', 'Meenakshi'],   
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 6.1, songs: 5, runtime: 144 },   
 
-      spoiler: [   // check
+      spoiler: [   
         'A former cop is called back to rescue a kidnapped businessman, with his wife and ex-girlfriend both coming along.',
-        'A husband, a wife and an ex on one mission.',
+       
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {  
         job: 'Former police officer',
-        location: 'Rajahmundry',
+        location: '',
         song: 'Godari Gattu',
         scene: '',
       },
@@ -12170,22 +11973,20 @@
       director: 'Chandoo Mondeti',
       music: 'Devi Sri Prasad',
       villain: '',
-      banner: 'Geetha Arts',
+      banner: '',
       genre: 'Romantic drama',
-      roles: ['Raju', 'Satya'],   // check
+      roles: [],   
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 6.4, songs: 6, runtime: 151 },   
 
-      spoiler: [   // check
-        'A fisherman from Srikakulam is captured by Pakistan after drifting into its waters, while his love waits at home.',
-        'Fishermen jailed in Pakistan and a girl waiting.',
+      spoiler: [   
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Fisherman',
-        location: 'Srikakulam',
-        song: 'Bujji Thalli',
+      clues: {   
+        job: '',
+        location: '',
+        song: '',
         scene: '',
       },
     },
@@ -12201,77 +12002,48 @@
       director: 'Sujeeth',
       music: 'S. Thaman',
       villain: 'Emraan Hashmi',
-      banner: 'DVV Entertainment',
+      banner: '',
       genre: 'Gangster action',
-      roles: ['Ojas Gambheera', 'Kanmani', 'Omi Bhau'],   // check
+      roles: ['Ojas Gambheera', 'Kanmani'],   
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 6, songs: 6, runtime: 150 },   
 
-      spoiler: [   // check
+      spoiler: [   
         'A feared gangster who vanished from Bombay returns after years to settle an old war.',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {  
         job: 'Gangster',
         location: 'Bombay',
-        song: '',
+        song: 'Hungry Cheetah',
         scene: '',
       },
     },
-    {
-      id: 'war-2',
-      title: 'War 2',
-      aka: [],
-      year: 2025,
-      level: 'medium',
-
-      hero: ['Hrithik Roshan', 'Jr NTR'],
-      heroine: 'Kiara Advani',
-      director: 'Ayan Mukerji',
-      music: 'Pritam',
-      villain: 'Jr NTR',
-      banner: 'Yash Raj Films',
-      genre: 'Spy action',
-      roles: [],
-
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
-
-      spoiler: [   // check
-        'A rogue spy faces a new enemy agent in a global mission.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Spy',
-        location: '',
-        song: '',
-        scene: '',
-      },
-    },
+    
     {
       id: 'mana-shankara-varaprasad-garu',
       title: 'Mana Shankara Varaprasad Garu',
       aka: [],
-      year: 2026,   // check
+      year: 2026,  
       level: 'medium',
 
       hero: 'Chiranjeevi',
-      heroine: 'Nayanthara',   // check
+      heroine: 'Nayanthara',   
       director: 'Anil Ravipudi',
-      music: 'Bheems Ceciroleo',   // check
+      music: 'Bheems Ceciroleo',   
       villain: '',
-      banner: 'Shine Screens',   // check
-      genre: 'Family comedy',   // check
+      banner: '',   
+      genre: 'Family comedy',  
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 5.7, songs: 4, runtime: 165 },   // check
 
-      spoiler: [   // check
+      spoiler: [ 'A national security officer goes undercover to protect and reconnect with his wife and children from dangerous criminal threats.'
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: '',
         location: '',
         song: '',
@@ -12282,25 +12054,25 @@
       id: 'the-rajasaab',
       title: 'The RajaSaab',
       aka: [],
-      year: 2026,   // check
+      year: 2026,   
       level: 'medium',
 
       hero: 'Prabhas',
-      heroine: 'Malavika Mohanan',   // check
+      heroine: ['Malavika Mohanan', 'Nidhhi Agerwal', 'Riddhi Kumar'],   
       director: 'Maruthi',
       music: 'S. Thaman',
-      villain: 'Sanjay Dutt',   // check
-      banner: 'People Media Factory',
+      villain: 'Sanjay Dutt',  
+      banner: '',
       genre: 'Horror comedy',
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 3.1, songs: 6, runtime: 180 },   
 
-      spoiler: [   // check
+      spoiler: [ 'Searching for his missing grandfather, a young man enters a haunted mansion, uncovering dark family secrets and battling sinister supernatural powers.'
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: '',
         location: '',
         song: '',
@@ -12314,26 +12086,26 @@
       id: 'fauzi',
       title: 'Fauzi',
       aka: [],
-      year: 0,   // check
+      year: 0,   
       level: 'easy',
 
       hero: 'Prabhas',
-      heroine: 'Imanvi',   // check
+      heroine: 'Imanvi',  
       director: 'Hanu Raghavapudi',
-      music: 'Vishal Chandrashekhar',   // check
+      music: 'Vishal Chandrashekhar',   
       villain: '',
       banner: 'Mythri Movie Makers',
-      genre: 'Period war drama',   // check
+      genre: 'Period war drama',  
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 0, songs: 0, runtime: 0 },   
 
-      spoiler: [   // check
+      spoiler: [   
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Soldier',
+      clues: {   
+        job: '',
         location: '',
         song: '',
         scene: '',
@@ -12343,25 +12115,25 @@
       id: 'paradise',
       title: 'Paradise',
       aka: [],
-      year: 0,   // check
+      year: 2026,   
       level: 'medium',
 
       hero: 'Nani',
-      heroine: '',   // check
+      heroine: 'Kayadu lohar',   
       director: 'Srikanth Odela',
       music: 'Anirudh Ravichander',
       villain: '',
-      banner: 'SLV Cinemas',
-      genre: 'Action drama',   // check
+      banner: '',
+      genre: 'Action drama',   
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 5.5, songs: 4, runtime: 173 },   
 
-      spoiler: [   // check
+      spoiler: [  'In 1980s Secunderabad, ex convict leads his tribe in a rebellion against ruthless feudal landlord, fighting for citizenship rights.'
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: '',
         location: '',
         song: '',
@@ -12372,7 +12144,7 @@
       id: 'peddi',
       title: 'Peddi',
       aka: [],
-      year: 0,   // check
+      year: 2026,   
       level: 'medium',
 
       hero: 'Ram Charan',
@@ -12380,17 +12152,16 @@
       director: 'Buchi Babu Sana',
       music: 'A. R. Rahman',
       villain: '',
-      banner: 'Vriddhi Cinemas',
-      genre: 'Sports drama',   // check
+      banner: '',
+      genre: 'Sports drama',   
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 5.1, songs: 4, runtime: 189 },   
 
-      spoiler: [   // check
-      ],
+      spoiler: [  'In 1994 Vizianagaram, tribal villager overcomes a severe wrestling injury to become a para athlete, winning national acclaim and official recognition for his community.'],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: '',
         location: '',
         song: '',
@@ -12401,26 +12172,26 @@
       id: 'spirit',
       title: 'Spirit',
       aka: [],
-      year: 0,   // check
+      year: 0,   
       level: 'easy',
 
       hero: 'Prabhas',
-      heroine: 'Triptii Dimri',   // check
+      heroine: 'Triptii Dimri',   
       director: 'Sandeep Reddy Vanga',
-      music: 'Harshavardhan Rameshwar',   // check
+      music: 'Harshavardhan Rameshwar',   
       villain: '',
-      banner: 'T-Series',
-      genre: 'Action drama',   // check
+      banner: '',
+      genre: 'Action drama',  
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 0, songs: 0, runtime: 0 },  
 
       spoiler: [   // check
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Police officer',
+      clues: {   
+        job: '',
         location: '',
         song: '',
         scene: '',
@@ -12430,7 +12201,7 @@
       id: 'ustaad-bhagat-singh',
       title: 'Ustaad Bhagat Singh',
       aka: [],
-      year: 0,   // check
+      year: 2026,  
       level: 'medium',
 
       hero: 'Pawan Kalyan',
@@ -12438,18 +12209,18 @@
       director: 'Harish Shankar',
       music: 'Devi Sri Prasad',
       villain: '',
-      banner: 'Mythri Movie Makers',
-      genre: 'Action drama',   // check
+      banner: '',
+      genre: 'Action drama',   
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 4, songs: 3, runtime: 154 },  
 
-      spoiler: [   // check
+      spoiler: [   
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Police officer',
+      clues: {   
+        job: '',
         location: '',
         song: '',
         scene: '',
@@ -12459,7 +12230,7 @@
       id: 'varanasi',
       title: 'Varanasi',
       aka: [],
-      year: 0,   // check
+      year: 0,   
       level: 'easy',
 
       hero: 'Mahesh Babu',
@@ -12467,17 +12238,17 @@
       director: 'S. S. Rajamouli',
       music: 'M. M. Keeravani',
       villain: 'Prithviraj Sukumaran',
-      banner: 'Sri Durga Arts',
-      genre: 'Action adventure',   // check
+      banner: '',
+      genre: '',   
       roles: [],
 
-      stats: { imdb: 0, songs: 0, runtime: 0 },   // check
+      stats: { imdb: 0, songs: 0, runtime: 0 },   
 
-      spoiler: [   // check
+      spoiler: [  
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: '',
         location: '',
         song: '',
