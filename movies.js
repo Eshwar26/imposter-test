@@ -56,6 +56,11 @@
 (function (root) {
   const MOVIES = [
 
+    /* ── SWITCHED OFF: movies before 2000 ───────────────────
+       No game uses anything inside this comment. To bring a movie
+       back, cut its whole { ... }, block and paste it below the
+       2000s line. Delete this whole comment to bring them all back.
+
     // ── 1970s ─────────────────────────────────────────────
 
     {
@@ -960,6 +965,8 @@
         scene: '',
       },
     },
+
+    ── end of the switched-off movies ── */
 
     // ── 2000s ─────────────────────────────────────────────
 
