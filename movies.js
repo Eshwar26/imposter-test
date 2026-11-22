@@ -951,23 +951,23 @@
       director: 'Muthyala Subbaiah',
       music: 'Mani Sharma',
       villain: '',
-      banner: '',   // check
+      banner: '',  
       genre: 'Family action drama',
       roles: [],
 
-      stats: { imdb: 6, songs: 6, runtime: 160 },   // check
+      stats: { imdb: 6.6, songs: 6, runtime: 157 },  
 
-      spoiler: [   // check
+      spoiler: [   
         'An elder brother who sacrificed everything for his younger brothers is hurt when they turn against him.',
-        'A loving elder brother runs a business and raises his siblings, until one of them falls into bad company.',
+        'Rajaram loves his brothers and always forgives their offences but an ugly incident forces him to throw them out on the street. He secretly continues to help them but they harbour hatred towards him.',
       ],
-      dialogues: [],
+      dialogues: ['mechanical engineers, state first rank, character lo gems andi gems'],
 
       clues: {   // check
-        job: 'Businessman and elder brother',
+        job: 'Lorry Business owner and elder brother',
         location: 'Hyderabad',
-        song: '',
-        scene: 'The elder brother takes a beating to protect his younger brother',
+        song: 'Aata Kaavala',
+        scene: '',
       },
     },
     {
@@ -981,85 +981,21 @@
       heroine: 'Amisha Patel',
       director: 'Puri Jagannadh',
       music: 'Ramana Gogula',
-      villain: 'Prakash Raj',   // check
-      banner: '',   // check
+      villain: 'Prakash Raj',   
+      banner: '',   
       genre: 'Romantic action',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7.4, songs: 6, runtime: 160 },   // check
+      stats: { imdb: 7.3, songs: 6, runtime: 158 },   
 
-      spoiler: [
-        'A cocky young man bets that he can make a girl fall for him, then has to win her for real.',
-        'A man is challenged by his girlfriend\'s brother to make a stranger love him.',
-      ],
+      spoiler: ['A carefree guy with an arranged marriage bets he can make a stranger fall for him, but the game turns real and puts him up against her fiercely protective elder brother.'],
       dialogues: ['Nuvvu Nanda aithe nenu Badri, Badrinath.'],
 
-      clues: {   // check
-        job: 'Dance teacher',
-        location: 'Hyderabad',
-        song: 'Ye Chikitha',
-        scene: 'The hero accepts a bet to make a girl fall in love with him',
-      },
-    },
-    {
-      id: 'chitram',
-      title: 'Chitram',
-      aka: [],
-      year: 2000,
-      level: 'hard',
-
-      hero: 'Uday Kiran',
-      heroine: 'Reema Sen',
-      director: 'Teja',
-      music: 'R. P. Patnaik',
-      villain: '',
-      banner: '',   // check
-      genre: 'Romantic drama',
-      roles: [],
-
-      stats: { imdb: 6.9, songs: 6, runtime: 140 },   // check
-
-      spoiler: [
-        'A teenage couple has to deal with an unexpected pregnancy and the anger of their families.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'College student',
-        location: 'Hyderabad',
-        song: '',
-        scene: 'A college girl tells her boyfriend she is pregnant',
-      },
-    },
-    {
-      id: 'anandam',
-      title: 'Anandam',
-      aka: [],
-      year: 2001,
-      level: 'hard',
-
-      hero: 'Aakash',
-      heroine: 'Rekha Vedavyas',
-      director: 'Sreenu Vaitla',
-      music: 'Devi Sri Prasad',
-      villain: '',
-      banner: '',   // check
-      genre: 'Romantic drama',
-      roles: [],
-
-      stats: { imdb: 7, songs: 6, runtime: 150 },   // check
-
-      spoiler: [   // check
-        'Two young people get to know each other over a series of happy accidents and a family that keeps getting in the way.',
-        'A love story that grows on a train journey and in a big joint family.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'College student',
-        location: 'Hyderabad',
-        song: 'Monna Kanipinchavu',
-        scene: 'A rain song on a terrace',
+      clues: {  
+        job: '',
+        location: '',
+        song: 'Bangala Kathamlo',
+        scene: '',
       },
     },
     {
@@ -1074,53 +1010,22 @@
       director: 'Suresh Krissna',
       music: 'S. A. Rajkumar',
       villain: '',
-      banner: '',   // check
+      banner: '',  
       genre: 'Family drama',
       roles: [],
 
-      stats: { imdb: 6.8, songs: 6, runtime: 155 },   // check
-
-      spoiler: [   // check
-        'A singer loses his wife and then has to fight for the love of his daughter.',
-        'A father and his little daughter, after the mother passes away.',
+      stats: { imdb: 6.6, songs: 6, runtime: 156 },  
+       
+      spoiler: [ 
+         'After a tragic loss and misunderstandings drive his wife away, a heartbroken man spots a lookalike of his late daughter years later and tries to build a bond with her.',
+        'Betrayed by friends, a wealthy dancer loses his fortune and daughter, separates from his wife, and later reunites his family.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Dancer and singer',
-        location: 'Hyderabad',
-        song: '',
-        scene: 'A father dances with his little daughter on stage',
-      },
-    },
-    {
-      id: 'itlu-sravani-subramanyam',
-      title: 'Itlu Sravani Subramanyam',
-      aka: [],
-      year: 2001,
-      level: 'hard',
-
-      hero: 'Ravi Teja',
-      heroine: 'Tanu Roy',   // check
-      director: 'Puri Jagannadh',
-      music: 'Chakri',
-      villain: '',
-      banner: '',   // check
-      genre: 'Romantic comedy',
-      roles: [],
-
-      stats: { imdb: 7.2, songs: 6, runtime: 145 },   // check
-
-      spoiler: [
-        'Two people who want to end their lives meet and decide to spend a few days together first.',
-        'A failed hero and a heartbroken girl make a strange pact.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Struggling actor',
-        location: 'Hyderabad',
-        song: '',
+      clues: {   
+        job: 'Dancer and audio company owner',
+        location: '',
+        song: 'Gummaadi Gummaadi',
         scene: '',
       },
     },
@@ -1138,21 +1043,22 @@
       villain: '',
       banner: '',
       genre: 'Romantic comedy',
-      roles: ['Siddhu', 'Madhu'],   // check
+      roles: ['Siddhu', 'Madhu'],
 
-      stats: { imdb: 7.6, songs: 6, runtime: 170 },   // check
+      stats: { imdb: 8.1, songs: 6, runtime: 177 },  
 
       spoiler: [
-        'Two stubborn young lovers who each refuse to say sorry first keep ruining a perfect romance with their own egos.',
-        'Two lovers too proud to admit their feelings keep fighting over silly things.',
+        'College friends grow close while helping their friends unite in love, secretly fall for each other, let stubborn egos divide them',
+        'Destined since childhood, Two college students turn rivals after a petty misunderstanding, fall in love while helping friends elope, and must overcome their stubborn egos to unite.',
       ],
-      dialogues: [],
+      dialogues: ['meeru gudumba sathi garu kavachu thokkalo sathi kavachu, i dont care because im sidhu siddartha roy!',
+                 'Jaya aunty mallum tereko, Lallu uncle mallum tereko ye sab mere piche hai'],
 
-      clues: {   // check
+      clues: {   
         job: 'College student',
         location: 'Kolkata and Hyderabad',
         song: 'Ammaye Sannaga',
-        scene: 'Two college students whose egos stop them from confessing love',
+        scene: 'Despite their ongoing cold war Siddhu and Madhumitha agree to help their friends Babu and Shanti secretly get married',
       },
     },
     {
@@ -1167,56 +1073,25 @@
       director: 'Krishna Vamsi',
       music: 'Mani Sharma',
       villain: '',
-      banner: '',   // check
+      banner: '',   
       genre: 'Family drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 8.2, songs: 6, runtime: 165 },   // check
+      stats: { imdb: 7.8, songs: 7, runtime: 170 },   
 
       spoiler: [
         'A family is cursed by a goddess, and every generation one son dies young, until a young man defies it.',
-        'A curse on a zamindar family and a carefree grandson.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Village youth',
-        location: 'Godavari village',
+      clues: {  
+        job: '',
+        location: '',
         song: 'Alanati Ramachandrudu',
         scene: 'A family curse takes the life of an heir every 48 years',
       },
     },
-    {
-      id: 'narasimha-naidu',
-      title: 'Narasimha Naidu',
-      aka: [],
-      year: 2001,
-      level: 'medium',
-
-      hero: 'Balakrishna',
-      heroine: 'Simran',
-      director: 'B. Gopal',
-      music: 'Mani Sharma',
-      villain: 'Mukesh Rishi',
-      banner: '',   // check
-      genre: 'Faction action drama',
-      roles: [],
-
-      stats: { imdb: 7, songs: 6, runtime: 165 },   // check
-
-      spoiler: [
-        'A dance teacher in a small town is really a faction leader who left his village to end violence.',
-        'A man hides his violent past while teaching dance.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Dance teacher',
-        location: 'Rayalaseema',
-        song: '',
-        scene: '',
-      },
-    },
+   
     {
       id: 'nuvvu-naaku-nachav',
       title: 'Nuvvu Naaku Nachav',
@@ -1229,86 +1104,25 @@
       director: 'K. Vijaya Bhaskar',
       music: 'Koti',
       villain: '',
-      banner: 'Sravanthi Movies',
+      banner: '',
       genre: 'Family comedy',
-      roles: ['Venky', 'Nandini'],   // check
+      roles: ['Venky', 'Nandini'],  
 
-      stats: { imdb: 8.2, songs: 6, runtime: 175 },   // check
+      stats: { imdb: 8.8, songs: 6, runtime: 180 },   
 
       spoiler: [
         'A young man who stays with his father\'s friend\'s family falls for their daughter, who is engaged to someone else.',
-        'A guest in a big family falls in love with the daughter.',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {  
         job: 'Unemployed young man',
-        location: 'Hyderabad',
-        song: '',
-        scene: 'A house guest falls for his host\'s engaged daughter',
+        location: 'Hyderabad and Anakapalli',
+        song: 'O priyathama',
+        scene: 'Venky is caught eating without saying his prayers and lies to his strict uncle, leading to a moment where the uncle responds by reading a poem dedicated to his late mother.',
       },
     },
-    {
-      id: 'nuvvu-nenu',
-      title: 'Nuvvu Nenu',
-      aka: [],
-      year: 2001,
-      level: 'hard',
-
-      hero: 'Uday Kiran',
-      heroine: 'Anita Hassanandani',
-      director: 'Teja',
-      music: 'R. P. Patnaik',
-      villain: '',
-      banner: '',   // check
-      genre: 'Romantic drama',
-      roles: ['Ravi', 'Vasundhara'],   // check
-
-      stats: { imdb: 7.5, songs: 6, runtime: 145 },   // check
-
-      spoiler: [
-        'A rich boy and a poor milkman\'s daughter fall in love at college, and his father will not allow it.',
-        'Two classmates from different worlds fight their families.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'College student',
-        location: 'Hyderabad',
-        song: '',
-        scene: '',
-      },
-    },
-    {
-      id: 'student-no-1',
-      title: 'Student No. 1',
-      aka: [],
-      year: 2001,
-      level: 'medium',
-
-      hero: 'Jr NTR',
-      heroine: 'Gajala',
-      director: 'S. S. Rajamouli',
-      music: 'M. M. Keeravani',
-      villain: '',
-      banner: 'Vyjayanthi Movies',
-      genre: 'Action drama',
-      roles: [],
-
-      stats: { imdb: 6.8, songs: 6, runtime: 160 },   // check
-
-      spoiler: [
-        'A young man serving a jail sentence studies law and tells his story of how he ended up there.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Law student',
-        location: 'Hyderabad',
-        song: '',
-        scene: '',
-      },
-    },
+    
     {
       id: 'aadi',
       title: 'Aadi',
@@ -1317,27 +1131,27 @@
       level: 'medium',
 
       hero: 'Jr NTR',
-      heroine: 'Keerthi Chawla',   // check
+      heroine: 'Keerthi Chawla',   
       director: 'V. V. Vinayak',
       music: 'Mani Sharma',
-      villain: 'Rajeev Kanakala',   // check
-      banner: '',   // check
+      villain: '',   
+      banner: '',   
       genre: 'Faction action drama',
       roles: [],
 
-      stats: { imdb: 7.2, songs: 6, runtime: 160 },   // check
+      stats: { imdb: 7.3, songs: 6, runtime: 162 },   
 
       spoiler: [
-        'A young man returns from abroad to his Rayalaseema village to settle a land dispute and ends up in a bloody faction war.',
-        'An NRI student keeps a promise to protect his family\'s land and the villagers who depend on it.',
+        '',
+        '',
       ],
-      dialogues: ['Aravaku... ammathodu addanga narikestha.'],
+      dialogues: ['ammathodu addanga narikestha.'],
 
-      clues: {   // check
-        job: 'Student back from abroad',
-        location: 'Rayalaseema',
-        song: 'Nee Navvula Thellanai',
-        scene: 'A teenage hero fights an entire gang of factionists in the village square',
+      clues: {   
+        job: '',
+        location: '',
+        song: '',
+        scene: '',
       },
     },
     {
@@ -1351,55 +1165,24 @@
       heroine: 'Shriya Saran',
       director: 'V. V. Vinayak',
       music: 'Mani Sharma',
-      villain: 'Jaya Prakash Reddy',   // check
-      banner: '',   // check
+      villain: '',   
+      banner: '',   
       genre: 'Faction action drama',
       roles: [],
 
-      stats: { imdb: 6.5, songs: 6, runtime: 160 },   // check
+      stats: { imdb: 6.1, songs: 6, runtime: 145 },   
 
       spoiler: [
-        'A faction leader released after years in jail returns to protect his family from old enemies.',
-        'A father and son, both played by one actor, fight the same faction.',
+        '',
+        '',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Faction leader',
-        location: 'Rayalaseema',
+      clues: {  
+        job: '',
+        location: '',
         song: '',
-        scene: 'A man walks out of jail after many years',
-      },
-    },
-    {
-      id: 'company',
-      title: 'Company',
-      aka: [],
-      year: 2002,
-      level: 'hard',
-
-      hero: 'Ajay Devgn',
-      heroine: 'Manisha Koirala',
-      director: 'Ram Gopal Varma',
-      music: 'Sandeep Chowta',
-      villain: '',
-      banner: '',   // check
-      genre: 'Crime drama',
-      roles: [],
-
-      stats: { imdb: 8, songs: 4, runtime: 155 },   // check
-
-      spoiler: [
-        'Two gangsters who built a Mumbai crime empire together turn into bitter enemies.',
-        'A don and his trusted lieutenant fall out, and the city\'s underworld splits in two.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Gangster',
-        location: 'Mumbai',
-        song: '',
-        scene: 'Two gangsters argue on a phone call across countries',
+        scene: '',
       },
     },
     {
@@ -1414,23 +1197,23 @@
       director: 'Jayanth C. Paranjee',
       music: 'R. P. Patnaik',
       villain: '',
-      banner: '',   // check
+      banner: '',   
       genre: 'Action romance',
       roles: [],
 
-      stats: { imdb: 5.8, songs: 6, runtime: 155 },   // check
+      stats: { imdb: 5.4, songs: 6, runtime: 165 },   
 
-      spoiler: [   // check
-        'A young man from a slum falls for a rich girl, and her family will not accept him.',
-        'A poor youth fights for the girl he loves against her powerful father.',
+      spoiler: [   
+        '',
+        
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Slum youth',
-        location: 'Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
-        scene: 'A young man from a slum saves a rich girl from goons',
+        scene: '',
       },
     },
     {
@@ -1445,23 +1228,22 @@
       director: 'Puri Jagannadh',
       music: 'Chakri',
       villain: 'Prakash Raj',
-      banner: '',   // check
+      banner: '',   
       genre: 'Action romance',
-      roles: ['Chanti', 'Suchitra'],   // check
+      roles: ['Chanti', 'Suchitra'],   
 
-      stats: { imdb: 7.2, songs: 6, runtime: 160 },   // check
+      stats: { imdb: 7.1, songs: 6, runtime: 133 },   
 
       spoiler: [
         'A carefree rowdy falls for a police commissioner\'s daughter, and her father will do anything to stop it.',
-        'A loafer named Chanti loves a cop\'s daughter.',
       ],
       dialogues: ['City ki entho mandi commissioners vasthuntaru pothuntaru... Chanti gaadu eppudu ikkade untadu, local.'],
 
-      clues: {   // check
-        job: 'Rowdy',
-        location: 'Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: 'Chupultho Guchi Guchi',
-        scene: 'A rowdy is beaten up by police for loving the commissioner\'s daughter',
+        scene: 'A student is beaten up by police for loving the commissioner\'s daughter',
       },
     },
     {
@@ -1475,88 +1257,27 @@
       heroine: 'Sonali Bendre',
       director: 'B. Gopal',
       music: 'Mani Sharma',
-      villain: 'Mukesh Rishi',
-      banner: 'Vyjayanthi Movies',
+      villain: '',
+      banner: '',
       genre: 'Action drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7.4, songs: 6, runtime: 175 },   // check
+      stats: { imdb: 7.5, songs: 5, runtime: 173 },   
 
       spoiler: [
-        'A reformed man who once ruled Varanasi hides his violent past while he lives peacefully with his family in a small village.',
+        'A reformed man who once ruled rayalaseema hides his violent past while he lives peacefully in kashi.',
         'A taxi driver in Varanasi is really a former Rayalaseema faction leader who left to keep a promise.',
       ],
-      dialogues: ['Veera Shankar Reddy... mokke kada ani peekesthe peeka kostha.', 'Tappu naa vaipu undi kabatti tala dinchukuni velthunna, ledante talalu teesukellevaadni.', 'Mokke kadani peekithe pekamukkalavuthay.'],   // check
+      dialogues: ['Veera Shankar Reddy... mokke kada ani peekesthe peeka kostha.', 'Tappu naa vaipu undi kabatti tala dinchukuni velthunna, ledante talalu teesukellevaadni.'],   
 
-      clues: {   // check
-        job: 'Taxi driver',
+      clues: {   
+        job: '',
         location: 'Varanasi and Rayalaseema',
         song: 'Radhe Govinda',
         scene: 'A taxi driver in Varanasi hides his past as a faction leader',
       },
     },
-    {
-      id: 'jayam',
-      title: 'Jayam',
-      aka: [],
-      year: 2002,
-      level: 'medium',
-
-      hero: 'Nithiin',
-      heroine: 'Sadha',
-      director: 'Teja',
-      music: 'R. P. Patnaik',
-      villain: 'Gopichand',
-      banner: '',   // check
-      genre: 'Romantic action',
-      roles: ['Venkat', 'Sujatha', 'Raghu'],   // check
-
-      stats: { imdb: 7, songs: 6, runtime: 150 },   // check
-
-      spoiler: [
-        'A poor boy and a rich girl fall in love, while her violent cousin wants to marry her.',
-        'Two lovers run away and are chased by a jealous suitor.',
-      ],
-      dialogues: ['Vellavaddu.'],   // check
-
-      clues: {   // check
-        job: 'College student',
-        location: 'Hyderabad',
-        song: '',
-        scene: 'Two lovers are chased through a forest',
-      },
-    },
-    {
-      id: 'khadgam',
-      title: 'Khadgam',
-      aka: [],
-      year: 2002,
-      level: 'medium',
-
-      hero: ['Srikanth', 'Ravi Teja', 'Prakash Raj'],
-      heroine: 'Sonali Bendre',
-      director: 'Krishna Vamsi',
-      music: 'Devi Sri Prasad',
-      villain: '',
-      banner: '',   // check
-      genre: 'Patriotic drama',
-      roles: [],
-
-      stats: { imdb: 8, songs: 6, runtime: 165 },   // check
-
-      spoiler: [
-        'A patriotic police officer, a struggling actor and a Muslim youth come together during terror attacks in Hyderabad.',
-        'Three men with different dreams and a city under threat.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Police officer',
-        location: 'Hyderabad',
-        song: '',
-        scene: '',
-      },
-    },
+   
     {
       id: 'manmadhudu',
       title: 'Manmadhudu',
@@ -1569,22 +1290,22 @@
       director: 'K. Vijaya Bhaskar',
       music: 'Devi Sri Prasad',
       villain: '',
-      banner: 'Annapurna Studios',
+      banner: '',
       genre: 'Romantic comedy',
-      roles: ['Abhiram', 'Harika'],   // check
+      roles: ['Abhiram', 'Harika'],   
 
-      stats: { imdb: 8, songs: 6, runtime: 165 },   // check
+      stats: { imdb: 8.3, songs: 6, runtime: 142 },   
 
       spoiler: [
-        'A man who hates women is persuaded to talk to a girl through a friend and slowly lets her into his heart.',
+        'A woman-hating ad agency boss tries driving away his new female assistant, only for her to slowly win him over completely.',
         'A man who hates women after a heartbreak is forced to work with a female assistant.',
       ],
-      dialogues: [],
+      dialogues: ['akasam erraga undhi'],
 
-      clues: {   // check
+      clues: {   
         job: 'Advertising manager',
         location: 'Hyderabad and Paris',
-        song: 'Don\'t Marry',
+        song: 'gundello emundho',
         scene: 'An ad agency manager who cannot stand women',
       },
     },
@@ -1600,11 +1321,11 @@
       director: 'Trivikram Srinivas',
       music: 'Koti',
       villain: '',
-      banner: '',   // check
+      banner: '',   
       genre: 'Romantic comedy',
-      roles: ['Rishi', 'Anjali'],   // check
+      roles: ['Rishi', 'Anjali'],  
 
-      stats: { imdb: 8, songs: 6, runtime: 150 },   // check
+      stats: { imdb: 7.5, songs: 6, runtime: 160 },   
 
       spoiler: [
         'A carefree young man falls for a rich girl, and her strict father says no.',
@@ -1612,9 +1333,9 @@
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Unemployed young man',
-        location: 'Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -1631,23 +1352,23 @@
       director: 'Puri Jagannadh',
       music: 'Chakri',
       villain: '',
-      banner: '',   // check
+      banner: '',   
       genre: 'Sports drama',
       roles: [],
 
-      stats: { imdb: 7.7, songs: 6, runtime: 150 },   // check
+      stats: { imdb: 7.4, songs: 6, runtime: 122 },   
 
       spoiler: [
         'A kickboxer who grew up away from his father meets him again and has to win his love and a big fight.',
-        'A son raised by his single mother goes to his rich father\'s house, where a Tamil girl falls for him.',
+        
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Kickboxer',
-        location: 'Chennai',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
-        scene: 'A kickboxing final where the father watches his son fight',
+        scene: '',
       },
     },
     {
@@ -1662,87 +1383,25 @@
       director: 'V. V. Vinayak',
       music: 'R. P. Patnaik',
       villain: 'Prakash Raj',
-      banner: '',   // check
+      banner: '',   
       genre: 'Action romance',
       roles: [],
 
-      stats: { imdb: 6.9, songs: 6, runtime: 155 },   // check
+      stats: { imdb: 7.1, songs: 6, runtime: 122 },   
 
       spoiler: [
-        'A college student falls for the daughter of a dangerous man who will do anything to stop them.',
-        'A young man takes on his girlfriend\'s ruthless father.',
+        '',
       ],
       dialogues: [],
 
       clues: {   // check
-        job: 'College student',
-        location: 'Hyderabad',
+        job: '',
+        location: '',
         song: '',
-        scene: 'A young man fights his girlfriend\'s father\'s men',
+        scene: '',
       },
     },
-    {
-      id: 'gangotri',
-      title: 'Gangotri',
-      aka: [],
-      year: 2003,
-      level: 'medium',
-
-      hero: 'Allu Arjun',
-      heroine: 'Aditi Agarwal',
-      director: 'K. Raghavendra Rao',
-      music: 'M. M. Keeravani',
-      villain: 'Prakash Raj',
-      banner: '',   // check
-      genre: 'Romantic drama',
-      roles: [],   // the character names give the title away, so this movie uses the STARRING round only
-
-      stats: { imdb: 6, songs: 6, runtime: 160 },   // check
-
-      spoiler: [
-        'A boy raised by a guru in the mountains returns to the world below, where a family feud drags him into a war.',
-        'Childhood sweethearts are separated by her father, a powerful man, and the boy grows up to win her back.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Village youth',
-        location: 'The Himalayas and a village',
-        song: 'Valluva Pallavi',
-        scene: 'Two children promise to marry each other one day',
-      },
-    },
-    {
-      id: 'johnny',
-      title: 'Johnny',
-      aka: [],
-      year: 2003,
-      level: 'hard',
-
-      hero: 'Pawan Kalyan',
-      heroine: 'Renu Desai',
-      director: 'Pawan Kalyan',
-      music: 'Ramana Gogula',
-      villain: '',
-      banner: 'Geetha Arts',
-      genre: 'Action drama',
-      roles: [],
-
-      stats: { imdb: 5.5, songs: 6, runtime: 160 },   // check
-
-      spoiler: [
-        'A martial arts fighter takes part in street fights to pay for his wife\'s cancer treatment.',
-        'A man fights for money to save the woman he loves.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Martial arts instructor',
-        location: 'Mumbai',
-        song: '',
-        scene: 'A man fights in an underground cage match for money',
-      },
-    },
+    
     {
       id: 'okkadu',
       title: 'Okkadu',
@@ -1755,19 +1414,19 @@
       director: 'Gunasekhar',
       music: 'Mani Sharma',
       villain: 'Prakash Raj',
-      banner: '',   // check
+      banner: '',   
       genre: 'Action romance',
-      roles: ['Ajay', 'Swapna', 'Obul Reddy'],   // check
+      roles: ['Ajay', 'Swapna', 'Obul Reddy'],   
 
-      stats: { imdb: 7.8, songs: 6, runtime: 169 },
+      stats: { imdb: 8, songs: 6, runtime: 169 },
 
       spoiler: [
         'A kabaddi player in Hyderabad rescues a girl from a forced marriage to a faction leader, and goes up against him in his own city.',
-        'A kabaddi player rescues a girl from a faction leader who wants to marry her and hides her in his home.',
+        'A kabaddi player rescues a girl from a faction leader and hides her in his home who wants to marry her .',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Kabaddi player',
         location: 'Hyderabad and Kurnool',
         song: 'Cheppave Chirugali',
@@ -1782,25 +1441,24 @@
       level: 'hard',
 
       hero: 'Nagarjuna',
-      heroine: 'Asin',   // check
+      heroine: 'Asin',   
       director: 'Puri Jagannadh',
       music: 'Chakri',
       villain: '',
-      banner: '',   // check
+      banner: '',   
       genre: 'Action romance',
       roles: [],
 
-      stats: { imdb: 6.3, songs: 6, runtime: 150 },   // check
+      stats: { imdb: 6.3, songs: 6, runtime: 143 },   
 
       spoiler: [
-        'A tough police officer falls for a girl who calls a radio show.',
-        'A cop who uses his own style to fight crime.',
+        '',
       ],
       dialogues: ['Naa peru Shivamani, naaku konchem mental...'],
 
-      clues: {   // check
-        job: 'Police officer',
-        location: 'Hyderabad',
+      clues: {  
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -1816,24 +1474,24 @@
       heroine: 'Bhumika Chawla',
       director: 'S. S. Rajamouli',
       music: 'M. M. Keeravani',
-      villain: 'Mukesh Rishi',
-      banner: '',   // check
+      villain: '',
+      banner: '',   
       genre: 'Action',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7.4, songs: 6, runtime: 172 },
+      stats: { imdb: 7.3, songs: 7, runtime: 169 },
 
       spoiler: [
-        'A loyal servant protects a young woman in a distant village, and his sad past is slowly revealed with each fight.',
-        'A kind man who works for a family in Vizag is really a man feared in Kerala.',
+        '',
+        '',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Servant',
-        location: 'Vizag and Kerala',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
-        scene: 'A loyal adopted son has a violent past in Kerala',
+        scene: '',
       },
     },
     {
@@ -1847,12 +1505,12 @@
       heroine: 'Shriya Saran',
       director: 'V. V. Vinayak',
       music: 'Mani Sharma',
-      villain: 'Prakash Raj',
-      banner: '',   // check
+      villain: '',
+      banner: '',   
       genre: 'Action drama',
       roles: [],
 
-      stats: { imdb: 7.2, songs: 6, runtime: 170 },   // check
+      stats: { imdb: 7.9, songs: 6, runtime: 176 },  
 
       spoiler: [
         'A professor teaches by day and fights corruption by night, with a network of students as his eyes and ears.',
@@ -1860,44 +1518,14 @@
       ],
       dialogues: ['Telugu bhashalo naaku nachani oke okka padam kshaminchadam.'],
 
-      clues: {   // check
+      clues: {   
         job: 'Professor',
         location: 'Hyderabad',
         song: '',
         scene: 'A professor runs a secret force against corruption',
       },
     },
-    {
-      id: 'anand',
-      title: 'Anand',
-      aka: [],
-      year: 2004,
-      level: 'hard',
-
-      hero: 'Raja',
-      heroine: 'Kamalinee Mukherjee',
-      director: 'Sekhar Kammula',
-      music: 'K. M. Radha Krishnan',
-      villain: '',
-      banner: 'Amigos Creations',
-      genre: 'Romantic drama',
-      roles: [],   // the character names give the title away, so this movie uses the STARRING round only
-
-      stats: { imdb: 8.2, songs: 6, runtime: 150 },   // check
-
-      spoiler: [
-        'An independent woman who lost her parents walks out of her own wedding, and a quiet rich man falls for her.',
-        'A self-respecting girl refuses to be treated as a bride for sale, and a man learns to love her on her terms.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Software engineer',
-        location: 'Hyderabad',
-        song: 'Yadalo Mounam',
-        scene: 'The bride walks out of her wedding when the groom\'s family insults her',
-      },
-    },
+   
     {
       id: 'arjun',
       title: 'Arjun',
@@ -1909,12 +1537,12 @@
       heroine: 'Shriya Saran',
       director: 'Gunasekhar',
       music: 'Mani Sharma',
-      villain: 'Prakash Raj',   // check
-      banner: '',   // check
+      villain: 'Prakash Raj',   
+      banner: '',   
       genre: 'Action drama',
       roles: [],
 
-      stats: { imdb: 6.8, songs: 6, runtime: 170 },   // check
+      stats: { imdb: 6.5, songs: 6, runtime: 131 },  
 
       spoiler: [
         'A brother goes to Madurai to protect his twin sister after she marries into a dangerous family.',
@@ -1922,11 +1550,11 @@
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'College student',
-        location: 'Madurai',
+      clues: {   
+        job: '',
+        location: '',
         song: 'Madhura Madhura',
-        scene: 'A fight inside the Madurai Meenakshi temple',
+        scene: '',
       },
     },
     {
