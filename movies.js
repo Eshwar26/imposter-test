@@ -37,7 +37,7 @@
                                 third character (villain or comedian) if
                                 there is one. 2 or 3 names. [] = not filled.
    stats ...................... Higher or Lower: imdb (0-10), songs, runtime (minutes)
-   spoiler .................... Spoiler only: a list of story lines, no levels.
+   spoiler .................... Spoiler only: up to 2 story lines, each a full sentence (10+ words) that tells the plot. No vague hints.
                                 One is picked at random; each line must work
                                 on its own.
    dialogues .................. Dialogue Detective only
@@ -84,7 +84,6 @@
       spoiler: [
         'A forest officer fights a gang of smugglers who exploit tribal people in the jungle.',
         'A man who loves the forest goes undercover to protect its people and its animals.',
-        'A 1977 blockbuster set in the jungle with elephants and folk songs.',
       ],
       dialogues: [],
 
@@ -119,7 +118,6 @@
       spoiler: [
         'A classical singer gives shelter to a dancer and her son, and is shunned by society.',
         'A Carnatic music maestro and a courtesan\'s daughter.',
-        'A 1980 classic about classical music.',
       ],
       dialogues: [],
 
@@ -150,8 +148,6 @@
 
       spoiler: [
         'A young man falsely accused of a crime escapes from jail to take revenge on the landlord who ruined his life.',
-        'An innocent man becomes a fugitive.',
-        'The film that made a mega star.',
       ],
       dialogues: [],
 
@@ -183,7 +179,6 @@
       spoiler: [
         'An unemployed graduate bets a rich man that he can earn five lakh rupees honestly in five years.',
         'A poor graduate bets a businessman that he can become rich honestly.',
-        'A 1984 film about a bet and a self-made man.',
       ],
       dialogues: [],
 
@@ -215,7 +210,6 @@
       spoiler: [
         'A friendly young man moves into a house haunted by a spirit, and the more he tries to ignore it, the more it follows him.',
         'Two young people with little time left fall in love in the hills.',
-        'A Mani Ratnam classic set in Ooty.',
       ],
       dialogues: [],
 
@@ -247,7 +241,6 @@
       spoiler: [
         'A college student stands up to a gang leader who controls the student politics of Vijayawada.',
         'A student breaks a bicycle chain and starts a war with a gangster.',
-        'A cycle chain and a cult classic.',
       ],
       dialogues: [],
 
@@ -282,7 +275,6 @@
       spoiler: [
         'A goddess loses her magic ring on Earth, and a tourist guide who finds it refuses to give it back.',
         'An apsara comes down from heaven and lives with a kind-hearted guide and his orphans.',
-        'Indraja and Raju, and the song Abbanee Theeyani.',
       ],
       dialogues: [],
 
@@ -314,7 +306,6 @@
       spoiler: [
         'A woman accidentally stumbles onto stolen money and goes on the run with a small-time thief.',
         'A chase through the forests with a girl and a thief.',
-        'A 1991 chase thriller.',
       ],
       dialogues: [],
 
@@ -346,7 +337,6 @@
       spoiler: [
         'A worker in a factory marries the arrogant daughter of its owner and tames her.',
         'A labourer teaches his proud boss-wife a lesson.',
-        'A 1992 record-breaker with the song Bangaru Kodipetta.',
       ],
       dialogues: ['Okkasaari face turning ichukondi.'],
 
@@ -378,7 +368,6 @@
       spoiler: [
         'A young man is forced to take over his murdered brother\'s gang and fight a powerful politician.',
         'A brother becomes a gangster to avenge his family.',
-        'An early crime classic from a famous gangster-film director.',
       ],
       dialogues: [],
 
@@ -410,7 +399,6 @@
       spoiler: [
         'Twins separated at birth feel each other\'s pain, which causes chaos when one is a thief and the other a singer.',
         'When one twin is hit, the other feels it.',
-        'A double-role comedy with Soundarya and Ramya Krishnan.',
       ],
       dialogues: [],
 
@@ -442,7 +430,6 @@
       spoiler: [
         'A humble auto-rickshaw driver hides a past as the most feared don of Bombay.',
         'A peaceful man takes beatings silently until his family is in danger and his old self returns.',
-        'Manik, the auto driver from Madras.',
       ],
       dialogues: ['Nenu okkasari chepthe vanda saarlu cheppinattu.'],
 
@@ -474,7 +461,6 @@
       spoiler: [
         'A young man falls for a girl and gets caught up in a human trafficking racket while trying to save her.',
         'A love story turns into a thriller about missing girls.',
-        'Ee Vela Lo Neevu, a 1995 chartbuster.',
       ],
       dialogues: [],
 
@@ -505,8 +491,6 @@
 
       spoiler: [
         'A girl who dreams of being an actress is torn between a street-smart friend and a film star.',
-        'A movie extra gets her big break.',
-        'A Hindi film by a Telugu director.',
       ],
       dialogues: [],
 
@@ -538,7 +522,6 @@
       spoiler: [   // check
         'A carefree young man falls for a girl and has to fight her family to marry her.',
         'A young man breaks bricks with his bare hands to prove his love.',
-        'The debut film of a big star, remembered for real stunts done without a double.',
       ],
       dialogues: [],
 
@@ -570,7 +553,6 @@
       spoiler: [
         'A young man and a girl from two very different families fall in love and bring their families together.',
         'A wedding love story with two big joint families.',
-        'Seenu and Mahalakshmi.',
       ],
       dialogues: [],
 
@@ -601,8 +583,6 @@
 
       spoiler: [
         'A young man falls for a girl he saw in a picture and searches for her, while another girl loves him.',
-        'A love triangle with many songs.',
-        'A 1990s musical blockbuster.',
       ],
       dialogues: [],
 
@@ -634,7 +614,6 @@
       spoiler: [   // check
         'A young couple who eloped accidentally witness a murder and are chased by killers through one long day.',
         'Two runaway lovers stumble into a crime and become targets of a gang and the police at once.',
-        'A one-day chase thriller from a director known for underworld films.',
       ],
       dialogues: [],
 
@@ -666,7 +645,6 @@
       spoiler: [
         'The life of a 15th-century poet who wrote thousands of songs for Lord Venkateswara.',
         'A young man gives up worldly pleasures for devotion after a vision on the hills of Tirumala.',
-        'A saint-composer\'s biopic with a superstar hero in a devotional role.',
       ],
       dialogues: [],
 
@@ -698,7 +676,6 @@
       spoiler: [   // check
         'A rich playboy who treats girls as toys changes when he meets a simple, self-respecting girl.',
         'A spoilt rich man finds love with an orphan girl.',
-        'The hero\'s second film, a Tamil remake.',
       ],
       dialogues: [],
 
@@ -730,7 +707,6 @@
       spoiler: [
         'A heavy-drinking professor takes a job at a juvenile school and goes up against a gangster who uses boys as pawns.',
         'A lecturer goes up against student gangs and a politician who uses them.',
-        'A college lecturer in the late 90s.',
       ],
       dialogues: [],
 
@@ -762,7 +738,6 @@
       spoiler: [
         'A police constable and a young man who joins the Naxals find themselves on opposite sides.',
         'Friends who join the police and the Naxal movement.',
-        'An award-winning political film.',
       ],
       dialogues: [],
 
@@ -794,7 +769,6 @@
       spoiler: [
         'A man travels to Kolkata to find his missing wife and son, and takes on a gangster there.',
         'A father searches Calcutta for his child who was taken away.',
-        'A Kolkata-set mega drama.',
       ],
       dialogues: [],
 
@@ -826,7 +800,6 @@
       spoiler: [
         'A newcomer to Bombay is drawn into the underworld and becomes a feared gangster.',
         'A man with no past rises in the Mumbai mafia with his friend Bhiku.',
-        'A Hindi gangster classic.',
       ],
       dialogues: [],
 
@@ -858,7 +831,6 @@
       spoiler: [   // check
         'A young man waits for years for a girl to accept his love.',
         'A hero who keeps waiting for a reply.',
-        'An early film of a power star.',
       ],
       dialogues: [],
 
@@ -890,7 +862,6 @@
       spoiler: [
         'A carefree young man falls in love at first sight and spends the whole film unable to tell her.',
         'A boy saves a girl\'s life but never says he loves her.',
-        'Balu and Anu, and the Taj Mahal set.',
       ],
       dialogues: [],
 
@@ -922,7 +893,6 @@
       spoiler: [
         'A man rejected by a proud rich woman becomes a success, and she plans revenge for eighteen years.',
         'Neelambari waits years to take revenge on the hero.',
-        'Padayappa, dubbed in Telugu.',
       ],
       dialogues: ['Athiga aashapade magavaadu, athiga aaveshapade aadadi sukhapadinattu charitralo ledu.', 'Naa daari rahadaari.'],
 
@@ -954,7 +924,6 @@
       spoiler: [
         'A careless younger brother trains as a kickboxer to win the championship his elder brother lost.',
         'A wayward brother finds his purpose in the ring.',
-        'Subhash and his brother.',
       ],
       dialogues: [],
 
@@ -991,7 +960,6 @@
       spoiler: [   // check
         'An elder brother who sacrificed everything for his younger brothers is hurt when they turn against him.',
         'A loving elder brother runs a business and raises his siblings, until one of them falls into bad company.',
-        'Brotherly sacrifice, late 1990s style.',
       ],
       dialogues: [],
 
@@ -1023,7 +991,6 @@
       spoiler: [
         'A cocky young man bets that he can make a girl fall for him, then has to win her for real.',
         'A man is challenged by his girlfriend\'s brother to make a stranger love him.',
-        'A hero who introduces himself by comparing his name to the heroine\'s.',
       ],
       dialogues: ['Nuvvu Nanda aithe nenu Badri, Badrinath.'],
 
@@ -1054,8 +1021,6 @@
 
       spoiler: [
         'A teenage couple has to deal with an unexpected pregnancy and the anger of their families.',
-        'Two young lovers become parents too early.',
-        'The debut film of a romantic hero of the 2000s.',
       ],
       dialogues: [],
 
@@ -1087,7 +1052,6 @@
       spoiler: [   // check
         'Two young people get to know each other over a series of happy accidents and a family that keeps getting in the way.',
         'A love story that grows on a train journey and in a big joint family.',
-        'The director\'s first hit, with the music director\'s early chartbusters.',
       ],
       dialogues: [],
 
@@ -1119,7 +1083,6 @@
       spoiler: [   // check
         'A singer loses his wife and then has to fight for the love of his daughter.',
         'A father and his little daughter, after the mother passes away.',
-        'A tearjerker about a dancing father.',
       ],
       dialogues: [],
 
@@ -1151,7 +1114,6 @@
       spoiler: [
         'Two people who want to end their lives meet and decide to spend a few days together first.',
         'A failed hero and a heartbroken girl make a strange pact.',
-        'Sravani and Subramanyam.',
       ],
       dialogues: [],
 
@@ -1183,7 +1145,6 @@
       spoiler: [
         'Two stubborn young lovers who each refuse to say sorry first keep ruining a perfect romance with their own egos.',
         'Two lovers too proud to admit their feelings keep fighting over silly things.',
-        'Siddhu and Madhu, and a famous waist scene.',
       ],
       dialogues: [],
 
@@ -1215,7 +1176,6 @@
       spoiler: [
         'A family is cursed by a goddess, and every generation one son dies young, until a young man defies it.',
         'A curse on a zamindar family and a carefree grandson.',
-        'Alanati Ramachandrudu, the wedding song.',
       ],
       dialogues: [],
 
@@ -1247,7 +1207,6 @@
       spoiler: [
         'A dance teacher in a small town is really a faction leader who left his village to end violence.',
         'A man hides his violent past while teaching dance.',
-        'A faction blockbuster of 2001.',
       ],
       dialogues: [],
 
@@ -1279,7 +1238,6 @@
       spoiler: [
         'A young man who stays with his father\'s friend\'s family falls for their daughter, who is engaged to someone else.',
         'A guest in a big family falls in love with the daughter.',
-        'Venky and Brahmanandam\'s comedy.',
       ],
       dialogues: [],
 
@@ -1311,7 +1269,6 @@
       spoiler: [
         'A rich boy and a poor milkman\'s daughter fall in love at college, and his father will not allow it.',
         'Two classmates from different worlds fight their families.',
-        'A 2001 youth romance.',
       ],
       dialogues: [],
 
@@ -1342,8 +1299,6 @@
 
       spoiler: [
         'A young man serving a jail sentence studies law and tells his story of how he ended up there.',
-        'A law student in jail.',
-        'The first film of a famous director.',
       ],
       dialogues: [],
 
@@ -1375,7 +1330,6 @@
       spoiler: [
         'A young man returns from abroad to his Rayalaseema village to settle a land dispute and ends up in a bloody faction war.',
         'An NRI student keeps a promise to protect his family\'s land and the villagers who depend on it.',
-        'The hero\'s first mass faction blockbuster, made when he was still a teenager.',
       ],
       dialogues: ['Aravaku... ammathodu addanga narikestha.'],
 
@@ -1407,7 +1361,6 @@
       spoiler: [
         'A faction leader released after years in jail returns to protect his family from old enemies.',
         'A father and son, both played by one actor, fight the same faction.',
-        'A double-role faction drama.',
       ],
       dialogues: [],
 
@@ -1439,7 +1392,6 @@
       spoiler: [
         'Two gangsters who built a Mumbai crime empire together turn into bitter enemies.',
         'A don and his trusted lieutenant fall out, and the city\'s underworld splits in two.',
-        'A Hindi gangster classic.',
       ],
       dialogues: [],
 
@@ -1471,7 +1423,6 @@
       spoiler: [   // check
         'A young man from a slum falls for a rich girl, and her family will not accept him.',
         'A poor youth fights for the girl he loves against her powerful father.',
-        'The debut of a pan-India star.',
       ],
       dialogues: [],
 
@@ -1503,7 +1454,6 @@
       spoiler: [
         'A carefree rowdy falls for a police commissioner\'s daughter, and her father will do anything to stop it.',
         'A loafer named Chanti loves a cop\'s daughter.',
-        'Chanti and Suchitra.',
       ],
       dialogues: ['City ki entho mandi commissioners vasthuntaru pothuntaru... Chanti gaadu eppudu ikkade untadu, local.'],
 
@@ -1535,7 +1485,6 @@
       spoiler: [
         'A reformed man who once ruled Varanasi hides his violent past while he lives peacefully with his family in a small village.',
         'A taxi driver in Varanasi is really a former Rayalaseema faction leader who left to keep a promise.',
-        'A Rayalaseema faction leader hiding in Varanasi.',
       ],
       dialogues: ['Veera Shankar Reddy... mokke kada ani peekesthe peeka kostha.', 'Tappu naa vaipu undi kabatti tala dinchukuni velthunna, ledante talalu teesukellevaadni.', 'Mokke kadani peekithe pekamukkalavuthay.'],   // check
 
@@ -1567,7 +1516,6 @@
       spoiler: [
         'A poor boy and a rich girl fall in love, while her violent cousin wants to marry her.',
         'Two lovers run away and are chased by a jealous suitor.',
-        'Vellavaddu, the line everyone copied.',
       ],
       dialogues: ['Vellavaddu.'],   // check
 
@@ -1599,7 +1547,6 @@
       spoiler: [
         'A patriotic police officer, a struggling actor and a Muslim youth come together during terror attacks in Hyderabad.',
         'Three men with different dreams and a city under threat.',
-        'A 2002 patriotic film with a famous Ravi Teja comedy track.',
       ],
       dialogues: [],
 
@@ -1631,7 +1578,6 @@
       spoiler: [
         'A man who hates women is persuaded to talk to a girl through a friend and slowly lets her into his heart.',
         'A man who hates women after a heartbreak is forced to work with a female assistant.',
-        'Abhiram and Brahmanandam\'s Lavangam in Paris.',
       ],
       dialogues: [],
 
@@ -1663,7 +1609,6 @@
       spoiler: [
         'A carefree young man falls for a rich girl, and her strict father says no.',
         'A father who loves his daughter too much clashes with her boyfriend.',
-        'The writer\'s first film as director.',
       ],
       dialogues: [],
 
@@ -1695,7 +1640,6 @@
       spoiler: [
         'A kickboxer who grew up away from his father meets him again and has to win his love and a big fight.',
         'A son raised by his single mother goes to his rich father\'s house, where a Tamil girl falls for him.',
-        'Kickboxing, a dying mother\'s wish and a Tamil girl.',
       ],
       dialogues: [],
 
@@ -1727,7 +1671,6 @@
       spoiler: [
         'A college student falls for the daughter of a dangerous man who will do anything to stop them.',
         'A young man takes on his girlfriend\'s ruthless father.',
-        'A love story that gave a producer his nickname.',
       ],
       dialogues: [],
 
@@ -1759,7 +1702,6 @@
       spoiler: [
         'A boy raised by a guru in the mountains returns to the world below, where a family feud drags him into a war.',
         'Childhood sweethearts are separated by her father, a powerful man, and the boy grows up to win her back.',
-        'A debut film where a girl\'s name is also the source of the Ganga.',
       ],
       dialogues: [],
 
@@ -1791,7 +1733,6 @@
       spoiler: [
         'A martial arts fighter takes part in street fights to pay for his wife\'s cancer treatment.',
         'A man fights for money to save the woman he loves.',
-        'The only film the hero directed.',
       ],
       dialogues: [],
 
@@ -1823,7 +1764,6 @@
       spoiler: [
         'A kabaddi player in Hyderabad rescues a girl from a forced marriage to a faction leader, and goes up against him in his own city.',
         'A kabaddi player rescues a girl from a faction leader who wants to marry her and hides her in his home.',
-        'Charminar, kabaddi and Obul Reddy.',
       ],
       dialogues: [],
 
@@ -1855,7 +1795,6 @@
       spoiler: [
         'A tough police officer falls for a girl who calls a radio show.',
         'A cop who uses his own style to fight crime.',
-        'A cop who gives out his phone number, 9848022338.',
       ],
       dialogues: ['Naa peru Shivamani, naaku konchem mental...'],
 
@@ -1887,7 +1826,6 @@
       spoiler: [
         'A loyal servant protects a young woman in a distant village, and his sad past is slowly revealed with each fight.',
         'A kind man who works for a family in Vizag is really a man feared in Kerala.',
-        'Singamalai, the man Kerala feared.',
       ],
       dialogues: [],
 
@@ -1919,7 +1857,6 @@
       spoiler: [
         'A professor teaches by day and fights corruption by night, with a network of students as his eyes and ears.',
         'A professor leads a secret group that kidnaps and punishes corrupt officials.',
-        'The Anti-Corruption Force.',
       ],
       dialogues: ['Telugu bhashalo naaku nachani oke okka padam kshaminchadam.'],
 
@@ -1951,7 +1888,6 @@
       spoiler: [
         'An independent woman who lost her parents walks out of her own wedding, and a quiet rich man falls for her.',
         'A self-respecting girl refuses to be treated as a bride for sale, and a man learns to love her on her terms.',
-        'A cup of good coffee and a woman who won\'t compromise.',
       ],
       dialogues: [],
 
@@ -1983,7 +1919,6 @@
       spoiler: [
         'A brother goes to Madurai to protect his twin sister after she marries into a dangerous family.',
         'A man discovers that his sister\'s in-laws are planning to kill her for her property.',
-        'A temple town set built for a twin brother-sister story.',
       ],
       dialogues: [],
 
@@ -2015,7 +1950,6 @@
       spoiler: [
         'A cheerful young man falls for a girl with unstoppable one-sided love, while her fiancé turns out to be far more dangerous than he looks.',
         'A cheerful young man openly pursues a girl who already has a powerful boyfriend.',
-        'Feel my love, one-sided.',
       ],
       dialogues: [],
 
@@ -2047,7 +1981,6 @@
       spoiler: [   // check
         'A doctor investigates an old village rumour about a woman accused of being unfaithful.',
         'A rumour in a village and a man who tries to find the truth.',
-        'A small award-winning debut film.',
       ],
       dialogues: [],
 
@@ -2079,7 +2012,6 @@
       spoiler: [
         'A carefree loafer who has no job or goal meets a girl whose family wants nothing to do with him.',
         'A thief falls for a girl who is running away from her family, and the two go on the run.',
-        'Shankar and Gowri on a train.',
       ],
       dialogues: [],
 
@@ -2111,7 +2043,6 @@
       spoiler: [
         'A princess and a village youth meet in an unusual setting, and their love faces a test in a royal family.',
         'A miserly bank clerk is sent to escort a young princess back to her kingdom.',
-        'Prasad, a stingy bank employee, and a runaway princess.',
       ],
       dialogues: [],
 
@@ -2142,7 +2073,6 @@
 
       spoiler: [
         'A goon joins medical college to fulfil his father\'s dream and changes the hospital with kindness.',
-        'Munna Bhai in Telugu.',
       ],
       dialogues: [],
 
@@ -2174,7 +2104,6 @@
       spoiler: [
         'Two rival college groups unite to play a rugby match against a gangster\'s team to save their college ground.',
         'A rugby match decides who owns a college ground.',
-        'Rugby in Telugu.',
       ],
       dialogues: [],
 
@@ -2206,7 +2135,6 @@
       spoiler: [
         'A girl from a rich family falls for a poor singer, while a violent criminal obsessed with her stands in the way.',
         'A young man and a girl who loves the rain fall in love, while a powerful man wants to marry her by force.',
-        'Venkat, Sailaja and Bhadranna.',
       ],
       dialogues: [],
 
@@ -2238,7 +2166,6 @@
       spoiler: [
         'A group of friends on a train journey get caught in a murder conspiracy.',
         'A train journey full of comedy and a crime.',
-        'Ravi Teja and Brahmanandam on a train.',
       ],
       dialogues: [],
 
@@ -2270,7 +2197,6 @@
       spoiler: [   // check
         'A carefree father and his straight-laced son clash, and the son tries to get his father married again.',
         'A star plays both a fun-loving father and his serious son in a family comedy.',
-        'Father and son, same actor, same house.',
       ],
       dialogues: [],
 
@@ -2302,7 +2228,6 @@
       spoiler: [
         'A professional assassin on the run poses as a missing man to hide in a village, and slowly becomes part of the family he is pretending to belong to.',
         'A contract killer who is framed for a politician\'s murder hides by posing as a family\'s long-lost son.',
-        'Nandu, Pardhu and a village family.',
       ],
       dialogues: ['Gun choodalanuko tappu ledu, kaani bullet choodalanukoku, chachipothav.'],
 
@@ -2334,7 +2259,6 @@
       spoiler: [   // check
         'A young man takes on a powerful don and his gang to avenge the deaths of his family.',
         'A lone man works through the underworld one gangster at a time.',
-        'A director\'s debut that gave a Nandamuri actor his first hit.',
       ],
       dialogues: [],
 
@@ -2366,7 +2290,6 @@
       spoiler: [
         'A man working in a mobile phone shop hides his past as the right hand of a dreaded gangster.',
         'A young man in love is forced to face the gangster he once worked for.',
-        'ABCDEFG, the song in the title.',
       ],
       dialogues: [],
 
@@ -2398,7 +2321,6 @@
       spoiler: [
         'A young man protects his friend\'s sister from a faction gang after his friend\'s whole family is killed.',
         'A man hides a girl whose family was wiped out, while her killers search for her.',
-        'The first film of a director known for loud mass action.',
       ],
       dialogues: [],
 
@@ -2430,7 +2352,6 @@
       spoiler: [
         'A student in Visakhapatnam takes on a corrupt politician to protect a family he has come to love, hiding his own past in the process.',
         'A student marries a rich businessman\'s daughter as part of a plan to recover what her father took from his family.',
-        'A student and the Somanath family.',
       ],
       dialogues: [],
 
@@ -2462,7 +2383,6 @@
       spoiler: [
         'A refugee boy from Sri Lanka grows up in a harbour town and rises to take on those who treated his people as slaves.',
         'A Sri Lankan refugee boy separated from his mother grows into a leader of the refugees in Vizag.',
-        'Siva, a mother and a harbour.',
       ],
       dialogues: ['Oka adugu... oke okka adugu.'],
 
@@ -2494,7 +2414,6 @@
       spoiler: [
         'A businessman with short-term memory loss tattoos clues all over his body to hunt down the man who killed his beloved.',
         'A man who forgets everything every fifteen minutes uses tattoos and photos to hunt his girlfriend\'s killer.',
-        'Sanjay Ramaswamy and a Polaroid camera.',
       ],
       dialogues: [],
 
@@ -2525,8 +2444,6 @@
 
       spoiler: [   // check
         'A man goes to America to find the killers of his young niece.',
-        'An uncle travels abroad for revenge.',
-        'A family action film set in the US.',
       ],
       dialogues: [],
 
@@ -2558,7 +2475,6 @@
       spoiler: [
         'A rich NRI boy works as a farmhand for a year to prove to a girl\'s brother that he deserves her.',
         'A city boy grows a crop in a village to win his love.',
-        'Santosh and Sirisha.',
       ],
       dialogues: [],
 
@@ -2590,7 +2506,6 @@
       spoiler: [
         'A man who will do anything for his younger sister moves to the city when she marries, and takes on the rowdies troubling her.',
         'An over-protective brother clashes with the gangster who threatens his sister\'s new family.',
-        'A remake of a Tamil brother-sister hit, starring a power star.',
       ],
       dialogues: [],
 
@@ -2622,7 +2537,6 @@
       spoiler: [   // check
         'A young man fights a ruthless business magnate who tries to stop him from marrying the girl he loves.',
         'An engineer falls for a girl whose powerful father has other plans for her.',
-        'An early 2000s mass romance.',
       ],
       dialogues: [],
 
@@ -2654,7 +2568,6 @@
       spoiler: [
         'A TV journalist protects a girl who is chased by her own family because she wants to marry the man she loves.',
         'A reporter goes on the run with a girl being hunted by a faction leader.',
-        'A road-trip action film from a Tamil director.',
       ],
       dialogues: [],
 
@@ -2686,7 +2599,6 @@
       spoiler: [
         'A son smothered by his father\'s control falls in love with a free-spirited girl, and learns what it takes to stand up for himself.',
         'A son whose father decides everything for him brings home his free-spirited girlfriend for a week.',
-        'Siddhu and Hasini, and an over-caring father.',
       ],
       dialogues: ['Anthena? Inkem kavali? Veelaithe naalugu maatalu, kudirithe cup coffee!'],
 
@@ -2718,7 +2630,6 @@
       spoiler: [
         'A boy and a girl on a boat trip along a river get to know each other while a family drama unfolds along the banks.',
         'Strangers on a river cruise to Bhadrachalam meet and fall in love along the way.',
-        'A boat trip on a river.',
       ],
       dialogues: [],
 
@@ -2750,7 +2661,6 @@
       spoiler: [
         'A free-spirited young man who runs from responsibility gets tangled up with a girl and a bunch of unlikely friends.',
         'A carefree young man helps a girl escape a forced marriage to a cop, by pretending to be her husband.',
-        'Bunny and Madhumathi, and a police commissioner.',
       ],
       dialogues: [],
 
@@ -2782,7 +2692,6 @@
       spoiler: [
         'A brave young man steps in to protect a girl from a powerful family that wants her gone.',
         'A businessman who raised his siblings is betrayed by them and finds himself fighting a rival.',
-        'An elder brother runs a family company.',
       ],
       dialogues: [],
 
@@ -2814,7 +2723,6 @@
       spoiler: [
         'A street thug who beats people up for a price turns out to be an undercover police officer hunting a powerful underworld don.',
         'A rowdy for hire falls for an aerobics teacher, while a corrupt cop and a don want him dead.',
-        'Pandu and Ali Bhai.',
       ],
       dialogues: ['Okka saari commit ayithe naa maata nene vinanu.', 'Evadu kodithe dimma thirigi mind block ayipothado aade Pandugaadu.', 'Evvadu kodithe dimma tirigi mind block aipoddo, aade Pandu.'],
 
@@ -2846,7 +2754,6 @@
       spoiler: [
         'A brother takes revenge on the men who harassed his sister.',
         'A young man becomes a vigilante against men who harm women.',
-        'A brother, a sister and a sacred thread.',
       ],
       dialogues: [],
 
@@ -2878,7 +2785,6 @@
       spoiler: [
         'A student leader takes on a corrupt politician who is destroying his town.',
         'A young man fights a powerful minister for his people.',
-        'Siddharth, the student soldier.',
       ],
       dialogues: [],
 
@@ -2909,8 +2815,6 @@
 
       spoiler: [
         'A government employee\'s wife is wrongly accused, and he takes on the system to clear her name.',
-        'An honest man is pushed into violence.',
-        'A director\'s debut.',
       ],
       dialogues: [],
 
@@ -2941,8 +2845,6 @@
 
       spoiler: [
         'A tax collector uses government money to build a temple for Lord Rama and is jailed for it.',
-        'A devotee builds the Bhadrachalam temple.',
-        'Kancherla Gopanna\'s story.',
       ],
       dialogues: [],
 
@@ -2974,7 +2876,6 @@
       spoiler: [
         'A man helps others without expecting anything and asks them to pass on the favour to three more people.',
         'A former army man asks every person he helps to help three others, and a corrupt minister fights back.',
-        'Help three people.',
       ],
       dialogues: [],
 
@@ -3005,8 +2906,6 @@
 
       spoiler: [
         'A small-time thief takes the place of his lookalike, a fearless cop, and takes care of the cop\'s daughter.',
-        'A con man becomes an honest cop.',
-        'Athili Sattibabu and Vikram Rathore.',
       ],
       dialogues: [],
 
@@ -3038,7 +2937,6 @@
       spoiler: [
         'A man who was wrongly blamed for a family\'s murder as a boy returns to find the real killer.',
         'An orphan raised as an outcast goes looking for a masked man who killed the people who adopted him.',
-        'A guest who stays to settle a score.',
       ],
       dialogues: [],
 
@@ -3070,7 +2968,6 @@
       spoiler: [   // check
         'Two couples in a village find their love tested by family and misunderstandings.',
         'A village girl\'s engagement goes wrong when another love story comes into the house.',
-        'A village romance that made a heroine a star.',
       ],
       dialogues: [],
 
@@ -3102,7 +2999,6 @@
       spoiler: [
         'A carefree young man in Hyderabad tries to bring down a dangerous don after being tricked into fighting his battle.',
         'A young man released from jail falls for a rich girl and ends up working on her yacht.',
-        'The debut of a mega hero, with a fight on a ship.',
       ],
       dialogues: [],
 
@@ -3134,7 +3030,6 @@
       spoiler: [
         'A small-town journalist finds himself protecting a girl who happens to be a Himalayan saint\'s daughter and is hunted by a corrupt chief minister.',
         'A TV journalist falls in love with a young sanyasini at a Himalayan ashram.',
-        'Bala and Vaishali in Kullu Manali.',
       ],
       dialogues: ['You know Guntur bolke ek sheher hai? Nenu ikkada kottaananuko, resound udhar aatha!'],
 
@@ -3166,7 +3061,6 @@
       spoiler: [
         'A young man is mistaken for a courier and finds himself between two groups of gangsters in a city filled with bluffs.',
         'A carefree young man falls for the sister of a don who is very strict about her safety.',
-        'Bablu, Pooja and Shankar Goud.',
       ],
       dialogues: [],
 
@@ -3198,7 +3092,6 @@
       spoiler: [
         'A man cheated by an agent who promised him a job in Dubai ends up in Mumbai, where he falls in love.',
         'A jobless man dreams of Dubai and gets stuck in Mumbai with his friends instead.',
-        'Seenu, who never made it to Dubai.',
       ],
       dialogues: [],
 
@@ -3230,7 +3123,6 @@
       spoiler: [
         'A group of engineering college friends enjoy their first year, falling in love, fighting and growing up together.',
         'Eight engineering students share four years of college, ragging, friendship and love.',
-        'Chandu, Madhu, Tyson and Sravanthi at CBIT.',
       ],
       dialogues: [],
 
@@ -3262,7 +3154,6 @@
       spoiler: [
         'A boy who idolises rowdies grows up to become one, and learns how violent that life really is.',
         'A young man joins the underworld of Vizag and pays the price.',
-        'Seenu, the boy who wanted to be a rowdy.',
       ],
       dialogues: [],
 
@@ -3294,7 +3185,6 @@
       spoiler: [
         'A young man plans revenge on a gangster who destroyed his family.',
         'A son hunts the man responsible for his mother\'s death.',
-        'A director\'s debut with a revenge plot.',
       ],
       dialogues: [],
 
@@ -3326,7 +3216,6 @@
       spoiler: [
         'A goon starts seeing Mahatma Gandhi and learns to solve problems through non-violence.',
         'Gandhian ways help a rowdy fight a land grabber.',
-        'The sequel to Shankar Dada, from Lage Raho Munna Bhai.',
       ],
       dialogues: [],
 
@@ -3358,7 +3247,6 @@
       spoiler: [
         'A software engineer returns from America to build free hospitals and schools, and corrupt officials try to ruin him.',
         'A rich NRI fights black money in the system.',
-        'The Boss.',
       ],
       dialogues: ['Nanna, pandulu gumpuga vasthayi... simham single ga vasthundi.'],
 
@@ -3390,7 +3278,6 @@
       spoiler: [
         'A faction leader\'s son tries to live peacefully with his family, but violence follows him.',
         'A man from a violent family wants a quiet life.',
-        'A Venkatesh faction film.',
       ],
       dialogues: [],
 
@@ -3422,7 +3309,6 @@
       spoiler: [
         'A thief sent to the afterlife by mistake finds a loophole in the rules and tricks the god of death himself.',
         'A thief dies and goes to hell, where he steals the god of death\'s powers.',
-        'Raja and Yama.',
       ],
       dialogues: [],
 
@@ -3454,7 +3340,6 @@
       spoiler: [
         'A man raised in the underworld sets out to find the mother he lost as a child.',
         'A young man in Hyderabad becomes a gangster while looking for his mother.',
-        'Eeshwar and his mother.',
       ],
       dialogues: [],
 
@@ -3486,7 +3371,6 @@
       spoiler: [
         'A girl obsessed with the name Mahesh wants to marry only a man called Mahesh, and two men pretend to be him.',
         'A con man pretends to be a rich man\'s namesake to win over a film-crazy girl.',
-        'A comedy of mistaken names, the debut of a natural star.',
       ],
       dialogues: [],
 
@@ -3518,7 +3402,6 @@
       spoiler: [
         'A rowdy who loves a girl from childhood is told to stay away from her for twelve years.',
         'A tough guy keeps his childhood promise to stay away from his love, then returns to claim her.',
-        'Bujji and Chitti, a twelve-year wait.',
       ],
       dialogues: [],
 
@@ -3550,7 +3433,6 @@
       spoiler: [
         'A waiter in the US pretends to be a software engineer to keep his mother happy back home.',
         'A man\'s lie about his job in America falls apart when a girl comes to check on him.',
-        'Software engineer by lie, waiter by profession.',
       ],
       dialogues: [],
 
@@ -3582,7 +3464,6 @@
       spoiler: [
         'A rich young doctor goes on a bike journey to find the girl he loves and discovers the real India.',
         'A selfish man rides through villages with a thief and changes along the way.',
-        'A road trip on a motorbike with Allari Naresh as Gaali Seenu.',
       ],
       dialogues: [],
 
@@ -3614,7 +3495,6 @@
       spoiler: [
         'A roaming young man with a past in the Naxal movement returns to his village to fix a family wrong, and he has an old love waiting.',
         'A former Naxalite settles into city life and gets entangled with the daughter of the cop who once hunted him.',
-        'Sanjay Sahu, ex-Naxal.',
       ],
       dialogues: ['Yuddhamlo gelavadam ante shatruvuni odinchadam, champadam kaadu.'],
 
@@ -3646,7 +3526,6 @@
       spoiler: [
         'A lawyer\'s daughter falls for a man who works as a street thug, and his rough ways bring her family face to face with powerful men.',
         'An orphan who dreams of becoming a don works for a gangster and slowly uncovers the truth about his own family.',
-        'Kranthi, a street thug, and a long-lost father.',
       ],
       dialogues: [],
 
@@ -3678,7 +3557,6 @@
       spoiler: [
         'A don\'s lookalike, an ordinary young man, is used to bring down the gang that killed the real don.',
         'Two lookalikes and a comic music director named Jayasurya.',
-        'Brahmanandam\'s Jayasurya, who copies every tune.',
       ],
       dialogues: [],
 
@@ -3709,8 +3587,6 @@
 
       spoiler: [
         'Two teenagers at a boarding school fall in love, but their families and their results get in the way.',
-        'First love at a residential junior college.',
-        'A teenage romance with the song Nijamga Nenena.',
       ],
       dialogues: [],
 
@@ -3742,7 +3618,6 @@
       spoiler: [
         'A young man from a village protects a girl and her family from a gangster in Vizag.',
         'A carefree youth falls for a girl hunted by a rowdy.',
-        'A Vinayak action comedy with Brahmanandam\'s Bobby.',
       ],
       dialogues: [],
 
@@ -3773,8 +3648,6 @@
 
       spoiler: [
         'An assistant director tries to make his first film and faces the dark side of the industry.',
-        'A struggling AD in Hyderabad\'s film industry.',
-        'A film about making a film.',
       ],
       dialogues: ['Nenu entha yedhavano naake telidu!'],
 
@@ -3806,7 +3679,6 @@
       spoiler: [
         'A girl runs away from her own wedding with a boy who knows her family would never accept, and the two are chased across the state.',
         'A young man is blamed when his friend elopes with a powerful man\'s daughter, and has to help find them.',
-        'Krishna and Meenakshi.',
       ],
       dialogues: [],
 
@@ -3838,7 +3710,6 @@
       spoiler: [
         'A man pretends to be a cousin at a family wedding in order to win over a girl and avoid her violent relatives.',
         'A young man rescues the wrong bride from a wedding and has to win over her two violent uncles.',
-        'Chandu and McDowell Murthy.',
       ],
       dialogues: [],
 
@@ -3870,7 +3741,6 @@
       spoiler: [
         'An army officer remembers his father\'s life and his own journey through love, loss and addiction.',
         'A son and his father\'s lives in parallel.',
-        'Vaaranam Aayiram, dubbed.',
       ],
       dialogues: [],
 
@@ -3902,7 +3772,6 @@
       spoiler: [
         'A woman who looks like her fearless ancestor is sent to a long-abandoned fort, where an evil sorcerer buried centuries ago is waiting to rise again.',
         'A woman learns she is the reborn form of her brave great-grandmother, the only one who can stop an evil spirit.',
-        'Jejamma, Pasupathi and a fort in Gadwal.',
       ],
       dialogues: ['Vadala bommali, vadala.'],   // check
 
@@ -3934,7 +3803,6 @@
       spoiler: [
         'Two best friends love the same girl, and one of them goes dark with obsession while the other tries to protect her.',
         'An orphan who loves his best friend too much falls for the same girl as him.',
-        'Mr. Perfect versus a crazy best friend.',
       ],
       dialogues: [],
 
@@ -3966,7 +3834,6 @@
       spoiler: [
         'A stylish international don has a lookalike, and a policeman needs a petty thief to take his place and bring him down.',
         'A small-time thief who looks like a dreaded don is sent into the gang to bring it down.',
-        'Ranga becomes a don in Malaysia.',
       ],
       dialogues: [],
 
@@ -3998,7 +3865,6 @@
       spoiler: [
         'An orphan bounty hunter who catches criminals for money searches for his lost parents.',
         'A man nicknamed Chotu helps the police catch criminals while looking for his family.',
-        'A bounty hunter and a girl named Sameera.',
       ],
       dialogues: [],
 
@@ -4030,7 +3896,6 @@
       spoiler: [
         'A thrill seeker who will do anything for a rush steals from the wrong people, and a cop is on his trail.',
         'A man who does everything for a thrill is secretly a thief who steals to fund surgeries for poor children.',
-        'Kalyan, Naina and a cop called Victor.',
       ],
       dialogues: [],
 
@@ -4062,7 +3927,6 @@
       spoiler: [
         'A young man and a woman feel a bond they cannot explain. Four hundred years earlier, a fearless warrior and a princess were kept apart by a jealous commander.',
         'A bike racer meets a girl whose touch reminds him of a warrior\'s life 400 years ago.',
-        'Kala Bhairava kills a hundred soldiers.',
       ],
       dialogues: ['Okkokkadini kaadu Sher Khan... okesaari vanda mandini pampinchu.', 'Okkokkadini kaadu sher khan, vandha mandhini okesaari pampu.'],
 
@@ -4094,7 +3958,6 @@
       spoiler: [
         'A young man falls for a girl and gives her a year of gifts, unaware of her illness.',
         'A love story full of surprises and a sad secret.',
-        'A cult love story that grew after release.',
       ],
       dialogues: [],
 
@@ -4129,7 +3992,6 @@
       spoiler: [
         'Twin brothers, one a timid priest and the other a loud, brave guy, swap roles to protect a family from a mad don.',
         'Twins separated at birth, one a shy priest and one a fearless rogue, team up against a gangster.',
-        'Chari and Narasimha, one actor in two roles, with Brahmanandam\'s Bhattu stealing scenes.',
       ],
       dialogues: [],
 
@@ -4161,7 +4023,6 @@
       spoiler: [
         'A young man pretends to be a girl\'s boyfriend to help her, and ends up fixing a family feud in her village.',
         'A city boy goes to a village as a fake lover and has to keep two families from fighting.',
-        'Krish, two heroines and a feuding village.',
       ],
       dialogues: [],
 
@@ -4193,7 +4054,6 @@
       spoiler: [
         'A young man who is shy in love gets a girl\'s attention through a series of misunderstandings and then loses her again.',
         'A man tells his father\'s friends a story about his first love at a family reunion.',
-        'Prabha and Nandini, and a fake love story.',
       ],
       dialogues: [],
 
@@ -4225,7 +4085,6 @@
       spoiler: [
         'A young man who dreams of being a don joins a gang and falls for a rival don\'s sister.',
         'A wannabe don works for two gangsters at once.',
-        'Seenu wants to be a don.',
       ],
       dialogues: [],
 
@@ -4257,7 +4116,6 @@
       spoiler: [
         'A taxi driver with a strange knack for being in the right place at the right time ends up as the saviour of a village.',
         'A taxi driver is mistaken for a god by a dying village, and finds out they may be right.',
-        'Alluri Seetharama Raju, the taxi driver.',
       ],
       dialogues: [],
 
@@ -4289,7 +4147,6 @@
       spoiler: [
         'The young son of a murdered chief minister takes over the post and decides to clean up politics.',
         'An NRI becomes CM and finds corruption everywhere, including his own family.',
-        'Arjun Prasad, the young CM.',
       ],
       dialogues: [],
 
@@ -4321,7 +4178,6 @@
       spoiler: [
         'A man is safe from a family that wants to kill him as long as he stays inside their house, because they never harm a guest.',
         'A young man refuses to leave a house full of men who want him dead.',
-        'A comedian as hero, and a bicycle.',
       ],
       dialogues: [],
 
@@ -4353,7 +4209,6 @@
       spoiler: [
         'A man who believes love is a lie meets a girl who believes it is everything, and neither of them quite keeps to their rules.',
         'A young man who believes love cannot last forever has nine break-ups behind him.',
-        'Ram, a graffiti artist in Sydney.',
       ],
       dialogues: [],
 
@@ -4384,8 +4239,6 @@
 
       spoiler: [   // check
         'A young man becomes a gangster to protect his family.',
-        'A rowdy takes on two rival gangs.',
-        'A mass entertainer.',
       ],
       dialogues: [],
 
@@ -4417,7 +4270,6 @@
       spoiler: [
         'A young man falls for a girl whose family is caught in a faction feud.',
         'Love in the middle of a village war.',
-        'Ramakrishna and a feud.',
       ],
       dialogues: [],
 
@@ -4449,7 +4301,6 @@
       spoiler: [
         'A scientist builds a human-like machine that falls in love with his fiancée and turns violent when it is rejected.',
         'A scientist builds a machine that looks like him, and it falls for the scientist\'s girlfriend.',
-        'Chitti and Dr. Vaseegaran.',
       ],
       dialogues: [],
 
@@ -4481,7 +4332,6 @@
       spoiler: [
         'A fearless district collector goes after the crooks who killed his family and takes on a ruthless industrialist.',
         'A college lecturer is really the son of a doctor killed by a powerful gang, and takes revenge.',
-        'Srimannarayana and his father, a doctor.',
       ],
       dialogues: ['Choodu, oka vaipe choodu... rendo vaipu chudal anukoku, tattukolev.'],
 
@@ -4512,8 +4362,6 @@
 
       spoiler: [
         'A village police officer is transferred to the city and takes on a gangster there.',
-        'An honest cop roars against a don.',
-        'Durai Singam.',
       ],
       dialogues: [],
 
@@ -4545,7 +4393,6 @@
       spoiler: [
         'A groom is kidnapped on his wedding day by a man who wants to make sure the marriage never happens.',
         'A groom\'s bride is kidnapped during a five-day traditional wedding, and he goes after the kidnapper.',
-        'Sandeep and a wedding that never ends.',
       ],
       dialogues: [],
 
@@ -4577,7 +4424,6 @@
       spoiler: [
         'Five strangers in Hyderabad live very different lives, and one day their paths cross in a way that changes all of them.',
         'Five strangers from very different lives end up in the same hospital during a terror attack.',
-        'Cable Raju and Saroja.',
       ],
       dialogues: [],
 
@@ -4608,8 +4454,6 @@
 
       spoiler: [
         'A village police officer is transferred to the city and takes on a gangster.',
-        'An honest cop\'s fight against a don.',
-        'Singam, dubbed in Telugu.',
       ],
       dialogues: [],
 
@@ -4641,7 +4485,6 @@
       spoiler: [
         'A young aspiring filmmaker falls for a girl from a different faith, and both families are against it.',
         'An aspiring filmmaker falls for a girl older than him from a strict Christian family.',
-        'Karthik and Jessie.',
       ],
       dialogues: [],
 
@@ -4673,7 +4516,6 @@
       spoiler: [
         'A college topper and his cousin from the village turn their rivalry over exam marks into an ego war that hides their love.',
         'A proud topper cannot bear it when the girl staying in his house starts beating him in every exam.',
-        'Marks and ranks decide who is winning in a romance between two relatives.',
       ],
       dialogues: [],
 
@@ -4705,7 +4547,6 @@
       spoiler: [
         'A geneticist tries to awaken the skills of an ancient Indian monk in his descendant, a circus performer, to stop a deadly virus.',
         'A Chinese agent uses hypnosis to spread a virus in India, and the answer lies with a 5th-century martial artist.',
-        'Bodhidharma\'s DNA, a circus and a hypnotist.',
       ],
       dialogues: [],
 
@@ -4737,7 +4578,6 @@
       spoiler: [
         'Two heartbroken strangers meet at a wedding, become friends and slowly realise they are perfect for each other.',
         'A boy and a girl keep meeting at the wrong moments, years after they first bonded over failed relationships.',
-        'A sweet love story told by the hero to a stranger he meets on the way.',
       ],
       dialogues: [],
 
@@ -4769,7 +4609,6 @@
       spoiler: [
         'A guardian of a sacred temple falls in love with a girl whose family has a long-standing grudge against him.',
         'A warrior trained to protect a Himalayan temple falls for a girl who does not believe in God.',
-        'A temple guardian, a samurai-style sword and the Himalayas.',
       ],
       dialogues: [],
 
@@ -4801,7 +4640,6 @@
       spoiler: [
         'A cop who has been playing a double game as a local goon is hunted down by both the cops and the underworld.',
         'A cop stages a fake political life around his father, who just woke from a coma, to protect him from shock.',
-        'Ajay Kumar and a reality show set inside a house.',
       ],
       dialogues: [],
 
@@ -4833,7 +4671,6 @@
       spoiler: [
         'A National Security Guard commando negotiates with terrorists who have hijacked a plane.',
         'A tense negotiation over the phone to save passengers on a plane.',
-        'A songless hijack thriller.',
       ],
       dialogues: [],
 
@@ -4865,7 +4702,6 @@
       spoiler: [
         'A former cricketer trains a team of schoolboys to save their school ground from being sold.',
         'A coach turns a group of losers into a winning cricket team.',
-        'A school cricket team, a playground at risk.',
       ],
       dialogues: [],
 
@@ -4897,7 +4733,6 @@
       spoiler: [
         'A carefree young man falls for a girl who is engaged to a goon.',
         'A young man takes on a rowdy to win his girl.',
-        'Seenu and Shruti.',
       ],
       dialogues: [],
 
@@ -4929,7 +4764,6 @@
       spoiler: [
         'A Hindi lecturer in a college is secretly an undercover cop hunting a terrorist.',
         'A cop poses as a college teacher to get close to a criminal\'s daughter.',
-        'Rishi, the lecturer.',
       ],
       dialogues: [],
 
@@ -4961,7 +4795,6 @@
       spoiler: [
         'A workaholic who believes in logic and a free-spirited girl clash over what makes a good relationship.',
         'A man who believes in living for himself learns from a girl that compromise is part of love.',
-        'Vicky, Priya and Maggie.',
       ],
       dialogues: [],
 
@@ -4993,7 +4826,6 @@
       spoiler: [
         'A man who changes colours like a chameleon helps a girl find the killers of her brother.',
         'A mercenary takes on a revenge mission for a stranger.',
-        'Tony, the chameleon.',
       ],
       dialogues: [],
 
@@ -5025,7 +4857,6 @@
       spoiler: [
         'A stylish man with an odd habit of hating wealth is hunted by a mafia boss, and the real reason comes out when his past does.',
         'A trusted hitman of a Kolkata don breaks away after the don\'s son targets someone he cares about.',
-        'Jai, a stylish gangster in Kolkata.',
       ],
       dialogues: [],
 
@@ -5057,7 +4888,6 @@
       spoiler: [
         'A young man discovers he is the heir of a family sworn to protect a goddess\'s sacred power.',
         'A tourist guide in Rajasthan learns about his destiny.',
-        'Sacred shrines of a goddess and a big flop.',
       ],
       dialogues: [],
 
@@ -5088,8 +4918,6 @@
 
       spoiler: [
         'An orphan wants to marry into a big family, and his girlfriend\'s father wants her husband to have a family.',
-        'An orphan finds love and a family.',
-        'Gautam, the orphan.',
       ],
       dialogues: [],
 
@@ -5120,8 +4948,6 @@
 
       spoiler: [
         'A modern chef in Cape Town and his grandfather\'s love story from decades ago run side by side.',
-        'Two love stories across two generations.',
-        'A remake of Love Aaj Kal.',
       ],
       dialogues: ['Kaaranam leni kopam, gauravam leni prema, badhyatha leni yavvanam, gnaapakam leni vruddhapyam anavasaram.'],
 
@@ -5152,8 +4978,6 @@
 
       spoiler: [
         'A young man hides his past as a fearsome village strongman.',
-        'A rowdy turns into a protector.',
-        'A Ravi Teja mass film.',
       ],
       dialogues: [],
 
@@ -5185,7 +5009,6 @@
       spoiler: [
         'Two young men love the same girl in very different ways, one of them obsessed and the other patient.',
         'A girl recovering from tragedy finds herself between a rich young man and a painter who loved her silently.',
-        'A dreamy 1990s love triangle with a painter.',
       ],
       dialogues: [],
 
@@ -5217,7 +5040,6 @@
       spoiler: [   // check
         'Groups of college students fall in and out of love while waiting for the same bus every morning.',
         'Young love, phone calls and parents, around one roadside shelter.',
-        'A youth film that became a surprise hit.',
       ],
       dialogues: [],
 
@@ -5249,7 +5071,6 @@
       spoiler: [
         'A man from a small village dreams of building a gangster\'s empire in Mumbai, and he has a plan that nobody could see coming.',
         'A man from Hyderabad comes to Mumbai to build his own underworld empire, with a secret plan.',
-        'Surya Bhai and a city called Mumbai.',
       ],
       dialogues: ['Nee target 10 miles ayithe, aim for the 11th mile.', 'Yuddham chethakaanode dharmam gurinchi maatladathaadu sir.'],
 
@@ -5281,7 +5102,6 @@
       spoiler: [
         'A hot-headed mechanic becomes a journalist and exposes a dangerous politician.',
         'A mechanic with a temper joins a TV channel to fight a corrupt politician.',
-        'A camerawoman named Ganga and a reporter named Rambabu.',
       ],
       dialogues: [],
 
@@ -5313,7 +5133,6 @@
       spoiler: [
         'A man who does not believe in God is chosen to stop a demon who wants to marry the woman he loves.',
         'Lord Shiva helps a common man fight a demon.',
-        'A fantasy with a demon, a damaru and a big VFX finale.',
       ],
       dialogues: [],
 
@@ -5345,7 +5164,6 @@
       spoiler: [
         'An orphan adopted by a royal family as their heir has to fight their sworn enemies.',
         'A boy becomes the heir of a king and is drawn into a deadly feud.',
-        'A royal family feud with lots of swords.',
       ],
       dialogues: [],
 
@@ -5377,7 +5195,6 @@
       spoiler: [
         'Two young people who were cheated in love meet and become friends, then slowly fall for each other.',
         'A boy and a girl both hate the opposite sex after bad break-ups.',
-        'A small-budget youth film that became a hit.',
       ],
       dialogues: [],
 
@@ -5409,7 +5226,6 @@
       spoiler: [
         'A young man murdered by a ruthless businessman is reborn as a housefly and sets out to take his revenge.',
         'A man killed by a jealous rich man returns as a housefly to torment his killer.',
-        'Sudeep against a fly.',
       ],
       dialogues: [],
 
@@ -5441,7 +5257,6 @@
       spoiler: [
         'A fun-loving police officer who adores song contests is posted to a rural town and takes on a corrupt, dangerous local boss.',
         'A police officer who names himself after a famous Hindi villain cleans up a town and falls for a pot-maker\'s daughter.',
-        'Antakshari with goons in a police station.',
       ],
       dialogues: ['Naaku konchem thikka undi, daaniko lekka undi.', 'Naaku konchem tikkundi, kaani daaniki oka lekkundi.'],
 
@@ -5473,7 +5288,6 @@
       spoiler: [
         'A young man falls for a girl at an airport, but her short-tempered brother does not approve.',
         'A love story that begins when two strangers miss a flight.',
-        'Rahul, Priya and an airport.',
       ],
       dialogues: [],
 
@@ -5505,7 +5319,6 @@
       spoiler: [
         'An unemployed graduate stumbles onto a bank robbery plan that could make him rich, if he can outwit a ruthless gangster.',
         'A smart young man who believes in quick money foils a bank robbery and makes an enemy of the gangster behind it.',
-        'Ravindra Narayan and Bittu.',
       ],
       dialogues: ['Cheppali sir... nannu gelakoddu, chastharu ani cheppakapothe ela?'],
 
@@ -5537,7 +5350,6 @@
       spoiler: [
         'A stage actor from a family of drama artists exposes illegal mining in Bellary.',
         'A theatre artist takes on a mining mafia.',
-        'Surabhi drama troupe and mines.',
       ],
       dialogues: [],
 
@@ -5569,7 +5381,6 @@
       spoiler: [
         'A group of friends in a Hyderabad colony grow up together through one summer of love and fights.',
         'Young people in a gated colony learn about life and love.',
-        'A colony full of friends.',
       ],
       dialogues: [],
 
@@ -5601,7 +5412,6 @@
       spoiler: [
         'A man who works as a taxi driver in Hyderabad goes after a rowdy gang lord who wants to make him a pawn in a blood feud.',
         'A betting expert in Hyderabad is hired to make a mine owner\'s daughter fall for him.',
-        'Betting Raj.',
       ],
       dialogues: [],
 
@@ -5633,7 +5443,6 @@
       spoiler: [
         'A hero grows up trying to carry out a promise to his dying guardian, but the world stands in his way.',
         'A man hunts the gangsters who killed his father, a powerful don.',
-        'Rishi, the son of a don.',
       ],
       dialogues: [],
 
@@ -5665,7 +5474,6 @@
       spoiler: [
         'A married man tells a girl travelling with him about his past romance.',
         'A love story told on a road trip in Italy.',
-        'Karthik and Sandhya.',
       ],
       dialogues: [],
 
@@ -5696,8 +5504,6 @@
 
       spoiler: [
         'An army officer on leave in Mumbai discovers sleeper cells planning bomb blasts and hunts them.',
-        'A soldier on holiday takes on terrorists.',
-        'Jagadish, the army captain.',
       ],
       dialogues: [],
 
@@ -5729,7 +5535,6 @@
       spoiler: [
         'A billionaire\'s grandson takes a job as a driver in his own aunt\'s house to bring his estranged family back together.',
         'A rich man from Milan works as a driver in his aunt\'s home in India to bring her back to his grandfather.',
-        'Gautam Nanda in disguise, and a family reunion.',
       ],
       dialogues: [],
 
@@ -5761,7 +5566,6 @@
       spoiler: [
         'A lookalike who stays in a lawless land of mafia gangs takes down a feared don while trying to keep his family safe.',
         'A man whose family runs a gang goes undercover to take down a don, using his talent for fooling people.',
-        'Badshah decides, with Pilli Padmanabha Simha in the middle.',
       ],
       dialogues: [],
 
@@ -5793,7 +5597,6 @@
       spoiler: [
         'A call centre employee and his father con rich girls, until the past of the son catches up with them.',
         'A man who runs a racket with his father to cheat girls who play with boys\' hearts.',
-        'Ravi and Shankar, father and son, and a vengeful don.',
       ],
       dialogues: [],
 
@@ -5825,7 +5628,6 @@
       spoiler: [
         'A man who hates family ties hires a woman to pose as his wife at a family function.',
         'A businessman in America learns to love his family.',
-        'A fake wife for a family function.',
       ],
       dialogues: [],
 
@@ -5857,7 +5659,6 @@
       spoiler: [
         'A man falls in love over the phone with a girl who is not the one he thinks she is.',
         'A phone call goes to the wrong girl, and love follows.',
-        'A mix-up romance.',
       ],
       dialogues: [],
 
@@ -5889,7 +5690,6 @@
       spoiler: [
         'A street musician in Barcelona falls for a girl, only to learn of another girl\'s diary that connects to his past.',
         'A guitarist\'s love life in Spain gets tangled with a mafia story.',
-        'Barcelona, a guitar and two heroines.',
       ],
       dialogues: [],
 
@@ -5921,7 +5721,6 @@
       spoiler: [
         'A cold, calm man from a feuding family hides his true background until his love is put at risk by an old rivalry.',
         'A man from a feuding family goes to his enemies\' house in disguise to end the feud forever.',
-        'Jai, Deva and a family war.',
       ],
       dialogues: ['Kathi vaadatam modalupedithe naakanna baaga evaru vaadaleru.'],
 
@@ -5953,7 +5752,6 @@
       spoiler: [
         'A young man\'s life is turned upside down when his lookalike, a feared underworld figure, takes his identity.',
         'A software engineer is mistaken for his lookalike, a feared man from Kolkata.',
-        'Cherry and his Kolkata lookalike.',
       ],
       dialogues: [],
 
@@ -5984,8 +5782,6 @@
 
       spoiler: [
         'A college student is secretly on a mission against a businessman who wiped out a family.',
-        'A carefree youth hides a revenge plan.',
-        'Nandu\'s revenge.',
       ],
       dialogues: [],
 
@@ -6017,7 +5813,6 @@
       spoiler: [
         'Two brothers in a big Godavari family keep fighting over jobs and love, while their father hopes they will grow up.',
         'An elder and a younger brother, both unemployed, in a family full of love.',
-        'Peddodu and Chinnodu.',
       ],
       dialogues: [],
 
@@ -6049,7 +5844,6 @@
       spoiler: [
         'An angry police officer in Mumbai exposes the oil mafia after a journalist is killed.',
         'A remake of a famous 1970s cop film.',
-        'Vijay Khanna, the angry cop.',
       ],
       dialogues: [],
 
@@ -6081,7 +5875,6 @@
       spoiler: [
         'An angry police officer in Mumbai exposes the oil mafia after a journalist is killed.',
         'A Hindi remake of a famous 1970s cop film.',
-        'Inspector Vijay Khanna.',
       ],
       dialogues: [],
 
@@ -6113,7 +5906,6 @@
       spoiler: [
         'A rock star who is not sure which of his memories are real hunts the three men he believes killed his parents.',
         'A musician with a mental condition chases a past that his doctors say never happened.',
-        'Half of what the hero remembers may be imagined, and the story keeps you guessing which half.',
       ],
       dialogues: [],
 
@@ -6145,7 +5937,6 @@
       spoiler: [
         'A cop with a sharp tongue is sent to a village to take on a ruthless man who controls everything there.',
         'An orphan raised by a strict police officer becomes a cop and goes after the local strongman his father once fought.',
-        'Police circle inspector, a village and non-stop punch lines.',
       ],
       dialogues: ['Dikki balisina kodi chicken shop mundukochi thoda kottindanta.'],
 
@@ -6177,7 +5968,6 @@
       spoiler: [
         'A cable TV operator uses everything he learnt from movies to protect his family after his daughter accidentally kills a boy.',
         'A man creates a perfect alibi for his family that even the police cannot break.',
-        'Rambabu, a cable operator, and a police station.',
       ],
       dialogues: [],
 
@@ -6209,7 +5999,6 @@
       spoiler: [
         'A young man from London goes to his grandfather\'s village to reunite his family after an old fight.',
         'A grandson hides his identity to bring his father back to the family home.',
-        'A village family drama.',
       ],
       dialogues: [],
 
@@ -6241,7 +6030,6 @@
       spoiler: [
         'A curious medical student investigates mysterious deaths around an old Subrahmanya temple that has been locked for years.',
         'A temple, a snake and a medical student who wants answers.',
-        'The first of a mystery series.',
       ],
       dialogues: [],
 
@@ -6273,7 +6061,6 @@
       spoiler: [
         'A political rival tries to stop a fearless man from giving justice to the people, but he fights back in a style of his own.',
         'A man returns from Dubai to protect his family from a ruthless politician, with help from his elder brother.',
-        'Jaidev and his elder brother.',
       ],
       dialogues: [],
 
@@ -6305,7 +6092,6 @@
       spoiler: [
         'A thief goes to his grandfather\'s village and learns how he built a dam for its people.',
         'A grandson finds out his royal grandfather gave up everything for a dam.',
-        'A king, a dam and a thief, both played by one star.',
       ],
       dialogues: [],
 
@@ -6337,7 +6123,6 @@
       spoiler: [
         'A family across three generations are separated by fate and keep finding each other again, lifetime after lifetime.',
         'A businessman meets a young man who looks exactly like his late father, and the past starts to repeat itself.',
-        'Three generations of one family on screen together.',
       ],
       dialogues: [],
 
@@ -6368,8 +6153,6 @@
 
       spoiler: [
         'A young man in a small town fights local politics for the sake of his friend.',
-        'A town election and a friendship.',
-        'The debut of a mega family hero.',
       ],
       dialogues: [],
 
@@ -6401,7 +6184,6 @@
       spoiler: [
         'A young man is caught between two politicians who both want to use him.',
         'A carefree youth becomes a pawn in local politics.',
-        'The debut of a mega family hero.',
       ],
       dialogues: [],
 
@@ -6432,8 +6214,6 @@
 
       spoiler: [
         'A corrupt cop dies and his honest lookalike takes his place to finish his mission.',
-        'Two lookalikes, one corrupt and one honest.',
-        'A Bobby film with a double role.',
       ],
       dialogues: [],
 
@@ -6465,7 +6245,6 @@
       spoiler: [
         'A young man promises his mother he will marry his cousin, but falls for someone else.',
         'A hero is mistaken for someone else at college.',
-        'A Kartik promise.',
       ],
       dialogues: [],
 
@@ -6497,7 +6276,6 @@
       spoiler: [
         'Two brothers who cannot stand each other end up in a war of wits after a ruthless politician enters their lives.',
         'A carefree younger brother and his serious cop brother clash, until a corrupt politician targets their family.',
-        'Lucky and Kill Bill Pandey.',
       ],
       dialogues: [],
 
@@ -6529,7 +6307,6 @@
       spoiler: [
         'A carefree young man falls for a police commissioner\'s daughter, and gets drawn into a kidnapping plot.',
         'A young man is used as a pawn in a fake kidnapping.',
-        'The director\'s first film.',
       ],
       dialogues: [],
 
@@ -6561,7 +6338,6 @@
       spoiler: [
         'A mechanic in Mysore protects a young woman who returns from Australia and is hunted by her father\'s enemies.',
         'A quiet man with a violent past from a lawless town called Mughor.',
-        'A Kannada film by the director who later made a famous gold-mine saga.',
       ],
       dialogues: [],
 
@@ -6593,7 +6369,6 @@
       spoiler: [
         'A man whose face has been reconstructed after a brutal attack returns for revenge against the gangster who nearly killed him.',
         'A man whose face is rebuilt by surgery takes revenge on the gang that killed his girlfriend.',
-        'Satya and Charan.',
       ],
       dialogues: [],
 
@@ -6625,7 +6400,6 @@
       spoiler: [
         'A boy raised by villagers climbs a giant waterfall and falls for a rebel warrior woman. He then discovers he is the son of a king whose kingdom was taken through betrayal.',
         'A boy raised at the foot of a giant waterfall climbs it and learns he belongs to a royal family.',
-        'Shivudu, Avantika and a mother in chains.',
       ],
       dialogues: [],
 
@@ -6657,7 +6431,6 @@
       spoiler: [
         'A scientist who forgets everything in seconds tries to hide his absent-mindedness from his girlfriend and her strict father.',
         'A forgetful man keeps getting into trouble because he cannot remember anything for long.',
-        'Lucky, the forgetful plant scientist.',
       ],
       dialogues: [],
 
@@ -6689,7 +6462,6 @@
       spoiler: [
         'A stuntman pretends to be a police officer to impress his sister\'s in-laws, and ends up fighting a real criminal.',
         'A film stunt double fakes being a cop to protect his family.',
-        'A stuntman named after a martial arts legend.',
       ],
       dialogues: [],
 
@@ -6721,7 +6493,6 @@
       spoiler: [
         'A shopkeeper who loses his shop in an earthquake sues God, and God himself turns up to help him.',
         'An atheist files a court case against God after an earthquake.',
-        'Lord Krishna on a bike.',
       ],
       dialogues: [],
 
@@ -6753,7 +6524,6 @@
       spoiler: [
         'A soldier fighting in the Second World War remembers his love for a girl from a higher caste back home.',
         'A love story in an Indian village, told during a battle in Italy.',
-        'A World War II film with a Telugu soldier.',
       ],
       dialogues: [],
 
@@ -6785,7 +6555,6 @@
       spoiler: [
         'The comfort-loving son of a thrill seeker goes to a village in Bihar and ends up fighting a cruel landlord.',
         'A man obsessed with comfort finds himself in a lawless village.',
-        'The sequel to a thrill seeker\'s story.',
       ],
       dialogues: [],
 
@@ -6817,7 +6586,6 @@
       spoiler: [
         'A man who wakes up from a coma is told he is someone else, and fights to discover his real identity.',
         'A CBI officer\'s identity is wiped out by enemies.',
-        'A Balakrishna action film about identity.',
       ],
       dialogues: [],
 
@@ -6849,7 +6617,6 @@
       spoiler: [
         'A rich businessman from Portugal goes to an Indian village to end a feud between two families.',
         'A man disguises himself to fix a family quarrel.',
-        'A family festival entertainer.',
       ],
       dialogues: [],
 
@@ -6881,7 +6648,6 @@
       spoiler: [
         'A corrupt cop changes after meeting his estranged father and turns on the politician he was working for.',
         'A crooked police officer becomes an honest one.',
-        'The director\'s first film.',
       ],
       dialogues: [],
 
@@ -6913,7 +6679,6 @@
       spoiler: [
         'A young man falls in love three times across his school years, his college life and his working life.',
         'A Malayalam film about a young man\'s three loves at school, college and later life.',
-        'George and Malar miss.',
       ],
       dialogues: [],
 
@@ -6945,7 +6710,6 @@
       spoiler: [
         'A Kakatiya princess raised as a boy becomes queen and fights to keep her kingdom.',
         'A queen disguised as a prince rules Warangal.',
-        'A Kakatiya queen and Gona Ganna Reddy.',
       ],
       dialogues: [],
 
@@ -6977,7 +6741,6 @@
       spoiler: [
         'A rich young man must start again from scratch when his father passes away and a debt that nobody mentioned comes to the surface.',
         'A rich son loses everything after his father\'s death and works as a wedding planner to pay his father\'s debts.',
-        'Viraj Anand, son of Satyamurthy.',
       ],
       dialogues: ['Manam baagunnappudu lekkalu maatlaadi, kashtallo unnappudu viluvalu maatlaadakoodadu.'],
 
@@ -7009,7 +6772,6 @@
       spoiler: [
         'The son of a billionaire gives up his rich life to adopt a poor village, and fights a local politician who wants to keep it down.',
         'A billionaire\'s son adopts his father\'s ancestral village and changes it, facing a local thug.',
-        'Harsha and Devarakota.',
       ],
       dialogues: [],
 
@@ -7041,7 +6803,6 @@
       spoiler: [
         'A man in America who does any job for money gets hired to pose as a girl\'s husband.',
         'A money-minded man takes on a strange assignment.',
-        'Subramanyam, available for anything.',
       ],
       dialogues: [],
 
@@ -7073,7 +6834,6 @@
       spoiler: [
         'A corrupt police officer who takes bribes changes completely after a crime against a girl, and decides to take on the system himself.',
         'A corrupt cop who works for a gangster turns against him after a girl\'s case.',
-        'Daya, the corrupt cop.',
       ],
       dialogues: ['Naa peru Daya... naaku lenide adi.', 'Neeku ego lopala untundemo, naaku naa chuttu Wi-Fi la untundi.', 'Neeku naaku friendship emitira? Nuvvu villain, nenu hero!', 'Username Daya, password Police!'],
 
@@ -7105,7 +6865,6 @@
       spoiler: [
         'A businessman obsessed with success travels to the Himalayas to scatter his friend\'s ashes and finds himself.',
         'A trip to Doodh Kasi changes a man\'s life.',
-        'Rishi and Subbu.',
       ],
       dialogues: [],
 
@@ -7137,7 +6896,6 @@
       spoiler: [
         'A watch mechanic finds a watch that lets him travel through time, while his evil uncle wants it at any cost.',
         'Twin brothers, one a scientist and one a killer, fight over an invention that controls time.',
-        'A watch, a box and the same actor in three roles.',
       ],
       dialogues: [],   // check
 
@@ -7169,7 +6927,6 @@
       spoiler: [
         'A rich girl runs away from her strict mother to spend time with her father\'s family in a village, and falls for her cousin.',
         'A girl discovers her mother has been keeping her away from her own relatives for years, and a cousin holds the key to the feud.',
-        'Anasuya Ramalingam versus Anand Vihari.',
       ],
       dialogues: [],
 
@@ -7201,7 +6958,6 @@
       spoiler: [
         'A soft-hearted cop who cannot see anyone suffer falls for a girl whose family is hunted by a gang.',
         'A police officer known for his kindness helps a girl find her missing father.',
-        'A gentle cop and a lot of crying villains.',
       ],
       dialogues: [],
 
@@ -7233,7 +6989,6 @@
       spoiler: [
         'After his father\'s death, a young man travels across India to find his family\'s lost relatives.',
         'A man goes on a journey to trace seven generations of his family.',
-        'Big family, big festival, big disappointment at the box office.',
       ],
       dialogues: [],
 
@@ -7265,7 +7020,6 @@
       spoiler: [
         'An IPS officer secretly gathers information on the country\'s top criminals and targets the biggest one, a celebrated scientist.',
         'A cop and a brilliant villain play mind games through a hidden bug.',
-        'A cop versus Siddharth Abhimanyu.',
       ],
       dialogues: [],
 
@@ -7297,7 +7051,6 @@
       spoiler: [
         'A supermarket manager turns out to be the head of a powerful business family.',
         'A quiet manager is really a businessman avenging his family.',
-        'The hero\'s 99th film.',
       ],
       dialogues: [],
 
@@ -7329,7 +7082,6 @@
       spoiler: [
         'Two women who meet on a flight discover that their boyfriends look exactly alike, and one of them may be a killer.',
         'A girl suspects her boyfriend\'s lookalike of murder.',
-        'Gautham and Jai, same face.',
       ],
       dialogues: [],
 
@@ -7361,7 +7113,6 @@
       spoiler: [
         'A mechanic who runs a workshop as a family for the poor stands with a young man who loves nature, and the two take on injustice together.',
         'A nature-loving student from Mumbai comes to Hyderabad and takes over a garage that repairs people\'s problems.',
-        'Here, people\'s problems are repaired.',
       ],
       dialogues: ['Balavanthudu balahenudini bhayapetti bathakadam aanavaayithi. Kaani aa balahenudi pakkana kooda oka balam undi.'],
 
@@ -7393,7 +7144,6 @@
       spoiler: [
         'An ageing gangster released after 25 years in a Malaysian jail goes looking for his wife and the men who betrayed him.',
         'A don fights for the rights of Tamil workers in Malaysia.',
-        'A don in a suit in Malaysia, da.',
       ],
       dialogues: [],
 
@@ -7425,7 +7175,6 @@
       spoiler: [
         'A cowardly village boy has to protect three children and his girlfriend from gangsters.',
         'A timid lover takes on gangsters for the first time.',
-        'Krishna, the scared hero.',
       ],
       dialogues: [],
 
@@ -7457,7 +7206,6 @@
       spoiler: [
         'A man returns to meet an old girlfriend who says her daughter is missing, but nobody believes a child ever existed.',
         'A man returns from the US to help his ex-girlfriend find her kidnapped daughter, but everyone says the girl never existed.',
-        'Rishi, Swetha and a missing child.',
       ],
       dialogues: [],
 
@@ -7489,7 +7237,6 @@
       spoiler: [
         'An assistant director tells his new girlfriend about the first love he lost.',
         'A film assistant\'s love story told in flashback.',
-        'Aditya, an AD in love.',
       ],
       dialogues: [],
 
@@ -7521,7 +7268,6 @@
       spoiler: [
         'A son has thirty days to take revenge on the businessman who ruined his dying father.',
         'A clever son plays mind games with a billionaire in London.',
-        'Abhiram and his father\'s last wish.',
       ],
       dialogues: [],
 
@@ -7553,7 +7299,6 @@
       spoiler: [
         'A DJ who keeps getting rejected by girls falls for his childhood friend, who will not say yes.',
         'A young man\'s every proposal fails until he meets Sailaja.',
-        'Hari, the DJ.',
       ],
       dialogues: [],
 
@@ -7585,7 +7330,6 @@
       spoiler: [
         'A rich man who cannot move his body hires a street-smart ex-convict as his caregiver, and the two change each other\'s lives.',
         'A paralysed billionaire hires an ex-convict as his caretaker, and they become best friends.',
-        'Vikram and Seenu.',
       ],
       dialogues: [],
 
@@ -7617,7 +7361,6 @@
       spoiler: [
         'A topper who gives up his career for a street food truck falls into a bumpy friendship that turns into love.',
         'A lazy young man and an ambitious girl get locked in a room during a bride-viewing and later start a food truck together.',
-        'Prashanth and Chitra.',
       ],
       dialogues: ['Naa saavu nenu sastha, neekenduku?'],
 
@@ -7648,8 +7391,6 @@
 
       spoiler: [
         'A group of jobless friends in a small Telangana town spend their days doing nothing, until a cricket match.',
-        'Small-town friends and a cricket tournament.',
-        'The debut of a comedy director.',
       ],
       dialogues: [],
 
@@ -7680,8 +7421,6 @@
 
       spoiler: [
         'A young man falls in love three times, from his school days to adulthood, in the Telugu remake of a Malayalam hit.',
-        'Vikram\'s three loves.',
-        'A Telugu remake with a lecturer named Sitara.',
       ],
       dialogues: [],
 
@@ -7713,7 +7452,6 @@
       spoiler: [
         'The cop Gabbar Singh is posted to a mining town and falls for a princess while fighting a tyrant.',
         'A cop protects a royal girl from a ruthless king.',
-        'The sequel to a famous cop film.',
       ],
       dialogues: [],
 
@@ -7745,7 +7483,6 @@
       spoiler: [
         'A man with a short fuse and a heart of gold takes on a corrupt politician, one fight at a time.',
         'An ex-army man with a short temper fights a ruthless chief minister\'s son.',
-        'Gana, the army man.',
       ],
       dialogues: [],
 
@@ -7777,7 +7514,6 @@
       spoiler: [
         'The ghost of a flirtatious village man comes back to fix his son\'s marriage.',
         'A father\'s spirit helps his shy son save his marriage.',
-        'Bangarraju, the playful ghost.',
       ],
       dialogues: [],
 
@@ -7809,7 +7545,6 @@
       spoiler: [
         'A rich young man hides his background to win a middle-class girl and prove her father wrong.',
         'A man pretends to be poor to win respect.',
-        'A family romance.',
       ],
       dialogues: [],
 
@@ -7841,7 +7576,6 @@
       spoiler: [
         'A taxi driver protects a boy who is the heir to a property worth crores.',
         'A cab driver and a kid on the run.',
-        'Balu, the taxi driver.',
       ],
       dialogues: [],
 
@@ -7873,7 +7607,6 @@
       spoiler: [
         'A short-tempered, brilliant medical student falls for a junior at college. When they are forced apart, he spirals into alcohol and self-destruction.',
         'A brilliant surgeon with uncontrollable anger destroys himself after his girlfriend is married off to someone else.',
-        'Preethi, a bike and a dog named Boss.',
       ],
       dialogues: [],
 
@@ -7905,7 +7638,6 @@
       spoiler: [
         'The crowned prince of Mahishmati is exiled by his own family, and the whole kingdom is left asking one question about the man who stabbed him.',
         'The answer to why the most loyal man in the kingdom stabbed his prince in the back.',
-        'Devasena, a crown and a betrayal.',
       ],
       dialogues: ['Naa maate shaasanam.'],
 
@@ -7937,7 +7669,6 @@
       spoiler: [
         'A Brahmin cook who caters for weddings is secretly a vigilante who punishes criminals.',
         'A priest-like cook leads a double life as an undercover fighter.',
-        'DJ, the cook with a secret.',
       ],
       dialogues: [],
 
@@ -7969,7 +7700,6 @@
       spoiler: [
         'A Telangana village girl with a strong will clashes and bonds with an NRI doctor who has come home for his brother\'s wedding.',
         'A strong-willed village girl and an NRI doctor fall in love at a wedding but cannot agree on where to live.',
-        'Bhanumathi, single piece.',
       ],
       dialogues: ['Bhanumathi... okkate piece.'],
 
@@ -8001,7 +7731,6 @@
       spoiler: [
         'A Satavahana emperor sets out to unite all the kingdoms of India under one rule.',
         'An ancient Telugu king fights battles across the land to end war forever.',
-        'The hero\'s 100th film, set in the 2nd century.',
       ],
       dialogues: [],
 
@@ -8033,7 +7762,6 @@
       spoiler: [
         'Three brothers separated by fate, one of whom is bitter and violent, plan a showdown that ends in a family reunion.',
         'A stammering brother, rejected as a child, grows into a feared don and takes revenge on his twin brothers.',
-        'Jai, Lava and Kusa, all one actor.',
       ],
       dialogues: ['Aa Ravanudini champaalante samudram daatala... ee Ravanudini champaalante samudramantha dhairyam undala?'],
 
@@ -8065,7 +7793,6 @@
       spoiler: [
         'A young man protects a girl who has lost her family in an honour killing.',
         'A man takes on powerful businessmen to save a girl.',
-        'A hero, a heroine and lots of loud action.',
       ],
       dialogues: [],
 
@@ -8097,7 +7824,6 @@
       spoiler: [
         'A kind-hearted village strongman refuses to bow down to anybody, even when it means taking on his own brothers\' enemies.',
         'A village strongman who hates the idea of marriage falls in love and protects his girlfriend\'s family.',
-        'A village strongman and his four brothers.',
       ],
       dialogues: [],
 
@@ -8129,7 +7855,6 @@
       spoiler: [
         'A prisoner who looks identical to a farmer-activist takes his place and fights the corporate land grab that destroyed a village.',
         'A petty criminal takes the place of his lookalike, a farmer leader, to fight a cola company grabbing village land.',
-        'A comeback film, numbered after the star\'s 150th film.',
       ],
       dialogues: [],
 
@@ -8161,7 +7886,6 @@
       spoiler: [
         'A man with obsessive-compulsive disorder about cleanliness falls for a girl from a village.',
         'A neat freak must survive a dusty village to win his girlfriend.',
-        'Anand and his obsession with cleanliness.',
       ],
       dialogues: [],
 
@@ -8193,7 +7917,6 @@
       spoiler: [
         'A man and a woman who loved each other as teenagers meet again years later.',
         'A love story told across three stages of life.',
-        'The director\'s debut before a famous sports drama.',
       ],
       dialogues: [],
 
@@ -8225,7 +7948,6 @@
       spoiler: [
         'A young man who can never make decisions finds himself torn between two girls.',
         'An indecisive man gets engaged and then meets someone else.',
-        'Aravind Krishna can\'t choose.',
       ],
       dialogues: [],
 
@@ -8256,8 +7978,6 @@
 
       spoiler: [
         'A middle-class young man moves in with his brother\'s wife, a transport officer, and protects her from a criminal.',
-        'A brother-in-law becomes a bodyguard.',
-        'MCA.',
       ],
       dialogues: [],
 
@@ -8289,7 +8009,6 @@
       spoiler: [
         'A moneylender goes into politics to win respect for his wife and becomes ruthless along the way.',
         'A man climbs from village sarpanch to chief minister for love.',
-        'Jogendra, the politician.',
       ],
       dialogues: [],
 
@@ -8321,7 +8040,6 @@
       spoiler: [
         'A carefree engineering graduate chases a girl whose father wants a police officer as her husband.',
         'A local boy competes with a cop to win a girl.',
-        'Babu, the local.',
       ],
       dialogues: [],
 
@@ -8353,7 +8071,6 @@
       spoiler: [
         'A man stays with his ex-girlfriend and her husband in America to prove she still loves him.',
         'An old flame visits a married couple for ten days.',
-        'Uma, Pallavi and Arun.',
       ],
       dialogues: [],
 
@@ -8385,7 +8102,6 @@
       spoiler: [
         'A Hyderabad rowdy named Theda Singh is hired by the police to kill a dreaded international gangster.',
         'A crazy man is recruited for an underworld mission in Portugal.',
-        'Theda Singh.',
       ],
       dialogues: [],
 
@@ -8416,8 +8132,6 @@
 
       spoiler: [
         'A blind man joins the police on a secret mission to protect a girl from a gangster.',
-        'A visually impaired hero becomes a bodyguard.',
-        'Raja, the blind cop.',
       ],
       dialogues: [],
 
@@ -8449,7 +8163,6 @@
       spoiler: [
         'A young man falls for a village girl whose father and his father were once friends turned enemies.',
         'Two families with an old fight and a new romance.',
-        'Shiva and Bhramaramba.',
       ],
       dialogues: [],
 
@@ -8480,8 +8193,6 @@
 
       spoiler: [
         'A police officer goes to Australia to bring back a criminal who dumped toxic waste in India.',
-        'The roaring cop takes his fight abroad.',
-        'The third part of a cop series.',
       ],
       dialogues: [],
 
@@ -8512,8 +8223,6 @@
 
       spoiler: [
         'An intelligence officer who taps phone calls to stop crimes faces a serial killer who enjoys the sound of crying.',
-        'A phone-tapping agent and a psycho.',
-        'Shiva, the spy.',
       ],
       dialogues: [],
 
@@ -8545,7 +8254,6 @@
       spoiler: [
         'A young man becomes a horse racer to win back his estranged father and a girl.',
         'A son races horses to reconcile with his father.',
-        'Horse racing in Telugu.',
       ],
       dialogues: [],
 
@@ -8577,7 +8285,6 @@
       spoiler: [
         'Mobile phones start flying out of people\'s hands across a city, and a scientist revives his old robot to fight the force behind it.',
         'A bird lover\'s angry spirit takes revenge on the mobile industry, and only a dismantled robot can stop him.',
-        'Cell towers, birds and a robot sequel.',
       ],
       dialogues: [],
 
@@ -8609,7 +8316,6 @@
       spoiler: [
         'The secret son of a business tycoon joins the company in disguise to find who killed his father and brother.',
         'A man raised away from his rich family takes a job in their company under a false name.',
-        'Abhishikta Bhargava, a company boardroom and Kodaka Koteswara Rao.',
       ],
       dialogues: [],
 
@@ -8641,7 +8347,6 @@
       spoiler: [
         'After his father is killed, the son of a faction leader tries to end a bloody family war in Rayalaseema.',
         'A man from a faction family moves to the city to learn how to end violence without fighting.',
-        'Veera Raghava, Aravinda and the Basi Reddy feud.',
       ],
       dialogues: ['Kantapaddava kanikaristaanemo, ventapaddava narikestha.'],
 
@@ -8673,7 +8378,6 @@
       spoiler: [
         'Several strange stories unfold in one restaurant on one evening, and all of them are connected in a shocking way.',
         'A talking fish and tree, a time traveller and a magician share the same restaurant.',
-        'An anthology with a twist that ties every character together.',
       ],
       dialogues: [],
 
@@ -8705,7 +8409,6 @@
       spoiler: [
         'A young man studying abroad returns home after his father\'s death and unexpectedly becomes chief minister, determined to run the state by his own honest rules.',
         'An Oxford graduate who becomes chief minister by accident tries to clean up the state his father ran.',
-        'Bharat, the young CM, and his promise.',
       ],
       dialogues: [],
 
@@ -8737,7 +8440,6 @@
       spoiler: [
         'A don hiding from the police becomes friends with a kind doctor who treats him.',
         'A doctor who cannot refuse a patient ends up treating a dreaded gangster.',
-        'Deva and Das.',
       ],
       dialogues: [],
 
@@ -8769,7 +8471,6 @@
       spoiler: [
         'Four friends who once dreamed of making short films go on a drunken trip to Goa and rediscover their friendship.',
         'Old friends get together for a bachelor party and end up shooting a short film.',
-        'Goa, four friends and a camera.',
       ],
       dialogues: [],
 
@@ -8801,7 +8502,6 @@
       spoiler: [
         'A mild-mannered lecturer kisses a sleeping stranger on a bus ride. When they meet again, her family turns out to be the one his sister is about to marry into.',
         'A lecturer who accidentally kisses a sleeping woman on a bus spends the film trying to win her forgiveness.',
-        'Vijay Govind and Geetha, Madam Madam.',
       ],
       dialogues: [],
 
@@ -8833,7 +8533,6 @@
       spoiler: [
         'A young man joins a secret agency for a sacred mission, and soon learns that the real enemy may be among his own.',
         'A spy-in-training is framed for killing his own team and has to clear his name.',
-        'Agent 116 and Trinetra.',
       ],
       dialogues: [],
 
@@ -8865,7 +8564,6 @@
       spoiler: [
         'The leader of a Mumbai slum stands against a politician who wants to take over the land.',
         'A slum\'s protector fights for the land his people live on.',
-        'The protector of Dharavi.',
       ],
       dialogues: [],
 
@@ -8897,7 +8595,6 @@
       spoiler: [
         'A boy from the streets of Bombay grows into a feared gangster and enters gold mines to kill their ruler.',
         'Rocky goes undercover as a slave in the Kolar mines.',
-        'Rocky Bhai\'s first chapter.',
       ],
       dialogues: [],
 
@@ -8929,7 +8626,6 @@
       spoiler: [
         'A journalist traces the life of a legendary actress, from her days as a child artist to being the biggest star in the industry, and her fall.',
         'Two reporters dig into the life of a legendary actress who rose to the top and lost everything.',
-        'Savitri, the great actress.',
       ],
       dialogues: [],
 
@@ -8961,7 +8657,6 @@
       spoiler: [
         'A soldier with an uncontrollable temper must get a psychologist\'s approval to return to the border.',
         'An angry army man has to control himself for 21 days.',
-        'Surya, the soldier.',
       ],
       dialogues: [],
 
@@ -8993,7 +8688,6 @@
       spoiler: [
         'A footballer and a medical student fall in love in Kolkata, and an earthquake in Nepal changes everything.',
         'Lovers separated by a natural disaster meet again.',
-        'Surya and Vaishali.',
       ],
       dialogues: [],
 
@@ -9025,7 +8719,6 @@
       spoiler: [
         'In a 1980s village, a hard-of-hearing young man who runs a water pump for farmers is caught between his elder brother and the tyrannical village president.',
         'A partly deaf young man in a 1980s village helps his brother fight the village president in an election.',
-        'Chitti Babu, sound engineer.',
       ],
       dialogues: [],
 
@@ -9057,7 +8750,6 @@
       spoiler: [
         'A young man waits for the girl who left him, not knowing the shocking truth about her.',
         'A village boy, a bike and a girl who used him.',
-        'Shiva and Indu, with a twist.',
       ],
       dialogues: [],
 
@@ -9089,7 +8781,6 @@
       spoiler: [
         'A children\'s book illustrator who dislikes films falls for a film star who shoots at his house.',
         'A movie shoot in a house brings an artist and an actress together.',
-        'Vijay and Sameera.',
       ],
       dialogues: [],
 
@@ -9121,7 +8812,6 @@
       spoiler: [
         'A man whose left hand has a mind of its own, because of a twin he absorbed before birth, fights a psycho who kidnaps his niece.',
         'A hero with vanishing twin syndrome battles a masked villain.',
-        'A left hand that acts on its own.',
       ],
       dialogues: [],
 
@@ -9153,7 +8843,6 @@
       spoiler: [
         'A young man buys a second-hand car and soon learns that it comes with a ghost who has something to settle.',
         'A cab driver discovers his second-hand car is haunted and drives itself.',
-        'Shiva and a ghost car.',
       ],
       dialogues: [],
 
@@ -9185,7 +8874,6 @@
       spoiler: [
         'A short-tempered young man and a girl fall in love on a train, break up and meet again years later in London.',
         'A love story across a train, a college and London.',
-        'Aditya and Varsha.',
       ],
       dialogues: [],
 
@@ -9217,7 +8905,6 @@
       spoiler: [
         'A businessman in Puducherry hides his past as a fierce police officer.',
         'A cop leaves the force and returns to finish a case.',
-        'A Ravi Teja action film.',
       ],
       dialogues: [],
 
@@ -9249,7 +8936,6 @@
       spoiler: [
         'A small-time detective in Nellore stumbles onto a case of unclaimed dead bodies that is much bigger than he thought.',
         'A self-styled private eye who mostly solves petty cases gets framed while investigating a series of deaths near a railway track.',
-        'A detective agency named FBI in Nellore.',
       ],
       dialogues: [],
 
@@ -9281,7 +8967,6 @@
       spoiler: [
         'Three friends find themselves in a film school in a series of wacky events when a kidnapping makes them heroes.',
         'Three college failures plan a fake kidnapping to help a friend, while a film director narrates a story that mirrors theirs.',
-        'R3 batch, and a director looking for a heroine.',
       ],
       dialogues: [],
 
@@ -9313,7 +8998,6 @@
       spoiler: [
         'A young man whose every invention and relationship fails struggles to find success.',
         'An engineer named Vijay keeps failing until he finally believes in himself.',
-        'A film about failure, with a hero called Vijay Krishna.',
       ],
       dialogues: [],
 
@@ -9345,7 +9029,6 @@
       spoiler: [
         'A student leader with a fiery temper has to help the woman he loves recover after a traumatic experience.',
         'A student leader with anger issues and a state-level cricketer fall in love, until she faces harassment.',
-        'Bobby and Lilly.',
       ],
       dialogues: [],
 
@@ -9377,7 +9060,6 @@
       spoiler: [
         'A police officer investigates a rape, and the more he digs, the less the story matches what the witness says happened.',
         'A corrupt cop interrogates a woman accused of killing a senior police officer, and her story keeps changing.',
-        'A night-long interrogation with a twist.',
       ],
       dialogues: [],
 
@@ -9409,7 +9091,6 @@
       spoiler: [
         'Two brothers-in-law who are tired of their wives\' demands try to run away from them and cause even more trouble.',
         'Two henpecked men leave their wives and go to Europe, hoping to make them realise their value.',
-        'Venky, Varun and two sisters.',
       ],
       dialogues: ['That is mahalakshmi.'],   // check
 
@@ -9441,7 +9122,6 @@
       spoiler: [
         'A young filmmaker wants to make a film about a real gangster and gets close to the dangerous man himself.',
         'A director asks a feared rowdy to act in his film.',
-        'Ganesh, a gangster who becomes a movie star.',
       ],
       dialogues: [],
 
@@ -9473,7 +9153,6 @@
       spoiler: [
         'Five women of different ages hire a revenge-thriller writer to help them find the man who killed someone they loved.',
         'A novelist who copies Hollywood plots leads a group of women on a revenge mission.',
-        'Pencil Parthasaradhi and his gang of five ladies.',
       ],
       dialogues: ['Cheyyi choosava entha rough ga undo... rough aadinchestha.'],
 
@@ -9505,7 +9184,6 @@
       spoiler: [
         'A Hyderabad hitman gets a dead cop\'s memories implanted in his brain.',
         'A street-smart killer starts remembering another man\'s life.',
-        'Double dimaak.',
       ],
       dialogues: [],
 
@@ -9537,7 +9215,6 @@
       spoiler: [
         'A talented cricketer who quit the game after failure decides to return in his late thirties to give his young son the one thing he asked for.',
         'A failed cricketer returns to the game at 36 to buy his son an Indian team shirt.',
-        'Arjun and his son Nani.',
       ],
       dialogues: [],
 
@@ -9569,7 +9246,6 @@
       spoiler: [
         'A Hindi remake of a Telugu cult hit about an angry surgeon who self-destructs after a break-up.',
         'A doctor with a temper spirals after his girlfriend\'s family rejects him.',
-        'The Hindi version of a Telugu doctor\'s love story.',
       ],
       dialogues: [],
 
@@ -9601,7 +9277,6 @@
       spoiler: [
         'A police officer investigates a murder in a small town in 1983 that is linked to its powerful family.',
         'A cop arrives in Kollapur to solve a mystery death.',
-        'A period murder mystery.',
       ],
       dialogues: [],
 
@@ -9633,7 +9308,6 @@
       spoiler: [
         'A billionaire on top of the world returns to his village and has to face a friend he left behind and a cause he forgot.',
         'A billionaire CEO returns to his college friend\'s village to help farmers and pay back an old debt.',
-        'Rishi Kumar and weekend farming.',
       ],
       dialogues: [],
 
@@ -9665,7 +9339,6 @@
       spoiler: [
         'A cricketer whose life crumbled after a lost love slowly rebuilds when a young woman steps in and teaches him how to care again.',
         'A failed cricketer who drinks to forget his first love is married to a woman who loves him silently.',
-        'Poorna and Sravani.',
       ],
       dialogues: [],
 
@@ -9696,8 +9369,6 @@
 
       spoiler: [
         'A playboy in Portugal hires a woman to pretend to be his fiancée to stop his family pushing him to marry.',
-        'A fake fiancée plan goes wrong.',
-        'A middle-aged playboy in Lisbon.',
       ],
       dialogues: [],
 
@@ -9729,7 +9400,6 @@
       spoiler: [
         'A rookie delivery agent is dragged into a messy murder case with his friend in a night of dark humour.',
         'A courier delivery boy who steals small amounts from customers gets trapped at a murder scene.',
-        'Babu Mohan and the 6 a.m. delivery.',
       ],
       dialogues: [],
 
@@ -9761,7 +9431,6 @@
       spoiler: [
         'A flirt falls for a girl who dislikes him, and finds out what real love means.',
         'A playboy in London has to prove he can commit.',
-        'A romance set between London and India.',
       ],
       dialogues: [],
 
@@ -9793,7 +9462,6 @@
       spoiler: [
         'The life of a legendary actor, from a government clerk to the biggest film star of Telugu cinema.',
         'A son plays his own father, the screen\'s Lord Krishna.',
-        'The first part of a biopic about a star who became chief minister.',
       ],
       dialogues: [],
 
@@ -9825,7 +9493,6 @@
       spoiler: [
         'A film star starts his own party and becomes chief minister within nine months.',
         'A superstar\'s political journey and his wife\'s illness.',
-        'The second part of a star\'s biopic.',
       ],
       dialogues: [],
 
@@ -9857,7 +9524,6 @@
       spoiler: [
         'A hostel warden in a hill station hides a violent past connected to a powerful family in Uttar Pradesh.',
         'A warden protects a young couple from a gangster.',
-        'Kaali, the warden.',
       ],
       dialogues: [],
 
@@ -9889,7 +9555,6 @@
       spoiler: [
         'A grandson makes his dying grandfather\'s last days happy, while his busy family stays abroad.',
         'A young man brings his scattered family home for his grandfather.',
-        'Every day is a festival.',
       ],
       dialogues: [],
 
@@ -9921,7 +9586,6 @@
       spoiler: [
         'An undercover cop and a master thief in Mumbai end up in the middle of a deadly heist in a city ruled by crime lords.',
         'An undercover officer chases a big heist in a city controlled by a crime syndicate called Roy Group.',
-        'Waaji city and a black box.',
       ],
       dialogues: [],
 
@@ -9953,7 +9617,6 @@
       spoiler: [
         'A chieftain of Rayalaseema rises against the British, long before the freedom struggle became a national movement.',
         'A Rayalaseema chieftain leads one of the first revolts against the British East India Company.',
-        'Uyyalawada Narasimha Reddy.',
       ],
       dialogues: [],
 
@@ -9984,8 +9647,6 @@
 
       spoiler: [
         'An uncle raises his nephew against an astrologer\'s warning that one of them will die because of the other.',
-        'An uncle and nephew, and a horoscope.',
-        'Real-life uncle and nephew on screen.',
       ],
       dialogues: [],
 
@@ -10016,8 +9677,6 @@
 
       spoiler: [
         'An orphan raised by four brothers protects them from a ruthless warlord in Bihar.',
-        'A brother\'s fight across states.',
-        'Rama and his brothers.',
       ],
       dialogues: [],
 
@@ -10052,7 +9711,6 @@
       spoiler: [
         'A man raised by a strict, stingy father takes a job in a rich businessman\'s company, unaware that this is the family he was actually born into.',
         'A middle-class man finds out he was swapped at birth with a rich man\'s son, and quietly goes to work for his real family.',
-        'Bantu, Valmiki and a swapped baby.',
       ],
       dialogues: [],
 
@@ -10084,7 +9742,6 @@
       spoiler: [
         'A single young man suddenly finds himself named the head of a big organic farming company.',
         'A jobless meme-maker becomes the CEO of a company and fights a rival who uses chemicals.',
-        'A single forever guy and organic farming.',
       ],
       dialogues: [],
 
@@ -10116,7 +9773,6 @@
       spoiler: [
         'A dark-skinned engineering student and a fair girl fall in love, but her brother, a police officer, will not allow it.',
         'A love story in the 1990s that is broken by prejudice about skin colour.',
-        'A tea-stall boy and a sad ending.',
       ],
       dialogues: [],
 
@@ -10148,7 +9804,6 @@
       spoiler: [
         'A tough police commissioner in Mumbai takes on a drug lord, and loses someone close to him.',
         'An encounter specialist goes after a drug gang that targets his daughter.',
-        'Aditya Arunasalam, police commissioner.',
       ],
       dialogues: [],
 
@@ -10180,7 +9835,6 @@
       spoiler: [
         'A dead man is brought back to life by scientists, but has no memory of his past as a gangster.',
         'A scientific experiment revives a man frozen in the 1980s.',
-        'A 1980s disco gangster in the present day.',
       ],
       dialogues: [],
 
@@ -10212,7 +9866,6 @@
       spoiler: [
         'A cop with a traumatic past investigates the disappearance of a young woman, while his own girlfriend goes missing.',
         'A Homicide Intervention Team officer hunts for two missing women.',
-        'Vikram Rudraraju, the first case.',
       ],
       dialogues: [],
 
@@ -10244,7 +9897,6 @@
       spoiler: [
         'An army major on a mission to escort a family ends up taking on a ruthless businessman across a long train ride.',
         'An army major delivers news of a soldier\'s injury to his family in Kurnool and stays to protect them from a minister.',
-        'Major Ajay Krishna on a train.',
       ],
       dialogues: [],
 
@@ -10276,7 +9928,6 @@
       spoiler: [
         'A young man who preaches that staying single is best changes his mind when he meets a girl.',
         'A man who leads a singles club falls in love.',
-        'Virat and his rules.',
       ],
       dialogues: [],
 
@@ -10308,7 +9959,6 @@
       spoiler: [
         'A killer challenges a celebrated cop to stop him before he murders his next target.',
         'A cop and a killer play cat and mouse.',
-        'Nani as the villain.',
       ],
       dialogues: ['Sollaapu... dammunte nannu aapu.'],
 
@@ -10340,7 +9990,6 @@
       spoiler: [
         'A man\'s love life through four chapters is told through his heartbreak and the women who changed him.',
         'A writer imagines his love life through several stories after his girlfriend leaves him.',
-        'Gautham and four women.',
       ],
       dialogues: [],
 
@@ -10372,7 +10021,6 @@
       spoiler: [
         'A fearless Aghora steps in to protect a girl and a district from a corrupt mining mafia, and he has a very different twin brother.',
         'A farmer who fights a mining mafia gets help from his twin brother, an Aghora who lives among the dead in Kashi.',
-        'Two Balayyas, one with a trident.',
       ],
       dialogues: [],
 
@@ -10404,7 +10052,6 @@
       spoiler: [
         'Three innocent friends from a small town move to Hyderabad and get arrested for an attempt on a minister\'s life.',
         'Three clueless men from Jogipet end up in a big political case.',
-        'Jogipet\'s gems in a Hyderabad jail.',
       ],
       dialogues: [],
 
@@ -10436,7 +10083,6 @@
       spoiler: [
         'A shepherd boy who failed to get a job takes his family\'s sheep to the forest and learns lessons for life.',
         'A graduate goes with his grandfather\'s flock into a forest full of danger.',
-        'A shepherd, a forest and a civil services exam.',
       ],
       dialogues: [],
 
@@ -10468,7 +10114,6 @@
       spoiler: [
         'A tough police officer in Ongole takes on a dreaded gangster and his network.',
         'A cop and a criminal clash over a small incident that turns into a war.',
-        'Pothuraju Veera Shankar.',
       ],
       dialogues: [],
 
@@ -10500,7 +10145,6 @@
       spoiler: [
         'A boy from an oppressed community and a girl from a rich family find music in each other and fight for the right to be together.',
         'A dancer from a lower caste and a girl from a dominant caste run a dance studio and face caste prejudice and a secret.',
-        'Revanth and Mounika\'s zumba studio.',
       ],
       dialogues: [],
 
@@ -10532,7 +10176,6 @@
       spoiler: [
         'Two friends in Vizag go separate ways and one becomes a smuggler.',
         'A friendship broken by crime and love by the sea.',
-        'A Vizag crime drama.',
       ],
       dialogues: [],
 
@@ -10564,7 +10207,6 @@
       spoiler: [
         'A farmer who has avoided violence for years has to protect his son, who killed a landlord.',
         'A peaceful father goes on the run with his family.',
-        'A remake of a Tamil caste drama.',
       ],
       dialogues: [],
 
@@ -10596,7 +10238,6 @@
       spoiler: [
         'A daily-wage labourer in the forests of Seshachalam rises through the red sandalwood smuggling trade on sheer nerve, chasing the respect his family name never had.',
         'A coolie in the red sandalwood trade rises to the top of a smuggling syndicate.',
-        'Pushpa ante flower anukuntiva, fire.',
       ],
       dialogues: ['Pushpa ante flower anukuntunnara? Fire!'],
 
@@ -10628,7 +10269,6 @@
       spoiler: [
         'A boy who has always found his neighbour girl annoying is forced to marry her.',
         'Childhood rivals end up as husband and wife.',
-        'Arjun and Anu.',
       ],
       dialogues: [],
 
@@ -10660,7 +10300,6 @@
       spoiler: [
         'A modern filmmaker is accused of plagiarism, and the story of an earlier writer bleeds into his own life.',
         'A young filmmaker accused of copying a famous writer\'s works finds out about his previous life in 1970s Bengal.',
-        'Vasu and Shyam, a devadasi named Rosie.',
       ],
       dialogues: [],
 
@@ -10692,7 +10331,6 @@
       spoiler: [
         'A young man becomes a village officer to settle a land dispute that has broken his family.',
         'A son tries to reunite his family after his father\'s death.',
-        'Jagadish, who always tucks his shirt in.',
       ],
       dialogues: [],
 
@@ -10724,7 +10362,6 @@
       spoiler: [
         'A fisherman\'s son falls for the daughter of a proud village head who will do anything to protect his honour.',
         'A love story in a coastal village and a brutal punishment.',
-        'Aasi and Bebamma.',
       ],
       dialogues: [],
 
@@ -10756,7 +10393,6 @@
       spoiler: [
         'Three girls are accused of a crime, and a retired lawyer who has stayed silent for years returns to court to defend them.',
         'A suspended lawyer fights in court for three young women falsely accused after they resisted assault.',
-        'Satyadev, the lawyer. Remake of Pink.',
       ],
       dialogues: [],
 
@@ -10787,8 +10423,6 @@
 
       spoiler: [
         'A group of friends visit a village in Rayalaseema just as a zombie outbreak hits.',
-        'Zombies in a faction village.',
-        'The first Telugu zombie film.',
       ],
       dialogues: [],
 
@@ -10820,7 +10454,6 @@
       spoiler: [
         'A former Naxalite arrives at a temple town to protect its people from a corrupt businessman who wants the land.',
         'A comrade comes to Dharmasthali to finish the fight that a young man named Siddha started.',
-        'Father and son together on screen, in a temple town.',
       ],
       dialogues: [],
 
@@ -10852,7 +10485,6 @@
       spoiler: [
         'A Brahmin boy and a Christian girl invent one lie after another to get their conservative families to agree to their marriage.',
         'A man whose family controls every part of his life tells a huge lie to marry the girl he loves.',
-        'Sundar Prasad and Leela Thomas, and a story told out of order.',
       ],
       dialogues: [],
 
@@ -10884,7 +10516,6 @@
       spoiler: [
         'The spirit of a playful grandfather comes back from heaven to help his grandson win over a girl and save the village temple.',
         'A ghost grandfather and his flirtatious grandson team up against villagers who want the temple\'s treasure.',
-        'The sequel to Soggade Chinni Nayana.',
       ],
       dialogues: [],
 
@@ -10916,7 +10547,6 @@
       spoiler: [
         'A former spy is trapped inside a shopping mall that terrorists have taken over.',
         'An ex-RAW agent on a security job fights hostage-takers from inside a mall.',
-        'Arabic Kuthu and a mall siege.',
       ],
       dialogues: [],
 
@@ -10948,7 +10578,6 @@
       spoiler: [
         'An honest cop and a retired army havildar with pride as big as the other\'s go head to head over a small mistake.',
         'A forest cop and a retired army man fall into an ego war over a minor arrest.',
-        'Bheemla versus Daniel Shekar.',
       ],
       dialogues: [],
 
@@ -10980,7 +10609,6 @@
       spoiler: [
         'A cruel ancient king is thrown into the present day by a magic mirror and learns humility.',
         'A tyrant from 500 BC lands in modern Hyderabad, where his treasure is being hunted.',
-        'A king, a mirror and time travel.',
       ],
       dialogues: [],
 
@@ -11012,7 +10640,6 @@
       spoiler: [
         'Two lookalikes, one a jobless young man and one a company heir, are mixed up while a businessman tries to grab a company.',
         'A girl loves one lookalike, while a company needs the other.',
-        'Swami and Anand, and a song called Jinthaak.',
       ],
       dialogues: [],
 
@@ -11044,7 +10671,6 @@
       spoiler: [
         'A local DJ with a big mouth falls for a mysterious singer and gets dragged into a murder.',
         'A small-time DJ helps a girl hide a body and keeps lying to the police.',
-        'Tillu, Radhika and a dead body.',
       ],
       dialogues: [],
 
@@ -11076,7 +10702,6 @@
       spoiler: [
         'Two men who need money pose as the long-lost son of a rich businessman.',
         'A man with night blindness and a man who stammers chase a fortune.',
-        'The sequel to a fun-and-frustration comedy.',
       ],
       dialogues: [],
 
@@ -11108,7 +10733,6 @@
       spoiler: [
         'After a chief minister\'s death, a mysterious man returns to stop the CM\'s son-in-law from grabbing power.',
         'A shadowy figure with a big network protects the political party of his late father.',
-        'A remake of a Malayalam political thriller.',
       ],
       dialogues: [],
 
@@ -11140,7 +10764,6 @@
       spoiler: [
         'A casual cop in Vizag hunts a serial killer who leaves behind bodies made from different women.',
         'A laid-back officer faces a killer who builds one body out of many.',
-        'Krishna Dev, the second case.',
       ],
       dialogues: [],
 
@@ -11171,8 +10794,6 @@
 
       spoiler: [
         'A doctor goes on a hunt across India for an ancient anklet of Lord Krishna that holds a great secret.',
-        'Dwarka, a secret society and Krishna\'s anklet.',
-        'The sequel to a temple mystery.',
       ],
       dialogues: [],
 
@@ -11203,8 +10824,6 @@
 
       spoiler: [
         'The ruler of the gold fields fights a dreaded warrior and the Prime Minister of India.',
-        'Rocky\'s empire faces Adheera.',
-        'Rocky Bhai\'s second chapter.',
       ],
       dialogues: [],
 
@@ -11236,7 +10855,6 @@
       spoiler: [
         'A tea-seller\'s son from Mumbai with a stammer goes after a place in the MMA ring, guided by his determined mother.',
         'A stammering fighter from a chaiwala family trains to become a mixed martial arts champion.',
-        'Half lion, half tiger.',
       ],
       dialogues: [],
 
@@ -11268,7 +10886,6 @@
       spoiler: [
         'The true story of an army commando who gave his life saving hostages during the 2008 attacks on Mumbai hotels.',
         'The life of Sandeep Unnikrishnan, from his childhood dream of joining the army to the hotel siege where he died.',
-        'A commando in the Taj hotel.',
       ],
       dialogues: [],
 
@@ -11300,7 +10917,6 @@
       spoiler: [
         'A school teacher in a village falls for a British woman, and the villagers turn it into a patriotic fight.',
         'An Indian teacher and a British girl cause a village war.',
-        'A bilingual comedy.',
       ],
       dialogues: [],
 
@@ -11332,7 +10948,6 @@
       spoiler: [
         'A palmist who has never believed in love meets a doctor on a trip to Italy, where his own predictions fall apart.',
         'A famous palmist who can read anyone\'s future falls for a doctor whose palm says she will die soon.',
-        'Vikramaditya and Prerana in Italy.',
       ],
       dialogues: [],
 
@@ -11364,7 +10979,6 @@
       spoiler: [
         'Two revolutionaries in British India become the closest of friends without knowing that each has a secret mission that will put them on opposite sides.',
         'A tribal man trying to rescue a girl and a police officer hunting him become best friends.',
-        'Bheem and Ram, fire and water.',
       ],
       dialogues: [],
 
@@ -11396,7 +11010,6 @@
       spoiler: [
         'A moneylender in America goes to India to recover a loan from a powerful businessman.',
         'A man chases a debt and uncovers a bank scam.',
-        'Mahi, the moneylender.',
       ],
       dialogues: [],
 
@@ -11428,7 +11041,6 @@
       spoiler: [
         'A young woman sets out to deliver a soldier\'s letters, written decades ago, to the person they were meant for.',
         'An orphan soldier receives love letters from a woman he has never met, and sets out to find her.',
-        'Lieutenant Ram and Sita Mahalakshmi.',
       ],
       dialogues: [],
 
@@ -11460,7 +11072,6 @@
       spoiler: [
         'A prince goes into exile with his wife and brother, and a demon king steals her away across the sea.',
         'An exiled prince crosses the sea with an army to rescue his wife from a ten-headed king.',
-        'A big-budget Ramayana in 3D.',
       ],
       dialogues: [],
 
@@ -11492,7 +11103,6 @@
       spoiler: [
         'A reckless young man desperate to join RAW is recruited by a tough chief for a secret mission against a rogue spy.',
         'A wannabe spy proves himself to a chief who keeps rejecting him.',
-        'A spy film that was a big box-office disappointment.',
       ],
       dialogues: [],
 
@@ -11524,7 +11134,6 @@
       spoiler: [
         'A son obsessed with his distant billionaire father goes on a bloody rampage after an attempt on his father\'s life.',
         'A man\'s toxic love for his father turns him into a killer, and a mute enemy waits for him.',
-        'A Hindi blockbuster by the director of a famous Telugu cult hit.',
       ],
       dialogues: [],
 
@@ -11556,7 +11165,6 @@
       spoiler: [
         'A girl from a slum changes after she joins an engineering college, leaving her school sweetheart, an auto driver, heartbroken.',
         'A love triangle between an auto driver, a college girl and her rich classmate.',
-        'Ammayi from the basti, and a viral sad song.',
       ],
       dialogues: [],
 
@@ -11588,7 +11196,6 @@
       spoiler: [
         'A tough ex-convict makes a promise to a dying friend and trains the man\'s daughter to be fearless.',
         'A former prisoner raises his friend\'s daughter and trains her to join the army.',
-        'Nelakondapalli\'s tough man and Vijji papa.',
       ],
       dialogues: [],
 
@@ -11620,7 +11227,6 @@
       spoiler: [
         'A taxi driver in Kolkata hunts a gang that kidnaps girls, to protect his sister.',
         'A brother and sister move to Kolkata, where he hides a violent past.',
-        'A remake of a Tamil hit about a taxi driver.',
       ],
       dialogues: [],
 
@@ -11652,7 +11258,6 @@
       spoiler: [
         'A busy young man who dies in an accident is given 90 more days to live, with Time itself watching over him.',
         'Time takes human form to teach a selfish man what really matters.',
-        'A remake of a Tamil fantasy film.',
       ],
       dialogues: [],
 
@@ -11684,7 +11289,6 @@
       spoiler: [
         'In a coal-mining village, a man and his two best friends see their lives turn upside down because of love, betrayal and the local bar.',
         'A drunkard in a coal village keeps a secret about his best friend\'s love that changes all their lives.',
-        'Dharani, Vennela and Suri in Veerlapally.',
       ],
       dialogues: [],
 
@@ -11716,7 +11320,6 @@
       spoiler: [
         'A father tells his curious young daughter a bedtime love story every night, and the girl in that story turns out to be real.',
         'A photographer\'s daughter keeps asking for her mother\'s story, and a stranger who befriends them turns out to be part of it.',
-        'Viraj, Mahi and a dog named Pluto.',
       ],
       dialogues: [],
 
@@ -11748,7 +11351,6 @@
       spoiler: [
         'A retired prison warden with a calm life turns lethal when his son goes missing in a case with a ruthless smuggling ring.',
         'A retired prison warden turns ruthless to hunt the gang behind his police officer son\'s disappearance.',
-        'Tiger Muthuvel Pandian and Kaavaalaa.',
       ],
       dialogues: [],
 
@@ -11779,8 +11381,6 @@
 
       spoiler: [
         'A government employee posted in Kashmir falls for a girl, but their families, one atheist and one religious, clash.',
-        'An atheist\'s son marries a priest\'s daughter.',
-        'Viplav and Aradhya.',
       ],
       dialogues: [],
 
@@ -11812,7 +11412,6 @@
       spoiler: [
         'A peaceful cafe owner in Himachal whose past catches up with him when a pair of gangsters come to claim him.',
         'A café owner in Himachal is mistaken for a gangster\'s long-lost son, and his violent past may be real.',
-        'Parthiban or Leo Das?',
       ],
       dialogues: [],
 
@@ -11843,8 +11442,6 @@
 
       spoiler: [
         'Three engineering students have a crazy four years of college, with love and lots of fights.',
-        'Manoj, Ashok and Damodar\'s college life.',
-        'A college comedy.',
       ],
       dialogues: [],
 
@@ -11876,7 +11473,6 @@
       spoiler: [
         'Every Tuesday someone in a village dies after their names are written on a wall, and a woman shunned by villagers holds the secret.',
         'Mysterious deaths on Tuesdays in a 1990s village.',
-        'A village thriller named after a day of the week.',
       ],
       dialogues: [],
 
@@ -11908,7 +11504,6 @@
       spoiler: [
         'Two childhood friends grow up apart. One of them becomes the most feared protector of a lawless fortress city when the other is in danger.',
         'A quiet mechanic in Assam returns to the violent city of Khansaar to protect his childhood friend.',
-        'Deva and Varadha in Khansaar.',
       ],
       dialogues: [],
 
@@ -11939,8 +11534,6 @@
 
       spoiler: [
         'A forest girl marries a king in secret, and a sage\'s curse makes him forget her.',
-        'Shakuntala and King Dushyanta.',
-        'A Kalidasa classic on screen.',
       ],
       dialogues: [],
 
@@ -11972,7 +11565,6 @@
       spoiler: [
         'A junior lecturer posted to a poor village school fights against the privatisation of education.',
         'A teacher inspires village students to pass exams despite threats.',
-        'Bala Gangadhar Tilak, the lecturer.',
       ],
       dialogues: [],
 
@@ -12003,8 +11595,6 @@
 
       spoiler: [
         'The story of a famous thief from Stuartpuram who robbed the rich in the 1970s.',
-        'A notorious robber who became a legend.',
-        'Based on a real thief.',
       ],
       dialogues: [],
 
@@ -12036,7 +11626,6 @@
       spoiler: [
         'The youngest son of a rich businessman, who was thrown out, returns to hold his family and company together.',
         'A son becomes heir to his father\'s business empire.',
-        'Varisu in Telugu.',
       ],
       dialogues: [],
 
@@ -12068,7 +11657,6 @@
       spoiler: [
         'A powerful faction leader in Rayalaseema is away, and the story of what he left behind slowly comes to light.',
         'A man living in Istanbul finds out about his father, a Rayalaseema leader, and his family\'s enemies.',
-        'Father and son, both Balakrishna.',
       ],
       dialogues: [],
 
@@ -12100,7 +11688,6 @@
       spoiler: [
         'Mysterious deaths strike a village in the 1990s, and a young man digs into the dark magic behind them.',
         'A village is cursed after a couple is burnt alive.',
-        'Rudravanam village.',
       ],
       dialogues: [],
 
@@ -12132,7 +11719,6 @@
       spoiler: [
         'A rowdy fisherman of Visakhapatnam goes undercover and unites with his estranged brother to take down a drug lord.',
         'A fisherman from Vizag goes to Malaysia on a mission to catch a drug lord, and his brother is a cop.',
-        'Veerayya and Vikram Sagar.',
       ],
       dialogues: [],
 
@@ -12164,7 +11750,6 @@
       spoiler: [
         'A fearless man protects his coastal people from the dangers of smuggling at sea, until his own son pays the price.',
         'A coastal leader stops his men from smuggling, and the sea becomes a place of fear for anyone who tries.',
-        'Devara, Bhaira and the Red Sea.',
       ],
       dialogues: [],
 
@@ -12196,7 +11781,6 @@
       spoiler: [
         'A middle-class man who carries his whole family\'s responsibilities finds out his tenant is writing a thesis about him.',
         'A responsible elder son falls for a girl who studies his life.',
-        'A middle-class family man in Hyderabad.',
       ],
       dialogues: [],
 
@@ -12228,7 +11812,6 @@
       spoiler: [
         'A former spy discovers that his son, believed dead, is alive and has become his enemy.',
         'Father and son, both played by one actor, face off.',
-        'GOAT, the spy.',
       ],
       dialogues: [],
 
@@ -12260,7 +11843,6 @@
       spoiler: [
         'A man estranged from his mother and her powerful family is forced to confront the past and the family he never knew.',
         'A man whose mother left him as a child is asked to sign papers saying he is not her son.',
-        'Ramana from Guntur and Kurchi Madatha Petti.',
       ],
       dialogues: [],
 
@@ -12292,7 +11874,6 @@
       spoiler: [
         'A small-time thief in a village gets superpowers from a magical gem and has to face a rich man who wants the same power.',
         'A thief in a village called Anjanadri gets superpowers from a gem containing a drop of a god\'s blood.',
-        'Anjanadri, a gem and a superhero.',
       ],
       dialogues: [],
 
@@ -12324,7 +11905,6 @@
       spoiler: [
         'In a distant future, the last living city is ruled by a tyrant, while a mysterious pregnant woman becomes the key to everyone\'s fate.',
         'A bounty hunter in the last city on Earth is hired to capture a pregnant woman, guarded by an immortal warrior.',
-        'Bhairava, Bujji and Ashwatthama.',
       ],
       dialogues: [],
 
@@ -12356,7 +11936,6 @@
       spoiler: [
         'A struggling bank cashier in 1990s Bombay gets involved in a financial scam and becomes rich.',
         'A middle-class bank employee learns to play the stock market illegally.',
-        'Baskhar and the Harshad Mehta era.',
       ],
       dialogues: [],
 
@@ -12388,7 +11967,6 @@
       spoiler: [
         'Two delivery agents now work as special agents and get framed in a kidnapping case.',
         'The delivery boys return in a new con.',
-        'The sequel to a crime comedy about delivery boys.',
       ],
       dialogues: [],
 
@@ -12420,7 +11998,6 @@
       spoiler: [
         'An honest income tax officer raids the home of a powerful politician.',
         'A tax officer who loves old songs takes on a corrupt MP.',
-        'A remake of a Hindi raid film.',
       ],
       dialogues: [],
 
@@ -12452,7 +12029,6 @@
       spoiler: [
         'A loyal village man protects his friend and his village through the 1980s.',
         'A man who once gave his word to a landlord\'s family.',
-        'A Sankranti village drama.',
       ],
       dialogues: [],
 
@@ -12484,7 +12060,6 @@
       spoiler: [
         'The labourer who became a smuggling kingpin now faces a rival police officer and a growing empire that refuses to bow.',
         'The red sandalwood smuggler expands his empire abroad while a revenge-driven police officer hunts him.',
-        'Pushpa versus Bhanwar Singh Shekhawat, again.',
       ],
       dialogues: [],
 
@@ -12516,7 +12091,6 @@
       spoiler: [
         'A crane operator with a violent past needs money for his daughter\'s rare disease and takes on a drug cartel.',
         'A father\'s past returns when his child needs costly medicine.',
-        'The hero\'s 75th film.',
       ],
       dialogues: [],
 
@@ -12548,7 +12122,6 @@
       spoiler: [
         'A man who lets out his anger only on Saturdays takes on a cruel police officer.',
         'An insurance agent saves all his rage for one day a week.',
-        'Surya\'s Saturday.',
       ],
       dialogues: [],
 
@@ -12580,7 +12153,6 @@
       spoiler: [
         'A local DJ falls for another mysterious woman and is dragged into a new crime.',
         'The DJ is back with a new girl and new trouble.',
-        'The sequel to DJ Tillu.',
       ],
       dialogues: [],
 
@@ -12611,8 +12183,6 @@
 
       spoiler: [
         'An encounter specialist kills the wrong man and must find the real killer.',
-        'A cop questions his own methods.',
-        'A cop film about encounters.',
       ],
       dialogues: [],
 
@@ -12673,7 +12243,6 @@
       spoiler: [   // check
         'Both parts of a royal saga are re-cut into one long film for a re-release.',
         'A prince\'s story, from the waterfall to the war, in one sitting.',
-        'A re-edited epic released on the tenth anniversary of the first part.',
       ],
       dialogues: [],
 
@@ -12734,7 +12303,6 @@
       spoiler: [   // check
         'A dreaded dacoit from the Chambal valley becomes a driver to protect a little girl.',
         'A man with a dacoit past hides as a driver while his enemies close in.',
-        'A Sankranti 2025 action film.',
       ],
       dialogues: [],
 
@@ -12766,7 +12334,6 @@
       spoiler: [   // check
         'An honest IAS officer takes on a corrupt minister, and a story from his father\'s past is revealed.',
         'A district collector fights corruption with the election commission behind him.',
-        'A political film by a director famous for big-budget social messages.',
       ],
       dialogues: [],
 
@@ -12798,7 +12365,6 @@
       spoiler: [   // check
         'An outlaw in the Mughal era sets out to steal the Kohinoor diamond from the emperor.',
         'A Robin Hood of the 17th century challenges Aurangzeb.',
-        'A long-delayed period film.',
       ],
       dialogues: [],
 
@@ -12830,7 +12396,6 @@
       spoiler: [   // check
         'A tribal hunter who does not believe in God becomes one of Lord Shiva\'s greatest devotees.',
         'An atheist hunter offers his own eyes to a Shiva lingam.',
-        'A devotional epic with many guest stars.',
       ],
       dialogues: [],
 
@@ -12862,7 +12427,6 @@
       spoiler: [   // check
         'A police constable is sent undercover to Sri Lanka, where he finds his long-lost brother leading a gang.',
         'A spy\'s mission leads him to his own family.',
-        'A 2025 spy drama.',
       ],
       dialogues: [],
 
@@ -12894,7 +12458,6 @@
       spoiler: [   // check
         'A beggar becomes a pawn in a billionaire\'s plan to move black money.',
         'A homeless man and a jailed officer are caught in a money scam.',
-        'A 2025 film about a beggar and a fortune.',
       ],
       dialogues: [],
 
@@ -12926,7 +12489,6 @@
       spoiler: [   // check
         'A young man must protect nine ancient scriptures that could make an evil man immortal.',
         'A warrior is chosen to guard sacred books from a dark sorcerer.',
-        'A 2025 fantasy adventure.',
       ],
       dialogues: [],
 
@@ -12958,7 +12520,6 @@
       spoiler: [   // check
         'A former cop is called back to rescue a kidnapped businessman, with his wife and ex-girlfriend both coming along.',
         'A husband, a wife and an ex on one mission.',
-        'A Sankranti 2025 comedy.',
       ],
       dialogues: [],
 
@@ -12990,7 +12551,6 @@
       spoiler: [   // check
         'A fisherman from Srikakulam is captured by Pakistan after drifting into its waters, while his love waits at home.',
         'Fishermen jailed in Pakistan and a girl waiting.',
-        'Based on true events.',
       ],
       dialogues: [],
 
@@ -13021,8 +12581,6 @@
 
       spoiler: [   // check
         'A feared gangster who vanished from Bombay returns after years to settle an old war.',
-        'Ojas Gambheera, the OG.',
-        'A 2025 gangster film.',
       ],
       dialogues: [],
 
@@ -13053,8 +12611,6 @@
 
       spoiler: [   // check
         'A rogue spy faces a new enemy agent in a global mission.',
-        'Two super-agents clash.',
-        'A spy-universe film with a Telugu star.',
       ],
       dialogues: [],
 
