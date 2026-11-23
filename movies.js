@@ -3250,21 +3250,21 @@
       director: 'V. V. Vinayak',
       music: 'Devi Sri Prasad',
       villain: 'Mahesh Manjrekar',
-      banner: 'Sri Venkateswara Creations',   // check
+      banner: '',  
       genre: 'Action comedy',
       roles: [],
 
-      stats: { imdb: 6.5, songs: 6, runtime: 155 },   // check
+      stats: { imdb: 6.8, songs: 6, runtime: 150 },   
 
       spoiler: [
-        'Twin brothers, one a timid priest and the other a loud, brave guy, swap roles to protect a family from a mad don.',
-        'Twins separated at birth, one a shy priest and one a fearless rogue, team up against a gangster.',
+        'Twin brothers, one a timid priest and the other a brave guy, swap roles to protect a family from a don.',
+        'Twins separated at birth, one a shy priest and one a fearless man, team up against a gangster.',
       ],
-      dialogues: [],
+      dialogues: ['Nuvvantha harsh ga matladaku Chandu, nenu feel avuthanu'],
 
-      clues: {   // check
+      clues: {  
         job: 'Temple priest',
-        location: 'Hyderabad',
+        location: '',
         song: 'Chandrakala',
         scene: 'Twins separated at birth, one of them a priest\'s assistant',
       },
@@ -3281,21 +3281,21 @@
       director: 'Vamshi Paidipally',
       music: 'S. Thaman',
       villain: 'Prakash Raj',
-      banner: 'Sri Venkateswara Creations',
+      banner: '',
       genre: 'Family action comedy',
-      roles: ['Krish', 'Indu', 'Bhoomi'],   // check
+      roles: ['Krish', 'Indu', 'Bhoomi'],   
 
-      stats: { imdb: 6.3, songs: 6, runtime: 160 },   // check
+      stats: { imdb: 7.1, songs: 6, runtime: 170 },  
 
       spoiler: [
         'A young man pretends to be a girl\'s boyfriend to help her, and ends up fixing a family feud in her village.',
         'A city boy goes to a village as a fake lover and has to keep two families from fighting.',
       ],
-      dialogues: [],
+      dialogues: ['City nunchi vachadu softga lover boy la unnadu anukuntunnavemo... character kothaga undani try chesa, lopala original alane undi. Danni bayataku techavanuko... racha rache!"'],
 
-      clues: {   // check
-        job: 'Rich young man',
-        location: 'A village',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
         scene: 'A man poses as a girl\'s boyfriend and ends up uniting two feuding families',
       },
@@ -3312,23 +3312,22 @@
       director: 'A. Karunakaran',
       music: 'G. V. Prakash Kumar',
       villain: '',
-      banner: '',   // check
+      banner: '',   
       genre: 'Romantic comedy',
-      roles: [],
+      roles: ['Prabha', 'Nandhini'],
 
-      stats: { imdb: 7, songs: 6, runtime: 155 },   // check
+      stats: { imdb: 7.4, songs: 6, runtime: 151 },  
 
       spoiler: [
-        'A young man who is shy in love gets a girl\'s attention through a series of misunderstandings and then loses her again.',
-        'A man tells his father\'s friends a story about his first love at a family reunion.',
+        'A man invents a fake Swiss romance with his childhood friend to escape a forced marriage.',
       ],
-      dialogues: [],
+      dialogues: ['Dhammu anedi pradarsinchedi kaadu... avasaranni batti ade bayatikostundi.'],
 
-      clues: {   // check
-        job: 'Unemployed young man',
-        location: 'Hyderabad and Switzerland',
-        song: 'Inka Edo',
-        scene: 'A man invents a love story set in Switzerland to escape a gangster\'s daughter',
+      clues: {   
+        job: '',
+        location: 'Araku and Switzerland',
+        song: 'Neeve',
+        scene: 'A man invents a love story set in Switzerland to escape a forced marriage with a gangster\'s daughter',
       },
     },
     {
