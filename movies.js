@@ -3341,24 +3341,24 @@
       heroine: 'Shriya Saran',
       director: 'Gopichand Malineni',
       music: 'Mani Sharma',
-      villain: 'Srihari',
-      banner: '',   // check
+      villain: '',
+      banner: '',   
       genre: 'Action comedy',
       roles: [],
 
-      stats: { imdb: 5.8, songs: 6, runtime: 150 },   // check
+      stats: { imdb: 6, songs: 5, runtime: 164 },   
 
       spoiler: [
-        'A young man who dreams of being a don joins a gang and falls for a rival don\'s sister.',
-        'A wannabe don works for two gangsters at once.',
+        'Sent to Germany by his gangster boss, aspiring don accidentally woos his own boss\'s sister instead of their rival\'s',
+        
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Wannabe don',
-        location: 'Hyderabad',
+      clues: { 
+        job: '',
+        location: '',
         song: '',
-        scene: 'A young man auditions to join a gang',
+        scene: '',
       },
     },
     {
@@ -3373,19 +3373,19 @@
       director: 'Trivikram Srinivas',
       music: 'Mani Sharma',
       villain: 'Prakash Raj',
-      banner: '',   // check
+      banner: '',   
       genre: 'Action comedy',
-      roles: ['Alluri Seetarama Raju', 'Subhashini'],   // check
+      roles: ['Alluri Seetarama Raju', 'Subhashini'],   
 
-      stats: { imdb: 7.6, songs: 6, runtime: 160 },   // check
+      stats: { imdb: 7.6, songs: 6, runtime: 170 },   
 
       spoiler: [
         'A taxi driver with a strange knack for being in the right place at the right time ends up as the saviour of a village.',
         'A taxi driver is mistaken for a god by a dying village, and finds out they may be right.',
       ],
-      dialogues: [],
+      dialogues: ['ee navvu varam... nee kopam shaapam... nee maata shaasanam.'],
 
-      clues: {   // check
+      clues: {  
         job: 'Taxi driver',
         location: 'Rajasthan desert',
         song: 'Sada Siva',
@@ -3404,11 +3404,11 @@
       director: 'Sekhar Kammula',
       music: 'Mickey J. Meyer',
       villain: 'Kota Srinivasa Rao',
-      banner: '',   // check
+      banner: '',   
       genre: 'Political drama',
       roles: [],
 
-      stats: { imdb: 7.8, songs: 5, runtime: 165 },   // check
+      stats: { imdb: 8, songs: 5, runtime: 169 },   
 
       spoiler: [
         'The young son of a murdered chief minister takes over the post and decides to clean up politics.',
@@ -3416,9 +3416,9 @@
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Chief minister',
-        location: 'Hyderabad',
+      clues: {  
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -3437,20 +3437,20 @@
       villain: 'Nagineedu',
       banner: 'Arka Media Works',
       genre: 'Action comedy',
-      roles: ['Ramu', 'Aparna'],   // check
+      roles: ['Ramu', 'Aparna'],   
 
-      stats: { imdb: 7.5, songs: 5, runtime: 125 },   // check
+      stats: { imdb: 7.5, songs: 5, runtime: 125 },  
 
       spoiler: [
         'A man is safe from a family that wants to kill him as long as he stays inside their house, because they never harm a guest.',
-        'A young man refuses to leave a house full of men who want him dead.',
+        
       ],
-      dialogues: [],
+      dialogues: ['Raatledha?'],
 
-      clues: {   // check
-        job: 'Unemployed young man',
-        location: 'Rayalaseema',
-        song: '',
+      clues: {  
+        job: '',
+        location: '',
+        song: 'Ammayi Kitiki Pakkana',
         scene: '',
       },
     },
@@ -3468,21 +3468,20 @@
       villain: '',
       banner: 'Anjana Productions',
       genre: 'Romantic comedy',
-      roles: ['Ram', 'Jaanu'],   // check
+      roles: ['Ram', 'Jaanu'],   
 
-      stats: { imdb: 7, songs: 6, runtime: 170 },   // check
-
+      stats: { imdb: 6.7, songs: 6, runtime: 163 },  
       spoiler: [
-        'A man who believes love is a lie meets a girl who believes it is everything, and neither of them quite keeps to their rules.',
-        'A young man who believes love cannot last forever has nine break-ups behind him.',
+        'A man who believes love is a not permanent meets a girl who believes it is everything, and neither of them quite keeps to their rules.',
+       
       ],
-      dialogues: [],
+      dialogues: ['prema konthakaalam maathrame baaguntundi."'],
 
-      clues: {   // check
-        job: 'Graffiti artist',
+      clues: {  
+        job: '',
         location: 'Sydney',
         song: 'Rooba Rooba',
-        scene: 'A man paints graffiti on a wall in Sydney',
+        scene: 'painting graffiti on a wall in Sydney',
       },
     },
     {
@@ -3494,24 +3493,24 @@
 
       hero: 'Nagarjuna',
       heroine: 'Anushka Shetty',
-      director: 'Veerabhadram',   // check
+      director: 'Veeru Potla',   
       music: 'S. Thaman',
       villain: '',
-      banner: '',   // check
+      banner: '',   
       genre: 'Action comedy',
       roles: [],
 
-      stats: { imdb: 5.5, songs: 6, runtime: 150 },   // check
+      stats: { imdb: 6, songs: 6, runtime: 146 },  
 
-      spoiler: [   // check
-        'A young man becomes a gangster to protect his family.',
+      spoiler: [   
+       
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Gangster',
-        location: 'Hyderabad',
-        song: '',
+      clues: {  
+        job: '',
+        location: '',
+        song: 'Bholo Ashta Lakshmi',
         scene: '',
       },
     },
@@ -3523,7 +3522,6 @@
       level: 'hard',
 
       hero: 'Ram Pothineni',
-      heroine: 'Priya Anand',   // check
       director: 'Srivas',
       music: 'M. M. Keeravani',
       villain: '',
@@ -3531,17 +3529,15 @@
       genre: 'Action drama',
       roles: [],
 
-      stats: { imdb: 5.6, songs: 6, runtime: 150 },   // check
+      stats: { imdb: 5.5, songs: 6, runtime: 154 }, 
 
       spoiler: [
-        'A young man falls for a girl whose family is caught in a faction feud.',
-        'Love in the middle of a village war.',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: '',
-        location: 'Rayalaseema',
+        location: '',
         song: '',
         scene: '',
       },
@@ -3560,21 +3556,21 @@
       villain: 'Rajinikanth',
       banner: 'Sun Pictures',
       genre: 'Sci-fi action',
-      roles: ['Vaseegaran', 'Sana', 'Chitti'],   // check
+      roles: ['Vaseegaran', 'Sana', 'Chitti'],   
 
-      stats: { imdb: 7.1, songs: 7, runtime: 174 },   // check
+      stats: { imdb: 7.1, songs: 6, runtime: 174 },   
 
       spoiler: [
         'A scientist builds a human-like machine that falls in love with his fiancée and turns violent when it is rejected.',
-        'A scientist builds a machine that looks like him, and it falls for the scientist\'s girlfriend.',
+        
       ],
-      dialogues: [],
+      dialogues: ['Happy Diwali folks...'],
 
-      clues: {   // check
-        job: 'Scientist',
-        location: 'Chennai',
-        song: 'Arima Arima',
-        scene: 'A machine man pulls a train full of people',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Kilimanjaro',
+        scene: 'Chitti replicates into hundreds, forming a giant ball-shaped fighting army.',
       },
     },
     {
@@ -3589,113 +3585,20 @@
       director: 'Boyapati Srinu',
       music: 'Chakri',
       villain: '',
-      banner: '',   // check
+      banner: '',   
       genre: 'Action drama',
       roles: [],
 
-      stats: { imdb: 6.2, songs: 6, runtime: 160 },   // check
+      stats: { imdb: 6, songs: 6, runtime: 133 },   
 
       spoiler: [
-        'A fearless district collector goes after the crooks who killed his family and takes on a ruthless industrialist.',
-        'A college lecturer is really the son of a doctor killed by a powerful gang, and takes revenge.',
+        
       ],
-      dialogues: ['Choodu, oka vaipe choodu... rendo vaipu chudal anukoku, tattukolev.'],
+      dialogues: ['Choodu, oka vaipe choodu... rendo vaipu chudali anukoku, tattukolev.'],
 
-      clues: {   // check
-        job: 'Lecturer',
-        location: 'Hyderabad',
-        song: '',
-        scene: '',
-      },
-    },
-    {
-      id: 'singham',
-      title: 'Singham',
-      aka: [],
-      year: 2010,
-      level: 'medium',
-
-      hero: 'Suriya',
-      heroine: 'Anushka Shetty',
-      director: 'Hari',
-      music: 'Devi Sri Prasad',
-      villain: 'Prakash Raj',
-      banner: '',
-      genre: 'Action',
-      roles: ['Durai Singam', 'Kavya'],   // check
-
-      stats: { imdb: 6.7, songs: 5, runtime: 155 },   // check
-
-      spoiler: [
-        'A village police officer is transferred to the city and takes on a gangster there.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Police inspector',
-        location: 'Thoothukudi and Chennai',
-        song: '',
-        scene: '',
-      },
-    },
-    {
-      id: 'varudu',
-      title: 'Varudu',
-      aka: [],
-      year: 2010,
-      level: 'hard',
-
-      hero: 'Allu Arjun',
-      heroine: 'Bhanu Sri Mehra',
-      director: 'Gunasekhar',
-      music: 'Mani Sharma',
-      villain: 'Arya',
-      banner: '',   // check
-      genre: 'Action romance',
-      roles: [],
-
-      stats: { imdb: 4, songs: 6, runtime: 165 },   // check
-
-      spoiler: [
-        'A groom is kidnapped on his wedding day by a man who wants to make sure the marriage never happens.',
-        'A groom\'s bride is kidnapped during a five-day traditional wedding, and he goes after the kidnapper.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Groom',
-        location: 'Hyderabad',
-        song: '',
-        scene: '',
-      },
-    },
-    {
-      id: 'vedam',
-      title: 'Vedam',
-      aka: [],
-      year: 2010,
-      level: 'medium',
-
-      hero: ['Allu Arjun', 'Manchu Manoj'],
-      heroine: 'Anushka Shetty',
-      director: 'Krish Jagarlamudi',
-      music: 'M. M. Keeravani',
-      villain: '',
-      banner: 'Arka Media Works',
-      genre: 'Drama',
-      roles: ['Cable Raju', 'Saroja', 'Vivek'],   // check
-
-      stats: { imdb: 8.1, songs: 5, runtime: 160 },
-
-      spoiler: [
-        'Five strangers in Hyderabad live very different lives, and one day their paths cross in a way that changes all of them.',
-        'Five strangers from very different lives end up in the same hospital during a terror attack.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Cable operator',
-        location: 'Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -3705,7 +3608,7 @@
       title: 'Yamudu',
       aka: [],
       year: 2010,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Suriya',
       heroine: 'Anushka Shetty',
@@ -3714,53 +3617,23 @@
       villain: 'Prakash Raj',
       banner: '',
       genre: 'Action',
-      roles: ['Durai Singam', 'Kavya'],   // check
+      roles: ['Narasimham', 'Kavya'], 
 
-      stats: { imdb: 6.7, songs: 5, runtime: 155 },   // check
+      stats: { imdb: 7, songs: 5, runtime: 153 },   
 
       spoiler: [
-        'A village police officer is transferred to the city and takes on a gangster.',
+        'Narasimha, an honest inspector, clashes with gangster Purushottam and gets transferred to Vizag, where the ruthless criminal controls everything.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Police inspector',
-        location: 'Thoothukudi',
+      clues: {  
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
     },
-    {
-      id: 'ye-maaya-chesave',
-      title: 'Ye Maaya Chesave',
-      aka: [],
-      year: 2010,
-      level: 'easy',
-
-      hero: 'Naga Chaitanya',
-      heroine: 'Samantha',
-      director: 'Gautham Vasudev Menon',
-      music: 'A. R. Rahman',
-      villain: '',
-      banner: '',   // check
-      genre: 'Romantic drama',
-      roles: ['Karthik', 'Jessie'],   // check
-
-      stats: { imdb: 7.9, songs: 6, runtime: 165 },   // check
-
-      spoiler: [
-        'A young aspiring filmmaker falls for a girl from a different faith, and both families are against it.',
-        'An aspiring filmmaker falls for a girl older than him from a strict Christian family.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Aspiring filmmaker',
-        location: 'Hyderabad and Kerala',
-        song: 'Kundanapu Bomma',
-        scene: 'A young filmmaker chases a girl from a different faith',
-      },
-    },
+  
     {
       id: '100-love',
       title: '100% Love',
@@ -3773,11 +3646,11 @@
       director: 'Sukumar',
       music: 'Devi Sri Prasad',
       villain: '',
-      banner: 'Geetha Arts',   // check
+      banner: 'Geetha Arts',   
       genre: 'Romantic comedy',
-      roles: ['Balu', 'Mahalakshmi'],   // check
+      roles: ['Balu', 'Mahalakshmi'],  
 
-      stats: { imdb: 7, songs: 6, runtime: 141 },   // check
+      stats: { imdb: 7, songs: 9, runtime: 141 },  
 
       spoiler: [
         'A college topper and his cousin from the village turn their rivalry over exam marks into an ego war that hides their love.',
@@ -3786,8 +3659,8 @@
       dialogues: [],
 
       clues: {
-        job: 'Engineering student',
-        location: 'Hyderabad',
+        job: '',
+        location: '',
         song: 'A Square B Square',
         scene: 'The hero quietly sabotages his cousin before an exam to stay the topper',
       },
@@ -3803,23 +3676,22 @@
       heroine: 'Shruti Haasan',
       director: 'A. R. Murugadoss',
       music: 'Harris Jayaraj',
-      villain: 'Johnny Tri Nguyen',
-      banner: 'Red Giant Movies',   // check
+      villain: '',
+      banner: '',   
       genre: 'Sci-fi action',
-      roles: ['Aravind', 'Subha', 'Dong Lee'],   // check
+      roles: [],   
 
-      stats: { imdb: 6.2, songs: 6, runtime: 168 },   // check
+      stats: { imdb: 6.5, songs: 6, runtime: 159 },   
 
       spoiler: [
-        'A geneticist tries to awaken the skills of an ancient Indian monk in his descendant, a circus performer, to stop a deadly virus.',
         'A Chinese agent uses hypnosis to spread a virus in India, and the answer lies with a 5th-century martial artist.',
       ],
       dialogues: [],
 
       clues: {
-        job: 'Circus performer',
-        location: 'Chennai',
-        song: 'Yamma Yamma',
+        job: '',
+        location: '',
+        song: '',
         scene: 'The villain hypnotises an entire street of people into attacking the hero',
       },
     },
@@ -3835,23 +3707,23 @@
       director: 'B. V. Nandini Reddy',
       music: 'Kalyani Malik',
       villain: '',
-      banner: 'Sri Ranjith Movies',   // check
+      banner: '',   
       genre: 'Romantic comedy',
-      roles: ['Gautham', 'Nitya'],   // check
+      roles: ['Gautham', 'Nitya'], 
 
-      stats: { imdb: 7.6, songs: 6, runtime: 140 },   // check
+      stats: { imdb: 7.6, songs: 5, runtime: 35 },   
 
       spoiler: [
         'Two heartbroken strangers meet at a wedding, become friends and slowly realise they are perfect for each other.',
-        'A boy and a girl keep meeting at the wrong moments, years after they first bonded over failed relationships.',
+
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Software engineer',
-        location: 'Hyderabad',
-        song: 'Ammammo Ammo',
-        scene: 'Two strangers get drunk together at a wedding and share their break-up stories',
+      clues: {   
+        job: '',
+        location: '',
+        song: '',
+        scene: '',
       },
     },
     {
@@ -3865,24 +3737,23 @@
       heroine: 'Tamannaah',
       director: 'V. V. Vinayak',
       music: 'M. M. Keeravani',
-      villain: 'Prakash Raj',
-      banner: 'Geetha Arts',
+      villain: '',
+      banner: '',
       genre: 'Action drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 4.7, songs: 6, runtime: 166 },   // check
+      stats: { imdb: 0, songs: 0, runtime: 0 },   
 
       spoiler: [
-        'A guardian of a sacred temple falls in love with a girl whose family has a long-standing grudge against him.',
-        'A warrior trained to protect a Himalayan temple falls for a girl who does not believe in God.',
+         
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Temple guardian',
-        location: 'The Himalayas',
-        song: 'Nath Nath',
-        scene: 'A warrior fights with a sword in the snow near a Himalayan temple',
+      clues: {   
+        job: '',
+        location: '',
+        song: '',
+        scene: '',
       },
     },
     {
@@ -3899,19 +3770,19 @@
       villain: 'Sonu Sood',
       banner: '14 Reels Entertainment',
       genre: 'Action comedy',
-      roles: ['Ajay', 'Prashanthi', 'Padmasri'],   // check
+      roles: ['Ajay', 'Prashanthi', 'Padmasri'],   
 
-      stats: { imdb: 7.4, songs: 6, runtime: 165 },
+      stats: { imdb: 7.4, songs: 6, runtime: 171 },
 
       spoiler: [
-        'A cop who has been playing a double game as a local goon is hunted down by both the cops and the underworld.',
+        
         'A cop stages a fake political life around his father, who just woke from a coma, to protect him from shock.',
       ],
-      dialogues: [],
+      dialogues: ['Kallu unnodu mundhu matrame choosthadu, kaani dimaag unnodu duniya motham choosthadu.'],
 
-      clues: {   // check
-        job: 'Police officer',
-        location: 'Hyderabad and Turkey',
+      clues: {
+        job: '',
+        location: '',
         song: 'Poovai Poovai',
         scene: 'A cop makes his father believe he has become an MLA',
       },
