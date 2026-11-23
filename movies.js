@@ -2808,64 +2808,32 @@
       },
     },
     {
-      id: 'chintakayala-ravi',
-      title: 'Chintakayala Ravi',
-      aka: [],
-      year: 2008,
-      level: 'hard',
-
-      hero: 'Venkatesh',
-      heroine: 'Anushka Shetty',
-      director: 'Yogi',   // check
-      music: 'Vishal–Shekhar',
-      villain: '',
-      banner: '',   // check
-      genre: 'Romantic comedy',
-      roles: [],
-
-      stats: { imdb: 5.5, songs: 6, runtime: 150 },   // check
-
-      spoiler: [
-        'A waiter in the US pretends to be a software engineer to keep his mother happy back home.',
-        'A man\'s lie about his job in America falls apart when a girl comes to check on him.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Waiter in a bar',
-        location: 'New York',
-        song: '',
-        scene: 'A waiter dresses up as a software engineer for his mother',
-      },
-    },
-    {
       id: 'gamyam',
       title: 'Gamyam',
       aka: [],
       year: 2008,
       level: 'hard',
 
-      hero: 'Sharwanand',
+      hero: ['Sharwanand', 'Allari Naresh'],
       heroine: 'Kamalinee Mukherjee',
       director: 'Krish Jagarlamudi',
-      music: 'E. S. Murthy',   // check
+      music: 'E. S. Murthy',  
       villain: '',
-      banner: '',   // check
+      banner: '',   
       genre: 'Road drama',
-      roles: ['Abhiram', 'Janaki', 'Gaali Seenu'],   // check
+      roles: ['Abhiram', 'Janaki', 'Gaali Seenu'],   
 
-      stats: { imdb: 8.3, songs: 4, runtime: 145 },   // check
+      stats: { imdb: 8.3, songs: 5, runtime: 128 },   
 
       spoiler: [
-        'A rich young doctor goes on a bike journey to find the girl he loves and discovers the real India.',
-        'A selfish man rides through villages with a thief and changes along the way.',
+        'A wealthy young man searches for his love alongside a thief, discovering humanity, friendship and life\'s true meaning.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Doctor',
-        location: 'Andhra Pradesh villages',
-        song: 'Enthavaraku',
+      clues: {  
+        job: '',
+        location: '',
+        song: '',
         scene: 'A rich man and a small thief ride a motorbike across villages',
       },
     },
@@ -2883,20 +2851,19 @@
       villain: 'Mukesh Rishi',
       banner: 'Geetha Arts',
       genre: 'Action comedy',
-      roles: ['Sanjay Sahu', 'Bhagyamathi'],   // check
+      roles: ['Sanjay Sahu', 'Bhagyamathi'],   
 
-      stats: { imdb: 7, songs: 6, runtime: 160 },   // check
+      stats: { imdb: 7.5, songs: 6, runtime: 163 },   
 
       spoiler: [
-        'A roaming young man with a past in the Naxal movement returns to his village to fix a family wrong, and he has an old love waiting.',
         'A former Naxalite settles into city life and gets entangled with the daughter of the cop who once hunted him.',
       ],
-      dialogues: ['Yuddhamlo gelavadam ante shatruvuni odinchadam, champadam kaadu.'],
+      dialogues: ['Yuddhamlo gelavadam ante shatruvuni odinchadam, champadam kaadu.', 'kkada kashtam gurinchi maatlaade hakku naaku maathrame undi, neeku ledhu!', 'Andhamga undatam ante manaki nachela undatam... edhutavaallaki nachinattu kaadhu!'],
 
-      clues: {   // check
-        job: 'Ex-Naxalite',
-        location: 'Hyderabad',
-        song: '',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Gaallo Thelinattunde',
         scene: 'A college student hides his past as a Naxalite',
       },
     },
@@ -2911,22 +2878,20 @@
       heroine: 'Hansika Motwani',
       director: 'Meher Ramesh',
       music: 'Mani Sharma',
-      villain: 'Prakash Raj',
+      villain: '',
       banner: 'Vyjayanthi Movies',
       genre: 'Action drama',
       roles: [],
 
-      stats: { imdb: 5.1, songs: 6, runtime: 155 },   // check
+      stats: { imdb: 4.7, songs: 6, runtime: 159 },   
 
       spoiler: [
-        'A lawyer\'s daughter falls for a man who works as a street thug, and his rough ways bring her family face to face with powerful men.',
-        'An orphan who dreams of becoming a don works for a gangster and slowly uncovers the truth about his own family.',
-      ],
+              ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Street thug',
-        location: 'Hyderabad',
+      clues: {  
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -2942,57 +2907,26 @@
       heroine: 'Trisha',
       director: 'Sreenu Vaitla',
       music: 'Devi Sri Prasad',
-      villain: 'Srihari',
+      villain: '',
       banner: '',
       genre: 'Action comedy',
       roles: [],
 
-      stats: { imdb: 6.7, songs: 6, runtime: 165 },   // check
+      stats: { imdb: 6.6, songs: 7, runtime: 174 },   
 
       spoiler: [
-        'A don\'s lookalike, an ordinary young man, is used to bring down the gang that killed the real don.',
-        'Two lookalikes and a comic music director named Jayasurya.',
+        'A gangster impersonates his murdered royal lookalike to protect his family and avenge his death.',
       ],
-      dialogues: [],
+      dialogues: ['Memu ekkadiko teskelali anukuntam meeru ikkade untaru akkadiki raaru'],
 
-      clues: {   // check
-        job: 'Unemployed young man',
-        location: 'Hyderabad',
-        song: '',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Chupu Chaalu O Manmadhudaa',
         scene: '',
       },
     },
-    {
-      id: 'kotha-bangaru-lokam',
-      title: 'Kotha Bangaru Lokam',
-      aka: [],
-      year: 2008,
-      level: 'medium',
-
-      hero: 'Varun Sandesh',
-      heroine: 'Shweta Basu Prasad',
-      director: 'Srikanth Addala',
-      music: 'Mickey J. Meyer',
-      villain: '',
-      banner: 'Sri Venkateswara Creations',
-      genre: 'Coming-of-age drama',
-      roles: ['Bala', 'Swapna'],   // check
-
-      stats: { imdb: 7.4, songs: 6, runtime: 150 },   // check
-
-      spoiler: [
-        'Two teenagers at a boarding school fall in love, but their families and their results get in the way.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Intermediate student',
-        location: 'A residential college',
-        song: 'Nijamga Nenena',
-        scene: 'A boy and a girl meet at a hostel college',
-      },
-    },
-    {
+   {
       id: 'krishna',
       title: 'Krishna',
       aka: [],
@@ -3003,23 +2937,23 @@
       heroine: 'Trisha',
       director: 'V. V. Vinayak',
       music: 'Chakri',
-      villain: '',   // check
-      banner: '',   // check
+      villain: '',   
+      banner: '', 
       genre: 'Action comedy',
       roles: [],
 
-      stats: { imdb: 6.2, songs: 6, runtime: 155 },   // check
+      stats: { imdb: 6.3, songs: 6, runtime: 147 },   
 
       spoiler: [
-        'A young man from a village protects a girl and her family from a gangster in Vizag.',
-        'A carefree youth falls for a girl hunted by a rowdy.',
+        'In Vijayawada, carefree Krishna falls deeply for Sandhya, only to protect her family from a ruthless, obsessive gangster Jakka.',
+        'A kind-hearted unemployed youngster falls for a gangster\'s sister, confronting dangerous rivals while fighting to win her love',
       ],
-      dialogues: [],
+      dialogues: ['Rey rowdyism puttindhe aa Bezawada ki, aa Bezawada ke rowdyism nerpadaaniki vachava nuvvu!'],
 
-      clues: {   // check
-        job: 'Village youth',
-        location: 'Vizag',
-        song: '',
+      clues: {   
+        job: '',
+        location: 'Vijayawada',
+        song: 'Dil Mangey More',
         scene: '',
       },
     },
@@ -3031,24 +2965,25 @@
       level: 'hard',
 
       hero: 'Ravi Teja',
-      heroine: 'Siya Gautham',   // check
+      heroine: 'Siya Gautham',  
       director: 'Puri Jagannadh',
       music: 'Chakri',
       villain: '',
-      banner: '',   // check
+      banner: '',  
       genre: 'Drama',
       roles: [],
 
-      stats: { imdb: 6.6, songs: 6, runtime: 150 },   // check
+      stats: { imdb: 7, songs: 7, runtime: 156 },   
 
       spoiler: [
         'An assistant director tries to make his first film and faces the dark side of the industry.',
+        'An ambitious assistant director struggles against industry politics, personal hardships while pursuing his filmmaking dream.'
       ],
-      dialogues: ['Nenu entha yedhavano naake telidu!'],
+      dialogues: ['Nenu entha yedhavano naake telidu... maaku telusu le raa', ],
 
-      clues: {   // check
+      clues: {  
         job: 'Assistant director',
-        location: 'Hyderabad',
+        location: '',
         song: '',
         scene: '',
       },
@@ -3064,23 +2999,23 @@
       heroine: 'Sheela',
       director: 'Bhaskar',
       music: 'Mani Sharma',
-      villain: 'Prakash Raj',
-      banner: '',   // check
+      villain: '',
+      banner: '',   
       genre: 'Romantic drama',
-      roles: ['Krishna', 'Meenakshi', 'Neelakanta'],   // check
+      roles: ['Krishna', 'Meena'],   
 
-      stats: { imdb: 6.8, songs: 6, runtime: 155 },   // check
+      stats: { imdb: 7.1, songs: 6, runtime: 165 },   
 
       spoiler: [
-        'A girl runs away from her own wedding with a boy who knows her family would never accept, and the two are chased across the state.',
+        'A young man falls for a village headman\'s daughter while helping locate her missing sister after elopement.',
         'A young man is blamed when his friend elopes with a powerful man\'s daughter, and has to help find them.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Unemployed young man',
-        location: 'Hyderabad',
-        song: '',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Nammavemo Gaani',
         scene: '',
       },
     },
@@ -3095,86 +3030,23 @@
       heroine: 'Genelia D\'Souza',
       director: 'Sreenu Vaitla',
       music: 'Devi Sri Prasad',
-      villain: 'Kota Srinivasa Rao',
-      banner: '',   // check
+      villain: '',
+      banner: '',   
       genre: 'Action comedy',
-      roles: ['Chandu', 'Pooja'],   // check
+      roles: ['Chandu', 'Pooja'], 
 
-      stats: { imdb: 7, songs: 6, runtime: 160 },   // check
+      stats: { imdb: 7.2, songs: 6, runtime: 165 },   
 
       spoiler: [
-        'A man pretends to be a cousin at a family wedding in order to win over a girl and avoid her violent relatives.',
         'A young man rescues the wrong bride from a wedding and has to win over her two violent uncles.',
       ],
-      dialogues: [],
+      dialogues: ['Nenu apara Brahmmi ni antaava? Innaallu naa shakthi naaku theliyaka, ee jaffa gaalla daggara anavasaramga pani chesaanantaava?!'],
 
-      clues: {   // check
-        job: 'Student',
-        location: 'Hyderabad',
-        song: '',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Om Namaste Bolo',
         scene: '',
-      },
-    },
-    {
-      id: 'surya-s-o-krishnan',
-      title: 'Surya S/O Krishnan',
-      aka: [],
-      year: 2008,
-      level: 'medium',
-
-      hero: 'Suriya',
-      heroine: 'Sameera Reddy',
-      director: 'Gautham Vasudev Menon',
-      music: 'Harris Jayaraj',
-      villain: '',
-      banner: '',   // check
-      genre: 'Romantic drama',
-      roles: [],
-
-      stats: { imdb: 8.1, songs: 7, runtime: 169 },   // check
-
-      spoiler: [
-        'An army officer remembers his father\'s life and his own journey through love, loss and addiction.',
-        'A son and his father\'s lives in parallel.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Army officer',
-        location: 'Chennai and USA',
-        song: '',
-        scene: '',
-      },
-    },
-    {
-      id: 'arundhati',
-      title: 'Arundhati',
-      aka: [],
-      year: 2009,
-      level: 'easy',
-
-      hero: 'Sonu Sood',   // check
-      heroine: 'Anushka Shetty',
-      director: 'Kodi Ramakrishna',
-      music: 'Koti',
-      villain: 'Sonu Sood',
-      banner: 'Mallemala Entertainments',
-      genre: 'Fantasy horror',
-      roles: [],   // the character names give the title away, so this movie uses the STARRING round only
-
-      stats: { imdb: 7.2, songs: 4, runtime: 145 },   // check
-
-      spoiler: [
-        'A woman who looks like her fearless ancestor is sent to a long-abandoned fort, where an evil sorcerer buried centuries ago is waiting to rise again.',
-        'A woman learns she is the reborn form of her brave great-grandmother, the only one who can stop an evil spirit.',
-      ],
-      dialogues: ['Vadala bommali, vadala.'],   // check
-
-      clues: {   // check
-        job: 'Royal heiress',
-        location: 'Gadwal fort',
-        song: 'Jejamma',
-        scene: 'A princess is locked in a haunted fort and a fearsome spirit awakens',
       },
     },
     {
@@ -3188,24 +3060,24 @@
       heroine: 'Kajal Aggarwal',
       director: 'Sukumar',
       music: 'Devi Sri Prasad',
-      villain: 'Navdeep',   // check
-      banner: 'Aditya Arts',
+      villain: '',  
+      banner: '',
       genre: 'Romantic action drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7.6, songs: 6, runtime: 163 },   // check
+      stats: { imdb: 7.5, songs: 6, runtime: 155 },   
 
       spoiler: [
-        'Two best friends love the same girl, and one of them goes dark with obsession while the other tries to protect her.',
+        'An obsessive young man struggles to protect his best friend while both fall in love with one woman.',
         'An orphan who loves his best friend too much falls for the same girl as him.',
       ],
-      dialogues: [],
+      dialogues: ['Edam chethi tho utharam raasinandhuku sorry... kudi chethi tho raase adrustham eppudisthav?!'],
 
-      clues: {   // check
-        job: 'Software engineer',
-        location: 'Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: 'Ringa Ringa',
-        scene: 'The hero pretends to be friends with his rival just to irritate him',
+        scene: '',
       },
     },
     {
@@ -3220,22 +3092,22 @@
       director: 'Meher Ramesh',
       music: 'Mani Sharma',
       villain: '',
-      banner: 'Gopi Krishna Movies',
+      banner: '',
       genre: 'Action thriller',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 6.5, songs: 5, runtime: 150 },   // check
+      stats: { imdb: 6.2, songs: 6, runtime: 149 },   
 
       spoiler: [
         'A stylish international don has a lookalike, and a policeman needs a petty thief to take his place and bring him down.',
-        'A small-time thief who looks like a dreaded don is sent into the gang to bring it down.',
+        'A small-time thief who looks like a don is sent into the gang to bring it down.',
       ],
-      dialogues: [],
+      dialogues: ['Trust no one, kill anyone, be only one!'],
 
-      clues: {   // check
-        job: 'Small-time thief',
+      clues: {   
+        job: '',
         location: 'Malaysia',
-        song: '',
+        song: 'Bommali',
         scene: 'A thief practises walking and talking like a don',
       },
     },
@@ -3250,12 +3122,12 @@
       heroine: 'Kangana Ranaut',
       director: 'Puri Jagannadh',
       music: 'Mani Sharma',
-      villain: 'Sonu Sood',   // check
-      banner: '',   // check
+      villain: '',   
+      banner: '',   
       genre: 'Action romance',
       roles: [],
 
-      stats: { imdb: 5, songs: 6, runtime: 150 },   // check
+      stats: { imdb: 5.4, songs: 6, runtime: 143 },  
 
       spoiler: [
         'An orphan bounty hunter who catches criminals for money searches for his lost parents.',
@@ -3263,9 +3135,9 @@
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {  
         job: 'Bounty hunter',
-        location: 'Hyderabad',
+        location: '',
         song: '',
         scene: 'A man catches criminals for a police reward',
       },
@@ -3281,23 +3153,24 @@
       heroine: 'Ileana D\'Cruz',
       director: 'Surender Reddy',
       music: 'S. Thaman',
-      villain: 'Shaam',   // check
-      banner: '',   // check
+      villain: '',   
+      banner: '',   
       genre: 'Action comedy',
-      roles: ['Kalyan', 'Naina', 'Kalyan Krishna'],   // check
+      roles: ['Kalyan', 'Naina', 'Kalyan Krishna'],   
 
-      stats: { imdb: 7.4, songs: 6, runtime: 165 },   // check
+      stats: { imdb: 7.9, songs: 6, runtime: 160 },  
 
       spoiler: [
-        'A thrill seeker who will do anything for a rush steals from the wrong people, and a cop is on his trail.',
-        'A man who does everything for a thrill is secretly a thief who steals to fund surgeries for poor children.',
-      ],
-      dialogues: [],
+        'A man who does everything for a thrill is secretly a thief who steals to fund surgeries for poor children.', 
+        'A thrill seeking youngster becomes a mysterious thief, while a determined police officer pursues him across countries.',
 
-      clues: {   // check
-        job: 'Thrill seeker',
+      ],
+      dialogues: ['I\'m Raj Prakash Raj! Hi... I\'m Jigiri Jinganiya!'],
+
+      clues: {   
+        job: '',
         location: 'Hyderabad and Malaysia',
-        song: '',
+        song: 'Bossuu Manaki Memory Lossuu',
         scene: 'A man does everything only for the thrill of it',
       },
     },
@@ -3315,19 +3188,19 @@
       villain: 'Dev Gill',
       banner: 'Geetha Arts',
       genre: 'Fantasy action romance',
-      roles: ['Harsha', 'Indu', 'Raghuveer'],   // check
+      roles: ['Harsha', 'Indu'],   
 
-      stats: { imdb: 7.7, songs: 6, runtime: 166 },
+      stats: { imdb: 7.7, songs: 6, runtime: 158 },
 
       spoiler: [
         'A young man and a woman feel a bond they cannot explain. Four hundred years earlier, a fearless warrior and a princess were kept apart by a jealous commander.',
         'A bike racer meets a girl whose touch reminds him of a warrior\'s life 400 years ago.',
       ],
-      dialogues: ['Okkokkadini kaadu Sher Khan... okesaari vanda mandini pampinchu.', 'Okkokkadini kaadu sher khan, vandha mandhini okesaari pampu.'],
+      dialogues: ['Okkokkadini kaadu Sher Khan... okesaari vanda mandini pampinchu.'],
 
-      clues: {   // check
-        job: 'Bike stunt racer',
-        location: 'Hyderabad and Udaygarh',
+      clues: {  
+        job: '',
+        location: '',
         song: 'Dheera Dheera',
         scene: 'One warrior fights off a hundred soldiers',
       },
@@ -3344,22 +3217,21 @@
       director: 'Anand Ranga',
       music: 'Yuvan Shankar Raja',
       villain: '',
-      banner: '',   // check
+      banner: '',   
       genre: 'Romantic drama',
-      roles: [],
+      roles: ['Uday', 'Sandhya'],
 
-      stats: { imdb: 7.3, songs: 6, runtime: 150 },   // check
+      stats: { imdb: 7.2, songs: 6, runtime: 164 },  
 
       spoiler: [
-        'A young man falls for a girl and gives her a year of gifts, unaware of her illness.',
-        'A love story full of surprises and a sad secret.',
+        'A carefree millionaire falls deeply in love with a disciplined girl, discovering her terminal illness and fulfilling wishes.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Rich young man',
-        location: 'Hyderabad',
-        song: '',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Sehri Sehari',
         scene: '',
       },
     },
