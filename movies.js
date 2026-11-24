@@ -6697,17 +6697,16 @@
       genre: 'Action drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 6.9, songs: 5, runtime: 166 },   // check
+      stats: { imdb: 6.5, songs: 7, runtime: 166 },   
 
       spoiler: [
         'The leader of a Mumbai slum stands against a politician who wants to take over the land.',
-        'A slum\'s protector fights for the land his people live on.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Slum leader',
-        location: 'Dharavi',
+      clues: {  
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -6723,24 +6722,23 @@
       heroine: 'Srinidhi Shetty',
       director: 'Prashanth Neel',
       music: 'Ravi Basrur',
-      villain: 'Ramachandra Raju',
+      villain: '',
       banner: 'Hombale Films',
       genre: 'Period action',
-      roles: ['Rocky', 'Reena', 'Garuda'],   // check
+      roles: [],  
 
-      stats: { imdb: 8.2, songs: 4, runtime: 155 },   // check
+      stats: { imdb: 8.1, songs: 4, runtime: 155 },  
 
       spoiler: [
-        'A boy from the streets of Bombay grows into a feared gangster and enters gold mines to kill their ruler.',
-        'Rocky goes undercover as a slave in the Kolar mines.',
+        'A ruthless gangster enters Kolar Gold Fields to assassinate its tyrannical ruler, pursuing power while fulfilling a promise made to his mother.',
       ],
-      dialogues: [],
+      dialogues: ['If you think you are bad... I am your dad'],
 
-      clues: {   // check
-        job: 'Gangster',
-        location: 'Kolar Gold Fields',
+      clues: { 
+        job: '',
+        location: '',
         song: 'Salaam Rocky Bhai',
-        scene: 'A man walks through a mine full of slaves with a hammer',
+        scene: '',
       },
     },
     {
@@ -6757,21 +6755,20 @@
       villain: '',
       banner: 'Vyjayanthi Movies',
       genre: 'Biographical drama',
-      roles: ['Savitri', 'Gemini Ganesan', 'Madhuravani'],   // check
+      roles: [],   
 
       stats: { imdb: 8.4, songs: 6, runtime: 177 },
 
       spoiler: [
-        'A journalist traces the life of a legendary actress, from her days as a child artist to being the biggest star in the industry, and her fall.',
-        'Two reporters dig into the life of a legendary actress who rose to the top and lost everything.',
+        'A journalist traces the life of a legendary actress, from her days as a child artist to being the biggest star in the industry',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Actress',
-        location: 'Madras',
-        song: 'Mooga Manasulu',
-        scene: 'The rise and fall of the actress Savitri',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Chivaraku Migiledi',
+        scene: '',
       },
     },
     {
@@ -6786,21 +6783,20 @@
       director: 'Vakkantham Vamsi',
       music: 'Vishal–Shekhar',
       villain: 'Sarath Kumar',
-      banner: 'Ramalakshmi Cine Creations',
+      banner: '',
       genre: 'Action drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 6, songs: 5, runtime: 167 },   // check
+      stats: { imdb: 6.7, songs: 5, runtime: 163 },   
 
       spoiler: [
         'A soldier with an uncontrollable temper must get a psychologist\'s approval to return to the border.',
-        'An angry army man has to control himself for 21 days.',
       ],
-      dialogues: [],
+      dialogues: ['South India, North India, East, West... anni India-lu levu ra manaki. Okkate India'],
 
-      clues: {   // check
+      clues: {   
         job: 'Army soldier',
-        location: 'Vizag',
+        location: '',
         song: '',
         scene: '',
       },
@@ -6821,18 +6817,16 @@
       genre: 'Romantic drama',
       roles: [],
 
-      stats: { imdb: 6.2, songs: 5, runtime: 150 },   // check
+      stats: { imdb: 6.5, songs: 6, runtime: 156 },   
 
       spoiler: [
-        'A footballer and a medical student fall in love in Kolkata, and an earthquake in Nepal changes everything.',
-        'Lovers separated by a natural disaster meet again.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Footballer',
-        location: 'Kolkata and Nepal',
-        song: '',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Emai Poyave',
         scene: '',
       },
     },
@@ -6850,52 +6844,21 @@
       villain: 'Jagapathi Babu',
       banner: 'Mythri Movie Makers',
       genre: 'Period action drama',
-      roles: ['Chitti Babu', 'Ramalakshmi', 'Presidentgaaru'],   // check
+      roles: ['Chitti Babu', 'Ramalakshmi', 'Presidentgaaru'],  
 
-      stats: { imdb: 8.2, songs: 7, runtime: 179 },
+      stats: { imdb: 8.2, songs: 7, runtime: 167 },
 
       spoiler: [
-        'In a 1980s village, a hard-of-hearing young man who runs a water pump for farmers is caught between his elder brother and the tyrannical village president.',
+        'In a 1980s village, a hard-of-hearing young man who runs a water pump for farmers is caught between his elder brother and the village president.',
         'A partly deaf young man in a 1980s village helps his brother fight the village president in an election.',
       ],
-      dialogues: [],
+      dialogues: ['Ennikalaku sidham avvandi Phanindhra Bhupathi Garu'],
 
-      clues: {   // check
+      clues: {   
         job: 'Water pump operator',
-        location: 'A Godavari village in the 1980s',
+        location: '',
         song: 'Rangamma Mangamma',
         scene: 'A man with hearing trouble in a 1980s village',
-      },
-    },
-    {
-      id: 'rx-100',
-      title: 'RX 100',
-      aka: [],
-      year: 2018,
-      level: 'medium',
-
-      hero: 'Kartikeya Gummakonda',
-      heroine: 'Payal Rajput',
-      director: 'Ajay Bhupathi',
-      music: 'Chaitan Bharadwaj',
-      villain: '',
-      banner: 'KCW',   // check
-      genre: 'Romantic action',
-      roles: ['Shiva', 'Indu'],   // check
-
-      stats: { imdb: 7.4, songs: 5, runtime: 152 },   // check
-
-      spoiler: [
-        'A young man waits for the girl who left him, not knowing the shocking truth about her.',
-        'A village boy, a bike and a girl who used him.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Village youth',
-        location: 'Athreyapuram',
-        song: 'Pillaa Raa',
-        scene: 'A young man waits by a road on his bike for years',
       },
     },
     {
@@ -6912,19 +6875,18 @@
       villain: '',
       banner: 'Sridevi Movies',
       genre: 'Romantic drama',
-      roles: ['Vijay', 'Sameera'],   // check
+      roles: [],  
 
-      stats: { imdb: 7.6, songs: 5, runtime: 130 },   // check
+      stats: { imdb: 7.6, songs: 4, runtime: 137 },   
 
       spoiler: [
         'A children\'s book illustrator who dislikes films falls for a film star who shoots at his house.',
-        'A movie shoot in a house brings an artist and an actress together.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Illustrator',
-        location: 'Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -6945,17 +6907,16 @@
       genre: 'Action thriller',
       roles: [],
 
-      stats: { imdb: 5, songs: 5, runtime: 140 },   // check
+      stats: { imdb: 5.3, songs: 6, runtime: 151 },   
 
       spoiler: [
         'A man whose left hand has a mind of its own, because of a twin he absorbed before birth, fights a psycho who kidnaps his niece.',
-        'A hero with vanishing twin syndrome battles a masked villain.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Ad filmmaker',
-        location: 'Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -6974,20 +6935,19 @@
       villain: '',
       banner: 'GA2 Pictures',
       genre: 'Fantasy horror',
-      roles: ['Shiva', 'Anu'],   // check
+      roles: [],  
 
-      stats: { imdb: 7.2, songs: 4, runtime: 135 },   // check
+      stats: { imdb: 6.8, songs: 4, runtime: 137 },   
 
       spoiler: [
         'A young man buys a second-hand car and soon learns that it comes with a ghost who has something to settle.',
-        'A cab driver discovers his second-hand car is haunted and drives itself.',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Cab driver',
-        location: 'Hyderabad',
-        song: '',
+        location: '',
+        song: 'Maate Vinadhuga',
         scene: '',
       },
     },
@@ -7005,20 +6965,19 @@
       villain: '',
       banner: 'Sri Venkateswara Cine Chitra',
       genre: 'Romantic drama',
-      roles: ['Aditya', 'Varsha'],   // check
+      roles: ['Aditya', 'Varsha'], 
 
-      stats: { imdb: 7.1, songs: 5, runtime: 140 },   // check
+      stats: { imdb: 7.2, songs: 6, runtime: 137 },   
 
       spoiler: [
         'A short-tempered young man and a girl fall in love on a train, break up and meet again years later in London.',
-        'A love story across a train, a college and London.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Architect',
-        location: 'Hyderabad and London',
-        song: '',
+      clues: {  
+        job: '',
+        location: '',
+        song: 'Allasani Vaari',
         scene: '',
       },
     },
