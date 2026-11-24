@@ -6319,37 +6319,6 @@
       },
     },
     {
-      id: 'paisa-vasool',
-      title: 'Paisa Vasool',
-      aka: [],
-      year: 2017,
-      level: 'hard',
-
-      hero: 'Balakrishna',
-      heroine: 'Shriya Saran',
-      director: 'Puri Jagannadh',
-      music: 'Anup Rubens',
-      villain: '',
-      banner: 'Bhavya Creations',
-      genre: 'Action comedy',
-      roles: [],
-
-      stats: { imdb: 5, songs: 5, runtime: 145 },   // check
-
-      spoiler: [
-        'A Hyderabad rowdy named Theda Singh is hired by the police to kill a dreaded international gangster.',
-        'A crazy man is recruited for an underworld mission in Portugal.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Rowdy',
-        location: 'Portugal and Hyderabad',
-        song: '',
-        scene: '',
-      },
-    },
-    {
       id: 'raja-the-great',
       title: 'Raja The Great',
       aka: [],
@@ -6360,21 +6329,21 @@
       heroine: 'Mehreen Pirzada',
       director: 'Anil Ravipudi',
       music: 'Sai Karthik',
-      villain: 'Vivan Bhatena',
+      villain: '',
       banner: 'Sri Venkateswara Creations',
       genre: 'Action comedy',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 6.4, songs: 5, runtime: 152 },   // check
+      stats: { imdb: 6.4, songs: 5, runtime: 149 },   
 
       spoiler: [
         'A blind man joins the police on a secret mission to protect a girl from a gangster.',
       ],
-      dialogues: [],
+      dialogues: ['I am blind... but I\'m trained'],
 
-      clues: {   // check
-        job: 'Blind police recruit',
-        location: 'Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -6393,20 +6362,19 @@
       villain: '',
       banner: 'Annapurna Studios',
       genre: 'Romantic family drama',
-      roles: ['Shiva', 'Bhramaramba'],   // check
+      roles: ['Shiva', 'Bhramaramba'], 
 
-      stats: { imdb: 6.2, songs: 5, runtime: 150 },   // check
+      stats: { imdb: 5.6, songs: 6, runtime: 150 },   
 
       spoiler: [
-        'A young man falls for a village girl whose father and his father were once friends turned enemies.',
-        'Two families with an old fight and a new romance.',
+        
       ],
-      dialogues: [],
+      dialogues: ['Bhramaramba ki kopam vachindi..'],
 
-      clues: {   // check
+      clues: {   
         job: '',
-        location: 'A village',
-        song: '',
+        location: '',
+        song: 'Bhramarambaki',
         scene: '',
       },
     },
@@ -6421,21 +6389,21 @@
       heroine: 'Anushka Shetty',
       director: 'Hari',
       music: 'Harris Jayaraj',
-      villain: 'Thakur Anoop Singh',
+      villain: '',
       banner: '',
       genre: 'Action',
       roles: [],
 
-      stats: { imdb: 5.2, songs: 5, runtime: 155 },   // check
+      stats: { imdb: 6, songs: 6, runtime: 153 },  
 
       spoiler: [
         'A police officer goes to Australia to bring back a criminal who dumped toxic waste in India.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Police officer',
-        location: 'Vizag and Australia',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -6454,19 +6422,20 @@
       villain: 'S. J. Suryah',
       banner: 'NVR Cinema',
       genre: 'Spy thriller',
-      roles: ['Shiva', 'Charlie', 'Bhairavudu'],   // check
+      roles: [],   
 
-      stats: { imdb: 5.6, songs: 5, runtime: 145 },   // check
+      stats: { imdb: 6.6, songs: 5, runtime: 145 },  
 
       spoiler: [
-        'An intelligence officer who taps phone calls to stop crimes faces a serial killer who enjoys the sound of crying.',
+        'An intelligence officer monitoring phone calls to prevent crimes confronts a psychopathic killer who derives pleasure from the suffering of his victims.',
       ],
-      dialogues: [],
+      dialogues: ['Naagarikathaki kaaranam enti? Bhayam! adhi puttinchindi evaru? Memu! Kaani bhayam ante ento maaku teliyadu."
+'],
 
-      clues: {   // check
-        job: 'Intelligence officer',
-        location: 'Hyderabad',
-        song: '',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Achcham Telugandham',
         scene: '',
       },
     },
@@ -6482,22 +6451,22 @@
       director: 'Gopichand Malineni',
       music: 'S. Thaman',
       villain: '',
-      banner: '',   // check
+      banner: '',   
       genre: 'Sports drama',
       roles: [],
 
-      stats: { imdb: 4.5, songs: 5, runtime: 145 },   // check
+      stats: { imdb: 4.7, songs: 5, runtime: 155 },   
 
       spoiler: [
         'A young man becomes a horse racer to win back his estranged father and a girl.',
-        'A son races horses to reconcile with his father.',
+        
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Horse racer',
-        location: 'Hyderabad',
-        song: '',
+      clues: {  
+        job: '',
+        location: '',
+        song: 'Sitara',
         scene: '',
       },
     },
@@ -6515,20 +6484,19 @@
       villain: 'Akshay Kumar',
       banner: 'Lyca Productions',
       genre: 'Sci-fi action',
-      roles: ['Vaseegaran', 'Nila', 'Pakshi Rajan'],   // check
+      roles: [],   
 
-      stats: { imdb: 6.1, songs: 3, runtime: 147 },   // check
+      stats: { imdb: 6, songs: 3, runtime: 147 }, 
 
       spoiler: [
         'Mobile phones start flying out of people\'s hands across a city, and a scientist revives his old robot to fight the force behind it.',
-        'A bird lover\'s angry spirit takes revenge on the mobile industry, and only a dismantled robot can stop him.',
       ],
-      dialogues: [],
+      dialogues: ['Number one, number two anedi pillala aata... I\'m the only one... Super One'],
 
       clues: {
-        job: 'Scientist',
-        location: 'Chennai',
-        song: 'Endhira Logathu Sundariye',
+        job: '',
+        location: '',
+        song: 'Yanthara Lokapu Sundarive',
         scene: 'Thousands of phones fly out of people\'s hands and join together in the sky',
       },
     },
@@ -6540,7 +6508,7 @@
       level: 'medium',
 
       hero: 'Pawan Kalyan',
-      heroine: 'Keerthy Suresh',   // check
+      heroine: 'Keerthy Suresh',  
       director: 'Trivikram Srinivas',
       music: 'Anirudh Ravichander',
       villain: 'Aadhi Pinisetty',
@@ -6548,19 +6516,18 @@
       genre: 'Action drama',
       roles: [],
 
-      stats: { imdb: 3.9, songs: 6, runtime: 158 },   // check
+      stats: { imdb: 4.3, songs: 6, runtime: 158 },   
 
       spoiler: [
         'The secret son of a business tycoon joins the company in disguise to find who killed his father and brother.',
-        'A man raised away from his rich family takes a job in their company under a false name.',
       ],
-      dialogues: [],
+      dialogues: ['Pachani chettu ni goddali tho padagotti, rampam tho mukkaluga nariki, beradu ni blade tho saana betti, ollantha mekulatho kotti kotti tayaaru chestam... manam korukune prathi soukaryam venakala oka mini yuddhame untundi.'],
 
-      clues: {   // check
-        job: 'Employee in a corporate company',
-        location: 'Hyderabad',
-        song: 'Kodakaa Koteswar Rao',
-        scene: 'The hero sings a funny song in the company office in front of the staff',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Baitikochi Chuste',
+        scene: '',
       },
     },
     {
@@ -6579,52 +6546,21 @@
       genre: 'Action drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7.2, songs: 6, runtime: 169 },
+      stats: { imdb: 7.3, songs: 6, runtime: 162 },
 
       spoiler: [
         'After his father is killed, the son of a faction leader tries to end a bloody family war in Rayalaseema.',
-        'A man from a faction family moves to the city to learn how to end violence without fighting.',
       ],
       dialogues: ['Kantapaddava kanikaristaanemo, ventapaddava narikestha.'],
 
-      clues: {   // check
-        job: 'Son of a faction leader',
-        location: 'Rayalaseema',
-        song: 'Peniviti',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Anaganaganaga',
         scene: 'A faction leader\'s son tries to end a bloody feud',
       },
     },
-    {
-      id: 'awe',
-      title: 'Awe!',
-      aka: [],
-      year: 2018,
-      level: 'hard',
-
-      hero: '',
-      heroine: 'Kajal Aggarwal',
-      director: 'Prasanth Varma',
-      music: 'Mark K. Robin',
-      villain: '',
-      banner: 'Wall Poster Cinema',
-      genre: 'Psychological thriller',
-      roles: [],
-
-      stats: { imdb: 7.5, songs: 1, runtime: 111 },   // check
-
-      spoiler: [
-        'Several strange stories unfold in one restaurant on one evening, and all of them are connected in a shocking way.',
-        'A talking fish and tree, a time traveller and a magician share the same restaurant.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: '',
-        location: 'A restaurant',
-        song: '',
-        scene: 'A fish and a bonsai tree talk to each other in a restaurant kitchen',
-      },
-    },
+    
     {
       id: 'bharat-ane-nenu',
       title: 'Bharat Ane Nenu',
@@ -6645,13 +6581,12 @@
 
       spoiler: [
         'A young man studying abroad returns home after his father\'s death and unexpectedly becomes chief minister, determined to run the state by his own honest rules.',
-        'An Oxford graduate who becomes chief minister by accident tries to clean up the state his father ran.',
       ],
-      dialogues: [],
+      dialogues: ['Nayakudu avasaram leni samajam nirminchadame asalaina nayakudi lakshanam.'],
 
-      clues: {   // check
+      clues: {   
         job: 'Chief minister',
-        location: 'Andhra Pradesh',
+        location: '',
         song: 'Vachaadayyo Saami',
         scene: 'A young man becomes chief minister after his father dies',
       },
@@ -6672,19 +6607,18 @@
       genre: 'Action comedy',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 6.1, songs: 5, runtime: 150 },   // check
+      stats: { imdb: 6.6, songs: 5, runtime: 159 },  
 
       spoiler: [
         'A don hiding from the police becomes friends with a kind doctor who treats him.',
-        'A doctor who cannot refuse a patient ends up treating a dreaded gangster.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Doctor',
-        location: 'Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
-        scene: 'A doctor removes a bullet from a don in secret',
+        scene: 'Nervous doctor Das secretly extracts a bullet from wounded mafia don Deva, sparking their friendship.',
       },
     },
     {
@@ -6701,20 +6635,19 @@
       villain: '',
       banner: 'Suresh Productions',
       genre: 'Comedy',
-      roles: ['Vivek', 'Karthik', 'Kaushik'],   // check
+      roles: ['Vivek', 'Karthik', 'Kaushik', 'Uppi'],  
 
-      stats: { imdb: 8, songs: 4, runtime: 140 },   // check
+      stats: { imdb: 8, songs: 6, runtime: 137 },   
 
       spoiler: [
         'Four friends who once dreamed of making short films go on a drunken trip to Goa and rediscover their friendship.',
-        'Old friends get together for a bachelor party and end up shooting a short film.',
       ],
-      dialogues: [],
+      dialogues: ['Rey naaku bhayamaithundiraa...', 'Masth shades unnay ra neelo... Kamal Haasan'],
 
-      clues: {   // check
-        job: 'Bartender',
-        location: 'Hyderabad and Goa',
-        song: '',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Veediponidhi Okateley',
         scene: 'Four friends end up in Goa and make a short film',
       },
     },
@@ -6734,53 +6667,21 @@
       genre: 'Romantic comedy',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7.7, songs: 7, runtime: 143 },
+      stats: { imdb: 7.7, songs: 5, runtime: 143 },
 
       spoiler: [
-        'A mild-mannered lecturer kisses a sleeping stranger on a bus ride. When they meet again, her family turns out to be the one his sister is about to marry into.',
-        'A lecturer who accidentally kisses a sleeping woman on a bus spends the film trying to win her forgiveness.',
+        'A mild-mannered lecturer kisses a stranger on a bus ride. When they meet again, her family turns out to be the one his sister is about to marry into.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'College lecturer',
-        location: 'Hyderabad and Kakinada',
+      clues: {   
+        job: '',
+        location: '',
         song: 'Inkem Inkem Inkem Kaavaale',
-        scene: 'A kiss on a bus starts a big misunderstanding',
+        scene: '',
       },
     },
-    {
-      id: 'goodachari',
-      title: 'Goodachari',
-      aka: [],
-      year: 2018,
-      level: 'medium',
-
-      hero: 'Adivi Sesh',
-      heroine: 'Sobhita Dhulipala',
-      director: 'Sashi Kiran Tikka',
-      music: 'Sricharan Pakala',
-      villain: 'Jagapathi Babu',
-      banner: 'Abhishek Pictures',   // check
-      genre: 'Spy thriller',
-      roles: ['Gopi', 'Sameera'],   // check
-
-      stats: { imdb: 7.9, songs: 3, runtime: 147 },
-
-      spoiler: [
-        'A young man joins a secret agency for a sacred mission, and soon learns that the real enemy may be among his own.',
-        'A spy-in-training is framed for killing his own team and has to clear his name.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Spy',
-        location: 'Hyderabad and Chittagong',
-        song: '',
-        scene: 'A new recruit of a secret agency is framed as a traitor',
-      },
-    },
-    {
+       {
       id: 'kaala',
       title: 'Kaala',
       aka: [],
