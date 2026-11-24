@@ -9307,7 +9307,7 @@
 
       spoiler: [  'Former union leader Deva infiltrates a ruthless port smuggling syndicate to avenge his murdered friend and protect his estranged daughter.' 
       ],
-      dialogues: [],
+      dialogues: ['Rajasekar chanipoyetappudu Dayal chevilo edho cheppaadu... em cheppaado evarikainaa thelusaa?'],
 
       clues: {   
         job: '',
@@ -9608,7 +9608,7 @@
       spoiler: [   
         'A feared gangster who vanished from Bombay returns after years to settle an old war.',
       ],
-      dialogues: [],
+      dialogues: ['Bombay vasthunnaa... thalalu jaagrattha'],
 
       clues: {  
         job: 'Gangster',
@@ -9634,7 +9634,7 @@
       genre: 'Family comedy',  
       roles: [],
 
-      stats: { imdb: 5.7, songs: 4, runtime: 165 },   // check
+      stats: { imdb: 5.7, songs: 4, runtime: 164 },   
 
       spoiler: [ 'A national security officer goes undercover to protect and reconnect with his wife and children from dangerous criminal threats.'
       ],
@@ -9733,7 +9733,7 @@
       clues: {   
         job: '',
         location: '',
-        song: '',
+        song: 'Aaya Sher',
         scene: '',
       },
     },
@@ -9753,15 +9753,15 @@
       genre: 'Sports drama',   
       roles: [],
 
-      stats: { imdb: 5.1, songs: 4, runtime: 189 },   
+      stats: { imdb: 5.1, songs: 4, runtime: 182 },   
 
       spoiler: [  'In 1994 Vizianagaram, tribal villager overcomes a severe wrestling injury to become a para athlete, winning national acclaim and official recognition for his community.'],
-      dialogues: [],
+      dialogues: ['Aattey naa pogaru...'],
 
       clues: {   
         job: '',
         location: '',
-        song: '',
+        song: 'Chikiri Chikiri',
         scene: '',
       },
     },
@@ -9783,7 +9783,7 @@
 
       stats: { imdb: 0, songs: 0, runtime: 0 },  
 
-      spoiler: [   // check
+      spoiler: [   
       ],
       dialogues: [],
 
@@ -9810,7 +9810,7 @@
       genre: 'Action drama',   
       roles: [],
 
-      stats: { imdb: 4, songs: 3, runtime: 154 },  
+      stats: { imdb: 4.1, songs: 3, runtime: 154 },  
 
       spoiler: [   
       ],
@@ -9819,7 +9819,7 @@
       clues: {   
         job: '',
         location: '',
-        song: '',
+        song: 'Dekhlenge Saala',
         scene: '',
       },
     },
