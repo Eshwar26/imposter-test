@@ -125,64 +125,21 @@
   <button class="btn outline" type="button" data-close>GOT IT</button>
 </section>
 
+<script src="data/movies.js?v=1.0.0"></script>
+<script src="core/pick.js?v=1.0.0"></script>
 <script>
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const PK = CinefiedPick;
 
-  // ═════════════ MOVIE DATA (edit here) ═════════════
-  // y = release year · r = IMDb rating · s = number of songs on the soundtrack (ROUGH ESTIMATE) · t = runtime in minutes
-  // These numbers were written from memory and are approximate: please verify them, the song counts most of all.
-  const MOVIES = [
-    {n:'RRR', y:2022, r:7.8, s:6, t:187},
-    {n:'Baahubali: The Beginning', y:2015, r:8.0, s:7, t:159},
-    {n:'Baahubali 2: The Conclusion', y:2017, r:8.2, s:5, t:167},
-    {n:'Pushpa: The Rise', y:2021, r:7.6, s:6, t:179},
-    {n:'Magadheera', y:2009, r:7.7, s:6, t:166},
-    {n:'Arjun Reddy', y:2017, r:8.0, s:7, t:182},
-    {n:'Eega', y:2012, r:7.7, s:3, t:134},
-    {n:'Srimanthudu', y:2015, r:7.3, s:6, t:160},
-    {n:'Ala Vaikunthapurramuloo', y:2020, r:7.3, s:7, t:165},
-    {n:'Rangasthalam', y:2018, r:8.2, s:7, t:179},
-    {n:'Jersey', y:2019, r:8.4, s:4, t:160},
-    {n:'Geetha Govindam', y:2018, r:7.7, s:7, t:143},
-    {n:'Sita Ramam', y:2022, r:8.5, s:6, t:163},
-    {n:'Mahanati', y:2018, r:8.4, s:6, t:177},
-    {n:'Hanu-Man', y:2024, r:7.8, s:4, t:158},
-    {n:'Kalki 2898 AD', y:2024, r:7.0, s:3, t:181},
-    {n:'Salaar: Part 1 – Ceasefire', y:2023, r:6.4, s:4, t:175},
-    {n:'Dasara', y:2023, r:6.2, s:6, t:156},
-    {n:'Major', y:2022, r:8.1, s:3, t:149},
-    {n:'Gabbar Singh', y:2012, r:7.4, s:6, t:163},
-    {n:'Race Gurram', y:2014, r:7.2, s:7, t:156},
-    {n:'Manam', y:2014, r:8.3, s:5, t:137},
-    {n:'Akhanda', y:2021, r:7.1, s:5, t:167},
-    {n:'Bharat Ane Nenu', y:2018, r:7.5, s:6, t:173},
-    {n:'Aravinda Sametha Veera Raghava', y:2018, r:7.2, s:6, t:169},
-    {n:'Athadu', y:2005, r:8.0, s:5, t:165},
-    {n:'Pokiri', y:2006, r:7.8, s:5, t:165},
-    {n:'Okkadu', y:2003, r:7.8, s:6, t:169},
-    {n:'Simhadri', y:2003, r:7.4, s:6, t:172},
-    {n:'Arya', y:2004, r:7.4, s:6, t:165},
-    {n:'Bommarillu', y:2006, r:8.0, s:6, t:155},
-    {n:'Pelli Choopulu', y:2016, r:7.9, s:4, t:139},
-    {n:'Kshanam', y:2016, r:7.9, s:2, t:127},
-    {n:'Goodachari', y:2018, r:7.9, s:3, t:147},
-    {n:'Evaru', y:2019, r:7.9, s:2, t:120},
-    {n:'Mirchi', y:2013, r:7.5, s:6, t:160},
-    {n:'Dookudu', y:2011, r:7.4, s:6, t:165},
-    {n:'Attarintiki Daredi', y:2013, r:7.4, s:6, t:166},
-    {n:'Temper', y:2015, r:7.3, s:5, t:150},
-    {n:'Janatha Garage', y:2016, r:7.0, s:5, t:160},
-    {n:'Maharshi', y:2019, r:7.3, s:6, t:177},
-    {n:'Sarileru Neekevvaru', y:2020, r:6.2, s:6, t:169},
-    {n:'Pushpa 2: The Rule', y:2024, r:6.1, s:6, t:200},
-    {n:'Oopiri', y:2016, r:7.9, s:4, t:150},
-    {n:'Vedam', y:2010, r:8.1, s:5, t:160}
-  ];
+  // ═════════════ MOVIES come from data/movies.js: every movie with a year and all three stats ═════════════
+  // y = release year · r = IMDb rating · s = number of songs · t = runtime in minutes
+  const MOVIES = PK.movies().filter(m => m.year > 0 && m.stats && m.stats.imdb > 0 && m.stats.songs > 0 && m.stats.runtime > 0)
+    .map(m => ({ n: m.title, y: m.year, r: m.stats.imdb, s: m.stats.songs, t: m.stats.runtime }));
 
-  // The loop. "gap" = how far apart the two values must be, so no round is a coin flip.
+  // The loop. "ok" = how far apart the two values must be, so no round is a coin flip.
   const STATS = [
     {k:'y', q:'Which came out LATER?',        lab:'Release year',  fmt:v => String(v),                 ok:(a,b) => Math.abs(a-b) >= 2},
     {k:'r', q:'Which is rated HIGHER?',       lab:'IMDb rating',   fmt:v => v.toFixed(1) + ' ★',       ok:(a,b) => Math.abs(a-b) >= .6},
@@ -200,21 +157,23 @@
   }
   theme(); sysDark.addEventListener('change', theme);
 
-  let round = 0, score = 0, cur = null, lock = false, lastNames = [], timer = null;
+  let round = 0, score = 0, cur = null, lock = false, runSeen = new Set(), timer = null;
   const bestGet = () => { try { return parseInt(localStorage.getItem('cf_hol_best')) || 0; } catch (e) { return 0; } };
   const bestSet = v => { try { localStorage.setItem('cf_hol_best', v); } catch (e) {} };
   function show(id) { document.querySelectorAll('#game .gs').forEach(s => s.classList.toggle('on', s.id === id)); }
   $('homeBest').textContent = bestGet();
 
+  // a movie shows up at most once per run while there are fresh ones left
   function pickPair(st) {
-    for (let i = 0; i < 400; i++) {
-      const a = MOVIES[Math.floor(Math.random() * MOVIES.length)], b = MOVIES[Math.floor(Math.random() * MOVIES.length)];
+    const rnd = () => MOVIES[Math.floor(Math.random() * MOVIES.length)];
+    for (let i = 0; i < 800; i++) {
+      const a = rnd(), b = rnd();
       if (a === b || !st.ok(a[st.k], b[st.k])) continue;
-      if (lastNames.includes(a.n) || lastNames.includes(b.n)) continue;     // don't repeat movies from the last round
+      if (runSeen.has(a.n) || runSeen.has(b.n)) continue;
       return [a, b];
     }
-    for (let i = 0; i < 400; i++) {   // fallback: ignore the repeat rule
-      const a = MOVIES[Math.floor(Math.random() * MOVIES.length)], b = MOVIES[Math.floor(Math.random() * MOVIES.length)];
+    for (let i = 0; i < 400; i++) {   // fallback: allow repeats
+      const a = rnd(), b = rnd();
       if (a !== b && st.ok(a[st.k], b[st.k])) return [a, b];
     }
     return null;
@@ -230,12 +189,12 @@
   }
   function startRun() {
     clearTimeout(timer);
-    round = 0; score = 0; lastNames = []; $('over').classList.remove('on');
+    round = 0; score = 0; runSeen = new Set(); $('over').classList.remove('on');
     $('best').textContent = bestGet(); $('sc').textContent = '0'; show('s-play'); nextRound();
   }
   function nextRound() {
     const st = STATS[round % STATS.length], pr = pickPair(st); if (!pr) return endRun();
-    cur = { st, pr }; lock = false; lastNames = pr.map(m => m.n);
+    cur = { st, pr }; lock = false; pr.forEach(m => runSeen.add(m.n));
     $('qs').textContent = 'ROUND ' + (round + 1) + ' · ' + st.lab.toUpperCase();
     $('qh').innerHTML = qHTML(st.q);
     const q = $('q'); q.classList.remove('in'); void q.offsetWidth; q.classList.add('in');
