@@ -72,14 +72,17 @@
 <div class="scrim" id="scrim"></div>
 <section class="sheet ht-sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><div id="howto"></div></section>
 
+<script src="data/movies.js?v=1.0.0"></script>
+<script src="core/pick.js?v=1.0.0"></script>
 <script src="core/howto.js?v=0.2.0"></script>
 <script>
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
+  const P = CinefiedPick;
 
-  // ═════════════ MOVIES (edit here) ═════════════
-  const MOVIES = ["RRR", "Baahubali: The Beginning", "Baahubali 2: The Conclusion", "Pushpa: The Rise", "Magadheera", "Arjun Reddy", "Ala Vaikunthapurramuloo", "Rangasthalam", "Eega", "Arundhati", "Pokiri", "Athadu", "Srimanthudu", "Gabbar Singh", "Attarintiki Daredi", "Jersey", "Salaar: Part 1 – Ceasefire", "Kalki 2898 AD", "Dasara", "Geetha Govindam", "Temper", "Aravinda Sametha Veera Raghava", "Akhanda", "Hi Nanna", "Bharat Ane Nenu", "Major", "Hanu-Man", "Race Gurram", "Manam", "Ye Maaya Chesave", "Gangotri", "Arya", "Bunny", "Happy", "Desamuduru", "Parugu", "Arya 2", "Varudu", "Vedam", "Badrinath", "Julayi", "Yevadu", "S/O Satyamurthy", "Sarrainodu", "Kushi", "Jalsa", "Panjaa", "Katamarayudu", "Vakeel Saab", "Bheemla Nayak", "Chirutha", "Orange", "Racha", "Naayak", "Okkadu", "Khaleja", "Dookudu", "Businessman", "Maharshi", "Sarileru Neekevvaru", "Guntur Kaaram", "Simhadri", "Yamadonga", "Kantri", "Adhurs", "Baadshah", "Janatha Garage", "Jai Lava Kusa", "Devara: Part 1", "Varsham", "Chatrapathi", "Yogi", "Billa", "Darling", "Mr. Perfect", "Rebel", "Saaho", "Radhe Shyam", "Adipurush", "Happy Days", "Godavari", "Fidaa", "Love Story", "Majili", "Geethanjali", "Dhee", "Ready", "Kick", "Pelli Choopulu", "Brochevarevarura", "Mathu Vadalara", "Goodachari", "Kshanam", "Evaru", "Shyam Singha Roy", "Taxiwaala", "Dear Comrade", "Liger", "World Famous Lover", "Waltair Veerayya", "Veera Simha Reddy", "Bhagavanth Kesari", "Legend", "Simha", "Indra", "Tagore", "Stalin", "F2: Fun and Frustration", "Gudumba Shankar", "Ghajini", "Lakshmi", "Malliswari", "Manmadhudu", "Oopiri", "Premam", "Master", "Leo", "Jailer", "Robo", "Khaidi No. 150", "Sye Raa Narasimha Reddy", "Mirchi", "Pushpa 2: The Rule"];
+  // ═════════════ MOVIES come from data/movies.js: every movie, no levels ═════════════
+  const DECK = P.deck('cf_charades_seen', P.movies().map(m => ({ id: m.id, n: m.title })));
 
   // ── theme: follows the phone unless the player chose one in Profile ──
   const sysDark = matchMedia('(prefers-color-scheme: dark)');
@@ -91,16 +94,11 @@
   }
   theme(); sysDark.addEventListener('change', theme);
 
-  // ── no repeats until every movie has come up (remembered on this phone) ──
-  let used = []; try { used = JSON.parse(localStorage.getItem('cf_charades_used') || '[]'); } catch (e) {}
   let played = 0;
   function nextMovie() {
-    if (used.length >= MOVIES.length) used = [];
-    const left = MOVIES.map((_, i) => i).filter(i => !used.includes(i));
-    const i = left[Math.floor(Math.random() * left.length)];
-    used.push(i); try { localStorage.setItem('cf_charades_used', JSON.stringify(used)); } catch (e) {}
+    const cur = DECK.next(); if (!cur) return;
     played++;
-    const el = $('movie'); el.textContent = MOVIES[i];
+    const el = $('movie'); el.textContent = cur.n;
     el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
     $('count').textContent = 'MOVIE ' + played;
     fit();
