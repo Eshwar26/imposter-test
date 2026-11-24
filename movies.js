@@ -7951,81 +7951,18 @@
       genre: 'Period drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7.9, songs: 5, runtime: 157 },   // check
+      stats: { imdb: 7.6, songs: 5, runtime: 157 },  
 
       spoiler: [
-        'A modern filmmaker is accused of plagiarism, and the story of an earlier writer bleeds into his own life.',
         'A young filmmaker accused of copying a famous writer\'s works finds out about his previous life in 1970s Bengal.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Filmmaker',
-        location: 'Hyderabad and Kolkata',
-        song: 'Pranavalaya',
+      clues: {   
+        job: '',
+        location: ' ',
+        song: 'Sirivennela',
         scene: 'A filmmaker discovers his past life as a Bengali writer',
-      },
-    },
-    {
-      id: 'tuck-jagadish',
-      title: 'Tuck Jagadish',
-      aka: [],
-      year: 2021,
-      level: 'hard',
-
-      hero: 'Nani',
-      heroine: 'Ritu Varma',
-      director: 'Shiva Nirvana',
-      music: 'S. Thaman',
-      villain: '',
-      banner: 'Shine Screens',
-      genre: 'Family drama',
-      roles: [],
-
-      stats: { imdb: 5.6, songs: 5, runtime: 145 },   // check
-
-      spoiler: [
-        'A young man becomes a village officer to settle a land dispute that has broken his family.',
-        'A son tries to reunite his family after his father\'s death.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Village revenue officer',
-        location: 'Bhoodevipuram',
-        song: '',
-        scene: '',
-      },
-    },
-    {
-      id: 'uppena',
-      title: 'Uppena',
-      aka: [],
-      year: 2021,
-      level: 'medium',
-
-      hero: 'Vaisshnav Tej',
-      heroine: 'Krithi Shetty',
-      director: 'Buchi Babu Sana',
-      music: 'Devi Sri Prasad',
-      villain: 'Vijay Sethupathi',
-      banner: 'Mythri Movie Makers',
-      genre: 'Romantic drama',
-      roles: ['Aasi', 'Bebamma', 'Rayanam'],   // check
-
-      stats: { imdb: 6.8, songs: 5, runtime: 147 },   // check
-
-      spoiler: [
-        'A fisherman\'s son falls for the daughter of a proud village head who will do anything to protect his honour.',
-        'A love story in a coastal village and a brutal punishment.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Fisherman',
-        location: 'Uppada',
-        song: 'Nee Kannu Neeli Samudram',
-        scene: 'A fisherman\'s son loves a powerful landlord\'s daughter',
       },
     },
     {
@@ -8042,19 +7979,18 @@
       villain: 'Prakash Raj',
       banner: 'Sri Venkateswara Creations',
       genre: 'Legal drama',
-      roles: ['Satyadev', 'Pallavi', 'Nanda'],   // check
+      roles: [],   
 
-      stats: { imdb: 7, songs: 4, runtime: 154 },   // check
+      stats: { imdb: 7, songs: 3, runtime: 154 },  
 
       spoiler: [
         'Three girls are accused of a crime, and a retired lawyer who has stayed silent for years returns to court to defend them.',
-        'A suspended lawyer fights in court for three young women falsely accused after they resisted assault.',
       ],
-      dialogues: [],
+      dialogues: ['Court lo vaadinchadam thelusu... coat theesi kottadamoo thelusu'],
 
-      clues: {   // check
+      clues: {  
         job: 'Lawyer',
-        location: 'Hyderabad',
+        location: '',
         song: 'Maguva Maguva',
         scene: 'A suspended lawyer defends three women in court',
       },
@@ -8067,7 +8003,7 @@
       level: 'hard',
 
       hero: 'Teja Sajja',
-      heroine: 'Anandhi',
+      heroine: '',
       director: 'Prasanth Varma',
       music: 'Mark K. Robin',
       villain: '',
@@ -8075,16 +8011,16 @@
       genre: 'Zombie comedy',
       roles: [],
 
-      stats: { imdb: 6, songs: 3, runtime: 130 },   // check
+      stats: { imdb: 6.7, songs: 3, runtime: 125 },  
 
       spoiler: [
         'A group of friends visit a village in Rayalaseema just as a zombie outbreak hits.',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {  
         job: 'Game developer',
-        location: 'Rayalaseema',
+        location: '',
         song: '',
         scene: '',
       },
@@ -8100,24 +8036,23 @@
       heroine: 'Pooja Hegde',
       director: 'Koratala Siva',
       music: 'Mani Sharma',
-      villain: 'Sonu Sood',
+      villain: '',
       banner: 'Konidela Production Company',
       genre: 'Action drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 4, songs: 5, runtime: 154 },   // check
+      stats: { imdb: 3.8, songs: 4, runtime: 154 },   
 
       spoiler: [
-        'A former Naxalite arrives at a temple town to protect its people from a corrupt businessman who wants the land.',
         'A comrade comes to Dharmasthali to finish the fight that a young man named Siddha started.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Former Naxalite',
+      clues: {  
+        job: '',
         location: 'Dharmasthali',
         song: 'Laahe Laahe',
-        scene: 'Two comrades fight side by side in a forest at night',
+        scene: '',
       },
     },
     {
@@ -8136,52 +8071,21 @@
       genre: 'Romantic comedy',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7.9, songs: 5, runtime: 176 },   // check
+      stats: { imdb: 7.6, songs: 7, runtime: 176 },   
 
       spoiler: [
         'A Brahmin boy and a Christian girl invent one lie after another to get their conservative families to agree to their marriage.',
-        'A man whose family controls every part of his life tells a huge lie to marry the girl he loves.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Photographer',
-        location: 'Amalapuram',
-        song: 'Entha Chithram',
+      clues: {   
+        job: '',
+        location: '',
+        song: '',
         scene: 'A Brahmin boy and a Christian girl lie to both families to get married',
       },
     },
-    {
-      id: 'bangarraju',
-      title: 'Bangarraju',
-      aka: [],
-      year: 2022,
-      level: 'medium',
-
-      hero: ['Nagarjuna', 'Naga Chaitanya'],
-      heroine: 'Krithi Shetty',
-      director: 'Kalyan Krishna',
-      music: 'Anup Rubens',
-      villain: '',
-      banner: 'Annapurna Studios',
-      genre: 'Fantasy comedy',
-      roles: [],   // the character names give the title away, so this movie uses the STARRING round only
-
-      stats: { imdb: 5.5, songs: 5, runtime: 160 },   // check
-
-      spoiler: [
-        'The spirit of a playful grandfather comes back from heaven to help his grandson win over a girl and save the village temple.',
-        'A ghost grandfather and his flirtatious grandson team up against villagers who want the temple\'s treasure.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Village youth',
-        location: 'Sivapuram',
-        song: 'Laddunda',
-        scene: 'A grandfather\'s spirit possesses his grandson to romance a girl',
-      },
-    },
+  
     {
       id: 'beast',
       title: 'Beast',
@@ -8193,24 +8097,23 @@
       heroine: 'Pooja Hegde',
       director: 'Nelson Dilipkumar',
       music: 'Anirudh Ravichander',
-      villain: 'Shine Tom Chacko',
+      villain: '',
       banner: 'Sun Pictures',
       genre: 'Action comedy',
-      roles: ['Veera Raghavan', 'Preethi'],   // check
+      roles: ['Veera Raghavan', 'Preethi'],   
 
-      stats: { imdb: 5.1, songs: 4, runtime: 155 },   // check
+      stats: { imdb: 5.2, songs: 3, runtime: 156 },   
 
       spoiler: [
         'A former spy is trapped inside a shopping mall that terrorists have taken over.',
-        'An ex-RAW agent on a security job fights hostage-takers from inside a mall.',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Former RAW agent',
-        location: 'Chennai',
+        location: '',
         song: 'Arabic Kuthu',
-        scene: 'A spy flies a fighter jet out of a city',
+        scene: '',
       },
     },
     {
@@ -8224,23 +8127,22 @@
       heroine: 'Nithya Menen',
       director: 'Saagar K. Chandra',
       music: 'S. Thaman',
-      villain: 'Rana Daggubati',
+      villain: '',
       banner: 'Sithara Entertainments',
       genre: 'Action drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 6.9, songs: 5, runtime: 145 },   // check
+      stats: { imdb: 6.2, songs: 5, runtime: 145 },   
 
       spoiler: [
-        'An honest cop and a retired army havildar with pride as big as the other\'s go head to head over a small mistake.',
         'A forest cop and a retired army man fall into an ego war over a minor arrest.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Police sub-inspector',
-        location: 'A forest checkpost',
-        song: 'Lala Bheemla',
+      clues: {  
+        job: '',
+        location: '',
+        song: '',
         scene: 'A clash of egos between a police officer and an ex-army man',
       },
     },
@@ -8255,22 +8157,21 @@
       heroine: 'Catherine Tresa',
       director: 'Mallidi Vassishta',
       music: 'M. M. Keeravani',
-      villain: 'Vivan Bhatena',   // check
+      villain: '',  
       banner: 'N.T.R. Arts',
       genre: 'Fantasy action',
       roles: [],
 
-      stats: { imdb: 7.1, songs: 4, runtime: 146 },   // check
+      stats: { imdb: 6.8, songs: 4, runtime: 146 },   
 
       spoiler: [
         'A cruel ancient king is thrown into the present day by a magic mirror and learns humility.',
-        'A tyrant from 500 BC lands in modern Hyderabad, where his treasure is being hunted.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Ancient king',
-        location: 'Trigartala and Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
         scene: 'A king walks out of a mirror into the modern world',
       },
@@ -8289,21 +8190,19 @@
       villain: 'Jayaram',
       banner: 'People Media Factory',
       genre: 'Action comedy',
-      roles: ['Swami', 'Pranavi'],   // check
+      roles: [],   
 
-      stats: { imdb: 5.9, songs: 5, runtime: 145 },   // check
-
+      stats: { imdb: 6.1, songs: 5, runtime: 139 },   
+       
       spoiler: [
-        'Two lookalikes, one a jobless young man and one a company heir, are mixed up while a businessman tries to grab a company.',
-        'A girl loves one lookalike, while a company needs the other.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Unemployed young man',
-        location: 'Hyderabad',
-        song: 'Jinthaak',
-        scene: 'Two lookalikes are confused at a wedding',
+      clues: {   
+        job: '',
+        location: '',
+        song: '',
+        scene: '',
       },
     },
     {
@@ -8316,24 +8215,23 @@
       hero: 'Siddhu Jonnalagadda',
       heroine: 'Neha Shetty',
       director: 'Vimal Krishna',
-      music: 'Sricharan Pakala',
+      music: 'Ram Miriyala',
       villain: '',
       banner: 'Sithara Entertainments',
       genre: 'Crime comedy',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7.2, songs: 3, runtime: 125 },   // check
+      stats: { imdb: 7.2, songs: 3, runtime: 124 },   
 
       spoiler: [
         'A local DJ with a big mouth falls for a mysterious singer and gets dragged into a murder.',
-        'A small-time DJ helps a girl hide a body and keeps lying to the police.',
       ],
-      dialogues: [],
+      dialogues: ['Atluntadhi manathoni'],
 
-      clues: {   // check
+      clues: {   
         job: 'DJ',
-        location: 'Hyderabad',
-        song: '',
+        location: '',
+        song: 'Pataas Pilla',
         scene: 'A local DJ is pulled into a murder by his girlfriend',
       },
     },
@@ -8345,121 +8243,28 @@
       level: 'medium',
 
       hero: ['Venkatesh', 'Varun Tej'],
-      heroine: 'Tamannaah',
+      heroine: ['Tamannaah','Mehreen Pirzada',],
       director: 'Anil Ravipudi',
       music: 'Devi Sri Prasad',
       villain: '',
       banner: 'Sri Venkateswara Creations',
       genre: 'Family comedy',
-      roles: ['Venky', 'Harika', 'Varun'],   // check
+      roles: [],   
 
-      stats: { imdb: 5.4, songs: 5, runtime: 148 },   // check
+      stats: { imdb: 4.7, songs: 4, runtime: 148 },   
 
       spoiler: [
-        'Two men who need money pose as the long-lost son of a rich businessman.',
-        'A man with night blindness and a man who stammers chase a fortune.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Small-time hustler',
-        location: 'Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
-        scene: 'Two men compete to prove they are a rich man\'s lost son',
+        scene: '',
       },
     },
-    {
-      id: 'godfather',
-      title: 'GodFather',
-      aka: [],
-      year: 2022,
-      level: 'medium',
-
-      hero: 'Chiranjeevi',
-      heroine: 'Nayanthara',
-      director: 'Mohan Raja',
-      music: 'S. Thaman',
-      villain: 'Satyadev',
-      banner: 'Konidela Production Company',
-      genre: 'Political action drama',
-      roles: ['Brahma', 'Sathya Priya', 'Jaidev'],   // check
-
-      stats: { imdb: 6.1, songs: 4, runtime: 157 },   // check
-
-      spoiler: [
-        'After a chief minister\'s death, a mysterious man returns to stop the CM\'s son-in-law from grabbing power.',
-        'A shadowy figure with a big network protects the political party of his late father.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Political strongman',
-        location: 'Hyderabad',
-        song: '',
-        scene: 'A man walks into the CM\'s funeral and everyone falls silent',
-      },
-    },
-    {
-      id: 'hit-the-second-case',
-      title: 'HIT: The Second Case',
-      aka: [],
-      year: 2022,
-      level: 'medium',
-
-      hero: 'Adivi Sesh',
-      heroine: 'Meenakshi Chaudhary',
-      director: 'Sailesh Kolanu',
-      music: 'M. M. Sreelekha',   // check
-      villain: '',
-      banner: 'Wall Poster Cinema',
-      genre: 'Crime thriller',
-      roles: ['Krishna Dev', 'Aarya'],   // check
-
-      stats: { imdb: 7.4, songs: 1, runtime: 126 },   // check
-
-      spoiler: [
-        'A casual cop in Vizag hunts a serial killer who leaves behind bodies made from different women.',
-        'A laid-back officer faces a killer who builds one body out of many.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Police officer',
-        location: 'Vizag',
-        song: '',
-        scene: 'Police find a body assembled from several victims',
-      },
-    },
-    {
-      id: 'karthikeya-2',
-      title: 'Karthikeya 2',
-      aka: [],
-      year: 2022,
-      level: 'medium',
-
-      hero: 'Nikhil Siddhartha',
-      heroine: 'Anupama Parameswaran',
-      director: 'Chandoo Mondeti',
-      music: 'Kaala Bhairava',
-      villain: '',
-      banner: 'People Media Factory',
-      genre: 'Mystery adventure',
-      roles: [],   // the character names give the title away, so this movie uses the STARRING round only
-
-      stats: { imdb: 7.9, songs: 3, runtime: 140 },   // check
-
-      spoiler: [
-        'A doctor goes on a hunt across India for an ancient anklet of Lord Krishna that holds a great secret.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Doctor',
-        location: 'Dwarka',
-        song: '',
-        scene: 'A doctor searches for Lord Krishna\'s lost anklet',
-      },
-    },
+    
     {
       id: 'kgf-chapter-2',
       title: 'KGF: Chapter 2',
@@ -8474,20 +8279,19 @@
       villain: 'Sanjay Dutt',
       banner: 'Hombale Films',
       genre: 'Period action',
-      roles: ['Rocky', 'Reena', 'Adheera'],   // check
+      roles: [],   
 
-      stats: { imdb: 8.2, songs: 4, runtime: 168 },   // check
+      stats: { imdb: 8.2, songs: 4, runtime: 168 },   
 
       spoiler: [
-        'The ruler of the gold fields fights a dreaded warrior and the Prime Minister of India.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Gold field ruler',
-        location: 'Kolar Gold Fields',
-        song: 'Toofan',
-        scene: 'A man fires a huge machine gun at a police station',
+      clues: {   
+        job: '',
+        location: '',
+        song: '',
+        scene: '',
       },
     },
     {
@@ -8500,25 +8304,24 @@
       hero: 'Vijay Deverakonda',
       heroine: 'Ananya Panday',
       director: 'Puri Jagannadh',
-      music: 'Vikram Montrose',   // check
+      music: '',  
       villain: '',
       banner: 'Puri Connects',
       genre: 'Sports action',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 3, songs: 5, runtime: 140 },   // check
+      stats: { imdb: 2.6, songs: 6, runtime: 138 },   
 
       spoiler: [
         'A tea-seller\'s son from Mumbai with a stammer goes after a place in the MMA ring, guided by his determined mother.',
-        'A stammering fighter from a chaiwala family trains to become a mixed martial arts champion.',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'MMA fighter',
-        location: 'Mumbai and Las Vegas',
+        location: '',
         song: 'Akdi Pakdi',
-        scene: 'A boy with a stammer trains to fight in a cage',
+        scene: '',
       },
     },
     {
@@ -8537,19 +8340,18 @@
       genre: 'Biographical action',
       roles: ['Sandeep Unnikrishnan', 'Isha'],   // check
 
-      stats: { imdb: 8.1, songs: 3, runtime: 149 },
+      stats: { imdb: 8.1, songs: 4, runtime: 149 },
 
       spoiler: [
-        'The true story of an army commando who gave his life saving hostages during the 2008 attacks on Mumbai hotels.',
-        'The life of Sandeep Unnikrishnan, from his childhood dream of joining the army to the hotel siege where he died.',
+        'The true story of an army commando who gave his life saving hostages during the 2008 attacks on Mumbai hotel.',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {  
         job: 'NSG commando',
         location: 'Mumbai',
-        song: 'Hrudayama',
-        scene: 'A commando fights in the 2008 Mumbai attacks',
+        song: '',
+        scene: 'A commando fights terrorists during the 2008 Mumbai attacks',
       },
     },
     {
@@ -8564,22 +8366,21 @@
       director: 'Anudeep K. V.',
       music: 'S. Thaman',
       villain: '',
-      banner: 'Sree Venkateswara Cinemas',
+      banner: '',
       genre: 'Romantic comedy',
       roles: [],
 
-      stats: { imdb: 4.4, songs: 4, runtime: 143 },   // check
+      stats: { imdb: 4.4, songs: 3, runtime: 143 },   
 
       spoiler: [
         'A school teacher in a village falls for a British woman, and the villagers turn it into a patriotic fight.',
-        'An Indian teacher and a British girl cause a village war.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Social studies teacher',
-        location: 'Puducherry',
-        song: '',
+      clues: {   
+        job: '',
+        location: '',
+        song: 'Jessica',
         scene: '',
       },
     },
@@ -8597,20 +8398,19 @@
       villain: '',
       banner: 'UV Creations',
       genre: 'Period romance',
-      roles: ['Vikramaditya', 'Prerana'],   // check
+      roles: ['Vikramaditya', 'Prerana'],   
 
-      stats: { imdb: 5.6, songs: 6, runtime: 138 },   // check
+      stats: { imdb: 5.2, songs: 4, runtime: 138 },   
 
       spoiler: [
-        'A palmist who has never believed in love meets a doctor on a trip to Italy, where his own predictions fall apart.',
         'A famous palmist who can read anyone\'s future falls for a doctor whose palm says she will die soon.',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Palmist',
-        location: 'Italy',
-        song: '',
+        location: '',
+        song: 'Ee Raathale',
         scene: '',
       },
     },
@@ -8625,22 +8425,21 @@
       heroine: 'Alia Bhatt',
       director: 'S. S. Rajamouli',
       music: 'M. M. Keeravani',
-      villain: 'Ray Stevenson',
+      villain: '',
       banner: 'DVV Entertainment',
       genre: 'Period action drama',
-      roles: ['Bheem', 'Ram', 'Sita'],   // check
+      roles: ['Bheem', 'Ram', 'Sita'],  
 
-      stats: { imdb: 7.8, songs: 6, runtime: 187 },
+      stats: { imdb: 7.8, songs: 5, runtime: 187 },
 
       spoiler: [
         'Two revolutionaries in British India become the closest of friends without knowing that each has a secret mission that will put them on opposite sides.',
-        'A tribal man trying to rescue a girl and a police officer hunting him become best friends.',
       ],
-      dialogues: [],
+      dialogues: ['Thongi thongi nakki nakki kaadhe... thokkukuntoo povaale. Edhurochhinodini esukuntoo povaale','Ee nakkala veta entha sepu... kumbhasthalaanni baddhalu kodadhaam padhaa'],
 
-      clues: {   // check
-        job: 'Police officer and tribal warrior',
-        location: 'Delhi',
+      clues: {   
+        job: '',
+        location: '',
         song: 'Naatu Naatu',
         scene: 'A dance-off at a British party',
       },
@@ -8659,21 +8458,20 @@
       villain: 'Samuthirakani',
       banner: 'Mythri Movie Makers',
       genre: 'Action comedy',
-      roles: ['Mahesh', 'Kalavathi', 'Rajendranath'],   // check
+      roles: ['Mahesh', 'Kalavathi', 'Rajendranath'],   
 
-      stats: { imdb: 5.8, songs: 5, runtime: 162 },   // check
+      stats: { imdb: 5.8, songs: 5, runtime: 162 },   
 
       spoiler: [
         'A moneylender in America goes to India to recover a loan from a powerful businessman.',
-        'A man chases a debt and uncovers a bank scam.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Moneylender',
-        location: 'Miami and Vizag',
+      clues: {   
+        job: '',
+        location: '',
         song: 'Kalaavathi',
-        scene: 'A moneylender chases a borrower across countries',
+        scene: '',
       },
     },
     {
@@ -8695,16 +8493,14 @@
       stats: { imdb: 8.5, songs: 6, runtime: 163 },
 
       spoiler: [
-        'A young woman sets out to deliver a soldier\'s letters, written decades ago, to the person they were meant for.',
-        'An orphan soldier receives love letters from a woman he has never met, and sets out to find her.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Army lieutenant',
-        location: 'Kashmir and Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: 'Inthandham',
-        scene: 'An orphan soldier receives letters from a woman who signs as his wife',
+        scene: '',
       },
     },
     {
@@ -8717,23 +8513,22 @@
       hero: 'Prabhas',
       heroine: 'Kriti Sanon',
       director: 'Om Raut',
-      music: 'Ajay–Atul',   // check
+      music: 'Ajay–Atul',   
       villain: 'Saif Ali Khan',
       banner: 'T-Series',
       genre: 'Mythological action',
-      roles: ['Raghava', 'Janaki', 'Lankesh'],   // check
+      roles: [],   
 
-      stats: { imdb: 3.8, songs: 5, runtime: 179 },   // check
+      stats: { imdb: 3.8, songs: 5, runtime: 179 },  
 
       spoiler: [
-        'A prince goes into exile with his wife and brother, and a demon king steals her away across the sea.',
         'An exiled prince crosses the sea with an army to rescue his wife from a ten-headed king.',
       ],
       dialogues: [],
 
       clues: {
-        job: 'Exiled prince',
-        location: 'Lanka',
+        job: '',
+        location: '',
         song: 'Jai Shri Ram',
         scene: 'An army builds a bridge of stones across the sea',
       },
@@ -8746,91 +8541,28 @@
       level: 'hard',
 
       hero: 'Akhil Akkineni',
-      heroine: 'Sakshi Vaidya',   // check
+      heroine: 'Sakshi Vaidya',   
       director: 'Surender Reddy',
       music: 'Hiphop Tamizha',
-      villain: 'Dino Morea',
+      villain: '',
       banner: 'AK Entertainments',
       genre: 'Spy action',
       roles: [],
 
-      stats: { imdb: 3.4, songs: 4, runtime: 156 },   // check
+      stats: { imdb: 3.5, songs: 4, runtime: 156 },   
 
       spoiler: [
-        'A reckless young man desperate to join RAW is recruited by a tough chief for a secret mission against a rogue spy.',
-        'A wannabe spy proves himself to a chief who keeps rejecting him.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Wannabe RAW spy',
-        location: 'Hyderabad',
-        song: 'Malli Malli',
-        scene: 'The hero hacks into a RAW office just to get noticed',
+      clues: {   
+        job: '',
+        location: '',
+        song: '',
+        scene: '',
       },
     },
-    {
-      id: 'animal',
-      title: 'Animal',
-      aka: [],
-      year: 2023,
-      level: 'easy',
-
-      hero: 'Ranbir Kapoor',
-      heroine: 'Rashmika Mandanna',
-      director: 'Sandeep Reddy Vanga',
-      music: 'Harshavardhan Rameshwar',   // check
-      villain: 'Bobby Deol',
-      banner: 'T-Series',
-      genre: 'Action crime drama',
-      roles: ['Ranvijay', 'Geetanjali', 'Abrar'],   // check
-
-      stats: { imdb: 6.1, songs: 8, runtime: 201 },   // check
-
-      spoiler: [
-        'A son obsessed with his distant billionaire father goes on a bloody rampage after an attempt on his father\'s life.',
-        'A man\'s toxic love for his father turns him into a killer, and a mute enemy waits for him.',
-      ],
-      dialogues: [],
-
-      clues: {
-        job: 'Heir to a steel company',
-        location: 'Delhi',
-        song: 'Ammayi',
-        scene: 'The hero fights hundreds of men in a hotel corridor with a huge machine gun',
-      },
-    },
-    {
-      id: 'baby',
-      title: 'Baby',
-      aka: [],
-      year: 2023,
-      level: 'medium',
-
-      hero: 'Anand Deverakonda',
-      heroine: 'Vaishnavi Chaitanya',
-      director: 'Sai Rajesh',
-      music: 'Vijai Bulganin',
-      villain: '',
-      banner: 'Mass Movie Makers',
-      genre: 'Romantic drama',
-      roles: ['Anand', 'Vaishnavi', 'Viraj'],   // check
-
-      stats: { imdb: 7.3, songs: 5, runtime: 174 },   // check
-
-      spoiler: [
-        'A girl from a slum changes after she joins an engineering college, leaving her school sweetheart, an auto driver, heartbroken.',
-        'A love triangle between an auto driver, a college girl and her rich classmate.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Auto driver',
-        location: 'Hyderabad',
-        song: 'O Rendu Prema Meghaalila',
-        scene: 'An auto driver waits outside a college gate for a girl who no longer looks at him',
-      },
-    },
+   
     {
       id: 'bhagavanth-kesari',
       title: 'Bhagavanth Kesari',
@@ -8843,22 +8575,20 @@
       director: 'Anil Ravipudi',
       music: 'S. Thaman',
       villain: 'Arjun Rampal',
-      banner: 'Shine Screens',
+      banner: '',
       genre: 'Action drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 6.7, songs: 4, runtime: 164 },   // check
-
+      stats: { imdb: 5.7, songs: 4, runtime: 164 },   
+       
       spoiler: [
-        'A tough ex-convict makes a promise to a dying friend and trains the man\'s daughter to be fearless.',
-        'A former prisoner raises his friend\'s daughter and trains her to join the army.',
       ],
-      dialogues: [],
+      dialogues: ['Bro... I Don\'t Care'],
 
-      clues: {   // check
-        job: 'Ex-convict',
-        location: 'Telangana',
-        song: 'Ganesh Anthem',
+      clues: {   
+        job: '',
+        location: '',
+        song: '',
         scene: 'A man trains a scared girl to become fearless',
       },
     },
@@ -8873,24 +8603,22 @@
       heroine: 'Tamannaah',
       director: 'Meher Ramesh',
       music: 'Mahati Swara Sagar',
-      villain: 'Tarun Arora',
+      villain: '',
       banner: 'AK Entertainments',
       genre: 'Action drama',
       roles: [],
 
-      stats: { imdb: 3, songs: 5, runtime: 160 },   // check
+      stats: { imdb: 3.3, songs: 5, runtime: 159 },   
 
       spoiler: [
-        'A taxi driver in Kolkata hunts a gang that kidnaps girls, to protect his sister.',
-        'A brother and sister move to Kolkata, where he hides a violent past.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Taxi driver',
-        location: 'Kolkata',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
-        scene: 'A taxi driver fights a gang at a Kolkata station',
+        scene: '',
       },
     },
     {
@@ -8907,54 +8635,23 @@
       villain: '',
       banner: 'People Media Factory',
       genre: 'Fantasy comedy drama',
-      roles: ['Mark', 'Titan'],   // check
+      roles: [],   
 
-      stats: { imdb: 5.1, songs: 4, runtime: 135 },   // check
+      stats: { imdb: 6.1, songs: 4, runtime: 133 },   
 
       spoiler: [
         'A busy young man who dies in an accident is given 90 more days to live, with Time itself watching over him.',
-        'Time takes human form to teach a selfish man what really matters.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Working professional',
-        location: 'Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
-        scene: 'Time appears as a stylish man in front of a dead man',
+        scene: '',
       },
     },
-    {
-      id: 'dasara',
-      title: 'Dasara',
-      aka: [],
-      year: 2023,
-      level: 'easy',
-
-      hero: 'Nani',
-      heroine: 'Keerthy Suresh',
-      director: 'Srikanth Odela',
-      music: 'Santhosh Narayanan',
-      villain: 'Shine Tom Chacko',
-      banner: 'SLV Cinemas',
-      genre: 'Rural action drama',
-      roles: ['Dharani', 'Vennela', 'Suri'],   // check
-
-      stats: { imdb: 6.2, songs: 6, runtime: 156 },
-
-      spoiler: [
-        'In a coal-mining village, a man and his two best friends see their lives turn upside down because of love, betrayal and the local bar.',
-        'A drunkard in a coal village keeps a secret about his best friend\'s love that changes all their lives.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Coal mine worker',
-        location: 'Veerlapally',
-        song: 'Chamkeela Angeelesi',
-        scene: 'A coal mining village where the bar is the centre of life',
-      },
-    },
+   
     {
       id: 'hi-nanna',
       title: 'Hi Nanna',
