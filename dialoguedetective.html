@@ -71,7 +71,7 @@
     </div>
   </section>
 
-  <!-- 2. A STORY -->
+  <!-- 2. A DIALOGUE -->
   <section class="gs" id="s-play">
     <div class="top">
       <small id="count"></small>
@@ -92,56 +92,20 @@
 <div class="scrim" id="scrim"></div>
 <section class="sheet ht-sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><div id="howto"></div></section>
 
+<script src="data/movies.js?v=1.0.0"></script>
+<script src="core/pick.js?v=1.0.0"></script>
 <script src="core/howto.js?v=0.2.0"></script>
 <script>
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
+  const P = CinefiedPick;
 
-  // ═════════════ DIALOGUES (edit here: n = movie, s = the dialogue, written as it is said; no quote marks needed) ═════════════
-  const STORIES = [
-    { n: "Pushpa: The Rise", s: "Pushpa ante flower anukuntunnara? Fire!" },
-    { n: "Baahubali 2: The Conclusion", s: "Naa maate shaasanam." },
-    { n: "Pokiri", s: "Okka saari commit ayithe naa maata nene vinanu." },
-    { n: "Pokiri", s: "Evadu kodithe dimma thirigi mind block ayipothado aade Pandugaadu." },
-    { n: "Gabbar Singh", s: "Naaku konchem thikka undi, daaniko lekka undi." },
-    { n: "Indra", s: "Veera Shankar Reddy... mokke kada ani peekesthe peeka kostha." },
-    { n: "Magadheera", s: "Okkokkadini kaadu Sher Khan... okesaari vanda mandini pampinchu." },
-    { n: "Simha", s: "Choodu, oka vaipe choodu... rendo vaipu chudal anukoku, tattukolev." },
-    { n: "Mirchi", s: "Kathi vaadatam modalupedithe naakanna baaga evaru vaadaleru." },
-    { n: "Businessman", s: "Nee target 10 miles ayithe, aim for the 11th mile." },
-    { n: "Julayi", s: "Cheppali sir... nannu gelakoddu, chastharu ani cheppakapothe ela?" },
-    { n: "Athadu", s: "Gun choodalanuko tappu ledu, kaani bullet choodalanukoku, chachipothav." },
-    { n: "Jalsa", s: "Yuddhamlo gelavadam ante shatruvuni odinchadam, champadam kaadu." },
-    { n: "V", s: "Sollaapu... dammunte nannu aapu." },
-    { n: "Pelli Choopulu", s: "Naa saavu nenu sastha, neekenduku?" },
-    { n: "Narasimha", s: "Athiga aashapade magavaadu, athiga aaveshapade aadadi sukhapadinattu charitralo ledu." },
-    { n: "Idiot", s: "City ki entho mandi commissioners vasthuntaru pothuntaru... Chanti gaadu eppudu ikkade untadu, local." },
-    { n: "Temper", s: "Naa peru Daya... naaku lenide adi." },
-    { n: "Tagore", s: "Telugu bhashalo naaku nachani oke okka padam kshaminchadam." },
-    { n: "Businessman", s: "Yuddham chethakaanode dharmam gurinchi maatladathaadu sir." },
-    { n: "Aadi", s: "Aravaku... ammathodu addanga narikestha." },
-    { n: "Aravinda Sametha Veera Raghava", s: "Kantapaddava kanikaristaanemo, ventapaddava narikestha." },
-    { n: "Janatha Garage", s: "Balavanthudu balahenudini bhayapetti bathakadam aanavaayithi. Kaani aa balahenudi pakkana kooda oka balam undi." },
-    { n: "Jai Lava Kusa", s: "Aa Ravanudini champaalante samudram daatala... ee Ravanudini champaalante samudramantha dhairyam undala?" },
-    { n: "Aagadu", s: "Dikki balisina kodi chicken shop mundukochi thoda kottindanta." },
-    { n: "Chatrapathi", s: "Oka adugu... oke okka adugu." },
-    { n: "Shivamani", s: "Naa peru Shivamani, naaku konchem mental..." },
-    { n: "Gharana Mogudu", s: "Okkasaari face turning ichukondi." },
-    { n: "Gang Leader", s: "Cheyyi choosava entha rough ga undo... rough aadinchestha." },
-    { n: "Baasha", s: "Nenu okkasari chepthe vanda saarlu cheppinattu." },
-    { n: "Shivaji", s: "Nanna, pandulu gumpuga vasthayi... simham single ga vasthundi." },
-    { n: "Indra", s: "Tappu naa vaipu undi kabatti tala dinchukuni velthunna, ledante talalu teesukellevaadni." },
-    { n: "Narasimha", s: "Naa daari rahadaari." },
-    { n: "Temper", s: "Neeku ego lopala untundemo, naaku naa chuttu Wi-Fi la untundi." },
-    { n: "Bommarillu", s: "Anthena? Inkem kavali? Veelaithe naalugu maatalu, kudirithe cup coffee!" },
-    { n: "Teen Maar", s: "Kaaranam leni kopam, gauravam leni prema, badhyatha leni yavvanam, gnaapakam leni vruddhapyam anavasaram." },
-    { n: "S/O Satyamurthy", s: "Manam baagunnappudu lekkalu maatlaadi, kashtallo unnappudu viluvalu maatlaadakoodadu." },
-    { n: "Temper", s: "Neeku naaku friendship emitira? Nuvvu villain, nenu hero!" },
-    { n: "Temper", s: "Username Daya, password Police!" },
-    { n: "Neninthe", s: "Nenu entha yedhavano naake telidu!" },
-    { n: "Desamuduru", s: "You know Guntur bolke ek sheher hai? Nenu ikkada kottaananuko, resound udhar aatha!" }
-  ];
+  // ═════════════ DIALOGUES come from data/movies.js (the dialogues field) ═════════════
+  // Every dialogue is its own card; two from the same movie never come back to back.
+  const CARDS = [];
+  P.movies().forEach(m => (m.dialogues || []).filter(P.filled).forEach((s, k) => CARDS.push({ id: m.id + '#' + k, movie: m.id, n: m.title, s: s.trim() })));
+  const DECK = P.deck('cf_dialogue_seen', CARDS, { group: c => c.movie });
 
   // ── theme: follows the phone unless the player chose one in Profile ──
   const sysDark = matchMedia('(prefers-color-scheme: dark)');
@@ -153,28 +117,23 @@
   }
   theme(); sysDark.addEventListener('change', theme);
 
-  // ── no repeats until every story has come up (remembered on this phone) ──
-  let used = []; try { used = JSON.parse(localStorage.getItem('cf_dialogue_used') || '[]'); } catch (e) {}
   let cur = null, played = 0, busy = false;
   function nextStory() {
-    if (used.length >= STORIES.length) used = [];
-    const left = STORIES.map((_, i) => i).filter(i => !used.includes(i));
-    const i = left[Math.floor(Math.random() * left.length)];
-    used.push(i); try { localStorage.setItem('cf_dialogue_used', JSON.stringify(used)); } catch (e) {}
-    cur = STORIES[i]; played++;
+    cur = DECK.next(); if (!cur) return;
+    played++;
     const el = $('story'); el.textContent = cur.s;
     el.classList.remove('in'); void el.offsetWidth; el.classList.add('in');
     $('slot').classList.remove('open'); $('ans').textContent = '';
     $('count').textContent = 'DIALOGUE ' + played;
     fit();
   }
-  function showAns() { $('ans').textContent = cur.n; $('slot').classList.add('open'); }
+  function showAns() { if (!cur) return; $('ans').textContent = cur.n; $('slot').classList.add('open'); }
   function onNext() {
     if (busy) return;
     if (cur && !$('slot').classList.contains('open')) { busy = true; showAns(); setTimeout(() => { busy = false; nextStory(); }, 1500); }
     else nextStory();
   }
-  // the story as big as fits, so nothing ever scrolls
+  // the dialogue as big as fits, so nothing ever scrolls
   function fit() {
     const el = $('story'), stage = el.parentElement;
     let fs = Math.min(Math.max(innerWidth * .058, 18), innerHeight * .05, 32); el.style.fontSize = fs + 'px';
