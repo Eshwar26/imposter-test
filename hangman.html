@@ -84,6 +84,8 @@
 <div class="scrim" id="scrim"></div>
 <section class="sheet ht-sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><div id="howto"></div></section>
 
+<script src="data/movies.js?v=1.0.0"></script>
+<script src="core/pick.js?v=1.0.0"></script>
 <script src="core/howto.js?v=0.3.0"></script>
 <script src="core/hangman.js?v=0.1.0"></script>
 <script>
@@ -91,34 +93,9 @@
   'use strict';
   const $ = id => document.getElementById(id);
 
-  // ═════════════ TITLES (edit here; moves to data/movies.js in the data migration) ═════════════
-  const TITLES = [
-    'Geethanjali', 'Shiva', 'Gharana Mogudu', 'Hello Brother', 'Ninne Pelladata', 'Annamayya', 'Tholi Prema', 'Narasimha',
-    'Thammudu', 'Badri', 'Kushi', 'Murari', 'Narasimha Naidu', 'Nuvvu Naaku Nachav', 'Student No. 1', 'Aadi', 'Chennakesava Reddy',
-    'Idiot', 'Indra', 'Jayam', 'Khadgam', 'Manmadhudu', 'Gangotri', 'Okkadu', 'Simhadri', 'Tagore', 'Arjun', 'Arya',
-    'Gudumba Shankar', 'Malliswari', 'Shankar Dada M.B.B.S.', 'Varsham', 'Venky', 'Athadu', 'Balu', 'Bhadra', 'Bunny',
-    'Chatrapathi', 'Annavaram', 'Ashok', 'Bommarillu', 'Godavari', 'Happy', 'Pokiri', 'Stalin', 'Vikramarkudu', 'Athidhi',
-    'Chirutha', 'Desamuduru', 'Dhee', 'Dubai Seenu', 'Happy Days', 'Shivaji', 'Yamadonga', 'Ashta Chamma', 'Bujjigadu',
-    'Jalsa', 'King', 'Kotha Bangaru Lokam', 'Parugu', 'Ready', 'Surya S/O Krishnan', 'Arundhati', 'Arya 2', 'Billa',
-    'Kick', 'Magadheera', 'Adhurs', 'Brindavanam', 'Darling', 'Khaleja', 'Leader', 'Maryada Ramanna', 'Orange', 'Simha',
-    'Vedam', 'Ye Maaya Chesave', '100% Love', 'Ala Modalaindi', 'Badrinath', 'Dookudu', 'Mirapakay', 'Mr. Perfect', 'Panjaa',
-    'Businessman', 'Eega', 'Gabbar Singh', 'Ishq', 'Julayi', 'Racha', 'Rebel', 'Attarintiki Daredi', 'Baadshah', 'Balupu',
-    'Mirchi', 'Naayak', 'Aagadu', 'Drushyam', 'Govindudu Andarivadele', 'Karthikeya', 'Legend', 'Manam', 'Race Gurram',
-    'Run Raja Run', 'Yevadu', 'Bhale Bhale Magadivoy', 'Gopala Gopala', 'Premam', 'Rudhramadevi', 'S/O Satyamurthy',
-    'Srimanthudu', 'Temper', 'Babu Bangaram', 'Brahmotsavam', 'Dhruva', 'Janatha Garage', 'Kshanam', 'Nannaku Prematho',
-    'Nenu Sailaja', 'Oopiri', 'Pelli Choopulu', 'Sardaar Gabbar Singh', 'Sarrainodu', 'Soggade Chinni Nayana', 'Arjun Reddy',
-    'Fidaa', 'Gautamiputra Satakarni', 'Jai Lava Kusa', 'Katamarayudu', 'Khaidi No. 150', 'Middle Class Abbayi', 'Nenu Local',
-    'Ninnu Kori', 'Raja The Great', 'Spyder', 'Agnyaathavaasi', 'Bharat Ane Nenu', 'Ee Nagaraniki Emaindi', 'Geetha Govindam',
-    'Goodachari', 'Mahanati', 'Rangasthalam', 'Taxiwaala', 'Dear Comrade', 'Evaru', 'Gaddalakonda Ganesh', 'Gang Leader',
-    'iSmart Shankar', 'Jersey', 'Maharshi', 'Majili', 'Mathu Vadalara', 'Prati Roju Pandage', 'Saaho', 'Sye Raa Narasimha Reddy',
-    'Vinaya Vidheya Rama', 'Ala Vaikunthapurramuloo', 'Bheeshma', 'Color Photo', 'Sarileru Neekevvaru', 'World Famous Lover',
-    'Akhanda', 'Jathi Ratnalu', 'Krack', 'Love Story', 'Shyam Singha Roy', 'Uppena', 'Vakeel Saab', 'Acharya', 'Ante Sundaraniki',
-    'Bangarraju', 'Bheemla Nayak', 'Bimbisara', 'Dhamaka', 'DJ Tillu', 'GodFather', 'Karthikeya 2', 'Liger', 'Major',
-    'Radhe Shyam', 'Sarkaru Vaari Paata', 'Sita Ramam', 'Adipurush', 'Baby', 'Bhagavanth Kesari', 'Bhola Shankar', 'Dasara',
-    'Hi Nanna', 'Veera Simha Reddy', 'Virupaksha', 'Waltair Veerayya', 'Family Star', 'Guntur Kaaram', 'Hanu-Man', 'Kalki 2898 AD',
-    'Lucky Baskhar', 'Saripodhaa Sanivaaram', 'Tillu Square', 'Daaku Maharaj', 'Game Changer', 'Hari Hara Veera Mallu',
-    'Kingdom', 'Kuberaa', 'Mirai', 'Sankranthiki Vasthunnam', 'Thandel', 'They Call Him OG'
-  ];
+  // ═════════════ TITLES come from data/movies.js: every live movie ═════════════
+  const PK = CinefiedPick;
+  const DECK = PK.deck('cf_hangman_seen', PK.movies().map(m => ({ id: m.id, t: m.title })));
 
   // ── theme: follows the phone unless the player chose one in Profile ──
   const sysDark = matchMedia('(prefers-color-scheme: dark)');
@@ -133,14 +110,9 @@
   // ── no title repeats until every one has come up (remembered on this phone) ──
   const load = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } };
   const keep = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
-  let used = load('cf_hangman_used', []), best = load('cf_hangman_best', 0), run = 0;
-  function nextTitle() {
-    if (used.length >= TITLES.length) used = [];
-    const left = TITLES.filter(t => !used.includes(t));
-    const t = left[Math.floor(Math.random() * left.length)];
-    used.push(t); keep('cf_hangman_used', used);
-    return t;
-  }
+  try { localStorage.removeItem('cf_hangman_used'); } catch (e) {}   // the old list, before movies.js
+  let best = load('cf_hangman_best', 0), run = 0;
+  const nextTitle = () => DECK.next().t;
 
   // ── the board ──
   const H = CinefiedHangman.create($('board'), { onEnd });
