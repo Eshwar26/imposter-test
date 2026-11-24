@@ -961,11 +961,11 @@
         'An elder brother who sacrificed everything for his younger brothers is hurt when they turn against him.',
         'Rajaram loves his brothers and always forgives their offences but an ugly incident forces him to throw them out on the street. He secretly continues to help them but they harbour hatred towards him.',
       ],
-      dialogues: ['mechanical engineers, state first rank, character lo gems andi gems'],
+      dialogues: ['Na Thammulu mechanical engineers, state first rank, character lo gems andi gems'],
 
-      clues: {   // check
+      clues: {   
         job: 'Lorry Business owner and elder brother',
-        location: 'Hyderabad',
+        location: '',
         song: 'Aata Kaavala',
         scene: '',
       },
@@ -1394,7 +1394,7 @@
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {  
         job: '',
         location: '',
         song: '',
@@ -1520,7 +1520,7 @@
 
       clues: {   
         job: 'Professor',
-        location: 'Hyderabad',
+        location: '',
         song: '',
         scene: 'A professor runs a secret force against corruption',
       },
@@ -1579,7 +1579,7 @@
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: '',
         location: '',
         song: '',
@@ -1670,9 +1670,9 @@
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Goon turned medical student',
-        location: 'Hyderabad',
+        location: '',
         song: 'Chaila Chaila',
         scene: '',
       },
@@ -4716,12 +4716,12 @@
       genre: 'Family drama',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7, songs: 6, runtime: 158 },   // check
+      stats: { imdb: 7.5, songs: 7, runtime: 158 },   
 
       spoiler: [
         'Two contrasting brothers navigate family expectations, relationships and romance while learning the importance of kindness, self respect and standing together.',
       ],
-      dialogues: ['Ee madhya naa time ento nake theliyatla… chusina rendu nimishalake padipothundi prathidi.'],
+      dialogues: ['Manushulu manchollu ra... asalu manishantene manchodu'],
 
       clues: {  
         job: '',
@@ -4807,7 +4807,7 @@
       genre: 'Family drama',
       roles: [],   
 
-      stats: { imdb: 5.8, songs: 5, runtime: 160 },   // check
+      stats: { imdb: 5.8, songs: 6, runtime: 159 },   
 
       spoiler: [
         'A young man from London goes to his grandfather\'s village to reunite his family after an old fight.',
@@ -4924,7 +4924,7 @@
       director: 'Bobby Kolli',
       music: 'S. Thaman',
       villain: '',
-      banner: '',   // check
+      banner: '',   
       genre: 'Action comedy',
       roles: [],
 
@@ -5045,12 +5045,12 @@
       heroine: 'Shruti Haasan',
       director: 'Vamshi Paidipally',
       music: 'Devi Sri Prasad',
-      villain: 'Rahul Dev',
+      villain: '',
       banner: 'Sri Venkateswara Creations',
       genre: 'Action thriller',
       roles: [],  
 
-      stats: { imdb: 6, songs: 6, runtime: 166 },   // check
+      stats: { imdb: 6, songs: 6, runtime: 166 },  
 
       spoiler: [
         'A man whose face has been reconstructed after a brutal attack returns for revenge against the gangster who nearly killed him.',
@@ -5387,7 +5387,7 @@
       villain: 'Prakash Raj',
       banner: 'Parameswara Art Productions',
       genre: 'Action drama',
-      roles: ['Daya', 'Shanvi', 'Waltair Vasu'],   // check
+      roles: ['Daya', 'Shanvi', 'Waltair Vasu'],  
 
       stats: { imdb: 7.4, songs: 5, runtime: 147 },
 
@@ -5542,7 +5542,7 @@
       genre: 'Action thriller',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 7.7, songs: 5, runtime: 165 },   // check
+      stats: { imdb: 7.7, songs: 5, runtime: 165 },   
 
       spoiler: [
         'An IPS officer secretly gathers information on the country\'s top criminals and targets the biggest one, a celebrated scientist.',
@@ -5698,7 +5698,7 @@
       genre: 'Romantic comedy',
       roles: [],
 
-      stats: { imdb: 6.5, songs: 6, runtime: 135 },   // check
+      stats: { imdb: 6.4, songs: 6, runtime: 160 },   
 
       spoiler: [
 
@@ -8336,7 +8336,7 @@
       villain: '',
       banner: 'GMB Entertainment',
       genre: 'Biographical action',
-      roles: ['Sandeep Unnikrishnan', 'Isha'],   // check
+      roles: [],   
 
       stats: { imdb: 8.1, songs: 4, runtime: 149 },
 
@@ -9211,7 +9211,7 @@
       genre: 'Crime comedy',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 6.6, songs: 4, runtime: 124 }, 
+      stats: { imdb: 6.6, songs: 3, runtime: 124 }, 
 
       spoiler: [
         'A local DJ falls for another mysterious woman and is dragged into a new crime.',
@@ -9221,7 +9221,7 @@
 
       clues: {   
         job: 'DJ',
-        location: 'Hyderabad',
+        location: '',
         song: 'Ticket Eh Konakunda',
         scene: '',
       },
