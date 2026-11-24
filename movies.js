@@ -8666,21 +8666,20 @@
       villain: '',
       banner: 'Vyra Entertainments',
       genre: 'Family drama',
-      roles: ['Viraj', 'Yashna', 'Mahi'],   // check
+      roles: [],   
 
-      stats: { imdb: 8.1, songs: 5, runtime: 155 },   // check
+      stats: { imdb: 8.3, songs: 5, runtime: 155 },   
 
       spoiler: [
-        'A father tells his curious young daughter a bedtime love story every night, and the girl in that story turns out to be real.',
         'A photographer\'s daughter keeps asking for her mother\'s story, and a stranger who befriends them turns out to be part of it.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Photographer',
-        location: 'Mumbai and Coonoor',
+      clues: {   
+        job: '',
+        location: '',
         song: 'Samayama',
-        scene: 'A father tells his daughter a bedtime love story',
+        scene: '',
       },
     },
     {
@@ -8694,56 +8693,26 @@
       heroine: 'Ramya Krishnan',
       director: 'Nelson Dilipkumar',
       music: 'Anirudh Ravichander',
-      villain: 'Vinayakan',
+      villain: '',
       banner: 'Sun Pictures',
       genre: 'Action comedy',
-      roles: ['Muthuvel Pandian', 'Vijaya', 'Varman'],   // check
+      roles: [],   
 
-      stats: { imdb: 7, songs: 4, runtime: 168 },   // check
+      stats: { imdb: 7.2, songs: 4, runtime: 168 },   
 
       spoiler: [
-        'A retired prison warden with a calm life turns lethal when his son goes missing in a case with a ruthless smuggling ring.',
-        'A retired prison warden turns ruthless to hunt the gang behind his police officer son\'s disappearance.',
+        'A retired prison officer with a calm life turns lethal when his son goes missing in a case with a ruthless smuggling ring.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Retired prison warden',
-        location: 'Chennai',
+      clues: {   
+        job: '',
+        location: '',
         song: 'Kaavaalaa',
         scene: 'A quiet grandfather turns into a ruthless fighter',
       },
     },
-    {
-      id: 'kushi-2023',
-      title: 'Kushi',
-      aka: ['Kushi (2023)'],
-      year: 2023,
-      level: 'medium',
-
-      hero: 'Vijay Deverakonda',
-      heroine: 'Samantha',
-      director: 'Shiva Nirvana',
-      music: 'Hesham Abdul Wahab',
-      villain: '',
-      banner: 'Mythri Movie Makers',
-      genre: 'Romantic drama',
-      roles: ['Viplav', 'Aaradhya'],   // check
-
-      stats: { imdb: 5.9, songs: 5, runtime: 165 },   // check
-
-      spoiler: [
-        'A government employee posted in Kashmir falls for a girl, but their families, one atheist and one religious, clash.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Government employee',
-        location: 'Kashmir and Hyderabad',
-        song: 'Naa Roja Nuvve',
-        scene: 'A man falls in love on a boat in Kashmir',
-      },
-    },
+    
     {
       id: 'leo',
       title: 'Leo',
@@ -8756,21 +8725,20 @@
       director: 'Lokesh Kanagaraj',
       music: 'Anirudh Ravichander',
       villain: 'Sanjay Dutt',
-      banner: 'Seven Screen Studio',
+      banner: '',
       genre: 'Action thriller',
-      roles: ['Parthiban', 'Sathya', 'Antony Das'],   // check
+      roles: [],   
 
-      stats: { imdb: 7.2, songs: 4, runtime: 164 },   // check
+      stats: { imdb: 7.2, songs: 4, runtime: 164 },   
 
       spoiler: [
-        'A peaceful cafe owner in Himachal whose past catches up with him when a pair of gangsters come to claim him.',
         'A café owner in Himachal is mistaken for a gangster\'s long-lost son, and his violent past may be real.',
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Café owner',
-        location: 'Himachal Pradesh',
+        location: '',
         song: 'Naa Ready',
         scene: 'A café owner fights off armed robbers in his shop',
       },
@@ -8782,8 +8750,8 @@
       year: 2023,
       level: 'medium',
 
-      hero: 'Narne Nithiin',
-      heroine: 'Gouri Priya',   // check
+      hero: '',
+      heroine: '',   
       director: 'Kalyan Shankar',
       music: 'Bheems Ceciroleo',
       villain: '',
@@ -8791,51 +8759,21 @@
       genre: 'Comedy',
       roles: [],
 
-      stats: { imdb: 7.4, songs: 4, runtime: 128 },   // check
+      stats: { imdb: 7.3, songs: 4, runtime: 128 },   
 
       spoiler: [
         'Three engineering students have a crazy four years of college, with love and lots of fights.',
       ],
-      dialogues: [],
+      dialogues: ['Roju rojuki chithakartha kukka lekka thayaarauthunnaav raa'],
 
-      clues: {   // check
-        job: 'Engineering student',
-        location: 'Hyderabad',
-        song: '',
-        scene: '',
-      },
-    },
-    {
-      id: 'mangalavaaram',
-      title: 'Mangalavaaram',
-      aka: [],
-      year: 2023,
-      level: 'hard',
-
-      hero: 'Nandita Swetha',   // check
-      heroine: 'Payal Rajput',
-      director: 'Ajay Bhupathi',
-      music: 'Ajaneesh Loknath',
-      villain: '',
-      banner: '',
-      genre: 'Horror thriller',
-      roles: [],
-
-      stats: { imdb: 7, songs: 3, runtime: 145 },   // check
-
-      spoiler: [
-        'Every Tuesday someone in a village dies after their names are written on a wall, and a woman shunned by villagers holds the secret.',
-        'Mysterious deaths on Tuesdays in a 1990s village.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
+      clues: {   
         job: '',
-        location: 'A village',
-        song: '',
+        location: '',
+        song: 'Nuvvu Navvukuntu',
         scene: '',
       },
     },
+    
     {
       id: 'salaar-part-1-ceasefire',
       title: 'Salaar: Part 1 – Ceasefire',
@@ -8847,54 +8785,22 @@
       heroine: 'Shruti Haasan',
       director: 'Prashanth Neel',
       music: 'Ravi Basrur',
-      villain: 'Prithviraj Sukumaran',
+      villain: '',
       banner: 'Hombale Films',
       genre: 'Action',
-      roles: ['Deva', 'Aadya', 'Vardha'],   // check
+      roles: [],   
 
-      stats: { imdb: 6.4, songs: 4, runtime: 175 },
+      stats: { imdb: 6.7, songs: 4, runtime: 175 },
 
       spoiler: [
-        'Two childhood friends grow up apart. One of them becomes the most feared protector of a lawless fortress city when the other is in danger.',
-        'A quiet mechanic in Assam returns to the violent city of Khansaar to protect his childhood friend.',
       ],
-      dialogues: [],
+      dialogues: ['Peddha peddha godalu kattedhi bhayapadi... bayataki evadu pothaadani kaadhu, lopaliki evadu vasthaadani.'],
 
-      clues: {   // check
-        job: 'Mechanic',
+      clues: {  
+        job: '',
         location: 'Khansaar',
         song: 'Sooreede',
         scene: 'Two friends in the violent city of Khansaar',
-      },
-    },
-    {
-      id: 'shaakuntalam',
-      title: 'Shaakuntalam',
-      aka: [],
-      year: 2023,
-      level: 'hard',
-
-      hero: 'Dev Mohan',
-      heroine: 'Samantha',
-      director: 'Gunasekhar',
-      music: 'Mani Sharma',
-      villain: '',
-      banner: 'Gunaa Teamworks',
-      genre: 'Mythological romance',
-      roles: ['Dushyanta', 'Shakuntala'],   // check
-
-      stats: { imdb: 3.5, songs: 6, runtime: 142 },   // check
-
-      spoiler: [
-        'A forest girl marries a king in secret, and a sage\'s curse makes him forget her.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: '',
-        location: 'Kanva\'s ashram',
-        song: '',
-        scene: '',
       },
     },
     {
@@ -8908,52 +8814,21 @@
       heroine: 'Samyuktha',
       director: 'Venky Atluri',
       music: 'G. V. Prakash Kumar',
-      villain: 'Samuthirakani',
+      villain: '',
       banner: 'Sithara Entertainments',
       genre: 'Drama',
-      roles: ['Bala', 'Meenakshi'],   // check
+      roles: [],   
 
-      stats: { imdb: 7.2, songs: 4, runtime: 139 },   // check
+      stats: { imdb: 7.2, songs: 5, runtime: 139 },   
 
       spoiler: [
         'A junior lecturer posted to a poor village school fights against the privatisation of education.',
-        'A teacher inspires village students to pass exams despite threats.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Junior lecturer',
-        location: 'A village',
-        song: 'Banjara',
-        scene: '',
-      },
-    },
-    {
-      id: 'tiger-nageswara-rao',
-      title: 'Tiger Nageswara Rao',
-      aka: [],
-      year: 2023,
-      level: 'hard',
-
-      hero: 'Ravi Teja',
-      heroine: 'Nupur Sanon',
-      director: 'Vamsee',
-      music: 'G. V. Prakash Kumar',
-      villain: '',
-      banner: 'Abhishek Agarwal Arts',
-      genre: 'Biographical crime',
-      roles: [],
-
-      stats: { imdb: 5.5, songs: 5, runtime: 180 },   // check
-
-      spoiler: [
-        'The story of a famous thief from Stuartpuram who robbed the rich in the 1970s.',
-      ],
-      dialogues: [],
-
-      clues: {   // check
-        job: 'Thief',
-        location: 'Stuartpuram',
+      clues: {   
+        job: '',
+        location: '',
         song: '',
         scene: '',
       },
@@ -8972,19 +8847,18 @@
       villain: 'Prakash Raj',
       banner: 'Sri Venkateswara Creations',
       genre: 'Family drama',
-      roles: ['Vijay Rajendran', 'Divya'],   // check
+      roles: [],   
 
-      stats: { imdb: 5.7, songs: 5, runtime: 170 },   // check
+      stats: { imdb: 5.9, songs: 5, runtime: 163 },  
 
       spoiler: [
-        'The youngest son of a rich businessman, who was thrown out, returns to hold his family and company together.',
-        'A son becomes heir to his father\'s business empire.',
+        'A businessman\'s son returns home after years away, taking charge of his father\'s empire while confronting family rivalries and corporate conspiracies.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Business heir',
-        location: 'Hyderabad',
+      clues: {   
+        job: '',
+        location: '',
         song: 'Ranjithame',
         scene: '',
       },
@@ -9000,23 +8874,21 @@
       heroine: 'Shruti Haasan',
       director: 'Gopichand Malineni',
       music: 'S. Thaman',
-      villain: 'Duniya Vijay',
+      villain: '',
       banner: 'Mythri Movie Makers',
       genre: 'Action drama',
       roles: [],
 
-      stats: { imdb: 5.4, songs: 5, runtime: 170 },   // check
+      stats: { imdb: 4.8, songs: 5, runtime: 172 },   
 
       spoiler: [
-        'A powerful faction leader in Rayalaseema is away, and the story of what he left behind slowly comes to light.',
-        'A man living in Istanbul finds out about his father, a Rayalaseema leader, and his family\'s enemies.',
       ],
       dialogues: [],
 
-      clues: {   // check
-        job: 'Businessman',
-        location: 'Istanbul and Rayalaseema',
-        song: 'Jai Balayya',
+      clues: {  
+        job: '',
+        location: '',
+        song: '',
         scene: '',
       },
     },
@@ -9036,7 +8908,7 @@
       genre: 'Action comedy',
       roles: [],   // the character names give the title away, so this movie uses the STARRING round only
 
-      stats: { imdb: 6.2, songs: 5, runtime: 160 },   // check
+      stats: { imdb: 6.2, songs: 5, runtime: 155 },   
 
       spoiler: [
          'A fisherman from Vizag goes to Malaysia on a mission to catch a drug lord,',
@@ -9095,7 +8967,7 @@
       genre: 'Family drama',
       roles: ['Govardhan', 'Indu'],   
 
-      stats: { imdb: 4.5, songs: 5, runtime: 160 },   // check
+      stats: { imdb: 5.4, songs: 5, runtime: 157 },  
 
       spoiler: [
         'A middle-class man who carries his whole family\'s responsibilities finds out his tenant is writing a thesis about him.',
@@ -9132,7 +9004,7 @@
         'A man estranged from his mother and her powerful family is forced to confront the past and the family he never knew.',
         'A man whose mother left him as a child is asked to sign papers saying he is not her son.',
       ],
-      dialogues: [],
+      dialogues: ['Paiki Fair & Lovely... lopala unfair & lonely.'],
 
       clues: {  
         job: '',
@@ -9192,7 +9064,7 @@
         'In a distant future, the last living city is ruled by a tyrant, while a mysterious pregnant woman becomes the key to everyone\'s fate.',
         'A bounty hunter in the last city on Earth is hired to capture a pregnant woman, guarded by an immortal warrior.',
       ],
-      dialogues: [],
+      dialogues: ['Naa records check chesuko... nenu ippati varaku okka fight koodaa odipoledhu. Idi koodaa odiponu!'],
 
       clues: {   
         job: 'Bounty hunter',
