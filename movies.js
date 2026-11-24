@@ -989,7 +989,7 @@
       stats: { imdb: 7.3, songs: 6, runtime: 158 },   
 
       spoiler: ['A carefree guy with an arranged marriage bets he can make a stranger fall for him, but the game turns real and puts him up against her fiercely protective elder brother.'],
-      dialogues: ['Nuvvu Nanda aithe nenu Badri, Badrinath.'],
+      dialogues: [''],
 
       clues: {  
         job: '',
@@ -1454,7 +1454,7 @@
       spoiler: [
         '',
       ],
-      dialogues: ['Naa peru Shivamani, naaku konchem mental...'],
+      dialogues: [''],
 
       clues: {  
         job: '',
@@ -2643,7 +2643,6 @@
 
       spoiler: [
         'A software engineer returns from America to build free hospitals and schools, and corrupt officials try to ruin him.',
-        'A rich NRI fights black money in the system.',
       ],
       dialogues: ['Nanna, pandulu gumpuga vasthayi... simham single ga vasthundi.'],
 
@@ -2772,7 +2771,7 @@
       clues: {   
         job: '',
         location: '',
-        song: 'Aadinchi Ashta Chamma',
+        song: 'Nammalo Ledo',
         scene: '',
       },
     },
@@ -2948,7 +2947,7 @@
         'In Vijayawada, carefree Krishna falls deeply for Sandhya, only to protect her family from a ruthless, obsessive gangster Jakka.',
         'A kind-hearted unemployed youngster falls for a gangster\'s sister, confronting dangerous rivals while fighting to win her love',
       ],
-      dialogues: ['Rey rowdyism puttindhe aa Bezawada ki, aa Bezawada ke rowdyism nerpadaaniki vachava nuvvu!'],
+      dialogues: ['Rey rowdyism puttindhe Bezawada lo, aa Bezawada ke rowdyism nerpadaaniki vachava nuvvu!'],
 
       clues: {   
         job: '',
@@ -3711,7 +3710,7 @@
       genre: 'Romantic comedy',
       roles: ['Gautham', 'Nitya'], 
 
-      stats: { imdb: 7.6, songs: 5, runtime: 35 },   
+      stats: { imdb: 7.6, songs: 5, runtime: 135 },   
 
       spoiler: [
         'Two heartbroken strangers meet at a wedding, become friends and slowly realise they are perfect for each other.',
@@ -4831,7 +4830,7 @@
       level: 'easy',
 
       hero: ['Nagarjuna', 'Naga Chaitanya', 'ANR'],
-      heroine: ['Samantha', 'Shriya saran'],
+      heroine: ['Samantha', 'Shriya Saran'],
       director: 'Vikram Kumar',
       music: 'Anup Rubens',
       villain: '',
@@ -5945,7 +5944,7 @@
 
       spoiler: [
         'The ghost of a flirtatious village man comes back to fix his son\'s marriage.',
-        '
+        
       ],
       dialogues: [],
 
@@ -5972,7 +5971,7 @@
       genre: 'Action comedy',
       roles: [],
 
-      stats: { imdb: 6.2, songs: 5, runtime: 142 },   // check
+      stats: { imdb: 6.1, songs: 5, runtime: 142 },   
 
       spoiler: [
         'A taxi driver protects a boy who is the heir to a property worth crores.',
@@ -6429,8 +6428,7 @@
       spoiler: [
         'An intelligence officer monitoring phone calls to prevent crimes confronts a psychopathic killer who derives pleasure from the suffering of his victims.',
       ],
-      dialogues: ['Naagarikathaki kaaranam enti? Bhayam! adhi puttinchindi evaru? Memu! Kaani bhayam ante ento maaku teliyadu."
-'],
+      dialogues: ['Naagarikathaki kaaranam enti? Bhayam! adhi puttinchindi evaru? Memu! Kaani bhayam ante ento maaku teliyadu.'],
 
       clues: {   
         job: '',
@@ -7624,7 +7622,7 @@
       villain: 'Suniel Shetty',
       banner: 'Lyca Productions',
       genre: 'Action thriller',
-      roles: ['Aaditya Arunachalam'],   
+      roles: [],   
 
       stats: { imdb: 5.9, songs: 5, runtime: 159 },   
 
@@ -7860,7 +7858,7 @@
       villain: 'Samuthirakani',
       banner: '',
       genre: 'Action thriller',
-      roles: ['Pothuraju Veera Shankar'],   
+      roles: [],   
 
       stats: { imdb: 6.9, songs: 4, runtime: 154 },   
 
@@ -9182,7 +9180,7 @@
       genre: 'Action thriller',
       roles: ['Surya', 'Charulatha', 'Daya'],  
 
-      stats: { imdb: 7.1, songs: 4, runtime: 174 },   // check
+      stats: { imdb: 7.1, songs: 6, runtime: 166 },   
 
       spoiler: [
         'A man who lets out his anger only on Saturdays takes on a cruel police officer.',
@@ -9190,7 +9188,7 @@
       ],
       dialogues: [],
 
-      clues: {   // check
+      clues: {   
         job: 'Insurance agent',
         location: '',
         song: '',
@@ -9365,7 +9363,6 @@
 
       spoiler: [   
         'An honest IAS officer takes on a corrupt minister, and a story from his father\'s past is revealed.',
-        'A district collector fights corruption with the election commission behind him.',
       ],
       dialogues: [],
 
@@ -9425,7 +9422,6 @@
 
       spoiler: [   
         'A tribal hunter who does not believe in God becomes one of Lord Shiva\'s greatest devotees.',
-        'An atheist hunter offers his own eyes to Shiva ',
       ],
       dialogues: [],
 
