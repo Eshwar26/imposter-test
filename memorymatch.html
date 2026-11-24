@@ -122,58 +122,25 @@
   <button class="btn outline" type="button" data-close>GOT IT</button>
 </section>
 
+<script src="data/movies.js?v=1.0.0"></script>
+<script src="core/pick.js?v=1.0.0"></script>
 <script>
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const PK = CinefiedPick;
 
-  // ═════════════ PAIRS (edit here: a = actor / actress, m = a movie they starred in) ═════════════
-  const PAIRS = [
-    {a:'Mahesh Babu', m:'Pokiri', cast:['Ileana D\'Cruz','Prakash Raj']},
-    {a:'Prabhas', m:'Baahubali: The Beginning', cast:['Rana Daggubati','Anushka Shetty','Tamannaah','Ramya Krishnan','Sathyaraj']},
-    {a:'Allu Arjun', m:'Pushpa: The Rise', cast:['Rashmika Mandanna','Fahadh Faasil','Sunil','Anasuya']},
-    {a:'N. T. Rama Rao Jr.', m:'Temper', cast:['Kajal Aggarwal','Prakash Raj']},
-    {a:'Ram Charan', m:'Rangasthalam', cast:['Samantha','Jagapathi Babu','Aadhi Pinisetty','Anasuya']},
-    {a:'Pawan Kalyan', m:'Gabbar Singh', cast:['Shruti Haasan','Abhimanyu Singh']},
-    {a:'Chiranjeevi', m:'Indra', cast:['Sonali Bendre','Aarti Agarwal']},
-    {a:'Balakrishna', m:'Akhanda', cast:['Pragya Jaiswal','Srikanth']},
-    {a:'Nani', m:'Jersey', cast:['Shraddha Srinath']},
-    {a:'Vijay Deverakonda', m:'Arjun Reddy', cast:['Shalini Pandey']},
-    {a:'Nagarjuna', m:'Manam', cast:['Naga Chaitanya','Samantha','Shriya Saran']},
-    {a:'Venkatesh', m:'Drushyam', cast:['Meena']},
-    {a:'Samantha', m:'Ye Maaya Chesave', cast:['Naga Chaitanya']},
-    {a:'Anushka Shetty', m:'Arundhati', cast:['Sonu Sood']},
-    {a:'Teja Sajja', m:'Hanu-Man', cast:['Amritha Aiyer','Varalaxmi Sarathkumar']},
-    {a:'Adivi Sesh', m:'Major', cast:['Sobhita Dhulipala','Saiee Manjrekar','Prakash Raj']},
-    {a:'Ravi Teja', m:'Krack', cast:['Shruti Haasan','Samuthirakani']},
-    {a:'Naveen Polishetty', m:'Jathi Ratnalu', cast:['Priyadarshi','Rahul Ramakrishna','Faria Abdullah']},
-    {a:'Dulquer Salmaan', m:'Sita Ramam', cast:['Mrunal Thakur','Rashmika Mandanna','Sumanth']},
-    {a:'Kajal Aggarwal', m:'Magadheera', cast:['Ram Charan','Dev Gill','Srihari']},
-    {a:'Rashmika Mandanna', m:'Geetha Govindam', cast:['Vijay Deverakonda']},
-    {a:'Keerthy Suresh', m:'Mahanati', cast:['Dulquer Salmaan','Samantha','Vijay Deverakonda','Naga Chaitanya']},
-    {a:'Sai Pallavi', m:'Fidaa', cast:['Varun Tej']},
-    {a:'Ram Pothineni', m:'iSmart Shankar', cast:['Nabha Natesh','Nidhhi Agerwal']},
-    {a:'Kalyan Ram', m:'Bimbisara', cast:['Catherine Tresa','Samyuktha Menon']},
-    {a:'Pooja Hegde', m:'Ala Vaikunthapurramuloo', cast:['Allu Arjun','Tabu','Jayaram','Sushanth']},
-    {a:'Sudeep', m:'Eega', cast:['Nani','Samantha']},
-    {a:'Siddharth', m:'Bommarillu', cast:['Genelia','Prakash Raj','Jayasudha']},
-    {a:'Naga Chaitanya', m:'Majili', cast:['Samantha','Divyansha Kaushik']},
-    {a:'Kriti Shetty', m:'Uppena', cast:['Panja Vaisshnav Tej','Vijay Sethupathi']},
-    {a:'Mrunal Thakur', m:'Hi Nanna', cast:['Nani','Shruti Haasan']},
-    {a:'Rana Daggubati', m:'Bheemla Nayak', cast:['Pawan Kalyan','Nithya Menen','Samyuktha Menon']},
-    {a:'Mahesh Babu', m:'Srimanthudu', cast:['Shruti Haasan','Jagapathi Babu','Rajendra Prasad']},
-    {a:'Allu Arjun', m:'Ala Vaikunthapurramuloo', cast:['Pooja Hegde','Tabu','Jayaram','Sushanth']},
-    {a:'Prabhas', m:'Salaar: Part 1 \u2013 Ceasefire', cast:['Prithviraj Sukumaran','Shruti Haasan','Jagapathi Babu']},
-    {a:'Pawan Kalyan', m:'Attarintiki Daredi', cast:['Samantha','Pranitha Subhash','Boman Irani']},
-    {a:'N. T. Rama Rao Jr.', m:'Aravinda Sametha Veera Raghava', cast:['Pooja Hegde','Jagapathi Babu','Naga Babu','Eesha Rebba']},
-    {a:'Balakrishna', m:'Legend', cast:['Radhika Apte','Sonal Chauhan','Jagapathi Babu']}
-  ];
-  // "cast" lists other actors in the movie. A game never mixes two pairs where one actor is in the other's movie,
+  // ═════════════ PAIRS come from data/movies.js: every hero and heroine with their movie ═════════════
+  // a = the actor, m = the movie, mid = its id, cast = everyone billed as hero or heroine in that movie.
+  // A board never mixes two pairs where one actor is in the other's movie,
   // so every actor card has exactly one correct movie card on the board.
-  // "cast" lists other actors in the movie. A game never mixes two pairs where one actor is in the other's movie,
-  // so every actor card has exactly one correct movie card on the board.
+  const PAIRS = PK.movies().flatMap(m => {
+    const cast = [...PK.list(m.hero), ...PK.list(m.heroine)];
+    return cast.map(a => ({ a, m: m.title, mid: m.id, cast }));
+  });
   const N = 6;   // pairs per game (12 cards)
+  const SEEN = 'cf_memmatch_seen';   // movies already used on this phone, so boards keep changing
 
   // ── theme: follows the phone unless the player chose one in Profile ──
   const sysDark = matchMedia('(prefers-color-scheme: dark)');
@@ -188,18 +155,26 @@
   let cards = [], open = [], moves = 0, found = 0, lock = false, timers = [];
   const bestGet = () => { try { return parseInt(localStorage.getItem('cf_memmatch_best')) || 0; } catch (e) { return 0; } };
   const bestSet = v => { try { localStorage.setItem('cf_memmatch_best', v); } catch (e) {} };
+  const seenGet = () => { try { const v = JSON.parse(localStorage.getItem(SEEN) || '[]'); return Array.isArray(v) ? v : []; } catch (e) { return []; } };
+  const seenSet = v => { try { localStorage.setItem(SEEN, JSON.stringify(v)); } catch (e) {} };
   const later = (fn, ms) => timers.push(setTimeout(fn, ms));
   function show(id) { document.querySelectorAll('#game .gs').forEach(s => s.classList.toggle('on', s.id === id)); }
   function drawHomeBest() { const b = bestGet(); $('homeBest').textContent = b || '–'; $('homeBestUnit').textContent = b ? 'MOVES' : ''; }
   drawHomeBest();
 
-  function clash(set) {   // true if any actor in the set also appears in another pair's movie
-    return set.some((p, i) => set.some((q, j) => i !== j && (q.cast.includes(p.a) || q.a === p.a || q.m === p.m)));
-  }
-  function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+  // true if two pairs share an actor or a movie, or one actor is billed in the other's movie
+  const clashes = (p, q) => q.a === p.a || q.mid === p.mid || q.cast.includes(p.a) || p.cast.includes(q.a);
+  // build a board one pair at a time, from movies not used lately
   function pickPairs() {
-    let set;
-    for (let t = 0; t < 400; t++) { set = shuffle(PAIRS.slice()).slice(0, N); if (!clash(set)) return set; }
+    let seen = seenGet();
+    let fresh = PAIRS.filter(p => !seen.includes(p.mid));
+    if (new Set(fresh.map(p => p.mid)).size < N * 3) { seen = []; fresh = PAIRS.slice(); }   // nearly all used: start over
+    let set = [];
+    for (let t = 0; t < 50 && set.length < N; t++) {
+      set = [];
+      for (const p of PK.shuffle(fresh)) { if (!set.some(q => clashes(p, q))) set.push(p); if (set.length === N) break; }
+    }
+    seenSet(seen.concat(set.map(p => p.mid)));
     return set;
   }
   function layout() { $('grid').style.setProperty('--cols', innerWidth > innerHeight ? 4 : 3); fitCards(); }
@@ -215,7 +190,7 @@
     const pool = pickPairs();
     cards = [];
     pool.forEach((p, i) => { cards.push({ id: i, kind: 'actor', t: p.a }); cards.push({ id: i, kind: 'movie', t: p.m }); });
-    shuffle(cards);
+    cards = PK.shuffle(cards);
     open = []; moves = 0; found = 0; lock = false;
     $('grid').innerHTML = cards.map((c, i) =>
       `<button type="button" class="c ${c.kind} deal" data-i="${i}" style="animation-delay:${i * 30}ms"><span class="in">` +
