@@ -44,5 +44,23 @@
     };
   }
 
-  root.CinefiedPick = { filled, list, rnd, shuffle, movies, deck };
+  // The name lists for Heads Up and Blindspot, from data/movies.js, data/people.js and data/directors.js.
+  // Hard actors and actresses are left out unless opts.hard. Directors need 2+ movies in movies.js.
+  // A character reads "Kattappa (Baahubali)". Every phone builds the same lists in the same order.
+  function words(opts = {}) {
+    const P = root.CinefiedPeople || {};
+    const people = (Array.isArray(P.PEOPLE) ? P.PEOPLE : []).filter(p => p && filled(p.name) && (opts.hard || p.level !== 'hard'));
+    const chars = (Array.isArray(P.CHARACTERS) ? P.CHARACTERS : []).filter(c => c && filled(c.name));
+    const ms = movies(), count = {};
+    ms.forEach(m => { if (filled(m.director)) count[m.director.trim()] = (count[m.director.trim()] || 0) + 1; });
+    const dirs = (Array.isArray(root.CinefiedDirectors) ? root.CinefiedDirectors : []).filter(d => d && filled(d.name) && (count[d.name.trim()] || 0) >= 2);
+    return {
+      movies: ms.map(m => m.title.trim()),
+      actors: people.filter(p => p.kind === 'actor').map(p => p.name.trim()),
+      actresses: people.filter(p => p.kind === 'actress').map(p => p.name.trim()),
+      directors: dirs.map(d => d.name.trim()),
+      characters: chars.map(c => (filled(c.film) ? `${c.name.trim()} (${c.film.trim()})` : c.name.trim())),
+    };
+  }
+  root.CinefiedPick = { filled, list, rnd, shuffle, movies, deck, words };
 })(typeof self !== 'undefined' ? self : this);
