@@ -153,7 +153,8 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
-<script src="data/lines.js?v=0.1.0"></script>
+<script src="data/movies.js?v=1.0.0"></script>
+<script src="data/lines.js?v=0.2.0"></script>
 <script src="core/core.js?v=0.2.1"></script>
 <script src="core/howto.js?v=0.3.0"></script>
 <script src="core/core-ui.js?v=0.2.3"></script>
@@ -165,8 +166,15 @@
   const game = $('game');
   const D = window.CinefiedLines;
 
+  // titles and dialogues come from data/movies.js. Every phone builds them in the same order, so a key means the same line everywhere.
+  // A title is said the short way: "Salaar: Part 1 – Ceasefire" becomes "Salaar", "Baahubali 2: The Conclusion" becomes "Baahubali 2".
+  const isText = x => typeof x === 'string' && x.trim() !== '';
+  const MOVIES = (Array.isArray(window.CinefiedMovies) ? window.CinefiedMovies : []).filter(m => m && isText(m.title));
+  const TITLES = [...new Set(MOVIES.map(m => m.title.split(':')[0].trim()).filter(isText))];
+  const DIALOGUES = MOVIES.flatMap(m => (Array.isArray(m.dialogues) ? m.dialogues : []).filter(isText).map(d => ({ n: m.title.trim(), s: d.trim() })));
+
   // the sentence pool: r = random sentences, d = dialogues, t = movie titles. A sentence's key is its kind + its place in the list (r12, d3, t40).
-  const POOL = { r: D.random, d: D.dialogues, t: D.titles };
+  const POOL = { r: D.random, d: DIALOGUES, t: TITLES };
   const WEIGHT = { r: D.MIX.random, d: D.MIX.dialogues, t: D.MIX.titles };
   function lineOf(key) {
     const k = key && key[0], i = key ? +key.slice(1) : -1, item = POOL[k] && POOL[k][i];
