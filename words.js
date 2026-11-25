@@ -1,75 +1,28 @@
 /* Imposter word lists. Lives only on the server: the game page never downloads this file.
-   movies comes from movies.js (a copy of public/data/movies.js that tools/copy-data.js puts here on every functions deploy).
-   actors, actresses, directors and characters stay here until data/people.js is made. */
+   Built from copies of public/data/movies.js, people.js and directors.js that tools/copy-data.js
+   puts here on every functions deploy. Nothing to edit here: change those files instead.
+     movies      every live movie
+     actors      every actor in people.js (all levels)
+     actresses   every actress in people.js (all levels)
+     directors   directors with 2+ movies in movies.js
+     characters  "Kattappa (Baahubali)"
+   (Levels are in those files too, for Imposter's difficulty setting later.) */
 (function (root) {
   const filled = v => typeof v === 'string' && v.trim() !== '';
+  const MOVIES = require('./movies.js').filter(m => m && filled(m.title));
+  const { PEOPLE, CHARACTERS } = require('./people.js');
+  const DIRECTORS = require('./directors.js');
+
+  const people = PEOPLE.filter(p => p && filled(p.name));
+  const count = {};
+  MOVIES.forEach(m => { if (filled(m.director)) count[m.director.trim()] = (count[m.director.trim()] || 0) + 1; });
+
   const WORDS = {
-    actors: [
-      "Pawan Kalyan", "Mahesh Babu", "NTR", "Ram Charan", "Allu Arjun", "Prabhas", "Nani", "Chiranjeevi",
-      "Balakrishna", "Nagarjuna", "Venkatesh", "Ravi Teja", "Allu Sirish", "Bellamkonda Srinivas",
-      "Sai Dharam Tej", "Varun Tej", "Adivi Sesh", "Sharwanand", "Nikhil Siddhartha", "Navdeep",
-      "Vishwak Sen", "Raj Tarun", "Kalyan Ram", "Vijay Deverakonda", "Ram Pothineni", "Naga Chaitanya",
-      "Akhil Akkineni", "Sudheer Babu", "Allari Naresh", "Sunil", "Manchu Manoj", "Manchu Vishnu",
-      "Mohan Babu", "Gopichand", "Srikanth", "Jagapathi Babu", "Sree Vishnu", "Teja Sajja", "Kiran Abbavaram",
-      "Santosh Shoban", "Anand Deverakonda", "Siddhu Jonnalagadda", "Nara Rohit", "Satyadev",
-      "Priyadarshi Pulikonda", "Abhinav Gomatam", "Rana Daggubati", "Aadi Pinisetty", "Varun Sandesh",
-      "Nithiin", "Naga Shaurya", "Sushanth", "Avasarala Srinivas", "Vennela Kishore", "Satya",
-      "Rahul Ramakrishna", "Tanikella Bharani", "Brahmaji", "Ajay", "Prakash Raj", "Murali Sharma",
-      "Sampath Raj", "Posani Krishna Murali", "Brahmanandam", "Ali", "Raghu Babu", "Harsha Chemudu",
-      "Tharun Bhascker", "Suhas", "Roshan Meka", "Naveen Polishetty", "Naresh", "Rajendra Prasad",
-      "Krishnam Raju", "Sapthagiri", "Arjun Das", "Rajeev Kanakala", "N. T. Rama Rao Sr.",
-      "Akkineni Nageswara Rao", "Krishna", "Kota Srinivasa Rao", "Rao Ramesh", "Subbaraju", "M. S. Narayana",
-      "Ashish Vidyarthi", "Kamal Haasan", "Rajinikanth", "Vikram", "Suriya", "Karthi", "Dhanush", "Vijay",
-      "Ajith Kumar", "Sivakarthikeyan", "Dulquer Salmaan", "Fahadh Faasil", "Nagababu",
-      "Nandamuri Kalyan Ram", "Srihari", "Prithviraj Sukumaran", "Prabhu Deva", "Lawrence",
-    ],
-    actresses: [
-      "Anushka Shetty", "Samantha Ruth Prabhu", "Trisha Krishnan", "Tamanna Bhatia", "Kajal Aggarwal",
-      "Nayanthara", "Rashmika Mandanna", "Pooja Hegde", "Shriya Saran", "Ramya Krishnan", "Jyothika",
-      "Nithya Menen", "Amala Paul", "Ileana D'Cruz", "Keerthy Suresh", "Catherine Tresa", "Ritu Varma",
-      "Anu Emmanuel", "Payal Rajput", "Nabha Natesh", "Lavanya Tripathi", "Sai Pallavi", "Sreeleela",
-      "Anupama Parameswaran", "Pragya Jaiswal", "Regina Cassandra", "Krithi Shetty", "Anjali",
-      "Raashi Khanna", "Samyuktha Menon", "Priyanka Mohan", "Mehreen Pirzada", "Faria Abdullah",
-      "Ketika Sharma", "Aishwarya Rajesh", "Varsha Bollamma", "Madonna Sebastian", "Aditi Rao Hydari",
-      "Mrunal Thakur", "Tripti Dimri", "Janhvi Kapoor", "Alia Bhatt", "Kiara Advani", "Disha Patani",
-      "Sobhita Dhulipala", "Shalini Pandey", "Kalyani Priyadarshan", "Mamitha Baiju", "Neha Shetty",
-      "Nivetha Thomas", "Nivetha Pethuraj", "Nidhhi Agerwal", "Sridevi", "Shraddha Kapoor",
-    ],
-    // every live movie in movies.js
-    movies: require('./movies.js').filter(m => m && filled(m.title)).map(m => m.title.trim()),
-    directors: [
-      "Rajamouli", "Trivikram", "Puri Jagannadh", "Sreenu Vaitla", "Sukumar", "Boyapati Srinu",
-      "Harish Shankar", "Vamshi Paidipally", "Ram Gopal Varma", "Krishna Vamsi", "Surender Reddy", "Maruthi",
-      "Srikanth Addala", "Koratala Siva", "Sandeep Vanga", "Krish Jagarlamudi", "Anil Ravipudi",
-      "Gopichand Malineni", "Nag Ashwin", "Sekhar Kammula", "Chandoo Mondeti", "Gowtam Tinnanuri",
-      "Vivek Athreya", "Tharun Bhascker", "Sailesh Kolanu", "Prashanth Varma", "Hanu Raghavapudi",
-      "Venky Atluri", "Parasuram", "Bobby Kolli", "Buchi Babu Sana", "V. V. Vinayak",
-    ],
-    characters: [
-      "Baahubali (Baahubali)", "Bhallaladeva (Baahubali)", "Devasena (Baahubali)", "Sivagami (Baahubali)",
-      "Kattappa (Baahubali)", "Avantika (Baahubali)", "Pushpa Raj (Pushpa)",
-      "Bhanwar Singh Shekawat (Pushpa)", "Sreevalli (Pushpa)", "Bheemla Nayak (Bheemla Nayak)",
-      "Daniel Shekar (Bheemla Nayak)", "Arjun Reddy (Arjun Reddy)", "Preeti (Arjun Reddy)",
-      "Vikramaditya (Radhe Shyam)", "Prerana (Radhe Shyam)", "Alluri Sitarama Raju (RRR)",
-      "Komaram Bheem (RRR)", "Chitti Babu (Rangasthalam)", "Bantu (Ala Vaikunthapurramuloo)",
-      "Harsha (Srimanthudu)", "Rishi Kumar (Maharshi)", "Major Ajay Krishna (Sarileru Neekevvaru)",
-      "Arya (Arya)", "Ajay (Arya 2)", "Lucky (Race Gurram)", "Daya (Temper)", "Nandu (Athadu)",
-      "Ajay (Dookudu)", "Surya (Businessman)", "Gabbar Singh (Gabbar Singh)", "Gautam (Attarintiki Daredi)",
-      "Badri (Badri)", "Bunny (Bunny)", "Duvvada Jagannadham (DJ)", "Saaho (Saaho)", "Raju (Khaleja)",
-      "Karthik (Ye Maaya Chesave)", "Sanjay Sahu (Jalsa)", "Pandu (Pokiri)", "Siddhu (Bommarillu)",
-      "Cable Raju (Vedam)", "Indra (Indra)", "Tagore (Tagore)", "Shankar Dada (Shankar Dada MBBS)",
-      "Stalin (Stalin)", "Acharya (Acharya)", "Waltair Veerayya (Waltair Veerayya)",
-      "Shankar (Bhola Shankar)", "Bujjigadu (Bujjigadu)", "Prabhas (Darling)", "Vicky (Mr. Perfect)",
-      "Rishi (Rebel)", "Jai (Mirchi)", "Lavangam (Manmadhudu)", "McDowell Murthy (Ready)",
-      "Padmasri (Dookudu)", "Kill Bill Pandey (Race Gurram)", "Gajala (Venky)", "Halwa Raj (Kick)",
-      "Pilli Padmanabha Simha (Baadshah)", "Jayasurya (King)", "Chari (Dhee)", "Bhattu (Adhurs)",
-      "Gachibowli Diwakar (Konchem Ishtam Konchem Kashtam)", "Chanti (Idiot)", "Vikram Rathod (Vikramarkudu)",
-      "Ravi (Neninthe)", "Rishi (Mirapakay)", "Don Seenu (Don Seenu)", "Raja (Raja The Great)",
-      "Charan (Chirutha)", "Kala Bhairava (Magadheera)", "Ram (Orange)", "Dhruva (Dhruva)",
-      "Konidela Ram (Vinaya Vidheya Rama)", "Siddha (Acharya)", "Pasupathi (Arundhati)", "Sudeep (Eega)",
-      "Chitti (Robot)", "Obul Reddy (Okkadu)", "Chinnodu (SVSC)", "Pedhodu (SVSC)", "Manik Baasha (Baasha)",
-      "Tiger Muthuvel Pandian (Jailer)", "Parthiban / Leo Das (Leo)", "Mithravindha (Magadheera)",
-    ],
+    movies: MOVIES.map(m => m.title.trim()),
+    actors: people.filter(p => p.kind === 'actor').map(p => p.name.trim()),
+    actresses: people.filter(p => p.kind === 'actress').map(p => p.name.trim()),
+    directors: DIRECTORS.filter(d => d && filled(d.name) && (count[d.name.trim()] || 0) >= 2).map(d => d.name.trim()),
+    characters: CHARACTERS.filter(c => c && filled(c.name)).map(c => (filled(c.film) ? `${c.name.trim()} (${c.film.trim()})` : c.name.trim())),
   };
-  if (typeof module !== 'undefined' && module.exports) module.exports = WORDS; else root.ImposterWords = WORDS;
-})(typeof self !== 'undefined' ? self : this);
+  module.exports = WORDS;
+})(this);
