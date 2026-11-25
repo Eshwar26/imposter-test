@@ -1,7 +1,7 @@
 /* ════════════════════════════════════════════════════════════════
    CINEFIED · DATA CHECKER
-   Run before every upload:     node tools/check.js
-   (or point it at another file: node tools/check.js path/to/movies.js)
+   Run before every upload:     node tools/check.js public/data/movies.js
+   It also checks directors.js and people.js when they sit next to movies.js.
 
    ERRORS   must be fixed: the upload should not go out with these.
    WARNINGS are worth a look: often a typo in a name.
@@ -20,6 +20,10 @@ const TEXT = ['title', 'director', 'music', 'villain', 'banner', 'genre'];
 const LISTS = ['hero', 'heroine'];               // one name, or a list of names
 const PEOPLE = ['hero', 'heroine', 'director', 'music', 'villain'];
 const DIR_FILE = path.join(path.dirname(FILE), 'directors.js');
+const PEOPLE_FILE = path.join(path.dirname(FILE), 'people.js');
+const KINDS = ['actor', 'actress'];
+const FROM = ['telugu', 'tamil', 'malayalam', 'kannada', 'hindi'];
+const GAME_DIRS = 2;                             // a director needs this many movies to be in Heads Up, Blindspot and Imposter
 const STATS = { imdb: [1, 10], songs: [1, 20], runtime: [60, 240] };
 const CLUES = ['job', 'location', 'song', 'scene'];
 // locations too common to be a clue (lowercase, no spaces). Add more here if needed.
@@ -243,7 +247,7 @@ if (Array.isArray(DIRS)) {
     if (!d || !filled(d.name)) return errors.push(`${at}: has no name`);
     if (!filled(d.id) || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(d.id)) errors.push(`${at}: id should be lowercase words joined by "-"`);
     else if (dids.has(d.id)) errors.push(`${at}: id '${d.id}' is used twice`); else dids.add(d.id);
-    if (!LEVELS.includes(d.level)) errors.push(`${at}: level must be 'easy', 'medium' or 'hard'`);
+    if ('level' in d) warnings.push(`${at}: directors have no level any more: delete it`);
     if (dn.has(d.name.trim())) errors.push(`${at}: listed twice`); else dn.set(d.name.trim(), 0);
   });
   MOVIES.forEach((m, i) => {
@@ -256,6 +260,65 @@ if (Array.isArray(DIRS)) {
     }
   });
   dn.forEach((n, name) => { if (n === 0) warnings.push(`directors.js: "${name}" has no movies in movies.js`); });
+}
+
+// ── people.js: actors, actresses and characters ──
+let PEOPLE_ = null, CHARS = null, pplNote = '';
+if (fs.existsSync(PEOPLE_FILE)) {
+  try {
+    const box = { self: {}, module: { exports: {} } };
+    vm.runInNewContext(fs.readFileSync(PEOPLE_FILE, 'utf8'), box, { filename: 'people.js' });
+    const D = box.module.exports && box.module.exports.PEOPLE ? box.module.exports : box.self.CinefiedPeople;
+    if (D && Array.isArray(D.PEOPLE) && Array.isArray(D.CHARACTERS)) { PEOPLE_ = D.PEOPLE; CHARS = D.CHARACTERS; }
+    else errors.push('people.js loaded but has no PEOPLE or CHARACTERS list');
+  } catch (e) {
+    const m = /:(\d+)/.exec(String(e.stack || ''));
+    errors.push(`people.js has a typing mistake and can't be read: ${e.message}${m ? ` (around line ${m[1]})` : ''}`);
+  }
+} else pplNote = 'people.js not found next to movies.js: skipped the people checks';
+if (PEOPLE_) {
+  const ids = new Set(), owner = new Map();            // every name and aka, squashed, → who uses it
+  PEOPLE_.forEach((p, j) => {
+    const at = `people.js person #${j + 1}${p && p.name ? ` ("${p.name}")` : ''}`;
+    if (!p || !filled(p.name)) return errors.push(`${at}: has no name`);
+    if (!filled(p.id) || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(p.id)) errors.push(`${at}: id should be lowercase words joined by "-"`);
+    else if (ids.has(p.id)) errors.push(`${at}: id '${p.id}' is used twice`); else ids.add(p.id);
+    if (!Array.isArray(p.aka) || !p.aka.every(filled)) errors.push(`${at}: aka must be a list of names, or [] if none`);
+    if (!KINDS.includes(p.kind)) errors.push(`${at}: kind must be 'actor' or 'actress'`);
+    if (!FROM.includes(p.from)) errors.push(`${at}: from must be one of ${FROM.map(f => `'${f}'`).join(', ')}`);
+    if (!LEVELS.includes(p.level)) errors.push(`${at}: level must be 'easy', 'medium' or 'hard'`);
+    Object.keys(p).forEach(k => { if (!['id', 'name', 'aka', 'kind', 'from', 'level'].includes(k)) warnings.push(`${at}: "${k}" is not a field people.js uses`); });
+    [p.name, ...(Array.isArray(p.aka) ? p.aka : [])].filter(filled).forEach(n => {
+      const k = norm(n);
+      if (owner.has(k) && owner.get(k) !== p) errors.push(`${at}: the name "${n}" is also used by "${owner.get(k).name}". Each name and aka must belong to one person`);
+      else owner.set(k, p);
+    });
+  });
+  // every hero and heroine in movies.js should be someone in people.js
+  const missing = new Map(), wrongKind = new Map();
+  MOVIES.forEach(m => {
+    if (!m || !filled(m.title)) return;
+    [['hero', 'actor'], ['heroine', 'actress']].forEach(([f, kind]) => names_(m[f]).forEach(n => {
+      const p = owner.get(norm(n));
+      if (!p) { if (!missing.has(n)) missing.set(n, []); missing.get(n).push(m.title); }
+      else if (p.kind !== kind && !wrongKind.has(n)) wrongKind.set(n, `${f} in ${m.title}, but people.js has "${p.name}" as an ${p.kind}`);
+    }));
+  });
+  missing.forEach((t, n) => warnings.push(`"${n}" (${t.slice(0, 3).join(', ')}${t.length > 3 ? ` +${t.length - 3}` : ''}) is in movies.js but not in people.js`));
+  wrongKind.forEach((w, n) => warnings.push(`"${n}": ${w}`));
+  // characters
+  const live = new Set(MOVIES.filter(m => m && filled(m.id)).map(m => m.id)), cids = new Set();
+  CHARS.forEach((c, j) => {
+    const at = `people.js character #${j + 1}${c && c.name ? ` ("${c.name}")` : ''}`;
+    if (!c || !filled(c.name)) return errors.push(`${at}: has no name`);
+    if (!filled(c.id) || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(c.id)) errors.push(`${at}: id should be lowercase words joined by "-"`);
+    else if (cids.has(c.id)) errors.push(`${at}: id '${c.id}' is used twice`); else cids.add(c.id);
+    if (!filled(c.film)) errors.push(`${at}: film is empty (it's what the games show after the name)`);
+    if (typeof c.movie !== 'string') errors.push(`${at}: movie must be a movie id in quotes, or ''`);
+    else if (c.movie && !live.has(c.movie)) errors.push(`${at}: movie '${c.movie}' is not an id in movies.js (use '' if the movie isn't there)`);
+    if (!filled(c.by)) warnings.push(`${at}: by is empty (who played them)`);
+    if ('level' in c) warnings.push(`${at}: characters have no level: delete it`);
+  });
 }
 
 // ── what each game can use ──
@@ -284,6 +347,8 @@ const tiers = m => {
 const cpPlay = good.filter(m => has(m.hero) && tiers(m).every(n => n >= 1));
 const cpVaried = good.filter(m => tiers(m).every(n => n >= 2));
 const cpMissing = cpPlay.length - cpVaried.length;
+const gameDirs = Object.entries(dirCount).filter(([, n]) => n >= GAME_DIRS).length;
+const ppl = (kind, all) => PEOPLE_ ? PEOPLE_.filter(p => p.kind === kind && (all || p.level !== 'hard')).length : 0;
 
 // ── report ──
 const pad = (s, n) => String(s).padEnd(n);
@@ -312,6 +377,12 @@ row('Memory Match', 'actor + movie pairs', pairs);
 row('Higher or Lower', 'movies with year + all 3 stats', statsFull.length);
 row('Clue Pool', 'playable · varied (2+ per tier)', `${cpPlay.length} · ${cpVaried.length}`);
 if (cpMissing > 0) console.log(`  ${C.d}${' '.repeat(20)}${cpMissing} playable movies would show the same clue each time in some tier${C.x}`);
+if (PEOPLE_) {
+  row('Heads Up, Blindspot', 'actors · actresses · characters (no hard ones)', `${ppl('actor')} · ${ppl('actress')} · ${CHARS.length}`);
+  row('Imposter', 'actors · actresses · characters (all levels)', `${ppl('actor', 1)} · ${ppl('actress', 1)} · ${CHARS.length}`);
+  row('Directors', `directors with ${GAME_DIRS}+ movies (Heads Up, Blindspot, Imposter)`, gameDirs);
+}
+if (pplNote) console.log(`  ${C.d}${pplNote}${C.x}`);
 console.log('');
 
 const checks = (src.match(/\/\/\s*check\b/gi) || []).length;
