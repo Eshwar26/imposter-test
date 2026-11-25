@@ -42,7 +42,7 @@
   /* clue cards */
   .clues{display:flex;flex-direction:column;gap:clamp(5px,.9dvh,8px)}
   .cl{display:flex;gap:10px;align-items:center;border-radius:14px;padding:clamp(8px,1.4dvh,12px) 12px;background:var(--surface);border:1px solid var(--border);min-height:0}
-  .cl small{font-size:9.5px;letter-spacing:1.8px;color:var(--muted);width:68px;flex:none;text-transform:uppercase}
+  .cl small{font-size:9.5px;letter-spacing:1.8px;color:var(--muted);width:80px;flex:none;text-transform:uppercase}
   .cl span{font-size:13.5px;line-height:1.35;flex:1;min-width:0}
   .cl.open{border-color:color-mix(in srgb,var(--t) 45%,var(--border))}
   .cl.open small{color:var(--t)}
@@ -233,7 +233,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-functions-compat.js"></script>
-<script src="data/cluepool-names.js"></script>
+<script src="data/movies.js?v=1.0.0"></script>
 <script src="core/core.js?v=0.2.1"></script>
 <script src="core/howto.js?v=0.2.0"></script>
 <script src="core/core-ui.js?v=0.2.3"></script>
@@ -243,7 +243,12 @@
   const C = Cinefied, UI = CinefiedUI, esc = C.esc;
   const $ = id => document.getElementById(id);
   const game = $('game');
-  const NAMES = window.CluePoolNames;
+  // every movie the captain can propose: all titles in data/movies.js (typing an other name, aka, finds the title too)
+  const isText = x => typeof x === 'string' && x.trim() !== '';
+  const MOV = (Array.isArray(window.CinefiedMovies) ? window.CinefiedMovies : []).filter(m => m && isText(m.title))
+    .map(m => ({ n: m.title.trim(), s: [m.title, ...(Array.isArray(m.aka) ? m.aka : [])].filter(isText).map(x => x.trim().toLowerCase()) }));
+  // what each kind of hint is called on its card
+  const KIND = { genre: 'Genre', place: 'Set in', job: "Hero's job", roles: 'Characters', music: 'Music', director: 'Director', scene: 'Scene', song: 'Song' };
   const TOKENS = 7, ROUND_MS = 120000;   // same as functions/cluepool.js
 
   let V = null, shown = null, skew = 0, pick = null, lastDeal = null, lastLog = 0, lastHints = 0, lastPhase = null, onlineSig = '';
@@ -333,11 +338,16 @@
     $('teamTag').textContent = spectator ? 'WATCHING' : `TEAM ${t}${iCap ? " · YOU'RE CAPTAIN" : ''}`;
     setHTML($('tokbar'), `<div class="tok me" style="--k:${kOf(t)}"><div class="nm">${spectator ? 'Team ' + t : 'Your team'} <b>${T.tokens ?? TOKENS}</b></div>${dots(T.tokens ?? TOKENS)}</div>
       <div class="tok them" style="--k:${kOf(o)}"><div class="nm">Team ${o} <b>${O.tokens ?? TOKENS}</b></div>${dots(O.tokens ?? TOKENS)}</div>`);
-    // clues: the free actor, then the ones this team opened
-    const hints = (c && c.hints) || [], labels = ['Genre', 'Released', 'Story'];
+    // clues: the free one (the hero), then the ones this team opened
+    const hints = (c && c.hints) || [];
     const fresh = s.deal === lastDeal && hints.length > lastHints ? hints.length - 1 : -1;
-    setHTML($('clues'), spectator ? '' : `<div class="cl open"><small>Actor</small><span>${esc(c ? c.actor : '…')}</span><em class="free">FREE</em></div>` +
-      labels.map((k, i) => (i < hints.length ? `<div class="cl open${i === fresh ? ' new' : ''}"><small>${k}</small><span>${esc(hints[i])}</span></div>` : `<div class="cl shut"><small>${k}</small><span>Locked</span>${LOCK}</div>`)).join(''));
+    setHTML($('clues'), spectator ? '' : `<div class="cl open"><small>Starring</small><span>${esc(c ? c.actor : '…')}</span><em class="free">FREE</em></div>` +
+      [0, 1, 2].map(i => {
+        const h = hints[i];
+        if (!h) return `<div class="cl shut"><small>Hint ${i + 1}</small><span>Locked</span>${LOCK}</div>`;
+        const k = typeof h === 'string' ? 'Hint ' + (i + 1) : (KIND[h.k] || 'Hint ' + (i + 1)), v = typeof h === 'string' ? h : h.v;
+        return `<div class="cl open${i === fresh ? ' new' : ''}"><small>${esc(k)}</small><span>${esc(v)}</span></div>`;
+      }).join(''));
     // the hint button
     const on = onlineOf(t), hv = T.hv || {}, ready = on.filter(u => hv[u]).length, mine = !!hv[V.me];
     const canHint = T.status === 'playing' && (T.hs || 0) < 3 && (T.tokens || 0) >= 2;
@@ -371,10 +381,11 @@
   }
   function suggest() {
     const q = $('q').value.trim().toLowerCase(), tried = new Set((((card() || {}).log) || []).map(l => l.m));
-    const hit = q ? NAMES.filter(n => n.toLowerCase().includes(q) && !tried.has(n)).sort((a, b) => a.toLowerCase().indexOf(q) - b.toLowerCase().indexOf(q)).slice(0, innerHeight < 700 ? 2 : 3) : [];
+    const at = m => Math.min(...m.s.map(x => { const i = x.indexOf(q); return i < 0 ? 999 : i; }));
+    const hit = q ? MOV.filter(m => !tried.has(m.n) && at(m) < 999).sort((a, b) => at(a) - at(b) || a.n.length - b.n.length).slice(0, innerHeight < 700 ? 2 : 3).map(m => m.n) : [];
     if (pick && !hit.includes(pick)) pick = null;
     if (hit.length === 1) pick = hit[0];
-    $('sugg').innerHTML = hit.map(n => { const i = n.toLowerCase().indexOf(q); return `<button type="button" class="${n === pick ? 'sel' : ''}" data-name="${esc(n)}">${esc(n.slice(0, i))}<b>${esc(n.slice(i, i + q.length))}</b>${esc(n.slice(i + q.length))}</button>`; }).join('');
+    $('sugg').innerHTML = hit.map(n => { const i = n.toLowerCase().indexOf(q); if (i < 0) return `<button type="button" class="${n === pick ? 'sel' : ''}" data-name="${esc(n)}">${esc(n)}</button>`; return `<button type="button" class="${n === pick ? 'sel' : ''}" data-name="${esc(n)}">${esc(n.slice(0, i))}<b>${esc(n.slice(i, i + q.length))}</b>${esc(n.slice(i + q.length))}</button>`; }).join('');
     const b = $('propBtn'); b.disabled = !pick; b.textContent = pick ? 'PROPOSE ' + pick.toUpperCase() : 'PROPOSE';
   }
   $('q').addEventListener('input', () => { pick = null; suggest(); });
@@ -478,7 +489,7 @@
   // ── how to play: the animated steps (drawn by core/howto.js) ──
   const HOWTO = {
     steps: [
-      { d: 3600, t: 'Both teams get the same hidden movie and 7 tokens. The actor clue is free.' },
+      { d: 3600, t: 'Both teams get the same hidden movie and 7 tokens. The hero clue is free.' },
       { d: 3800, t: 'More hints cost 1 token each. A hint opens when everyone on your team taps HINT.' },
       { d: 5200, t: 'The captain proposes a movie and the team votes. More than half locks it in. A wrong guess costs 1 token.' },
       { d: 3600, t: 'The first team to get it scores its leftover tokens. At 0 tokens you get one final guess: +1 if right, −1 if wrong.' }
@@ -503,12 +514,12 @@
         [clue, ...slot].forEach(c => c.hide()); [q, ans, big].forEach(l => l.hide()); taps.forEach(t => t.set(0, 0, 0));
         P.forEach(p => p.set()); bars.forEach(b => op(b, 1)); crown.forEach(c => op(c, s === 2 ? 1 : 0)); op(card, 1);
         q.set('? ? ?', 160, 45, 22, 'var(--muted)');
-        if (s > 0) clue.set('Actor: Mahesh Babu', 160, 86, 1);
+        if (s > 0) clue.set('Hero: Mahesh Babu', 160, 86, 1);
         if (s === 0) {
           const k = pr(u, 0, 400); op(card, k); q.set('? ? ?', 160, 45, 22, 'var(--muted)', { o: k });
           P.forEach((p, i) => p.set({ o: pr(u, 300 + i * 100, 300) })); bars.forEach(b => op(b, pr(u, 300, 300)));
           tok.forEach(row => row.forEach((c, i) => { op(c, pr(u, 900 + i * 80, 200)); c.setAttribute('r', 4.2); }));
-          if (u > 1900) clue.set('Actor: Mahesh Babu', 160, 86, pop(u, 1900));
+          if (u > 1900) clue.set('Hero: Mahesh Babu', 160, 86, pop(u, 1900));
         } else if (s === 1) {
           tokens(0, 7); tokens(1, 7); spend(0, 6, u, 1500);
           [0, 1].forEach(i => { const a = 400 + i * 550; taps[i].set(P[i].x, 142, pr(u, a, 500), 22); if (u > a) P[i].set({ ring: 1, ringC: 'var(--green)' }); });
@@ -538,8 +549,8 @@
       id: 'cluepool', name: 'Clue Pool', shelf: 'Play together', color: 'var(--green)', glyph: 'C', referee: true,
       pitch: 'Two teams, one hidden movie. Buy hints with tokens, and guess before the other team does.',
       facts: ['2 to 10 players', 'Team vs team', '~10 min'],
-      rules: ['Both teams get the same hidden movie and 7 tokens. The actor clue is free.',
-              'Three more hints (genre, year, story) cost 1 token each. A hint opens when everyone on your team taps HINT.',
+      rules: ['Both teams get the same hidden movie and 7 tokens. The hero clue is free.',
+              'Three more hints cost 1 token each, and each is sharper than the last: genre, place, job or the characters, then the music director or director, then a famous scene, a song or the characters. A hint opens when everyone on your team taps HINT.',
               'The captain proposes a movie and the team votes. More than half locks it in. A wrong guess costs 1 token.',
               'The first team to get it scores its leftover tokens. At 0 tokens you get one final guess: +1 if right, −1 if wrong.'],
       min: 2, max: 10,
