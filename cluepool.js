@@ -1,10 +1,14 @@
 /* ════════════════════════════════════════════════════════════════
    Clue Pool referee · the rules of the game, run on the server.
 
-   Two teams race to guess the same hidden movie. The actor clue is
-   free; three more hints (genre, year, story) cost a token each and
-   open only when every online teammate asks. The captain proposes a
-   movie, teammates vote, and more than half locks it in.
+   Two teams race to guess the same hidden movie. The hero clue is
+   free; three more hints cost a token each and open only when every
+   online teammate asks. Hint 1 is vague (genre, place, hero's job or
+   the characters), hint 2 is the music director or director, hint 3
+   is sharp (a famous scene, a song or the characters). Which one of
+   each is picked at random when the round is dealt, the same for both
+   teams, and never the same hint twice in a round. The captain
+   proposes a movie, teammates vote, and more than half locks it in.
 
      rooms/CODE/state       what everyone sees (tokens, who asked for a hint, results)
      private/CODE/UID/DEAL  only that player reads it (their team's hints, proposal, wrong guesses)
@@ -33,6 +37,18 @@
 
   function makeCluePool(env) {
     const db = env.db, MOVIES = env.movies, NAMES = new Set(env.names);
+
+    // The round's three hints: one from each tier, chosen once, never the same kind twice.
+    function pickHints(mv) {
+      const pick = list => list[env.rng(list.length)];
+      for (let i = 0; i < 20; i++) {
+        const h1 = pick(mv.h[0]), h2 = pick(mv.h[1]);
+        const t3 = mv.h[2].filter(o => o.k !== h1.k);
+        if (t3.length) return [h1, h2, pick(t3)];
+      }
+      const h1 = mv.h[0].find(a => mv.h[2].some(b => b.k !== a.k)) || mv.h[0][0];   // cannot happen with a built list; just in case
+      return [h1, mv.h[1][0], mv.h[2].find(b => b.k !== h1.k) || mv.h[2][0]];
+    }
 
     async function txn(path, fn) {
       let out = null;
@@ -94,7 +110,7 @@
     // ── publish: copy the visible parts of the secret to the room and to each player's private card ──
     function privateCard(sec, t) {
       const mv = MOVIES[sec.mi], tm = sec.teams[t];
-      const hints = [mv.g, String(mv.y), mv.s].slice(0, tm.hs);
+      const hints = (sec.h || []).slice(0, tm.hs).map(h => ({ k: h.k, v: h.v }));   // { k: kind, v: text }
       const card = { team: t, actor: mv.a, v: sec.v };
       if (hints.length) card.hints = hints;
       if (tm.log && tm.log.length) card.log = tm.log;
@@ -207,7 +223,7 @@
         const mi = pool[env.rng(pool.length)];
         const dealId = env.id();
         const T = () => ({ tokens: TOKENS, hs: 0, status: 'playing', score: 0 });
-        const sec = { mi, v: 1, deadline: now + ROUND_MS, teams: { A: T(), B: T() } };
+        const sec = { mi, h: pickHints(MOVIES[mi]), v: 1, deadline: now + ROUND_MS, teams: { A: T(), B: T() } };
         const up = { [`secret/${code}/${dealId}`]: sec };
         keys(team).forEach(u => { up[`private/${code}/${u}/${dealId}`] = privateCard(sec, team[u]); });
         await db.update(up);
