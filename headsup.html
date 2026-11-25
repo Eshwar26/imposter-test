@@ -169,13 +169,16 @@
 <div class="scrim" id="scrim"></div>
 <section class="sheet ht-sheet" id="rulesSheet" aria-label="How to play"><div class="grab"></div><div id="howto"></div></section>
 
-<script src="data/words.js"></script>
+<script src="data/movies.js?v=1.0.0"></script>
+<script src="data/people.js?v=1.0.0"></script>
+<script src="data/directors.js?v=1.0.0"></script>
+<script src="core/pick.js?v=1.1.0"></script>
 <script src="core/howto.js?v=0.1.0"></script>
 <script>
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
-  const W = window.ImposterWords;
+  const W = CinefiedPick.words();   // names from movies.js, people.js and directors.js (hard actors and actresses left out)
 
   // ── theme: follows the phone unless the player chose one in Profile ──
   const sysDark = matchMedia('(prefers-color-scheme: dark)');
