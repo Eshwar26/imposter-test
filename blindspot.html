@@ -100,7 +100,10 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
-<script src="data/words.js"></script>
+<script src="data/movies.js?v=1.0.0"></script>
+<script src="data/people.js?v=1.0.0"></script>
+<script src="data/directors.js?v=1.0.0"></script>
+<script src="core/pick.js?v=1.1.0"></script>
 <script src="core/core.js?v=0.2.1"></script>
 <script src="core/howto.js?v=0.1.0"></script>
 <script src="core/core-ui.js?v=0.2.3"></script>
@@ -110,7 +113,7 @@
   const C = Cinefied, UI = CinefiedUI, esc = C.esc;
   const $ = id => document.getElementById(id);
   const game = $('game');
-  const W = window.ImposterWords;
+  const W = CinefiedPick.words();   // names from movies.js, people.js and directors.js (hard actors and actresses left out)
   const CATS = { actors: 'Actors', actresses: 'Actresses', movies: 'Movies', directors: 'Directors', mixed: 'Mixed' };
   const COUNT_MS = 900;   // per number: 3, 2, 1
 
