@@ -1,5 +1,8 @@
-/* Imposter word lists. Lives only on the server: the game page never downloads this file. */
+/* Imposter word lists. Lives only on the server: the game page never downloads this file.
+   movies comes from movies.js (a copy of public/data/movies.js that tools/copy-data.js puts here on every functions deploy).
+   actors, actresses, directors and characters stay here until data/people.js is made. */
 (function (root) {
+  const filled = v => typeof v === 'string' && v.trim() !== '';
   const WORDS = {
     actors: [
       "Pawan Kalyan", "Mahesh Babu", "NTR", "Ram Charan", "Allu Arjun", "Prabhas", "Nani", "Chiranjeevi",
@@ -32,54 +35,8 @@
       "Sobhita Dhulipala", "Shalini Pandey", "Kalyani Priyadarshan", "Mamitha Baiju", "Neha Shetty",
       "Nivetha Thomas", "Nivetha Pethuraj", "Nidhhi Agerwal", "Sridevi", "Shraddha Kapoor",
     ],
-    movies: [
-      "Gangotri", "Arya", "Bunny", "Happy", "Desamuduru", "Shankar Dada Zindabad", "Parugu", "Arya 2",
-      "Varudu", "Vedam", "Badrinath", "Julayi", "Iddarammayilatho", "Yevadu", "Race Gurram",
-      "S/O Satyamurthy", "Rudhramadevi", "Sarrainodu", "DJ: Duvvada Jagannadham",
-      "Naa Peru Surya Naa Illu India", "Ala Vaikunthapurramuloo", "Akkada Ammayi Ikkada Abbayi",
-      "Gokulamlo Seeta", "Suswagatham", "Tholi Prema", "Thammudu", "Badri", "Kushi", "Johnny",
-      "Gudumba Shankar", "Shankar Dada M.B.B.S.", "Balu", "Bangaram", "Annavaram", "Jalsa", "Teen Maar",
-      "Panjaa", "Gabbar Singh", "Cameraman Gangatho Rambabu", "Attarintiki Daredi", "Gopala Gopala",
-      "Sardaar Gabbar Singh", "Katamarayudu", "Agnyaathavaasi", "Vakeel Saab", "Bheemla Nayak", "Bro",
-      "Hari Hara Veera Mallu", "They Call Him OG", "Ustaad Bhagat Singh", "Chirutha", "Magadheera", "Orange",
-      "Racha", "Naayak", "Zanjeer", "Thoofan", "Govindudu Andarivadele", "Bruce Lee: The Fighter", "Dhruva",
-      "Khaidi No. 150", "Rangasthalam", "Vinaya Vidheya Rama", "RRR", "Acharya", "Game Changer", "Peddi",
-      "Murari", "Okkadu", "Arjun", "Athadu", "Pokiri", "Sainikudu", "Athidhi", "Khaleja", "Dookudu",
-      "Businessman", "Seethamma Vakitlo Sirimalle Chettu", "1: Nenokkadine", "Aagadu", "Srimanthudu",
-      "Brahmotsavam", "Spyder", "Bharat Ane Nenu", "Maharshi", "Sarileru Neekevvaru", "Sarkaru Vaari Paata",
-      "Guntur Kaaram", "Varanasi", "Aadi", "Simhadri", "Ashok", "Rakhi", "Yamadonga", "Kantri",
-      "Chintakayala Ravi", "Adhurs", "Rama Rama Krishna Krishna", "Brindavanam", "Shakthi", "Oosaravelli",
-      "Dammu", "Baadshah", "Ramayya Vasthavayya", "Rabhasa", "Temper", "Nannaku Prematho", "Janatha Garage",
-      "Jai Lava Kusa", "Aravinda Sametha Veera Raghava", "Devara: Part 1", "War 2", "Eeswar", "Varsham",
-      "Chatrapathi", "Yogi", "Munna", "Bujjigadu", "Billa", "Ek Niranjan", "Darling", "Mr. Perfect", "Rebel",
-      "Mirchi", "Baahubali: The Beginning", "Baahubali 2: The Conclusion", "Saaho", "Radhe Shyam",
-      "Adipurush", "Salaar: Part 1 – Ceasefire", "Kalki 2898 AD", "Kannappa", "Mirai", "Baahubali: The Epic",
-      "The RajaSaab", "Fauzi", "Spirit", "Leader", "Happy Days", "Godavari", "Anand", "Fidaa", "Love Story",
-      "Majili", "Ye Maaya Chesave", "Manam", "Manmadhudu", "Geethanjali", "Hello Brother",
-      "Nuvvu Naaku Nachav", "Malliswari", "Lakshmi", "Dubai Seenu", "Dhee", "Ready", "Kick", "Kick 2",
-      "Don Seenu", "Balupu", "Power", "Raja The Great", "Krack", "Tiger Nageswara Rao", "Disco Raja",
-      "Touch Chesi Chudu", "Pelli Choopulu", "Brochevarevarura", "Ee Nagaraniki Emaindi",
-      "Agent Sai Srinivasa Athreya", "Jathi Ratnalu", "DJ Tillu", "Tillu Square", "Baby", "MAD",
-      "Color Photo", "HIT: The First Case", "HIT: The Second Case", "Major", "Goodachari", "Kshanam", "Evaru",
-      "Mathu Vadalara", "Mathu Vadalara 2", "Dasara", "Hi Nanna", "Ante Sundaraniki", "Middle Class Abbayi",
-      "Nenu Local", "Gang Leader", "Krishna Gaadi Veera Prema Gaadha", "Jersey", "Shyam Singha Roy",
-      "Bhale Bhale Magadivoy", "Taxiwaala", "Geetha Govindam", "Dear Comrade", "Arjun Reddy", "Liger",
-      "World Famous Lover", "Pushpa: The Rise", "Pushpa 2: The Rule", "Waltair Veerayya", "Veera Simha Reddy",
-      "Bhagavanth Kesari", "Akhanda", "Legend", "Simha", "Veera", "Lion", "Paisa Vasool", "Khaidi",
-      "Challenge", "Jagadeka Veerudu Athiloka Sundari", "Gharana Mogudu", "Indra", "Tagore", "Stalin",
-      "Annayya", "Master", "Choodalani Vundi", "Daddy", "Andarivaadu", "Jai Chiranjeeva",
-      "Sye Raa Narasimha Reddy", "GodFather", "Bhola Shankar", "F2: Fun and Frustration",
-      "F3: Fun and Frustration", "Saindhav", "Mana Shankara Varaprasad Garu", "Sankranthiki Vasthunnam",
-      "Akhanda 2: Thaandavam", "Chennakesava Reddy", "Dictator", "Gautamiputra Satakarni",
-      "NTR: Kathanayakudu", "NTR: Mahanayakudu", "Daaku Maharaj", "King", "Ragada", "Gaganam", "Damarukam",
-      "Greeku Veerudu", "Soggade Chinni Nayana", "Oopiri", "Premam", "Devadas", "Manmadhudu 2", "Bangarraju",
-      "Naa Saami Ranga", "Kuberaa", "Coolie", "Pilla Nuvvu Leni Jeevitham", "Subramanyam for Sale", "Supreme",
-      "Chitralahari", "Prati Roju Pandage", "Solo Brathuke So Better", "Virupaksha", "Beast", "Varasudu",
-      "Leo", "Greatest of All Time", "Thuppakki", "7th Sense", "Ghajini", "Surya S/O Krishnan", "24",
-      "Singham", "Singham 3", "Yamudu", "Robo", "Lingaa", "Kabali", "Kaala", "2.0", "Peta", "Darbar",
-      "Jailer", "Vettaiyan", "Hanu-Man", "Oy", "Paradise", "Ala Modalaindi", "Ishq", "Nenu Sailaja",
-      "Gentleman", "Majnu", "Ninnu Kori", "V", "Tuck Jagadish", "Saripodhaa Sanivaaram",
-    ],
+    // every live movie in movies.js
+    movies: require('./movies.js').filter(m => m && filled(m.title)).map(m => m.title.trim()),
     directors: [
       "Rajamouli", "Trivikram", "Puri Jagannadh", "Sreenu Vaitla", "Sukumar", "Boyapati Srinu",
       "Harish Shankar", "Vamshi Paidipally", "Ram Gopal Varma", "Krishna Vamsi", "Surender Reddy", "Maruthi",
