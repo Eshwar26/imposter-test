@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied · Lines content · v0.1.0
+   Cinefied · Lines content · v0.2.0
    Everything Lines shows: the scene themes and the secret sentences.
    No game code lives here, so it is safe to edit.
 
@@ -9,9 +9,7 @@
 
    themes     s = the situation, r = example roles (players can always make up their own)
    random     Tenglish sentences, grouped by feel (the groups are only for editing)
-   titles     movie titles
-   dialogues  famous dialogues (n = movie). Copied from Dialogue Detective for now;
-              they will come from data/movies.js after the data migration.
+   Movie titles and dialogues come from data/movies.js (lines.html builds them).
 
    How often each kind comes up is set by MIX (random 75%, dialogues 15%, titles 10%).
    ════════════════════════════════════════════════════════════════ */
@@ -192,72 +190,10 @@
     ]
   };
 
-  // ═════════════ MOVIE TITLES (65) ═════════════
-  const titles = [
-    'RRR', 'Baahubali', 'Pushpa', 'Magadheera', 'Arjun Reddy', 'Ala Vaikunthapurramuloo',
-    'Rangasthalam', 'Eega', 'Arundhati', 'Pokiri', 'Athadu', 'Srimanthudu',
-    'Gabbar Singh', 'Attarintiki Daredi', 'Jersey', 'Salaar', 'Kalki', 'Dasara',
-    'Geetha Govindam', 'Temper', 'Akhanda', 'Hi Nanna', 'Bharat Ane Nenu', 'Hanu-Man',
-    'Race Gurram', 'Manam', 'Ye Maaya Chesave', 'Arya', 'Desamuduru', 'Julayi',
-    'Sarrainodu', 'Kushi', 'Jalsa', 'Vakeel Saab', 'Bheemla Nayak', 'Orange',
-    'Okkadu', 'Khaleja', 'Dookudu', 'Businessman', 'Maharshi', 'Sarileru Neekevvaru',
-    'Guntur Kaaram', 'Simhadri', 'Yamadonga', 'Adhurs', 'Janatha Garage', 'Varsham',
-    'Chatrapathi', 'Darling', 'Mr. Perfect', 'Happy Days', 'Godavari', 'Fidaa',
-    'Majili', 'Ready', 'Kick', 'Pelli Choopulu', 'Brochevarevarura', 'Mathu Vadalara',
-    'Kshanam', 'Evaru', 'Dear Comrade', 'Bommarillu', 'Oopiri'
-  ];
-
-  // ═════════════ DIALOGUES (41) ═════════════
-  const dialogues = [
-    { n: "Pushpa: The Rise", s: "Pushpa ante flower anukuntunnara? Fire!" },
-    { n: "Baahubali 2: The Conclusion", s: "Naa maate shaasanam." },
-    { n: "Pokiri", s: "Okka saari commit ayithe naa maata nene vinanu." },
-    { n: "Pokiri", s: "Evadu kodithe dimma thirigi mind block ayipothado aade Pandugaadu." },
-    { n: "Gabbar Singh", s: "Naaku konchem thikka undi, daaniko lekka undi." },
-    { n: "Indra", s: "Veera Shankar Reddy... mokke kada ani peekesthe peeka kostha." },
-    { n: "Magadheera", s: "Okkokkadini kaadu Sher Khan... okesaari vanda mandini pampinchu." },
-    { n: "Simha", s: "Choodu, oka vaipe choodu... rendo vaipu chudal anukoku, tattukolev." },
-    { n: "Mirchi", s: "Kathi vaadatam modalupedithe naakanna baaga evaru vaadaleru." },
-    { n: "Businessman", s: "Nee target 10 miles ayithe, aim for the 11th mile." },
-    { n: "Julayi", s: "Cheppali sir... nannu gelakoddu, chastharu ani cheppakapothe ela?" },
-    { n: "Athadu", s: "Gun choodalanuko tappu ledu, kaani bullet choodalanukoku, chachipothav." },
-    { n: "Jalsa", s: "Yuddhamlo gelavadam ante shatruvuni odinchadam, champadam kaadu." },
-    { n: "V", s: "Sollaapu... dammunte nannu aapu." },
-    { n: "Pelli Choopulu", s: "Naa saavu nenu sastha, neekenduku?" },
-    { n: "Narasimha", s: "Athiga aashapade magavaadu, athiga aaveshapade aadadi sukhapadinattu charitralo ledu." },
-    { n: "Idiot", s: "City ki entho mandi commissioners vasthuntaru pothuntaru... Chanti gaadu eppudu ikkade untadu, local." },
-    { n: "Temper", s: "Naa peru Daya... naaku lenide adi." },
-    { n: "Tagore", s: "Telugu bhashalo naaku nachani oke okka padam kshaminchadam." },
-    { n: "Businessman", s: "Yuddham chethakaanode dharmam gurinchi maatladathaadu sir." },
-    { n: "Aadi", s: "Aravaku... ammathodu addanga narikestha." },
-    { n: "Aravinda Sametha Veera Raghava", s: "Kantapaddava kanikaristaanemo, ventapaddava narikestha." },
-    { n: "Janatha Garage", s: "Balavanthudu balahenudini bhayapetti bathakadam aanavaayithi. Kaani aa balahenudi pakkana kooda oka balam undi." },
-    { n: "Jai Lava Kusa", s: "Aa Ravanudini champaalante samudram daatala... ee Ravanudini champaalante samudramantha dhairyam undala?" },
-    { n: "Aagadu", s: "Dikki balisina kodi chicken shop mundukochi thoda kottindanta." },
-    { n: "Chatrapathi", s: "Oka adugu... oke okka adugu." },
-    { n: "Shivamani", s: "Naa peru Shivamani, naaku konchem mental..." },
-    { n: "Gharana Mogudu", s: "Okkasaari face turning ichukondi." },
-    { n: "Gang Leader", s: "Cheyyi choosava entha rough ga undo... rough aadinchestha." },
-    { n: "Baasha", s: "Nenu okkasari chepthe vanda saarlu cheppinattu." },
-    { n: "Shivaji", s: "Nanna, pandulu gumpuga vasthayi... simham single ga vasthundi." },
-    { n: "Indra", s: "Tappu naa vaipu undi kabatti tala dinchukuni velthunna, ledante talalu teesukellevaadni." },
-    { n: "Narasimha", s: "Naa daari rahadaari." },
-    { n: "Temper", s: "Neeku ego lopala untundemo, naaku naa chuttu Wi-Fi la untundi." },
-    { n: "Bommarillu", s: "Anthena? Inkem kavali? Veelaithe naalugu maatalu, kudirithe cup coffee!" },
-    { n: "Teen Maar", s: "Kaaranam leni kopam, gauravam leni prema, badhyatha leni yavvanam, gnaapakam leni vruddhapyam anavasaram." },
-    { n: "S/O Satyamurthy", s: "Manam baagunnappudu lekkalu maatlaadi, kashtallo unnappudu viluvalu maatlaadakoodadu." },
-    { n: "Temper", s: "Neeku naaku friendship emitira? Nuvvu villain, nenu hero!" },
-    { n: "Temper", s: "Username Daya, password Police!" },
-    { n: "Neninthe", s: "Nenu entha yedhavano naake telidu!" },
-    { n: "Desamuduru", s: "You know Guntur bolke ek sheher hai? Nenu ikkada kottaananuko, resound udhar aatha!" }
-  ];
-
   root.CinefiedLines = {
-    version: '0.1.0',
+    version: '0.2.0',
     MIX,
     themes,
     random: Object.keys(random).flatMap(k => random[k]),
-    titles,
-    dialogues,
   };
 })(typeof window !== 'undefined' ? window : globalThis);
