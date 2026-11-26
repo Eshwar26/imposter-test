@@ -323,7 +323,8 @@ if (PEOPLE_) {
 
 // ── what each game can use ──
 const ok = m => m && filled(m.title) && Number.isInteger(m.year) && LEVELS.includes(m.level);
-const good = MOVIES.filter(ok);
+const good = MOVIES.filter(ok).filter(m => m.level !== 'hard');   // hard movies are left out of every game for now
+const hardN = MOVIES.filter(ok).filter(m => m.level === 'hard').length;
 const spMovies = good.filter(m => Array.isArray(m.spoiler) && m.spoiler.some(filled));
 const spLines = spMovies.reduce((n, m) => n + m.spoiler.filter(filled).length, 0);
 const noYear = good.filter(m => m.year === 0).length;
@@ -367,7 +368,8 @@ if (!errors.length && !warnings.length) console.log(`${C.g}${C.b}No problems fou
 
 const row = (game, what, n) => console.log(`  ${pad(game, 20)}${pad(n, 30)}${C.d}${what}${C.x}`);
 console.log(`${C.b}WHAT EACH GAME CAN USE${C.x}`);
-row('Charades', 'movies (all of them, no levels)', good.length);
+row('Charades', 'movies (every one except the hard ones)', good.length);
+row('Hard movies', "left out of every game (waiting for Imposter's Hard setting)", hardN);
 row('Spoiler', `story lines across ${spMovies.length} movies`, spLines);
 row('Dialogue Detective', `dialogues across ${dlg.length} movies`, dlgN);
 row('Starring', 'STARRING rounds · THE CHARACTERS rounds', `${starEasy.length} · ${starRoles.length}`);
