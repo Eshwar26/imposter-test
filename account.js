@@ -1,14 +1,16 @@
-/* Cinefied accounts · usernames (v0.1.0)
+/* Cinefied accounts · usernames, picture, delete (v0.2.0)
    Only the server writes users/ and usernames/, so two players can never
    get the same name and the 30-day rename rule can't be skipped.
 
-     users/{uid}       = { username, createdAt, renamedAt }
+     users/{uid}       = { username, createdAt, renamedAt, av }   av = picture, e.g. "1:clapper" (colour : icon)
      usernames/{name}  = uid        (who owns each name; names are lowercase)
 
    Actions (called from core.js through the "account" function):
      claim  { name }   first username for this player
      rename { name }   change it, once every 30 days
-     drop              a guest gives up its profile before switching to a Google account */
+     drop              a guest gives up its profile before switching to a Google account
+     av     { av }     set the profile picture
+     delete            delete the account: profile, username, stats and the sign-in itself */
 'use strict';
 
 const NAME_RE = /^[a-z0-9_]{3,15}$/;
@@ -16,7 +18,10 @@ const RENAME_MS = 30 * 24 * 60 * 60 * 1000;
 const RESERVED = new Set(['admin', 'cinefied', 'midnightlabs', 'midnight_labs', 'support', 'moderator', 'mod', 'official',
   'guest', 'player', 'null', 'undefined', 'system', 'help', 'staff', 'team']);
 
-function makeAccount({ db, now, isGuest }) {
+const AV_COLORS = 8;
+const AV_ICONS = ['letter', 'clapper', 'reel', 'popcorn', 'camera', 'ticket', 'mic', 'mask', 'star', 'megaphone'];
+
+function makeAccount({ db, now, isGuest, deleteUser }) {
   const clean = n => String(n || '').trim().toLowerCase();
   const check = name => {
     if (!NAME_RE.test(name)) return 'bad_name';
@@ -65,15 +70,36 @@ function makeAccount({ db, now, isGuest }) {
     return { ok: true };
   }
 
+  async function setAv(uid, data) {
+    const m = /^(\d):([a-z]+)$/.exec(String(data.av || ''));
+    if (!m || +m[1] >= AV_COLORS || !AV_ICONS.includes(m[2])) return { ok: false, error: 'bad_av' };
+    const me = await db.get(`users/${uid}`);
+    if (!me || !me.username) return { ok: false, error: 'no_name' };
+    await db.update({ [`users/${uid}/av`]: m[0] });
+    return { ok: true, av: m[0] };
+  }
+
+  // Delete everything about this player (the Play Store needs this), then the sign-in itself.
+  async function remove(uid) {
+    const me = await db.get(`users/${uid}`);
+    const up = { [`users/${uid}`]: null, [`stats/${uid}`]: null };
+    if (me && me.username && (await db.get(`usernames/${me.username}`)) === uid) up[`usernames/${me.username}`] = null;
+    await db.update(up);
+    if (deleteUser) { try { await deleteUser(uid); } catch (e) { /* already gone */ } }
+    return { ok: true };
+  }
+
   async function handle(uid, data) {
     const a = data && data.action;
+    if (a === 'av') return setAv(uid, data);
+    if (a === 'delete') return remove(uid);
     if (a === 'claim') return claim(uid, data);
     if (a === 'rename') return rename(uid, data);
     if (a === 'drop') return drop(uid);
     return { ok: false, error: 'bad_action' };
   }
 
-  return { handle, NAME_RE, RENAME_MS };
+  return { handle, NAME_RE, RENAME_MS, AV_ICONS };
 }
 
 module.exports = { makeAccount };
