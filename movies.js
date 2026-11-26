@@ -28,8 +28,12 @@
    ── FIELDS ──
    id, title, aka, year ....... aka = other spellings accepted when typing
    level ...................... how well known: 'easy' 'medium' 'hard'.
-                                Used only behind the scenes (e.g. Tier'd),
-                                never shown to players as a difficulty choice.
+                                'hard' movies are left out of every game;
+                                only Imposter's Hard setting (coming) will
+                                use them. Easy and medium go everywhere.
+                                A hard movie only needs id, title, aka, year
+                                and level (one line). Fill the rest in if you
+                                ever move it to easy or medium.
    hero, heroine, director,
    music, villain, banner, genre
    roles ...................... Starring: character names, in this order:
@@ -43,7 +47,7 @@
    dialogues .................. Dialogue Detective only
    clues ...................... Clue Pool only: job, location, song (title only), scene
 
-   No levels in the games: Charades and Pictionary use every movie
+   Charades and Pictionary use every movie except the hard ones
    (Pictionary's drawer picks 1 of 3 random movies).
 
    Filled automatically from this file: Starring (mixes two kinds of
@@ -944,7 +948,7 @@
       title: 'Annayya',
       aka: [],
       year: 2000,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Chiranjeevi',
       heroine: 'Soundarya',
@@ -1003,7 +1007,7 @@
       title: 'Daddy',
       aka: [],
       year: 2001,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Chiranjeevi',
       heroine: 'Simran',
@@ -1029,6 +1033,7 @@
         scene: '',
       },
     },
+    { id: 'itlu-sravani-subramanyam', title: 'Itlu Sravani Subramanyam', aka: [], year: 2001, level: 'hard' },   // check year
     {
       id: 'kushi',
       title: 'Kushi',
@@ -1061,6 +1066,7 @@
         scene: 'Despite their ongoing cold war Siddhu and Madhumitha agree to help their friends Babu and Shanti secretly get married',
       },
     },
+    { id: 'mrugaraju', title: 'Mrugaraju', aka: [], year: 2001, level: 'hard' },   // check year
     {
       id: 'murari',
       title: 'Murari',
@@ -1123,6 +1129,7 @@
       },
     },
     
+    { id: 'student-no-1', title: 'Student No. 1', aka: [], year: 2001, level: 'hard' },   // check year
     {
       id: 'aadi',
       title: 'Aadi',
@@ -1154,6 +1161,7 @@
         scene: '',
       },
     },
+    { id: 'bobby', title: 'Bobby', aka: [], year: 2002, level: 'hard' },   // check year
     {
       id: 'chennakesava-reddy',
       title: 'Chennakesava Reddy',
@@ -1190,7 +1198,7 @@
       title: 'Eeswar',
       aka: [],
       year: 2002,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Prabhas',
       heroine: 'Sridevi Vijaykumar',
@@ -1278,6 +1286,7 @@
       },
     },
    
+    { id: 'khadgam', title: 'Khadgam', aka: [], year: 2002, level: 'hard' },   // check year
     {
       id: 'manmadhudu',
       title: 'Manmadhudu',
@@ -1314,7 +1323,7 @@
       title: 'Nuvve Nuvve',
       aka: [],
       year: 2002,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Tarun',
       heroine: 'Shriya Saran',
@@ -1340,6 +1349,10 @@
         scene: '',
       },
     },
+    { id: 'santosham', title: 'Santosham', aka: [], year: 2002, level: 'hard' },   // check year
+    { id: 'takkari-donga', title: 'Takkari Donga', aka: [], year: 2002, level: 'hard' },   // check year
+    { id: 'vasu', title: 'Vasu', aka: [], year: 2002, level: 'hard' },   // check year
+    { id: 'aithe', title: 'Aithe', aka: [], year: 2003, level: 'hard' },   // check year
     {
       id: 'amma-nanna-o-tamila-ammayi',
       title: 'Amma Nanna O Tamila Ammayi',
@@ -1402,6 +1415,8 @@
       },
     },
     
+    { id: 'gangotri', title: 'Gangotri', aka: [], year: 2003, level: 'hard' },   // check year
+    { id: 'johnny', title: 'Johnny', aka: [], year: 2003, level: 'hard' },   // check year
     {
       id: 'okkadu',
       title: 'Okkadu',
@@ -1433,12 +1448,13 @@
         scene: 'A kabaddi player rescues a girl from a faction leader in Kurnool',
       },
     },
+    { id: 'raghavendra', title: 'Raghavendra', aka: [], year: 2003, level: 'hard' },   // check year
     {
       id: 'shivamani',
       title: 'Shivamani',
       aka: [],
       year: 2003,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nagarjuna',
       heroine: 'Asin',   
@@ -1499,7 +1515,7 @@
       title: 'Tagore',
       aka: [],
       year: 2003,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Chiranjeevi',
       heroine: 'Shriya Saran',
@@ -1526,6 +1542,8 @@
       },
     },
    
+    { id: 'adavi-ramudu', title: 'Adavi Ramudu', aka: [], year: 2004, level: 'hard' },   // check year
+    { id: 'anji', title: 'Anji', aka: [], year: 2004, level: 'hard' },   // check year
     {
       id: 'arjun',
       title: 'Arjun',
@@ -1586,6 +1604,7 @@
         scene: '',
       },
     },
+    { id: 'gharshana', title: 'Gharshana', aka: [], year: 2004, level: 'hard' },   // check year
     {
       id: 'gudumba-shankar',
       title: 'Gudumba Shankar',
@@ -1646,12 +1665,15 @@
         scene: '',
       },
     },
+    { id: 'mass', title: 'Mass', aka: [], year: 2004, level: 'hard' },   // check year
+    { id: 'naani', title: 'Naani', aka: [], year: 2004, level: 'hard' },   // check year
+    { id: 'samba', title: 'Samba', aka: [], year: 2004, level: 'hard' },   // check year
     {
       id: 'shankar-dada-m-b-b-s',
       title: 'Shankar Dada M.B.B.S.',
       aka: [],
       year: 2004,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Chiranjeevi',
       heroine: 'Sonali Bendre',
@@ -1713,7 +1735,7 @@
       title: 'Varsham',
       aka: [],
       year: 2004,
-      level: 'easy',
+      level: 'medium',
 
       hero: 'Prabhas',
       heroine: 'Trisha',
@@ -1768,12 +1790,13 @@
         scene: '',
       },
     },
+    { id: 'a-film-by-aravind', title: 'A Film by Aravind', aka: [], year: 2005, level: 'hard' },   // check year
     {
       id: 'andarivaadu',
       title: 'Andarivaadu',
       aka: [],
       year: 2005,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Chiranjeevi',
       heroine: 'Tabu',
@@ -1798,6 +1821,7 @@
         scene: '',
       },
     },
+    { id: 'anukokunda-oka-roju', title: 'Anukokunda Oka Roju', aka: [], year: 2005, level: 'hard' },   // check year
     {
       id: 'athadu',
       title: 'Athadu',
@@ -1831,6 +1855,7 @@
       },
     },
     
+    { id: 'athanokkade', title: 'Athanokkade', aka: [], year: 2005, level: 'hard' },   // check year
     {
       id: 'balu',
       title: 'Balu',
@@ -1921,6 +1946,7 @@
         scene: '',
       },
     },
+    { id: 'chakram', title: 'Chakram', aka: [], year: 2005, level: 'hard' },   // check year
     {
       id: 'chatrapathi',
       title: 'Chatrapathi',
@@ -1988,7 +2014,7 @@
       title: 'Jai Chiranjeeva',
       aka: [],
       year: 2005,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Chiranjeevi',
       heroine: 'Sameera Reddy',
@@ -2013,6 +2039,7 @@
         scene: '',
       },
     },
+    { id: 'narasimhudu', title: 'Narasimhudu', aka: [], year: 2005, level: 'hard' },   // check year
     {
       id: 'nuvvostanante-nenoddantana',
       title: 'Nuvvostanante Nenoddantana',
@@ -2044,6 +2071,8 @@
         scene: '',
       },
     },
+    { id: 'super', title: 'Super', aka: [], year: 2005, level: 'hard' },   // check year
+    { id: 'amma-cheppindi', title: 'Amma Cheppindi', aka: [], year: 2006, level: 'hard' },   // check year
     {
       id: 'annavaram',
       title: 'Annavaram',
@@ -2074,6 +2103,8 @@
         scene: '',
       },
     },
+    { id: 'ashok', title: 'Ashok', aka: [], year: 2006, level: 'hard' },   // check year
+    { id: 'bangaram', title: 'Bangaram', aka: [], year: 2006, level: 'hard' },   // check year
     {
       id: 'bommarillu',
       title: 'Bommarillu',
@@ -2141,7 +2172,7 @@
       title: 'Lakshmi',
       aka: [],
       year: 2006,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Venkatesh',
       heroine: 'Nayanthara',
@@ -2196,12 +2227,13 @@
         scene: 'An undercover cop poses as a gangster',
       },
     },
+    { id: 'pournami', title: 'Pournami', aka: [], year: 2006, level: 'hard' },   // check year
     {
       id: 'rakhi',
       title: 'Rakhi',
       aka: [],
       year: 2006,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Jr NTR',
       heroine: 'Ileana D\'Cruz',
@@ -2232,7 +2264,7 @@
       title: 'Sainikudu',
       aka: [],
       year: 2006,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Mahesh Babu',
       heroine: 'Trisha',
@@ -2257,12 +2289,13 @@
         scene: '',
       },
     },
+    { id: 'shock', title: 'Shock', aka: [], year: 2006, level: 'hard' },   // check year
     {
       id: 'sri-ramadasu',
       title: 'Sri Ramadasu',
       aka: [],
       year: 2006,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nagarjuna',
       heroine: 'Sneha',
@@ -2469,6 +2502,7 @@
         scene: '',
       },
     },
+    { id: 'don', title: 'Don', aka: [], year: 2007, level: 'hard' },   // check year
     {
       id: 'dubai-seenu',
       title: 'Dubai Seenu',
@@ -2536,7 +2570,7 @@
       title: 'Jagadam',
       aka: [],
       year: 2007,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Ram Pothineni',
       heroine: 'Isha Sahni',
@@ -2566,7 +2600,7 @@
       title: 'Munna',
       aka: [],
       year: 2007,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Prabhas',
       heroine: 'Ileana D\'Cruz',
@@ -2592,12 +2626,13 @@
         scene: '',
       },
     },
+    { id: 'okkadunnadu', title: 'Okkadunnadu', aka: [], year: 2007, level: 'hard' },   // check year
     {
       id: 'shankar-dada-zindabad',
       title: 'Shankar Dada Zindabad',
       aka: [],
       year: 2007,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Chiranjeevi',
       heroine: 'Karishma Kotak', 
@@ -2658,7 +2693,7 @@
       title: 'Tulasi',
       aka: [],
       year: 2007,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Venkatesh',
       heroine: 'Nayanthara',
@@ -2719,7 +2754,7 @@
       title: 'Yogi',
       aka: [],
       year: 2007,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Prabhas',
       heroine: 'Nayanthara',
@@ -2811,7 +2846,7 @@
       title: 'Gamyam',
       aka: [],
       year: 2008,
-      level: 'hard',
+      level: 'medium',
 
       hero: ['Sharwanand', 'Allari Naresh'],
       heroine: 'Kamalinee Mukherjee',
@@ -2871,7 +2906,7 @@
       title: 'Kantri',
       aka: [],
       year: 2008,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Jr NTR',
       heroine: 'Hansika Motwani',
@@ -2930,7 +2965,7 @@
       title: 'Krishna',
       aka: [],
       year: 2008,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Ravi Teja',
       heroine: 'Trisha',
@@ -2944,8 +2979,8 @@
       stats: { imdb: 6.3, songs: 6, runtime: 147 },   
 
       spoiler: [
-        'In Vijayawada, carefree Krishna falls deeply for Sandhya, only to protect her family from a ruthless, obsessive gangster Jakka.',
-        'A kind-hearted unemployed youngster falls for a gangster\'s sister, confronting dangerous rivals while fighting to win her love',
+        'In Vijayawada, unemployed youngster falls deeply for gangster\'s sister, only to protect her family from a ruthless, obsessive gangster',
+ 
       ],
       dialogues: ['Rey rowdyism puttindhe Bezawada lo, aa Bezawada ke rowdyism nerpadaaniki vachava nuvvu!'],
 
@@ -2961,7 +2996,7 @@
       title: 'Neninthe',
       aka: [],
       year: 2008,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Ravi Teja',
       heroine: 'Siya Gautham',  
@@ -2987,6 +3022,8 @@
         scene: '',
       },
     },
+    { id: 'nenu-meeku-telusa', title: 'Nenu Meeku Telusa?', aka: [], year: 2008, level: 'hard' },   // check year
+    { id: 'oka-magaadu', title: 'Oka Magaadu', aka: [], year: 2008, level: 'hard' },   // check year
     {
       id: 'parugu',
       title: 'Parugu',
@@ -3079,12 +3116,13 @@
         scene: '',
       },
     },
+    { id: 'baanam', title: 'Baanam', aka: [], year: 2009, level: 'hard' },   // check year
     {
       id: 'billa',
       title: 'Billa',
       aka: [],
       year: 2009,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Prabhas',
       heroine: 'Anushka Shetty',
@@ -3115,7 +3153,7 @@
       title: 'Ek Niranjan',
       aka: [],
       year: 2009,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Prabhas',
       heroine: 'Kangana Ranaut',
@@ -3209,7 +3247,7 @@
       title: 'Oy',
       aka: [],
       year: 2009,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Siddharth',
       heroine: 'Shamili',
@@ -3235,6 +3273,7 @@
       },
     },
 
+    { id: 'prayanam', title: 'Prayanam', aka: [], year: 2009, level: 'hard' },   // check year
     // ── 2010s ─────────────────────────────────────────────
 
     {
@@ -3242,7 +3281,7 @@
       title: 'Adhurs',
       aka: [],
       year: 2010,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Jr NTR',
       heroine: 'Nayanthara',
@@ -3273,7 +3312,7 @@
       title: 'Brindavanam',
       aka: [],
       year: 2010,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Jr NTR',
       heroine: 'Samantha',
@@ -3304,7 +3343,7 @@
       title: 'Darling',
       aka: [],
       year: 2010,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Prabhas',
       heroine: 'Kajal Aggarwal',
@@ -3334,7 +3373,7 @@
       title: 'Don Seenu',
       aka: [],
       year: 2010,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Ravi Teja',
       heroine: 'Shriya Saran',
@@ -3360,12 +3399,13 @@
         scene: '',
       },
     },
+    { id: 'kedi', title: 'Kedi', aka: [], year: 2010, level: 'hard' },   // check year
     {
       id: 'khaleja',
       title: 'Khaleja',
       aka: [],
       year: 2010,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Mahesh Babu',
       heroine: 'Anushka Shetty',
@@ -3391,6 +3431,7 @@
         scene: 'A taxi driver is believed to be a god by a dying village',
       },
     },
+    { id: 'komaram-puli', title: 'Komaram Puli', aka: [], year: 2010, level: 'hard' },   // check year
     {
       id: 'leader',
       title: 'Leader',
@@ -3453,12 +3494,13 @@
         scene: '',
       },
     },
+    { id: 'namo-venkatesa', title: 'Namo Venkatesa', aka: [], year: 2010, level: 'hard' },   // check year
     {
       id: 'orange',
       title: 'Orange',
       aka: [],
       year: 2010,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Ram Charan',
       heroine: 'Genelia D\'Souza',
@@ -3483,12 +3525,13 @@
         scene: 'painting graffiti on a wall in Sydney',
       },
     },
+    { id: 'prasthanam', title: 'Prasthanam', aka: [], year: 2010, level: 'hard' },   // check year
     {
       id: 'ragada',
       title: 'Ragada',
       aka: [],
       year: 2010,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nagarjuna',
       heroine: 'Anushka Shetty',
@@ -3518,7 +3561,7 @@
       title: 'Rama Rama Krishna Krishna',
       aka: [],
       year: 2010,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Ram Pothineni',
       director: 'Srivas',
@@ -3602,6 +3645,7 @@
         scene: '',
       },
     },
+    { id: 'varudu', title: 'Varudu', aka: [], year: 2010, level: 'hard' },   // check year
     {
       id: 'yamudu',
       title: 'Yamudu',
@@ -3791,7 +3835,7 @@
       title: 'Gaganam',
       aka: [],
       year: 2011,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nagarjuna',
       heroine: '',   
@@ -3822,7 +3866,7 @@
       title: 'Golconda High School',
       aka: [],
       year: 2011,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Sumanth',
       heroine: 'Swati Reddy',
@@ -3853,7 +3897,7 @@
       title: 'Kandireega',
       aka: [],
       year: 2011,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Ram Pothineni',
       heroine: 'Hansika Motwani',
@@ -3937,12 +3981,13 @@
         scene: 'Vicky wins a "Made for Each Other" chocolate contest that matches him with Maggie.',
       },
     },
+    { id: 'nenu-naa-rakshasi', title: 'Nenu Naa Rakshasi', aka: [], year: 2011, level: 'hard' },   // check year
     {
       id: 'oosaravelli',
       title: 'Oosaravelli',
       aka: [],
       year: 2011,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Jr NTR',
       heroine: 'Tamannaah',
@@ -3972,7 +4017,7 @@
       title: 'Panjaa',
       aka: [],
       year: 2011,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Pawan Kalyan',
       heroine: 'Anjali Lavania',
@@ -4003,7 +4048,7 @@
       title: 'Shakthi',
       aka: [],
       year: 2011,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Jr NTR',
       heroine: 'Ileana D\'Cruz',
@@ -4033,7 +4078,7 @@
       title: 'Solo',
       aka: [],
       year: 2011,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nara Rohit',
       heroine: 'Nisha Agarwal',
@@ -4063,7 +4108,7 @@
       title: 'Teen Maar',
       aka: [],
       year: 2011,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Pawan Kalyan',
       heroine: 'Trisha',
@@ -4087,6 +4132,7 @@
         scene: '',
       },
     },
+    { id: 'andala-rakshasi', title: 'Andala Rakshasi', aka: [], year: 2012, level: 'hard' },   // check year
     {
       id: 'businessman',
       title: 'Businessman',
@@ -4122,7 +4168,7 @@
       title: 'Cameraman Gangatho Rambabu',
       aka: [],
       year: 2012,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Pawan Kalyan',
       heroine: 'Tamannaah',
@@ -4153,7 +4199,7 @@
       title: 'Damarukam',
       aka: [],
       year: 2012,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nagarjuna',
       heroine: 'Anushka Shetty',
@@ -4184,7 +4230,7 @@
       title: 'Dammu',
       aka: [],
       year: 2012,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Jr NTR',
       heroine: 'Trisha',
@@ -4336,6 +4382,7 @@
       },
     },
     
+    { id: 'mithunam', title: 'Mithunam', aka: [], year: 2012, level: 'hard' },   // check year
     {
       id: 'racha',
       title: 'Racha',
@@ -4402,7 +4449,7 @@
       title: 'Sarocharu',
       aka: [],
       year: 2012,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Ravi Teja',
       heroine: 'Kajal Aggarwal',
@@ -4524,7 +4571,7 @@
       title: 'Greeku Veerudu',
       aka: [],
       year: 2013,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nagarjuna',
       heroine: 'Nayanthara',
@@ -4555,7 +4602,7 @@
       title: 'Gunde Jaari Gallanthayyinde',
       aka: [],
       year: 2013,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nithiin',
       heroine: 'Nithya Menen',
@@ -4586,7 +4633,7 @@
       title: 'Iddarammayilatho',
       aka: [],
       year: 2013,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Allu Arjun',
       heroine: 'Amala Paul',
@@ -4676,7 +4723,7 @@
       title: 'Ramayya Vasthavayya',
       aka: [],
       year: 2013,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Jr NTR',
       heroine: 'Samantha',
@@ -4760,6 +4807,7 @@
         scene: 'The cop mimics famous film stories to confuse the villain\'s gang',
       },
     },
+    { id: 'amrutham-chandamamalo', title: 'Amrutham Chandamamalo', aka: [], year: 2014, level: 'hard' },   // check year
     {
       id: 'drushyam',
       title: 'Drushyam',
@@ -4822,6 +4870,7 @@
         scene: '',
       },
     },
+    { id: 'lingaa', title: 'Lingaa', aka: [], year: 2014, level: 'hard' },   // check year
     {
       id: 'manam',
       title: 'Manam',
@@ -4857,7 +4906,7 @@
       title: 'Mukunda',
       aka: [],
       year: 2014,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Varun Tej',
       heroine: 'Pooja Hegde',
@@ -4882,12 +4931,13 @@
         scene: '',
       },
     },
+    { id: 'paisa', title: 'Paisa', aka: [], year: 2014, level: 'hard' },   // check year
     {
       id: 'pilla-nuvvu-leni-jeevitham',
       title: 'Pilla Nuvvu Leni Jeevitham',
       aka: [],
       year: 2014,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Sai Dharam Tej',
       heroine: 'Regina Cassandra',
@@ -4917,7 +4967,7 @@
       title: 'Power',
       aka: [],
       year: 2014,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Ravi Teja',
       heroine: 'Hansika Motwani',
@@ -4947,7 +4997,7 @@
       title: 'Rabhasa',
       aka: [],
       year: 2014,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Jr NTR',
       heroine: 'Samantha',
@@ -5132,7 +5182,7 @@
       title: 'Bruce Lee: The Fighter',
       aka: [],
       year: 2015,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Ram Charan',
       heroine: 'Rakul Preet Singh',
@@ -5194,7 +5244,7 @@
       title: 'Kanche',
       aka: [],
       year: 2015,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Varun Tej',
       heroine: 'Pragya Jaiswal',
@@ -5225,7 +5275,7 @@
       title: 'Kick 2',
       aka: [],
       year: 2015,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Ravi Teja',
       heroine: 'Rakul Preet Singh',
@@ -5255,7 +5305,7 @@
       title: 'Pataas',
       aka: [],
       year: 2015,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Kalyan Ram',
       heroine: 'Shruti Sodhi',
@@ -5286,7 +5336,7 @@
       title: 'S/O Satyamurthy',
       aka: [],
       year: 2015,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Allu Arjun',
       heroine: 'Samantha',
@@ -5311,6 +5361,7 @@
         scene: '',
       },
     },
+    { id: 'sankarabharanam-2015', title: 'Sankarabharanam', aka: [], year: 2015, level: 'hard' },   // check year
     {
       id: 'srimanthudu',
       title: 'Srimanthudu',
@@ -5347,7 +5398,7 @@
       title: 'Subramanyam for Sale',
       aka: [],
       year: 2015,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Sai Dharam Tej',
       heroine: 'Regina Cassandra',
@@ -5409,7 +5460,7 @@
       title: 'Yevade Subramanyam',
       aka: [],
       year: 2015,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nani',
       heroine: 'Malavika Nair',
@@ -5495,6 +5546,7 @@
         scene: '',
       },
     },
+    { id: 'appatlo-okadundevadu', title: 'Appatlo Okadundevadu', aka: [], year: 2016, level: 'hard' },   // check year
     {
       id: 'brahmotsavam',
       title: 'Brahmotsavam',
@@ -5563,7 +5615,7 @@
       title: 'Gentleman',
       aka: [],
       year: 2016,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nani',
       heroine: 'Surabhi',   
@@ -5589,6 +5641,7 @@
         scene: '',
       },
     },
+    { id: 'guntur-talkies', title: 'Guntur Talkies', aka: [], year: 2016, level: 'hard' },   // check year
     {
       id: 'janatha-garage',
       title: 'Janatha Garage',
@@ -5682,12 +5735,13 @@
       },
     },
     
+    { id: 'kshanam', title: 'Kshanam', aka: [], year: 2016, level: 'hard' },   // check year
     {
       id: 'majnu',
       title: 'Majnu',
       aka: [],
       year: 2016,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nani',
       heroine: 'Anu Emmanuel',
@@ -5899,7 +5953,7 @@
       title: 'Sarrainodu',
       aka: [],
       year: 2016,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Allu Arjun',
       heroine: 'Rakul Preet Singh',
@@ -5960,7 +6014,7 @@
       title: 'Supreme',
       aka: [],
       year: 2016,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Sai Dharam Tej',
       heroine: 'Raashii Khanna',
@@ -6021,7 +6075,7 @@
       title: 'DJ: Duvvada Jagannadham',
       aka: ['Duvvada Jagannadham', 'DJ'],
       year: 2017,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Allu Arjun',
       heroine: 'Pooja Hegde',
@@ -6113,7 +6167,7 @@
       title: 'Jaya Janaki Nayaka',
       aka: [],
       year: 2017,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Bellamkonda Srinivas',
       heroine: 'Rakul Preet Singh',
@@ -6171,7 +6225,7 @@
       title: 'Khaidi No. 150',
       aka: [],
       year: 2017,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Chiranjeevi',
       heroine: 'Kajal Aggarwal',
@@ -6201,7 +6255,7 @@
       title: 'Mahanubhavudu',
       aka: [],
       year: 2017,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Sharwanand',
       heroine: 'Mehreen Pirzada',
@@ -6227,6 +6281,7 @@
         scene: '',
       },
     },
+    { id: 'mental-madhilo', title: 'Mental Madhilo', aka: [], year: 2017, level: 'hard' },   // check year
     {
       id: 'middle-class-abbayi',
       title: 'Middle Class Abbayi',
@@ -6262,7 +6317,7 @@
       title: 'Nenu Local',
       aka: [],
       year: 2017,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Nani',
       heroine: 'Keerthy Suresh',
@@ -6352,7 +6407,7 @@
       title: 'Rarandoi Veduka Chudham',
       aka: [],
       year: 2017,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Naga Chaitanya',
       heroine: 'Rakul Preet Singh',
@@ -6382,7 +6437,7 @@
       title: 'Singham 3',
       aka: [],
       year: 2017,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Suriya',
       heroine: 'Anushka Shetty',
@@ -6442,7 +6497,7 @@
       title: 'Winner',
       aka: [],
       year: 2017,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Sai Dharam Tej',
       heroine: 'Rakul Preet Singh',
@@ -6503,7 +6558,7 @@
       title: 'Agnyaathavaasi',
       aka: [],
       year: 2018,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Pawan Kalyan',
       heroine: 'Keerthy Suresh',  
@@ -6559,6 +6614,7 @@
       },
     },
     
+    { id: 'awe', title: 'Awe!', aka: [], year: 2018, level: 'hard' },   // check year
     {
       id: 'bharat-ane-nenu',
       title: 'Bharat Ane Nenu',
@@ -6589,12 +6645,14 @@
         scene: 'A young man becomes chief minister after his father dies',
       },
     },
+    { id: 'bluff-master', title: 'Bluff Master', aka: [], year: 2018, level: 'hard' },   // check year
+    { id: 'care-of-kancharapalem', title: 'Care of Kancharapalem', aka: [], year: 2018, level: 'hard' },   // check year
     {
       id: 'devadas',
       title: 'Devadas',
       aka: [],
       year: 2018,
-      level: 'hard',
+      level: 'medium',
 
       hero: ['Nagarjuna', 'Nani'],
       heroine: 'Rashmika Mandanna',
@@ -6804,7 +6862,7 @@
       title: 'Padi Padi Leche Manasu',
       aka: [],
       year: 2018,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Sharwanand',
       heroine: 'Sai Pallavi',
@@ -6864,7 +6922,7 @@
       title: 'Sammohanam',
       aka: [],
       year: 2018,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Sudheer Babu',
       heroine: 'Aditi Rao Hydari',
@@ -6894,7 +6952,7 @@
       title: 'Savyasachi',
       aka: [],
       year: 2018,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Naga Chaitanya',
       heroine: 'Nidhhi Agerwal',
@@ -6954,7 +7012,7 @@
       title: 'Tholi Prema',
       aka: ['Tholi Prema (2018)'],
       year: 2018,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Varun Tej',
       heroine: 'Raashii Khanna',
@@ -7009,12 +7067,13 @@
         scene: 'A detective from Nellore looks into unidentified bodies near railway tracks',
       },
     },
+    { id: 'brochevarevarura', title: 'Brochevarevarura', aka: [], year: 2019, level: 'hard' },   // check year
     {
       id: 'chitralahari',
       title: 'Chitralahari',
       aka: [],
       year: 2019,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Sai Dharam Tej',
       heroine: 'Kalyani Priyadarshan',
@@ -7099,6 +7158,7 @@
         scene: 'A gangster agrees to act in a film about himself',
       },
     },
+    { id: 'mathu-vadalara', title: 'Mathu Vadalara', aka: [], year: 2019, level: 'hard' },   // check year
     {
       id: 'nani-gang-leader',
       title: 'Nani\'s Gang Leader',
@@ -7254,7 +7314,7 @@
       title: 'Manmadhudu 2',
       aka: [],
       year: 2019,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nagarjuna',
       heroine: 'Rakul Preet Singh',
@@ -7285,7 +7345,7 @@
       title: 'Mr. Majnu',
       aka: [],
       year: 2019,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Akhil Akkineni',
       heroine: 'Nidhhi Agerwal',
@@ -7314,7 +7374,7 @@
       title: 'NTR: Kathanayakudu',
       aka: [],
       year: 2019,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Balakrishna',
       heroine: 'Vidya Balan',
@@ -7343,7 +7403,7 @@
       title: 'NTR: Mahanayakudu',
       aka: [],
       year: 2019,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Balakrishna',
       heroine: 'Vidya Balan',
@@ -7461,7 +7521,7 @@
       title: 'Sye Raa Narasimha Reddy',
       aka: [],
       year: 2019,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Chiranjeevi',
       heroine: 'Nayanthara',
@@ -7491,7 +7551,7 @@
       title: 'Venky Mama',
       aka: [],
       year: 2019,
-      level: 'hard',
+      level: 'medium',
 
       hero: ['Venkatesh', 'Naga Chaitanya'],
       heroine: ['Payal Rajput', 'Raashii Khanna'],
@@ -7643,7 +7703,7 @@
       title: 'Disco Raja',
       aka: [],
       year: 2020,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Ravi Teja',
       heroine: 'Nabha Natesh',
@@ -7696,6 +7756,7 @@
         scene: '',
       },
     },
+    { id: 'maa-vintha-gaadha-vinuma', title: 'Maa Vintha Gaadha Vinuma', aka: [], year: 2020, level: 'hard' },   // check year
     {
       id: 'sarileru-neekevvaru',
       title: 'Sarileru Neekevvaru',
@@ -7731,7 +7792,7 @@
       title: 'Solo Brathuke So Better',
       aka: [],
       year: 2020,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Sai Dharam Tej',
       heroine: 'Nabha Natesh',
@@ -7760,7 +7821,7 @@
       title: 'V',
       aka: [],
       year: 2020,
-      level: 'hard',
+      level: 'medium',
 
       hero: ['Nani', 'Sudheer Babu'],
       heroine: 'Aditi Rao Hydari',
@@ -7909,7 +7970,7 @@
       title: 'Rang De',
       aka: [],
       year: 2021,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Nithiin',
       heroine: 'Keerthy Suresh',
@@ -7968,7 +8029,7 @@
       title: 'Vakeel Saab',
       aka: [],
       year: 2021,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Pawan Kalyan',
       heroine: 'Shruti Haasan',
@@ -7998,7 +8059,7 @@
       title: 'Zombie Reddy',
       aka: [],
       year: 2021,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Teja Sajja',
       heroine: '',
@@ -8208,7 +8269,7 @@
       title: 'DJ Tillu',
       aka: [],
       year: 2022,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Siddhu Jonnalagadda',
       heroine: 'Neha Shetty',
@@ -8357,7 +8418,7 @@
       title: 'Prince',
       aka: [],
       year: 2022,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Sivakarthikeyan',
       heroine: 'Maria Ryaboshapka',
@@ -8536,7 +8597,7 @@
       title: 'Agent',
       aka: [],
       year: 2023,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Akhil Akkineni',
       heroine: 'Sakshi Vaidya',   
@@ -8866,7 +8927,7 @@
       title: 'Veera Simha Reddy',
       aka: [],
       year: 2023,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Balakrishna',
       heroine: 'Shruti Haasan',
@@ -8895,7 +8956,7 @@
       title: 'Waltair Veerayya',
       aka: [],
       year: 2023,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Chiranjeevi',
       heroine: 'Shruti Haasan',
@@ -9076,7 +9137,7 @@
       title: 'Lucky Baskhar',
       aka: [],
       year: 2024,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Dulquer Salmaan',
       heroine: 'Meenakshi Chaudhary',
@@ -9107,7 +9168,7 @@
       title: 'Mr. Bachchan',
       aka: [],
       year: 2024,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Ravi Teja',
       heroine: 'Bhagyashri Borse',
@@ -9200,7 +9261,7 @@
       title: 'Tillu Square',
       aka: [],
       year: 2024,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Siddhu Jonnalagadda',
       heroine: 'Anupama Parameswaran',
@@ -9348,7 +9409,7 @@
       title: 'Game Changer',
       aka: [],
       year: 2025,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Ram Charan',
       heroine: 'Kiara Advani',
@@ -9407,7 +9468,7 @@
       title: 'Kannappa',
       aka: [],
       year: 2025,
-      level: 'hard',
+      level: 'medium',
 
       hero: 'Manchu Vishnu',
       heroine: 'Preity Mukhundhan',
@@ -9528,7 +9589,7 @@
       title: 'Sankranthiki Vasthunnam',
       aka: ['Sankranthiki Vasthunam'],
       year: 2025,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Venkatesh',
       heroine: ['Aishwarya Rajesh', 'Meenakshi Chaudhary'],
@@ -9588,7 +9649,7 @@
       title: 'They Call Him OG',
       aka: [],
       year: 2025,
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Pawan Kalyan',
       heroine: 'Priyanka Arul Mohan',
@@ -9619,7 +9680,7 @@
       title: 'Mana Shankara Varaprasad Garu',
       aka: [],
       year: 2026,  
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Chiranjeevi',
       heroine: 'Nayanthara',   
@@ -9648,7 +9709,7 @@
       title: 'The RajaSaab',
       aka: [],
       year: 2026,   
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Prabhas',
       heroine: ['Malavika Mohanan', 'Nidhhi Agerwal', 'Riddhi Kumar'],   
@@ -9709,7 +9770,7 @@
       title: 'Paradise',
       aka: [],
       year: 2026,   
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Nani',
       heroine: 'Kayadu lohar',   
@@ -9738,7 +9799,7 @@
       title: 'Peddi',
       aka: [],
       year: 2026,   
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Ram Charan',
       heroine: 'Janhvi Kapoor',
@@ -9795,7 +9856,7 @@
       title: 'Ustaad Bhagat Singh',
       aka: [],
       year: 2026,  
-      level: 'medium',
+      level: 'easy',
 
       hero: 'Pawan Kalyan',
       heroine: 'Sreeleela',
