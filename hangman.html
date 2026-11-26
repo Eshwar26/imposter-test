@@ -87,15 +87,15 @@
 <script src="data/movies.js?v=1.0.0"></script>
 <script src="core/pick.js?v=1.0.0"></script>
 <script src="core/howto.js?v=0.3.0"></script>
-<script src="core/hangman.js?v=0.1.0"></script>
+<script src="core/hangman.js?v=0.2.0"></script>
 <script>
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
 
-  // ═════════════ TITLES come from data/movies.js: every live movie ═════════════
+  // ═════════════ TITLES come from data/movies.js: every live movie with 3+ letters to guess (not "2.0" or "24") ═════════════
   const PK = CinefiedPick;
-  const DECK = PK.deck('cf_hangman_seen', PK.movies().map(m => ({ id: m.id, t: m.title })));
+  const DECK = PK.deck('cf_hangman_seen', PK.movies().filter(m => CinefiedHangman.playable(m.title)).map(m => ({ id: m.id, t: m.title })));
 
   // ── theme: follows the phone unless the player chose one in Profile ──
   const sysDark = matchMedia('(prefers-color-scheme: dark)');
