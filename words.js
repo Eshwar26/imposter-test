@@ -1,15 +1,15 @@
 /* Imposter word lists. Lives only on the server: the game page never downloads this file.
    Built from copies of public/data/movies.js, people.js and directors.js that tools/copy-data.js
    puts here on every functions deploy. Nothing to edit here: change those files instead.
-     movies      every live movie
+     movies      every live movie except the hard ones (they wait for Imposter's Hard setting)
      actors      every actor in people.js (all levels)
      actresses   every actress in people.js (all levels)
-     directors   directors with 2+ movies in movies.js
+     directors   directors with 2+ of those movies
      characters  "Kattappa (Baahubali)"
    (Levels are in those files too, for Imposter's difficulty setting later.) */
 (function (root) {
   const filled = v => typeof v === 'string' && v.trim() !== '';
-  const MOVIES = require('./movies.js').filter(m => m && filled(m.title));
+  const MOVIES = require('./movies.js').filter(m => m && filled(m.title) && m.level !== 'hard');
   const { PEOPLE, CHARACTERS } = require('./people.js');
   const DIRECTORS = require('./directors.js');
 
