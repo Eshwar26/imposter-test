@@ -8,6 +8,9 @@
      • opts.group(item) → never two cards from the same group back to
        back (e.g. two dialogues from the same movie).
    Items need an id. Items removed from the data are forgotten safely.
+
+   Movies with level: 'hard' are left out of every game; only Imposter's
+   Hard setting (coming) will use them.
    ════════════════════════════════════════════════════════════════ */
 (function (root) {
   'use strict';
@@ -21,8 +24,10 @@
     for (let k = a.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [a[k], a[j]] = [a[j], a[k]]; }
     return a;
   }
-  // all live movies (the ones not switched off in movies.js)
-  const movies = () => (Array.isArray(root.CinefiedMovies) ? root.CinefiedMovies : []).filter(m => m && filled(m.title));
+  // all live movies (the ones not switched off in movies.js).
+  // Hard movies are left out unless opts.hard: only Imposter's Hard setting will use them.
+  const movies = (opts = {}) => (Array.isArray(root.CinefiedMovies) ? root.CinefiedMovies : [])
+    .filter(m => m && filled(m.title) && (opts.hard || m.level !== 'hard'));
 
   function deck(key, items, opts = {}) {
     const group = opts.group || (x => x.id);
@@ -45,13 +50,13 @@
   }
 
   // The name lists for Heads Up and Blindspot, from data/movies.js, data/people.js and data/directors.js.
-  // Hard actors and actresses are left out unless opts.hard. Directors need 2+ movies in movies.js.
+  // Hard movies, actors and actresses are left out unless opts.hard. Directors need 2+ movies in movies.js.
   // A character reads "Kattappa (Baahubali)". Every phone builds the same lists in the same order.
   function words(opts = {}) {
     const P = root.CinefiedPeople || {};
     const people = (Array.isArray(P.PEOPLE) ? P.PEOPLE : []).filter(p => p && filled(p.name) && (opts.hard || p.level !== 'hard'));
     const chars = (Array.isArray(P.CHARACTERS) ? P.CHARACTERS : []).filter(c => c && filled(c.name));
-    const ms = movies(), count = {};
+    const ms = movies(opts), count = {};
     ms.forEach(m => { if (filled(m.director)) count[m.director.trim()] = (count[m.director.trim()] || 0) + 1; });
     const dirs = (Array.isArray(root.CinefiedDirectors) ? root.CinefiedDirectors : []).filter(d => d && filled(d.name) && (count[d.name.trim()] || 0) >= 2);
     return {
