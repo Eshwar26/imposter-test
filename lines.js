@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied · Lines content · v0.2.0
+   Cinefied · Lines content · v0.2.1
    Everything Lines shows: the scene themes and the secret sentences.
    No game code lives here, so it is safe to edit.
 
@@ -74,7 +74,7 @@
     { s: 'Superhero recruiting a team', r: ['Superhero', 'Recruits'] }
   ];
 
-  // ═════════════ RANDOM SENTENCES (batch 1: 100) ═════════════
+  // ═════════════ RANDOM SENTENCES (batch 1: 88) ═════════════
   const random = {
     everyday: [
       'Na phone charger evaru teesaru?',
@@ -90,14 +90,11 @@
       'Ee roju Monday la undi, kaani Friday.',
       'Nenu diet lo unna, oka samosa matrame.',
       'Maa intlo WiFi kanna pakkintlo WiFi fast.',
-      'Nenu 2 nimishallo vasta. Already 1 hour ayyindi.',
-      'Office lo meeting meeting meeting, pani eppudu?',
       'Maa thatha ki Instagram account undi.',
       'Nenu last bench student ni.',
       'Auto vaadu "meter ledu sir" annadu.',
       'Pelli ki vachina vaallu bhojanam kosame vacharu.',
       'Online lo order chesina dress size match avvaledu.',
-      'Rain vasthe current pothundi, guaranteed.',
       'Maa boss naa birthday marchipoyadu.',
       'Nenu cook chesina daal ki evaru peru pettaleru.',
       'Exam mundu raatri matrame chaduvutha.',
@@ -117,12 +114,9 @@
       'Nenu Mars nunchi vacchanu, evariki cheppakandi.',
       'Naa umbrella ki peru pettanu: Ramesh.',
       'Vankaya ante naaku bhayam.',
-      'Nenu oka sari dosa tho propose chesanu.',
       'Naa phone raatri naatho maatladutundi.'
     ],
     dramatic: [
-      'Ee roju naa jeevitham marchipoye roju.',
-      'Nuvvu leka nenu sunna.',
       'Idi naa last warning.',
       'Nijam eppudu daagadhu.',
       'Naa kallallo neellu kaadu, nippu.',
@@ -146,7 +140,6 @@
       'Nuvvu evarini preminchav?',
       'Nee bank balance entha?',
       'Ninna raatri ekkada unnav?',
-      'Neeku Telugu vacha, leka acting aa?',
       'Ee secret inkevariki telusu?',
       'Idi nee idea aa, leka mee amma idea aa?',
       'Nuvvu last time eppudu edichav?',
@@ -169,20 +162,15 @@
       'Migatadi sequel lo cheptha.',
       'Director\'s cut lo ee scene undi.',
       'Naa mass ki konchem class add chesthe.',
-      'Ee fight lo 50 mandi, nenu okkadine.',
       'Song kosam Switzerland vellali.',
       'First day first show, first row.',
       'Climax lo varsham padali.',
       'Naa intro song lo 100 dancers.',
-      'Hero amma entry tho emotional scene.'
     ],
     fun: [
-      'Naa kaallu nijamga mass.',
       'WiFi lekapothe nenu ekkadiki vellanu.',
-      'Cricket match chusthe nenu umpire ni.',
       'Naaku Hindi raadu, kaani manage chestha.',
       'Mee intlo filter coffee untunda?',
-      'Nenu professional nidra pote vaadini.',
       'Mobile data aipoyindi, jeevitham aipoyindi.',
       'Ee roju naaku lottery tagilindi... kalalo.',
       'Nenu ekkadiki vellina auto vaallu nannu gurtupadataru.',
@@ -191,7 +179,7 @@
   };
 
   root.CinefiedLines = {
-    version: '0.2.0',
+    version: '0.2.1',
     MIX,
     themes,
     random: Object.keys(random).flatMap(k => random[k]),
