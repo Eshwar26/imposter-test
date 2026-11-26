@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied Hangman board · v0.1.0
+   Cinefied Hangman board · v0.2.0
    The storyboard picture, the title blanks and the letter keyboard,
    shared by hangman.html (Endless) and daily.html (Hangman of the day).
 
@@ -10,6 +10,9 @@
      H.start('Pokiri', ['A','E']);  // a title, plus letters already guessed (to resume)
      H.state                        // { title, guessed: [...], wrong, over: null | 'win' | 'lose' }
 
+     CinefiedHangman.playable(title) // true if the title has 3+ letters to guess (pages skip the rest, like "2.0")
+
+   Long words shrink their blanks to fit the screen.
    The page sets --c (the game colour) and --ct (text on it). Needs core.css.
    ════════════════════════════════════════════════════════════════ */
 (function (global) {
@@ -26,9 +29,9 @@ const el = (t, a, p, txt) => { const e = document.createElementNS(NS, t); for (c
   .hm-lives{font-size:10.5px;letter-spacing:3px;color:var(--muted);text-align:center;margin-top:4px;min-height:14px}
   .hm-lives b{color:var(--text);font-weight:500}
   .hm-word{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 18px;margin:clamp(10px,2.4dvh,22px) 0 clamp(12px,2.6dvh,24px);min-height:44px;align-items:flex-end}
-  .hm-w{display:flex;gap:5px}
-  .hm-t{width:clamp(20px,7vw,32px);height:clamp(30px,9.6vw,42px);border-bottom:2.5px solid var(--border);display:grid;place-items:end center;padding-bottom:3px;
-        font-family:var(--display);font-size:clamp(22px,7.2vw,34px);line-height:1;color:var(--text)}
+  .hm-w{display:flex;gap:var(--hm-g,5px)}
+  .hm-t{width:var(--hm-w,clamp(20px,7vw,32px));height:var(--hm-h,clamp(30px,9.6vw,42px));border-bottom:2.5px solid var(--border);display:grid;place-items:end center;padding-bottom:3px;
+        font-family:var(--display);font-size:var(--hm-f,clamp(22px,7.2vw,34px));line-height:1;color:var(--text)}
   .hm-t.sym{border-bottom-color:transparent;width:auto;min-width:8px}
   .hm-t.in{border-bottom-color:var(--c)}
   .hm-t.pop{animation:hmin .3s cubic-bezier(.2,.9,.3,1.3)}
@@ -97,6 +100,17 @@ function create(host, opts = {}) {
       return `<span class="hm-t${shown ? ' in' : ''}${shown && ch === newly ? ' pop' : ''}${miss ? ' miss' : ''}">${shown || miss ? ch : ''}</span>`;
     }).join('') + '</span>').join('');
   }
+  // the longest word must fit on one line: shrink the blanks when it wouldn't
+  function fit() {
+    const box = q('.hm-word'), avail = box.clientWidth || host.clientWidth || innerWidth;
+    const n = Math.max(1, ...up(S.title).split(' ').map(w => [...w].length));
+    const w0 = Math.min(32, Math.max(20, innerWidth * .07));
+    ['--hm-w', '--hm-h', '--hm-f', '--hm-g'].forEach(k => box.style.removeProperty(k));
+    if (n * w0 + (n - 1) * 5 <= avail) return;
+    const g = 3, w = Math.max(12, Math.floor((avail - (n - 1) * g) / n));
+    box.style.setProperty('--hm-g', g + 'px'); box.style.setProperty('--hm-w', w + 'px');
+    box.style.setProperty('--hm-h', Math.round(w * 1.35) + 'px'); box.style.setProperty('--hm-f', Math.round(w * 1.05) + 'px');
+  }
   function keys() {
     const T = up(S.title);
     q('.hm-kb').innerHTML = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'].map(r => '<div class="hm-kr">' + [...r].map(ch => {
@@ -109,7 +123,7 @@ function create(host, opts = {}) {
     S.wrong = S.guessed.filter(c => !up(S.title).includes(c)).length;
     S.over = need().every(c => S.guessed.includes(c)) ? 'win' : S.wrong >= LIVES ? 'lose' : null;
   }
-  function render(newly) { word(newly); keys(); lives(); draw(S.wrong, S.over); host.classList.toggle('done', !!S.over); }
+  function render(newly) { word(newly); fit(); keys(); lives(); draw(S.wrong, S.over); host.classList.toggle('done', !!S.over); }
 
   function guess(ch) {
     ch = up(ch);
@@ -122,6 +136,7 @@ function create(host, opts = {}) {
   host.addEventListener('click', e => { const k = e.target.closest('[data-hk]'); if (k) guess(k.dataset.hk); });
   const onKey = e => { if (!host.isConnected || !host.offsetParent || e.metaKey || e.ctrlKey || e.altKey) return; if (/^[a-z]$/i.test(e.key)) guess(e.key); };
   addEventListener('keydown', onKey);
+  addEventListener('resize', () => { if (S.title) fit(); });
 
   return {
     get state() { return S; },
@@ -130,5 +145,8 @@ function create(host, opts = {}) {
   };
 }
 
-global.CinefiedHangman = { create, LIVES };
+// a title worth playing: at least 3 letters to guess (numbers and symbols are shown, not guessed)
+const playable = t => typeof t === 'string' && (t.toUpperCase().match(/[A-Z]/g) || []).length >= 3;
+
+global.CinefiedHangman = { create, LIVES, playable };
 })(window);
