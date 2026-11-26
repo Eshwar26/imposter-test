@@ -2,6 +2,21 @@
   "rules": {
     ".read": false,
     ".write": false,
+    "users": {
+      "$uid": {
+        ".read": "auth != null"
+      }
+    },
+    "usernames": {
+      "$name": {
+        ".read": "auth != null"
+      }
+    },
+    "stats": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid"
+      }
+    },
     "rooms": {
       ".indexOn": [
         "createdAt"
@@ -73,7 +88,7 @@
             ".write": "auth != null && root.child('rooms').child($code).child('leader').exists() && ((auth.uid === $uid && (data.exists() || (root.child('rooms').child($code).child('phase').val() === 'waiting' || root.child('rooms').child($code).child('open').val() === true))) || (auth.uid !== $uid && data.exists() && !newData.exists() && root.child('rooms').child($code).child('leader').val() === auth.uid))",
             ".validate": "newData.hasChildren(['name', 'online', 'joinedAt'])",
             "name": {
-              ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 20"
+              ".validate": "newData.isString() && newData.val() === root.child('users').child($uid).child('username').val()"
             },
             "online": {
               ".validate": "newData.isBoolean()"
