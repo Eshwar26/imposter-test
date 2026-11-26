@@ -10,7 +10,7 @@
    Items need an id. Items removed from the data are forgotten safely.
 
    Movies with level: 'hard' are left out of every game; only Imposter's
-   Hard setting (coming) will use them.
+   Hard setting will use them.
    ════════════════════════════════════════════════════════════════ */
 (function (root) {
   'use strict';
