@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied shared game screens · v0.2.3
+   Cinefied shared game screens · v0.2.4
    The entry page, the code pad and the waiting room, drawn once
    for every multiplayer game. A game page calls:
 
@@ -62,7 +62,7 @@
   function build() {
     const glyph = G.glyph || (G.name.replace(/[^A-Za-z]/g, '')[0] || 'C');
     const sets = (G.settings || []).map(s => `
-      <div><div class="row-l">${esc(s.label)}</div>
+      <div data-row="${esc(s.key)}"><div class="row-l">${esc(s.label)}</div>
         <div class="opts" data-set="${esc(s.key)}">${s.options.map(o =>
           `<button class="opt" type="button" data-v="${esc(o)}">${esc(s.show ? s.show(o) : o)}</button>`).join('')}</div></div>`).join('');
     const html = `
@@ -202,8 +202,11 @@ ${G.howto && global.CinefiedHowTo
   }
 
   // ── waiting room ────────────────────────────────────────────
+  // a setting can say when it applies: when(settings) → false hides its row and leaves it out of the summary line
+  const valuesOf = room => { const o = {}; (G.settings || []).forEach(s => { o[s.key] = room.settings && room.settings[s.key] !== undefined ? room.settings[s.key] : s.default; }); return o; };
+  const applies = (s, room) => !s.when || s.when(valuesOf(room));
   function settingsLine(room) {
-    return (G.settings || []).map(s => {
+    return (G.settings || []).filter(s => applies(s, room)).map(s => {
       const v = room.settings && room.settings[s.key] !== undefined ? room.settings[s.key] : s.default;
       return s.summary ? s.summary(v) : (s.show ? s.show(v) : String(v));
     }).join(' · ');
@@ -228,6 +231,7 @@ ${G.howto && global.CinefiedHowTo
     sm.className = 'summary' + (v.isLeader ? ' can' : '');
     sm.innerHTML = esc(settingsLine(room)) + (v.isLeader ? ICON.pen : '');
     (G.settings || []).forEach(s => {
+      const row = document.querySelector(`#cfSets [data-row="${s.key}"]`); if (row) row.style.display = applies(s, room) ? "" : "none";
       const cur = room.settings && room.settings[s.key] !== undefined ? room.settings[s.key] : s.default;
       document.querySelectorAll(`#cfSets [data-set="${s.key}"] .opt`).forEach(b => b.classList.toggle('on', String(cur) === b.dataset.v));
     });
