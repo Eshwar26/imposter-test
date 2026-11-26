@@ -1,5 +1,6 @@
 /* Cinefied cloud referee · Cloud Functions (2nd gen), Singapore.
-   The game rules are in referee.js (Imposter), pictionary.js, wavelength.js and cluepool.js. This file only connects them to Firebase. */
+   The game rules are in referee.js (Imposter), pictionary.js, wavelength.js and cluepool.js.
+   Usernames are in account.js. This file only connects them to Firebase. */
 const { onCall, HttpsError } = require('firebase-functions/v2/https');
 const { onValueDeleted } = require('firebase-functions/v2/database');
 const { onSchedule } = require('firebase-functions/v2/scheduler');
@@ -7,6 +8,7 @@ const { setGlobalOptions } = require('firebase-functions/v2');
 const admin = require('firebase-admin');
 const crypto = require('crypto');
 const { makeGames } = require('./games.js');
+const { makeAccount } = require('./account.js');
 const PARTS = {
   Referee: require('./referee.js'), ImposterWords: require('./words.js'),
   Pictionary: require('./pictionary.js'), PictionaryMovies: require('./pictionary-words.js'),
@@ -22,21 +24,36 @@ admin.initializeApp({ databaseURL: `https://${INSTANCE}.${REGION}.firebasedataba
 setGlobalOptions({ region: REGION, maxInstances: 10, memory: '256MiB', timeoutSeconds: 30 });
 
 const db = admin.database();
+const dbTools = {
+  get: async path => (await db.ref(path).once('value')).val(),
+  update: map => db.ref().update(map),
+  txn: async (path, fn) => { const r = await db.ref(path).transaction(fn, undefined, false); return { committed: r.committed }; },
+};
+
 const referee = makeGames({
   rng: n => crypto.randomInt(n),
   now: () => Date.now(),
   id: () => crypto.randomBytes(9).toString('hex'),
-  db: {
-    get: async path => (await db.ref(path).once('value')).val(),
-    update: map => db.ref().update(map),
-    txn: async (path, fn) => { const r = await db.ref(path).transaction(fn, undefined, false); return { committed: r.committed }; },
-  },
+  db: dbTools,
 }, PARTS);
+
+const account = makeAccount({
+  now: () => Date.now(),
+  // a guest = signed in without Google (Firebase anonymous sign-in)
+  isGuest: async uid => (await admin.auth().getUser(uid)).providerData.length === 0,
+  db: dbTools,
+});
 
 // Every phone talks to the referee through this one door.
 exports.referee = onCall({ cors: true }, async request => {
   if (!request.auth || !request.auth.uid) throw new HttpsError('unauthenticated', 'signin');
   return referee.handle(request.auth.uid, request.data);
+});
+
+// Usernames: pick one, change it (once every 30 days), or drop a guest profile before switching to Google.
+exports.account = onCall({ cors: true }, async request => {
+  if (!request.auth || !request.auth.uid) throw new HttpsError('unauthenticated', 'signin');
+  return account.handle(request.auth.uid, request.data || {});
 });
 
 // A player left or was removed: let the round move on (or stop it if it cannot continue).
