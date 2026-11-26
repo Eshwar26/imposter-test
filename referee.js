@@ -28,6 +28,8 @@
   const ACTIONS = ['start', 'next', 'again', 'lobby', 'end', 'skip', 'ready', 'vote'];
   const LEADER_ONLY = ['start', 'next', 'again', 'lobby', 'end', 'skip'];
   const TRIES = 6;
+  const CATS = ['movies', 'actors', 'actresses', 'directors', 'characters'];
+  const LEVELS = ['easy', 'medium', 'hard'];          // Difficulty: only for categories whose list is split by level
 
   const clone = v => JSON.parse(JSON.stringify(v));
   const keys = o => Object.keys(o || {});
@@ -140,10 +142,19 @@
     }
 
     // ── dealing a round ──────────────────────────────────────────
+    // a category's words: one list, or { easy, medium, hard } when it has levels
+    const leveled = cat => !Array.isArray(WORDS[cat]);
+    function listOf(cfg) {
+      const w = WORDS[cfg.category] || WORDS.movies;
+      const list = Array.isArray(w) ? w : (w[cfg.level] || []);
+      return list.length ? list : (Array.isArray(WORDS.movies) ? WORDS.movies : WORDS.movies.medium);
+    }
     function config(room) {
       const s = room.settings || {};
+      const category = CATS.includes(s.category) && WORDS[s.category] ? s.category : 'movies';
       return {
-        category: WORDS[s.category] ? s.category : 'movies',
+        category,
+        level: leveled(category) ? (LEVELS.includes(s.level) ? s.level : 'medium') : null,
         total: ROUNDS.includes(Number(s.rounds)) ? Number(s.rounds) : 5,
         anon: s.votes === 'Secret',
       };
@@ -169,8 +180,8 @@
 
         const roster = online(room);
         if (roster.length < MIN) return { ok: false, error: 'few' };
-        const cfg = fresh ? config(room) : { category: old.category, total: old.total, anon: !!old.anon };
-        const list = WORDS[cfg.category] || WORDS.movies;
+        const cfg = fresh ? config(room) : { category: old.category, level: old.level || null, total: old.total, anon: !!old.anon };
+        const list = listOf(cfg);
         const used = fresh ? {} : (old.used || {});
         let pool = list.map((_, n) => n).filter(n => !used['w' + n]);
         if (!pool.length) pool = list.map((_, n) => n);
@@ -194,6 +205,7 @@
           cur.phase = 'reveal'; cur.open = false;
           cur.state = {
             round, total: cfg.total, category: cfg.category, anon: cfg.anon, deal: dealId, starter, roster: rmap, names,
+            ...(cfg.level ? { level: cfg.level } : {}),
             used: Object.assign({}, fresh ? {} : prev.used, { ['w' + wi]: true }),
           };
           if (!fresh) ['scores', 'escapes', 'hits'].forEach(k => { if (prev[k]) cur.state[k] = prev[k]; });
@@ -294,6 +306,6 @@
     return { handle, playerGone, wipeRoom, step, active };
   }
 
-  const api = { makeReferee, GAME, MIN, ROUNDS, ACTIONS };
+  const api = { makeReferee, GAME, MIN, ROUNDS, ACTIONS, CATS, LEVELS };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.Referee = api;
 })(typeof self !== 'undefined' ? self : this);
