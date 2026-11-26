@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0f">
 <title>Imposter · Cinefied</title>
+<script src="core/analytics.js?v=1.0.0"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -27,6 +28,7 @@
   .pips.many i{width:8px}
   .pips i.done{background:var(--muted)} .pips i.now{background:var(--accent)}
   .cat{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:6px 11px;background:var(--surface)}
+  .cat .lvl{color:var(--accent);font-weight:500}
   #game .btn.done{background:none;color:var(--green);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--green) 45%,transparent)}
   #game .pfp{position:relative}
   .gnote{font-size:12px;color:var(--muted);text-align:center;line-height:1.6}
@@ -237,6 +239,7 @@
   const C = Cinefied, UI = CinefiedUI, esc = C.esc;
   const $ = id => document.getElementById(id);
   const game = $('game');
+  const LEVELED = ['movies', 'actors', 'actresses'];   // categories with Easy / Medium / Hard
   const NOUN = { movies: 'movie', actors: 'actor', actresses: 'actress', directors: 'director', characters: 'character' };
   const cap = s => String(s).charAt(0).toUpperCase() + String(s).slice(1);
   const mem = {
@@ -277,7 +280,9 @@
       e.className = 'pips' + (total > 7 ? ' many' : '');
       e.innerHTML = Array.from({ length: total }, (_, i) => `<i class="${i + 1 < r ? 'done' : i + 1 === r ? 'now' : ''}"></i>`).join('');
     });
-    document.querySelectorAll('#game .cat').forEach(e => { e.textContent = cap(s.category || ''); });
+    // the difficulty sits beside the category (directors and characters have no levels, so no tag)
+    const lvl = LEVELED.includes(s.category) && s.level ? ` · <b class="lvl">${esc(s.level.toUpperCase())}</b>` : '';
+    document.querySelectorAll('#game .cat').forEach(e => { e.innerHTML = esc(cap(s.category || '')) + lvl; });
   }
 
   // Ask the referee; show a message only when the player needs to know.
@@ -588,6 +593,7 @@
       min: 3, max: 8,
       settings: [
         { key: 'category', label: 'Category', options: ['movies', 'actors', 'actresses', 'directors', 'characters'], default: 'movies', show: cap },
+        { key: 'level', label: 'Difficulty', options: ['easy', 'medium', 'hard'], default: 'medium', show: cap, when: v => LEVELED.includes(v.category) },
         { key: 'rounds', label: 'Rounds', options: [3, 5, 7, 10], default: 5, summary: v => `${v} rounds` },
         { key: 'votes', label: 'Votes', options: ['Open', 'Secret'], default: 'Open', summary: v => (v === 'Secret' ? 'Secret votes' : 'Open votes') },
       ],
