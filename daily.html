@@ -233,7 +233,7 @@
 
 <script src="data/movies.js?v=1.0.0"></script>
 <script src="core/pick.js?v=1.0.0"></script>
-<script src="core/hangman.js?v=0.1.0"></script>
+<script src="core/hangman.js?v=0.2.0"></script>
 <script>
 (() => {
   'use strict';
@@ -256,7 +256,7 @@
     hol: MOVIES.filter(m => m.year > 0 && m.stats && m.stats.imdb > 0 && m.stats.songs > 0 && m.stats.runtime > 0)
                .map(m => [m.title, m.year, m.stats.imdb, m.stats.songs, m.stats.runtime]),         // [movie, year, rating, songs, runtime]
     dir: Object.fromEntries(MOVIES.filter(m => PK.filled(m.director)).map(m => [m.title, m.director.trim()])),
-    hang: MOVIES.map(m => [m.title])
+    hang: MOVIES.filter(m => CinefiedHangman.playable(m.title)).map(m => [m.title])   // 3+ letters to guess
   };
 
 
