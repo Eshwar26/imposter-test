@@ -29,7 +29,7 @@
    id, title, aka, year ....... aka = other spellings accepted when typing
    level ...................... how well known: 'easy' 'medium' 'hard'.
                                 'hard' movies are left out of every game;
-                                only Imposter's Hard setting (coming) will
+                                only Imposter's Hard setting will
                                 use them. Easy and medium go everywhere.
                                 A hard movie only needs id, title, aka, year
                                 and level (one line). Fill the rest in if you
@@ -1033,7 +1033,6 @@
         scene: '',
       },
     },
-    { id: 'itlu-sravani-subramanyam', title: 'Itlu Sravani Subramanyam', aka: [], year: 2001, level: 'hard' },   // check year
     {
       id: 'kushi',
       title: 'Kushi',
@@ -1066,7 +1065,6 @@
         scene: 'Despite their ongoing cold war Siddhu and Madhumitha agree to help their friends Babu and Shanti secretly get married',
       },
     },
-    { id: 'mrugaraju', title: 'Mrugaraju', aka: [], year: 2001, level: 'hard' },   // check year
     {
       id: 'murari',
       title: 'Murari',
@@ -1129,7 +1127,6 @@
       },
     },
     
-    { id: 'student-no-1', title: 'Student No. 1', aka: [], year: 2001, level: 'hard' },   // check year
     {
       id: 'aadi',
       title: 'Aadi',
@@ -1161,7 +1158,6 @@
         scene: '',
       },
     },
-    { id: 'bobby', title: 'Bobby', aka: [], year: 2002, level: 'hard' },   // check year
     {
       id: 'chennakesava-reddy',
       title: 'Chennakesava Reddy',
@@ -1286,7 +1282,6 @@
       },
     },
    
-    { id: 'khadgam', title: 'Khadgam', aka: [], year: 2002, level: 'hard' },   // check year
     {
       id: 'manmadhudu',
       title: 'Manmadhudu',
@@ -1349,10 +1344,6 @@
         scene: '',
       },
     },
-    { id: 'santosham', title: 'Santosham', aka: [], year: 2002, level: 'hard' },   // check year
-    { id: 'takkari-donga', title: 'Takkari Donga', aka: [], year: 2002, level: 'hard' },   // check year
-    { id: 'vasu', title: 'Vasu', aka: [], year: 2002, level: 'hard' },   // check year
-    { id: 'aithe', title: 'Aithe', aka: [], year: 2003, level: 'hard' },   // check year
     {
       id: 'amma-nanna-o-tamila-ammayi',
       title: 'Amma Nanna O Tamila Ammayi',
@@ -1415,8 +1406,6 @@
       },
     },
     
-    { id: 'gangotri', title: 'Gangotri', aka: [], year: 2003, level: 'hard' },   // check year
-    { id: 'johnny', title: 'Johnny', aka: [], year: 2003, level: 'hard' },   // check year
     {
       id: 'okkadu',
       title: 'Okkadu',
@@ -1448,7 +1437,6 @@
         scene: 'A kabaddi player rescues a girl from a faction leader in Kurnool',
       },
     },
-    { id: 'raghavendra', title: 'Raghavendra', aka: [], year: 2003, level: 'hard' },   // check year
     {
       id: 'shivamani',
       title: 'Shivamani',
@@ -1542,8 +1530,6 @@
       },
     },
    
-    { id: 'adavi-ramudu', title: 'Adavi Ramudu', aka: [], year: 2004, level: 'hard' },   // check year
-    { id: 'anji', title: 'Anji', aka: [], year: 2004, level: 'hard' },   // check year
     {
       id: 'arjun',
       title: 'Arjun',
@@ -1604,7 +1590,6 @@
         scene: '',
       },
     },
-    { id: 'gharshana', title: 'Gharshana', aka: [], year: 2004, level: 'hard' },   // check year
     {
       id: 'gudumba-shankar',
       title: 'Gudumba Shankar',
@@ -1665,9 +1650,6 @@
         scene: '',
       },
     },
-    { id: 'mass', title: 'Mass', aka: [], year: 2004, level: 'hard' },   // check year
-    { id: 'naani', title: 'Naani', aka: [], year: 2004, level: 'hard' },   // check year
-    { id: 'samba', title: 'Samba', aka: [], year: 2004, level: 'hard' },   // check year
     {
       id: 'shankar-dada-m-b-b-s',
       title: 'Shankar Dada M.B.B.S.',
@@ -1790,7 +1772,6 @@
         scene: '',
       },
     },
-    { id: 'a-film-by-aravind', title: 'A Film by Aravind', aka: [], year: 2005, level: 'hard' },   // check year
     {
       id: 'andarivaadu',
       title: 'Andarivaadu',
@@ -1821,7 +1802,6 @@
         scene: '',
       },
     },
-    { id: 'anukokunda-oka-roju', title: 'Anukokunda Oka Roju', aka: [], year: 2005, level: 'hard' },   // check year
     {
       id: 'athadu',
       title: 'Athadu',
@@ -1855,7 +1835,6 @@
       },
     },
     
-    { id: 'athanokkade', title: 'Athanokkade', aka: [], year: 2005, level: 'hard' },   // check year
     {
       id: 'balu',
       title: 'Balu',
@@ -1946,7 +1925,6 @@
         scene: '',
       },
     },
-    { id: 'chakram', title: 'Chakram', aka: [], year: 2005, level: 'hard' },   // check year
     {
       id: 'chatrapathi',
       title: 'Chatrapathi',
@@ -2039,7 +2017,6 @@
         scene: '',
       },
     },
-    { id: 'narasimhudu', title: 'Narasimhudu', aka: [], year: 2005, level: 'hard' },   // check year
     {
       id: 'nuvvostanante-nenoddantana',
       title: 'Nuvvostanante Nenoddantana',
@@ -2071,8 +2048,6 @@
         scene: '',
       },
     },
-    { id: 'super', title: 'Super', aka: [], year: 2005, level: 'hard' },   // check year
-    { id: 'amma-cheppindi', title: 'Amma Cheppindi', aka: [], year: 2006, level: 'hard' },   // check year
     {
       id: 'annavaram',
       title: 'Annavaram',
@@ -2103,8 +2078,6 @@
         scene: '',
       },
     },
-    { id: 'ashok', title: 'Ashok', aka: [], year: 2006, level: 'hard' },   // check year
-    { id: 'bangaram', title: 'Bangaram', aka: [], year: 2006, level: 'hard' },   // check year
     {
       id: 'bommarillu',
       title: 'Bommarillu',
@@ -2227,7 +2200,6 @@
         scene: 'An undercover cop poses as a gangster',
       },
     },
-    { id: 'pournami', title: 'Pournami', aka: [], year: 2006, level: 'hard' },   // check year
     {
       id: 'rakhi',
       title: 'Rakhi',
@@ -2289,7 +2261,6 @@
         scene: '',
       },
     },
-    { id: 'shock', title: 'Shock', aka: [], year: 2006, level: 'hard' },   // check year
     {
       id: 'sri-ramadasu',
       title: 'Sri Ramadasu',
@@ -2502,7 +2473,6 @@
         scene: '',
       },
     },
-    { id: 'don', title: 'Don', aka: [], year: 2007, level: 'hard' },   // check year
     {
       id: 'dubai-seenu',
       title: 'Dubai Seenu',
@@ -2626,7 +2596,6 @@
         scene: '',
       },
     },
-    { id: 'okkadunnadu', title: 'Okkadunnadu', aka: [], year: 2007, level: 'hard' },   // check year
     {
       id: 'shankar-dada-zindabad',
       title: 'Shankar Dada Zindabad',
@@ -3022,8 +2991,6 @@
         scene: '',
       },
     },
-    { id: 'nenu-meeku-telusa', title: 'Nenu Meeku Telusa?', aka: [], year: 2008, level: 'hard' },   // check year
-    { id: 'oka-magaadu', title: 'Oka Magaadu', aka: [], year: 2008, level: 'hard' },   // check year
     {
       id: 'parugu',
       title: 'Parugu',
@@ -3116,7 +3083,6 @@
         scene: '',
       },
     },
-    { id: 'baanam', title: 'Baanam', aka: [], year: 2009, level: 'hard' },   // check year
     {
       id: 'billa',
       title: 'Billa',
@@ -3273,7 +3239,6 @@
       },
     },
 
-    { id: 'prayanam', title: 'Prayanam', aka: [], year: 2009, level: 'hard' },   // check year
     // ── 2010s ─────────────────────────────────────────────
 
     {
@@ -3399,7 +3364,6 @@
         scene: '',
       },
     },
-    { id: 'kedi', title: 'Kedi', aka: [], year: 2010, level: 'hard' },   // check year
     {
       id: 'khaleja',
       title: 'Khaleja',
@@ -3431,7 +3395,6 @@
         scene: 'A taxi driver is believed to be a god by a dying village',
       },
     },
-    { id: 'komaram-puli', title: 'Komaram Puli', aka: [], year: 2010, level: 'hard' },   // check year
     {
       id: 'leader',
       title: 'Leader',
@@ -3494,7 +3457,6 @@
         scene: '',
       },
     },
-    { id: 'namo-venkatesa', title: 'Namo Venkatesa', aka: [], year: 2010, level: 'hard' },   // check year
     {
       id: 'orange',
       title: 'Orange',
@@ -3525,7 +3487,6 @@
         scene: 'painting graffiti on a wall in Sydney',
       },
     },
-    { id: 'prasthanam', title: 'Prasthanam', aka: [], year: 2010, level: 'hard' },   // check year
     {
       id: 'ragada',
       title: 'Ragada',
@@ -3645,7 +3606,6 @@
         scene: '',
       },
     },
-    { id: 'varudu', title: 'Varudu', aka: [], year: 2010, level: 'hard' },   // check year
     {
       id: 'yamudu',
       title: 'Yamudu',
@@ -3981,7 +3941,6 @@
         scene: 'Vicky wins a "Made for Each Other" chocolate contest that matches him with Maggie.',
       },
     },
-    { id: 'nenu-naa-rakshasi', title: 'Nenu Naa Rakshasi', aka: [], year: 2011, level: 'hard' },   // check year
     {
       id: 'oosaravelli',
       title: 'Oosaravelli',
@@ -4132,7 +4091,6 @@
         scene: '',
       },
     },
-    { id: 'andala-rakshasi', title: 'Andala Rakshasi', aka: [], year: 2012, level: 'hard' },   // check year
     {
       id: 'businessman',
       title: 'Businessman',
@@ -4382,7 +4340,6 @@
       },
     },
     
-    { id: 'mithunam', title: 'Mithunam', aka: [], year: 2012, level: 'hard' },   // check year
     {
       id: 'racha',
       title: 'Racha',
@@ -4807,7 +4764,6 @@
         scene: 'The cop mimics famous film stories to confuse the villain\'s gang',
       },
     },
-    { id: 'amrutham-chandamamalo', title: 'Amrutham Chandamamalo', aka: [], year: 2014, level: 'hard' },   // check year
     {
       id: 'drushyam',
       title: 'Drushyam',
@@ -4870,7 +4826,6 @@
         scene: '',
       },
     },
-    { id: 'lingaa', title: 'Lingaa', aka: [], year: 2014, level: 'hard' },   // check year
     {
       id: 'manam',
       title: 'Manam',
@@ -4931,7 +4886,6 @@
         scene: '',
       },
     },
-    { id: 'paisa', title: 'Paisa', aka: [], year: 2014, level: 'hard' },   // check year
     {
       id: 'pilla-nuvvu-leni-jeevitham',
       title: 'Pilla Nuvvu Leni Jeevitham',
@@ -5361,7 +5315,6 @@
         scene: '',
       },
     },
-    { id: 'sankarabharanam-2015', title: 'Sankarabharanam', aka: [], year: 2015, level: 'hard' },   // check year
     {
       id: 'srimanthudu',
       title: 'Srimanthudu',
@@ -5546,7 +5499,6 @@
         scene: '',
       },
     },
-    { id: 'appatlo-okadundevadu', title: 'Appatlo Okadundevadu', aka: [], year: 2016, level: 'hard' },   // check year
     {
       id: 'brahmotsavam',
       title: 'Brahmotsavam',
@@ -5641,7 +5593,6 @@
         scene: '',
       },
     },
-    { id: 'guntur-talkies', title: 'Guntur Talkies', aka: [], year: 2016, level: 'hard' },   // check year
     {
       id: 'janatha-garage',
       title: 'Janatha Garage',
@@ -5735,7 +5686,6 @@
       },
     },
     
-    { id: 'kshanam', title: 'Kshanam', aka: [], year: 2016, level: 'hard' },   // check year
     {
       id: 'majnu',
       title: 'Majnu',
@@ -6281,7 +6231,6 @@
         scene: '',
       },
     },
-    { id: 'mental-madhilo', title: 'Mental Madhilo', aka: [], year: 2017, level: 'hard' },   // check year
     {
       id: 'middle-class-abbayi',
       title: 'Middle Class Abbayi',
@@ -6614,7 +6563,6 @@
       },
     },
     
-    { id: 'awe', title: 'Awe!', aka: [], year: 2018, level: 'hard' },   // check year
     {
       id: 'bharat-ane-nenu',
       title: 'Bharat Ane Nenu',
@@ -6645,8 +6593,6 @@
         scene: 'A young man becomes chief minister after his father dies',
       },
     },
-    { id: 'bluff-master', title: 'Bluff Master', aka: [], year: 2018, level: 'hard' },   // check year
-    { id: 'care-of-kancharapalem', title: 'Care of Kancharapalem', aka: [], year: 2018, level: 'hard' },   // check year
     {
       id: 'devadas',
       title: 'Devadas',
@@ -7067,7 +7013,6 @@
         scene: 'A detective from Nellore looks into unidentified bodies near railway tracks',
       },
     },
-    { id: 'brochevarevarura', title: 'Brochevarevarura', aka: [], year: 2019, level: 'hard' },   // check year
     {
       id: 'chitralahari',
       title: 'Chitralahari',
@@ -7158,7 +7103,6 @@
         scene: 'A gangster agrees to act in a film about himself',
       },
     },
-    { id: 'mathu-vadalara', title: 'Mathu Vadalara', aka: [], year: 2019, level: 'hard' },   // check year
     {
       id: 'nani-gang-leader',
       title: 'Nani\'s Gang Leader',
@@ -7756,7 +7700,6 @@
         scene: '',
       },
     },
-    { id: 'maa-vintha-gaadha-vinuma', title: 'Maa Vintha Gaadha Vinuma', aka: [], year: 2020, level: 'hard' },   // check year
     {
       id: 'sarileru-neekevvaru',
       title: 'Sarileru Neekevvaru',
@@ -9909,6 +9852,70 @@
         scene: '',
       },
     },
+
+
+    // ── HARD MOVIES ───────────────────────────────────────
+    // Left out of every game; only Imposter's Hard setting uses them.
+    // One line each: id, title, aka, year, level. To move one to easy or
+    // medium, give it the full layout above and put it in its year.
+
+    { id: 'itlu-sravani-subramanyam', title: 'Itlu Sravani Subramanyam', aka: [], year: 2001, level: 'hard' },   // check year
+    { id: 'mrugaraju', title: 'Mrugaraju', aka: [], year: 2001, level: 'hard' },   // check year
+    { id: 'student-no-1', title: 'Student No. 1', aka: [], year: 2001, level: 'hard' },   // check year
+    { id: 'bobby', title: 'Bobby', aka: [], year: 2002, level: 'hard' },   // check year
+    { id: 'khadgam', title: 'Khadgam', aka: [], year: 2002, level: 'hard' },   // check year
+    { id: 'santosham', title: 'Santosham', aka: [], year: 2002, level: 'hard' },   // check year
+    { id: 'takkari-donga', title: 'Takkari Donga', aka: [], year: 2002, level: 'hard' },   // check year
+    { id: 'vasu', title: 'Vasu', aka: [], year: 2002, level: 'hard' },   // check year
+    { id: 'aithe', title: 'Aithe', aka: [], year: 2003, level: 'hard' },   // check year
+    { id: 'gangotri', title: 'Gangotri', aka: [], year: 2003, level: 'hard' },   // check year
+    { id: 'johnny', title: 'Johnny', aka: [], year: 2003, level: 'hard' },   // check year
+    { id: 'raghavendra', title: 'Raghavendra', aka: [], year: 2003, level: 'hard' },   // check year
+    { id: 'adavi-ramudu', title: 'Adavi Ramudu', aka: [], year: 2004, level: 'hard' },   // check year
+    { id: 'anji', title: 'Anji', aka: [], year: 2004, level: 'hard' },   // check year
+    { id: 'gharshana', title: 'Gharshana', aka: [], year: 2004, level: 'hard' },   // check year
+    { id: 'mass', title: 'Mass', aka: [], year: 2004, level: 'hard' },   // check year
+    { id: 'naani', title: 'Naani', aka: [], year: 2004, level: 'hard' },   // check year
+    { id: 'samba', title: 'Samba', aka: [], year: 2004, level: 'hard' },   // check year
+    { id: 'a-film-by-aravind', title: 'A Film by Aravind', aka: [], year: 2005, level: 'hard' },   // check year
+    { id: 'anukokunda-oka-roju', title: 'Anukokunda Oka Roju', aka: [], year: 2005, level: 'hard' },   // check year
+    { id: 'athanokkade', title: 'Athanokkade', aka: [], year: 2005, level: 'hard' },   // check year
+    { id: 'chakram', title: 'Chakram', aka: [], year: 2005, level: 'hard' },   // check year
+    { id: 'narasimhudu', title: 'Narasimhudu', aka: [], year: 2005, level: 'hard' },   // check year
+    { id: 'super', title: 'Super', aka: [], year: 2005, level: 'hard' },   // check year
+    { id: 'amma-cheppindi', title: 'Amma Cheppindi', aka: [], year: 2006, level: 'hard' },   // check year
+    { id: 'ashok', title: 'Ashok', aka: [], year: 2006, level: 'hard' },   // check year
+    { id: 'bangaram', title: 'Bangaram', aka: [], year: 2006, level: 'hard' },   // check year
+    { id: 'pournami', title: 'Pournami', aka: [], year: 2006, level: 'hard' },   // check year
+    { id: 'shock', title: 'Shock', aka: [], year: 2006, level: 'hard' },   // check year
+    { id: 'don', title: 'Don', aka: [], year: 2007, level: 'hard' },   // check year
+    { id: 'okkadunnadu', title: 'Okkadunnadu', aka: [], year: 2007, level: 'hard' },   // check year
+    { id: 'nenu-meeku-telusa', title: 'Nenu Meeku Telusa?', aka: [], year: 2008, level: 'hard' },   // check year
+    { id: 'oka-magaadu', title: 'Oka Magaadu', aka: [], year: 2008, level: 'hard' },   // check year
+    { id: 'baanam', title: 'Baanam', aka: [], year: 2009, level: 'hard' },   // check year
+    { id: 'prayanam', title: 'Prayanam', aka: [], year: 2009, level: 'hard' },   // check year
+    { id: 'kedi', title: 'Kedi', aka: [], year: 2010, level: 'hard' },   // check year
+    { id: 'komaram-puli', title: 'Komaram Puli', aka: [], year: 2010, level: 'hard' },   // check year
+    { id: 'namo-venkatesa', title: 'Namo Venkatesa', aka: [], year: 2010, level: 'hard' },   // check year
+    { id: 'prasthanam', title: 'Prasthanam', aka: [], year: 2010, level: 'hard' },   // check year
+    { id: 'varudu', title: 'Varudu', aka: [], year: 2010, level: 'hard' },   // check year
+    { id: 'nenu-naa-rakshasi', title: 'Nenu Naa Rakshasi', aka: [], year: 2011, level: 'hard' },   // check year
+    { id: 'andala-rakshasi', title: 'Andala Rakshasi', aka: [], year: 2012, level: 'hard' },   // check year
+    { id: 'mithunam', title: 'Mithunam', aka: [], year: 2012, level: 'hard' },   // check year
+    { id: 'amrutham-chandamamalo', title: 'Amrutham Chandamamalo', aka: [], year: 2014, level: 'hard' },   // check year
+    { id: 'lingaa', title: 'Lingaa', aka: [], year: 2014, level: 'hard' },   // check year
+    { id: 'paisa', title: 'Paisa', aka: [], year: 2014, level: 'hard' },   // check year
+    { id: 'sankarabharanam-2015', title: 'Sankarabharanam', aka: [], year: 2015, level: 'hard' },   // check year
+    { id: 'appatlo-okadundevadu', title: 'Appatlo Okadundevadu', aka: [], year: 2016, level: 'hard' },   // check year
+    { id: 'guntur-talkies', title: 'Guntur Talkies', aka: [], year: 2016, level: 'hard' },   // check year
+    { id: 'kshanam', title: 'Kshanam', aka: [], year: 2016, level: 'hard' },   // check year
+    { id: 'mental-madhilo', title: 'Mental Madhilo', aka: [], year: 2017, level: 'hard' },   // check year
+    { id: 'awe', title: 'Awe!', aka: [], year: 2018, level: 'hard' },   // check year
+    { id: 'bluff-master', title: 'Bluff Master', aka: [], year: 2018, level: 'hard' },   // check year
+    { id: 'care-of-kancharapalem', title: 'Care of Kancharapalem', aka: [], year: 2018, level: 'hard' },   // check year
+    { id: 'brochevarevarura', title: 'Brochevarevarura', aka: [], year: 2019, level: 'hard' },   // check year
+    { id: 'mathu-vadalara', title: 'Mathu Vadalara', aka: [], year: 2019, level: 'hard' },   // check year
+    { id: 'maa-vintha-gaadha-vinuma', title: 'Maa Vintha Gaadha Vinuma', aka: [], year: 2020, level: 'hard' },   // check year
 
   ];
   if (typeof module !== 'undefined' && module.exports) module.exports = MOVIES; else root.CinefiedMovies = MOVIES;
