@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0f">
 <title>Lines · Cinefied</title>
+<script src="core/analytics.js?v=1.0.0"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -169,7 +170,7 @@
   // titles and dialogues come from data/movies.js. Every phone builds them in the same order, so a key means the same line everywhere.
   // A title is said the short way: "Salaar: Part 1 – Ceasefire" becomes "Salaar", "Baahubali 2: The Conclusion" becomes "Baahubali 2".
   const isText = x => typeof x === 'string' && x.trim() !== '';
-  const MOVIES = (Array.isArray(window.CinefiedMovies) ? window.CinefiedMovies : []).filter(m => m && isText(m.title));
+  const MOVIES = (Array.isArray(window.CinefiedMovies) ? window.CinefiedMovies : []).filter(m => m && isText(m.title) && m.level !== 'hard');   // hard movies stay out
   const TITLES = [...new Set(MOVIES.map(m => m.title.split(':')[0].trim()).filter(isText))];
   const DIALOGUES = MOVIES.flatMap(m => (Array.isArray(m.dialogues) ? m.dialogues : []).filter(isText).map(d => ({ n: m.title.trim(), s: d.trim() })));
 
