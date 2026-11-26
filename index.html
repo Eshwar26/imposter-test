@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a0a0f">
 <title>Cinefied</title>
+<script src="core/analytics.js?v=1.0.0"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -30,6 +31,7 @@
     --lift:0 1px 2px rgba(22,22,40,.06),0 8px 20px rgba(22,22,40,.07);--glow:.18;
   }
   body{transition:background-color .35s,color .35s}
+  [hidden]{display:none!important}
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{height:100%}
   body{background:var(--bg);color:var(--text);font-family:var(--mono);overflow-x:hidden}
@@ -153,16 +155,16 @@
   .tab .dot{width:4px;height:4px;border-radius:50%;background:transparent}
   .tab.on .dot{background:var(--accent)}
 
-  /* Profile / settings sheet (preview: only Appearance works) */
-  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .3s;z-index:8}
-  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:9;margin:0 auto;max-width:460px;background:var(--surface);
+  /* Sheets (change username, account found, sign out) */
+  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .3s;z-index:48}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:49;margin:0 auto;max-width:460px;background:var(--surface);
          border:1px solid var(--border);border-bottom:0;border-radius:22px 22px 0 0;
          padding:10px 20px calc(24px + env(safe-area-inset-bottom,0px));transform:translateY(105%);visibility:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1),visibility 0s .4s}
-  .open .scrim{opacity:1;pointer-events:auto} .open .sheet{transform:none;visibility:visible;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+  .open .scrim{opacity:1;pointer-events:auto} .sheet.show{transform:none;visibility:visible;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
   .grab{width:40px;height:4px;border-radius:2px;background:var(--border);margin:0 auto 16px}
   .sheet h3{font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:2px}
-  .sheet .who{display:flex;align-items:center;gap:12px;margin:12px 0 20px;font-size:12px;color:var(--muted)}
-  .sheet .who b{display:block;color:var(--text);font-size:14px;font-weight:500}
+  .sheet .sub{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.55}
+  .sheet .sub b{color:var(--text);font-weight:500}
   .setting{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-top:1px solid var(--border);font-size:13px}
   .setting small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
   .seg3{display:grid;grid-template-columns:repeat(3,auto);background:var(--surface2);border-radius:10px;padding:3px}
@@ -171,7 +173,7 @@
   .setting.dim{opacity:.45}
   .toast{position:fixed;left:50%;bottom:calc(var(--nav-h) + 34px);transform:translate(-50%,20px);opacity:0;
          background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:10px 18px;
-         font-size:12px;transition:.25s;pointer-events:none;z-index:6;white-space:nowrap}
+         font-size:12px;transition:.25s;pointer-events:none;z-index:55;white-space:nowrap}
   .toast.show{opacity:1;transform:translate(-50%,0)}
 
   /* gentle entrance */
@@ -192,78 +194,11 @@
   .page-title span{font-size:11px;color:var(--muted);letter-spacing:1px}
   .sec-label{font-family:var(--display);font-size:20px;letter-spacing:2px;padding:0 20px;margin:24px 0 10px;display:flex;align-items:center;gap:10px}
   .sec-label em{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:1px}
-  .box{margin:0 20px;background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--lift)}
   .btn{border:0;border-radius:999px;padding:8px 16px;font-family:var(--display);font-size:16px;letter-spacing:1.5px;cursor:pointer;
        background:var(--accent);color:#fff;transition:transform .15s}
   .btn:active{transform:scale(.95)}
   .btn.ghost-btn{background:none;color:var(--muted);box-shadow:inset 0 0 0 1px var(--border)}
   .btn.small{padding:6px 13px;font-size:14px}
-
-  /* Daily */
-  .streak{display:flex;align-items:center;gap:16px;padding:18px}
-  .flame{width:54px;height:54px;flex:none;border-radius:16px;display:grid;place-items:center;
-         background:color-mix(in srgb,var(--accent2) 16%,var(--surface));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--accent2) 35%,transparent)}
-  .flame svg{width:28px;height:28px;fill:var(--accent2)}
-  .streak b{font-family:var(--display);font-weight:400;font-size:32px;line-height:.9;letter-spacing:1px}
-  .streak small{display:block;font-size:11px;color:var(--muted);margin-top:4px}
-  .week{display:flex;justify-content:space-between;padding:0 18px 18px}
-  .day{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:10px;color:var(--muted)}
-  .day i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px var(--border);font-style:normal}
-  .day.played i{background:var(--green);box-shadow:none}
-  .day.played i::after{content:"";width:9px;height:5px;border-left:2px solid var(--bg);border-bottom:2px solid var(--bg);transform:rotate(-45deg) translate(1px,-1px)}
-  .day.today i{box-shadow:inset 0 0 0 2px var(--accent)}
-  .day.today{color:var(--text)}
-  .dgames{display:grid;gap:10px;padding:0 20px}
-  .dg{display:flex;align-items:center;gap:14px;padding:14px;border-radius:16px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--lift);
-      text-align:left;color:var(--text);cursor:pointer;width:100%;font-family:var(--mono)}
-  .dg .ic{width:48px;height:48px;flex:none;border-radius:13px;display:grid;place-items:center;font-family:var(--display);font-size:24px;
-      color:var(--c);background:color-mix(in srgb,var(--c) 14%,var(--surface));box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 32%,transparent)}
-  .dg .grow{flex:1;min-width:0}
-  .dg b{display:block;font-family:var(--display);font-weight:400;font-size:21px;letter-spacing:1.2px;line-height:1.05}
-  .dg small{display:block;font-size:11px;color:var(--muted);margin-top:3px}
-  .dg .state{font-family:var(--display);font-size:15px;letter-spacing:1.5px;padding:6px 12px;border-radius:999px;background:var(--c);color:var(--bg)}
-  .dg.done .state{background:none;color:var(--green);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--green) 45%,transparent)}
-  .reset{text-align:center;font-size:11px;color:var(--muted);margin:16px 0 0;letter-spacing:.5px}
-  .reset b{color:var(--text);font-weight:500;font-variant-numeric:tabular-nums}
-
-  /* Friends */
-  .add{display:flex;gap:8px;margin:14px 20px 0}
-  .add input{flex:1;min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:11px 16px;
-      color:var(--text);font-family:var(--mono);font-size:12.5px;outline:none}
-  .add input:focus{border-color:var(--accent2)}
-  .add input::placeholder{color:var(--muted)}
-  .invite{display:flex;align-items:center;gap:12px;padding:14px}
-  .invite .grow{flex:1;min-width:0;font-size:12.5px;line-height:1.45}
-  .invite .grow small{display:block;color:var(--muted);font-size:11px}
-  .invite .acts{display:flex;gap:6px}
-  .pfp{width:42px;height:42px;flex:none;border-radius:50%;display:grid;place-items:center;position:relative;font-family:var(--display);font-size:20px;
-       color:var(--bg);background:var(--pc,var(--muted))}
-  .pfp.online::after{content:"";position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-radius:50%;background:var(--green);box-shadow:0 0 0 2.5px var(--surface)}
-  .flist{margin:0 20px;background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--lift);overflow:hidden}
-  .friend{display:flex;align-items:center;gap:12px;padding:12px 14px}
-  .friend + .friend{border-top:1px solid var(--border)}
-  .friend .grow{flex:1;min-width:0}
-  .friend b{display:block;font-size:13.5px;font-weight:500}
-  .friend small{display:block;font-size:11px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .friend small.playing{color:var(--green)}
-  .friend.off{opacity:.7}
-  .btn.ask{background:none;color:var(--accent2);box-shadow:inset 0 0 0 1.5px var(--accent2)}
-  .btn.ask[disabled]{color:var(--muted);box-shadow:inset 0 0 0 1px var(--border);cursor:default}
-  .notif{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top,0px));z-index:12;width:min(428px,calc(100% - 32px));
-         transform:translate(-50%,-140%);transition:transform .45s cubic-bezier(.2,.7,.2,1);
-         background:var(--surface2);border:1px solid var(--border);border-radius:18px;padding:12px 14px;
-         box-shadow:0 14px 40px rgba(0,0,0,.35)}
-  .notif.show{transform:translate(-50%,0)}
-  .notif .lbl{font-size:9.5px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px}
-  .notif .row1{display:flex;align-items:center;gap:12px}
-  .notif .row1 .grow{flex:1;min-width:0;font-size:12.5px;line-height:1.45}
-  .notif .row1 small{display:block;color:var(--muted);font-size:11px}
-  .notif .acts{display:flex;gap:8px;margin-top:10px}
-  .notif .acts .btn{flex:1}
-  .pick{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
-  .pick button{border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:12px;padding:12px 10px;
-       font-family:var(--display);font-size:17px;letter-spacing:1.2px;cursor:pointer;text-align:left}
-  .pick button:active{border-color:var(--accent)}
 
   /* Coming soon blocks */
   .soon{margin:14px 20px 0;position:relative;overflow:hidden;border-radius:18px;padding:26px 20px 24px;min-height:220px;display:flex;flex-direction:column;justify-content:flex-end;
@@ -277,34 +212,79 @@
   .soon p{font-size:12.5px;color:var(--muted);line-height:1.55;position:relative;max-width:34ch}
   .soon.small{min-height:0;padding:16px 18px;margin-top:0}
   .soon.small p{margin-top:6px}
-  .name-form{display:flex;gap:8px;margin-top:16px}
-  .name-form input{flex:1;min-width:0;background:var(--surface2);border:1px solid var(--border);border-radius:999px;padding:12px 16px;
-      color:var(--text);font-family:var(--mono);font-size:16px;outline:none}
-  .name-form input:focus{border-color:var(--accent2)}
-  .name-form .btn{padding:10px 20px;font-size:18px}
-  .sheet .hint{font-size:11px;color:var(--muted);margin-top:10px}
 
   /* Profile */
   .me-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:12px 20px 4px}
   .me-card .avatar{width:84px;height:84px;font-size:42px}
-  .me-card h2{font-family:var(--display);font-weight:400;font-size:34px;letter-spacing:2px;margin-top:12px;line-height:1}
-  .me-card small{font-size:11px;color:var(--muted);margin-top:6px}
+  .me-card h2{font-family:var(--display);font-weight:400;font-size:34px;letter-spacing:2px;margin-top:12px;line-height:1;overflow-wrap:anywhere}
   .me-card .btn{margin-top:12px}
+  .tagrow{display:flex;gap:6px;margin-top:8px;justify-content:center}
+  .tagp{font-size:10px;letter-spacing:1.5px;padding:4px 9px;border-radius:999px;text-transform:uppercase;border:1px solid var(--border);color:var(--muted)}
+  .tagp.g{color:var(--green);border-color:color-mix(in srgb,var(--green) 40%,transparent)}
+  .savecard{margin:16px 20px 0;border-radius:18px;padding:16px;border:1px solid var(--border);box-shadow:var(--lift);
+            background:radial-gradient(110% 90% at 100% 0%,rgba(255,140,66,.16),transparent 60%),var(--surface)}
+  .savecard b{display:block;font-family:var(--display);font-weight:400;font-size:22px;letter-spacing:1.5px}
+  .savecard p{font-size:11.5px;color:var(--muted);line-height:1.55;margin:4px 0 14px}
+  .gbtn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;border:0;border-radius:16px;padding:13px;cursor:pointer;
+        background:#fff;color:#1f1f1f;font-family:var(--mono);font-size:13.5px;font-weight:500;transition:transform .15s,opacity .2s;
+        box-shadow:inset 0 0 0 1px #dadce0}
+  .gbtn:active{transform:scale(.97)}
+  .gbtn.busy{opacity:.6;pointer-events:none}
+  .gbtn svg{width:20px;height:20px;flex:none}
   .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 20px}
-  .stat{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px;box-shadow:var(--lift);min-width:0}
-  .stat b{display:block;font-family:var(--display);font-weight:400;font-size:34px;line-height:1;letter-spacing:1px;color:var(--c,var(--text));
-          white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .stat small{display:block;font-size:10.5px;color:var(--muted);margin-top:6px;letter-spacing:.5px}
   .settings{margin:0 20px;background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--lift);padding:0 16px}
   .settings .setting:first-child{border-top:0}
   .settings button.setting{width:100%;background:none;border:0;border-top:1px solid var(--border);color:var(--text);font-family:var(--mono);text-align:left;cursor:pointer}
+  .settings .setting.red{color:var(--accent)}
+  .settings .setting .mail{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:62vw}
   .chev{color:var(--muted);font-size:18px}
   .switch{width:46px;height:28px;border-radius:999px;border:0;background:var(--surface2);box-shadow:inset 0 0 0 1px var(--border);position:relative;cursor:pointer;transition:background .25s;flex:none}
   .switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:var(--muted);transition:transform .25s,background .25s}
   .switch.on{background:color-mix(in srgb,var(--accent) 30%,var(--surface2))}
   .switch.on::after{transform:translateX(18px);background:var(--accent)}
   .foot{text-align:center;font-size:10.5px;color:var(--muted);letter-spacing:1px;margin:22px 0 4px}
-  .sample{display:block;text-align:center;font-size:10px;color:var(--muted);opacity:.7;margin-top:10px;letter-spacing:.5px}
+
+  /* ── Username field (first open and Change username) ── */
+  .ufield{position:relative;display:block;margin-top:20px}
+  .ufield span{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px}
+  .ufield input{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:14px;padding:15px 44px 15px 34px;
+               color:var(--text);font-family:var(--mono);font-size:16px;outline:none;transition:border-color .2s}
+  .ufield input:focus{border-color:var(--accent2)}
+  .ufield.ok input{border-color:color-mix(in srgb,var(--green) 60%,var(--border))}
+  .ufield.bad input{border-color:var(--accent)}
+  .ufield i{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;font-style:normal}
+  .ufield.ok i::after{content:"";position:absolute;left:5px;top:3px;width:6px;height:11px;border-right:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(45deg)}
+  .ufield.wait i{border:2px solid var(--border);border-top-color:var(--accent2);border-radius:50%;animation:spin .7s linear infinite}
+  @keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
+  .unote{font-size:11px;color:var(--muted);min-height:34px;margin-top:8px;line-height:1.5}
+  .unote.ok{color:var(--green)} .unote.bad{color:var(--accent)}
+  .bigbtn{border:0;border-radius:16px;padding:15px;width:100%;cursor:pointer;font-family:var(--display);font-size:22px;letter-spacing:2.5px;
+          background:var(--accent);color:#fff;box-shadow:0 10px 26px rgba(255,63,63,.28);transition:transform .15s,opacity .2s}
+  .bigbtn:active{transform:scale(.97)}
+  .bigbtn[disabled]{opacity:.35;box-shadow:none;cursor:default}
+  .bigbtn.outline{background:none;color:var(--text);box-shadow:inset 0 0 0 1.5px var(--border)}
+  .bigbtn.busy{opacity:.6;pointer-events:none}
+  .sheet .bigbtn{margin-top:14px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+  .two .bigbtn{margin:0;font-size:19px;padding:13px}
+  .lock{display:flex;gap:14px;align-items:center;margin-top:16px;padding:14px;border-radius:14px;background:var(--surface2);font-size:12px;line-height:1.5}
+  .lock b{font-family:var(--display);font-weight:400;font-size:34px;color:var(--accent2);line-height:1}
+  .lock small{display:block;color:var(--muted)}
+
+  /* ── Pick a username: first open, right after the splash ── */
+  .pk{position:fixed;inset:0;z-index:45;background:var(--bg);display:none}
+  .pk.on{display:block}
+  .pk-in{max-width:460px;margin:0 auto;height:100%;display:flex;flex-direction:column;
+         padding:calc(14px + env(safe-area-inset-top,0px)) 20px calc(18px + env(safe-area-inset-bottom,0px))}
+  .pk-body{flex:1;display:flex;flex-direction:column;justify-content:center;position:relative;min-height:0}
+  .pk-glyph{position:absolute;right:-34px;top:6%;font-family:var(--display);font-size:clamp(220px,40dvh,300px);line-height:.8;color:transparent;
+            -webkit-text-stroke:1.5px color-mix(in srgb,var(--accent) 32%,transparent);pointer-events:none;user-select:none}
+  .pk-kind{font-size:11px;letter-spacing:3px;color:var(--accent2);text-transform:uppercase;position:relative}
+  .pk h1{font-family:var(--display);font-weight:400;font-size:clamp(46px,15vw,60px);letter-spacing:2px;line-height:.9;margin:10px 0 12px;position:relative}
+  .pk p.lead{font-size:12.5px;color:var(--muted);line-height:1.6;max-width:30ch;position:relative}
+  .pk-bottom{display:grid;gap:6px;justify-items:center}
+  .linkbtn{border:0;background:none;color:var(--muted);font-family:var(--mono);font-size:11.5px;cursor:pointer;padding:8px;text-decoration:underline;text-underline-offset:3px}
+  body.splashing .pk .brand{visibility:hidden}
 
   /* ═════ Splash (plays on every launch) ═════ */
   .sp{position:fixed;inset:0;z-index:50;background:#050508;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -332,9 +312,6 @@
   .sp-fly{position:fixed;z-index:60;font-family:var(--display);font-size:30px;letter-spacing:3px;line-height:1;white-space:nowrap;pointer-events:none;
           transform-origin:0 0;color:var(--text)}
   .sp-fly span{color:var(--accent)}
-  .sp-gate{position:fixed;inset:0;z-index:70;display:grid;place-items:center;background:#050508;cursor:pointer;color-scheme:dark}
-  .sp-gate p{font-size:12px;letter-spacing:3px;color:#7070a0;text-align:center;line-height:2;font-family:var(--mono)}
-  .sp-gate b{display:block;font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:4px;color:#e8e8f0}
   body.splashing .top .brand{visibility:hidden}
 
   /* ═════ Game page: the tapped card expands into it ═════ */
@@ -367,6 +344,30 @@
   </svg>
   <p class="by" id="spBy">BY <b>MIDNIGHT LABS</b></p>
 </div>
+
+<!-- ═════ PICK A USERNAME (first open) ═════ -->
+<section class="pk" id="pk" aria-label="Pick a username">
+  <div class="pk-in">
+    <div class="brand">CINE<span>FIED</span></div>
+    <div class="pk-body">
+      <div class="pk-glyph" aria-hidden="true">@</div>
+      <div class="pk-kind">Welcome</div>
+      <h1>PICK A<br>USERNAME</h1>
+      <p class="lead" id="pkLead">Your friends find you by it, and it shows in every game you play.</p>
+      <label class="ufield" id="pkField">
+        <span>@</span>
+        <input id="pkIn" maxlength="15" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="username" enterkeyhint="go">
+        <i></i>
+      </label>
+      <p class="unote" id="pkNote">3 to 15 letters, numbers or _</p>
+    </div>
+    <div class="pk-bottom">
+      <button class="bigbtn" type="button" id="pkGo" disabled>LET'S GO</button>
+      <button class="linkbtn" type="button" id="pkGoogle">Played before? Sign in with Google</button>
+    </div>
+  </div>
+</section>
+
 <div class="app">
 
   <header class="top rise">
@@ -416,8 +417,14 @@
     <div class="me-card">
       <span class="avatar" id="meAv"></span>
       <h2 id="meName"></h2>
-      <small>This is the name other players see</small>
-      <button class="btn ghost-btn small" type="button" id="nameBtn">CHANGE NAME</button>
+      <div class="tagrow" id="meTags"></div>
+      <button class="btn ghost-btn small" type="button" id="renameBtn">CHANGE USERNAME</button>
+    </div>
+
+    <div class="savecard" id="saveCard">
+      <b>KEEP YOUR PROGRESS SAFE</b>
+      <p>You're playing as a guest. Your streaks and stats live only on this phone. Sign in with Google to keep them if you change or reset your phone.</p>
+      <button class="gbtn" type="button" id="gLink"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Sign in with Google</button>
     </div>
 
     <div class="sec-label">YOUR STATS</div>
@@ -436,10 +443,12 @@
       </div>
       <div class="setting"><span>Sound<small>The intro sound</small></span><button class="switch on" id="sound" type="button" aria-label="Sound" aria-pressed="true"></button></div>
       <button class="setting" type="button" id="replaySplash"><span>Replay intro<small>The lamp and the name</small></span><span class="chev">›</span></button>
+      <div class="setting" id="acctRow" hidden><span>Account<small class="mail" id="acctMail"></small></span></div>
       <button class="setting" type="button" data-soon="About Midnight Labs"><span>About Midnight Labs</span><span class="chev">›</span></button>
       <button class="setting" type="button" data-soon="Privacy policy"><span>Privacy policy</span><span class="chev">›</span></button>
+      <button class="setting red" type="button" id="signOut" hidden><span>Sign out</span></button>
     </div>
-    <p class="foot">CINEFIED · BY MIDNIGHT LABS · v0.2</p>
+    <p class="foot">CINEFIED · BY MIDNIGHT LABS · v0.3</p>
   </div>
 </div>
 
@@ -458,18 +467,46 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- change your name -->
+<!-- ═════ Sheets ═════ -->
 <div class="scrim" data-close></div>
-<section class="sheet" aria-label="Change name">
+
+<section class="sheet" id="sh-rename" aria-label="Change username">
   <div class="grab"></div>
-  <h3>YOUR NAME</h3>
-  <form class="name-form" id="nameForm">
-    <input id="nameIn" type="text" maxlength="20" autocomplete="off" spellcheck="false" placeholder="Your name">
-    <button class="btn" type="submit">SAVE</button>
-  </form>
-  <p class="hint">Other players see this in every game. 20 letters at most.</p>
+  <h3>CHANGE USERNAME</h3>
+  <p class="sub">You can change it once every 30 days. Your friends will see the new one.</p>
+  <label class="ufield" id="rnField" style="margin-top:16px">
+    <span>@</span><input id="rnIn" maxlength="15" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done"><i></i>
+  </label>
+  <p class="unote" id="rnNote">3 to 15 letters, numbers or _</p>
+  <button class="bigbtn" type="button" id="rnGo" disabled>SAVE</button>
 </section>
 
+<section class="sheet" id="sh-locked" aria-label="Username change locked">
+  <div class="grab"></div>
+  <h3>NOT YET</h3>
+  <div class="lock"><b id="lockDays">30</b><span><span id="lockWord">days</span> until you can change your username again.<small id="lockDate"></small></span></div>
+  <button class="bigbtn outline" type="button" data-close>OK</button>
+</section>
+
+<section class="sheet" id="sh-found" aria-label="Account found">
+  <div class="grab"></div>
+  <h3>ACCOUNT FOUND</h3>
+  <p class="sub">This Google account already has a Cinefied profile. Switch to it? What you played as <b id="foundMe"></b> on this phone won't come with you.</p>
+  <div class="two"><button class="bigbtn outline" type="button" id="foundStay">STAY</button><button class="bigbtn" type="button" id="foundSwitch">SWITCH</button></div>
+</section>
+
+<section class="sheet" id="sh-out" aria-label="Sign out">
+  <div class="grab"></div>
+  <h3>SIGN OUT?</h3>
+  <p class="sub">Your progress stays safe in your account. Sign in with Google again any time to get it back. This phone starts fresh as a new guest.</p>
+  <div class="two"><button class="bigbtn outline" type="button" data-close>CANCEL</button><button class="bigbtn" type="button" id="outGo">SIGN OUT</button></div>
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-functions-compat.js"></script>
+<script src="core/core.js?v=0.3.0"></script>
 <script>
 
   // ═════════════ GAMES (edit here) ═════════════
@@ -506,7 +543,8 @@
   SHELVES.forEach(s => s.games.forEach(g => { PAGE[g.n] = g.p; COLOR[g.n] = s.color; }));
 
   const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const host = document.getElementById('shelves');
+  const $ = id => document.getElementById(id);
+  const host = $('shelves');
   host.innerHTML = SHELVES.map((s,i) => `
     <section class="shelf rise" style="--c:${s.color};animation-delay:${.1+i*.06}s">
       <div class="shelf-head"><h2><i></i>${esc(s.title)}</h2><span>${esc(s.note)}</span></div>
@@ -532,7 +570,7 @@
   }
   sysDark.addEventListener('change', applyTheme);
   applyTheme();
-  document.getElementById('appearance').addEventListener('click', e => {
+  $('appearance').addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
     pref = b.dataset.t; try { localStorage.setItem('cf_theme', pref); } catch(e) {}
     applyTheme();
@@ -563,8 +601,8 @@
   ];
   const SHOW_MS = 5000, BAR_N = 5;
   const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
-  const marq = document.querySelector('.marquee'), fSlide = document.getElementById('fSlide'), fGhost = document.getElementById('fGhost');
-  const fName = document.getElementById('fName'), fLine = document.getElementById('fLine'), fPlay = document.getElementById('fPlay'), fBar = document.getElementById('fBar');
+  const marq = document.querySelector('.marquee'), fSlide = $('fSlide'), fGhost = $('fGhost');
+  const fName = $('fName'), fLine = $('fLine'), fPlay = $('fPlay'), fBar = $('fBar');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let order = shuffle(FEATURE), pos = 0, timer = null;
   marq.style.setProperty('--dur', SHOW_MS + 'ms');
@@ -617,20 +655,20 @@
 
   // time-based greeting
   const h = new Date().getHours();
-  document.getElementById('greet').textContent = h<12 ? 'Good morning' : h<17 ? 'Good afternoon' : 'Good evening';
-  document.getElementById('daynum').textContent = new Date().getDate();
+  $('greet').textContent = h<12 ? 'Good morning' : h<17 ? 'Good afternoon' : 'Good evening';
+  $('daynum').textContent = new Date().getDate();
 
   // ── Toast ──
-  const toast = document.getElementById('toast'); let tt;
-  function say(msg){ toast.textContent = msg; toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('show'), 1700); }
+  const toast = $('toast'); let tt;
+  function say(msg){ toast.textContent = msg; toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => toast.classList.remove('show'), 2000); }
 
   // ── Tabs: slide in from the side you are moving towards ──
   const TABS = ['home','friends','profile']; let cur = 'home';
   function showTab(name){
     if (name === cur) { if (name === 'home') window.scrollTo({top:0,behavior:'smooth'}); return; }
     const dir = TABS.indexOf(name) > TABS.indexOf(cur) ? 'from-right' : 'from-left';
-    document.getElementById('v-'+cur).className = 'view';
-    const v = document.getElementById('v-'+name);
+    $('v-'+cur).className = 'view';
+    const v = $('v-'+name);
     v.className = 'view on ' + (reduceMotion ? '' : dir);
     document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.tab === name));
     cur = name; window.scrollTo(0,0);
@@ -653,48 +691,152 @@
     let n = 0, ms = Date.parse(today); if (!DPUZ.some(p => fin(today, p.id))) ms -= 864e5;
     for (;;) { const k = new Date(ms).toISOString().slice(0, 10); if (!DPUZ.some(p => fin(k, p.id))) break; n++; ms -= 864e5; }
     const done = DPUZ.filter(p => fin(today, p.id)).length;
-    document.getElementById('daynum').textContent = n || new Date(Date.now() + IST).getUTCDate();
-    document.getElementById('dTeaser').innerHTML = 'Daily puzzles<span>' + (n ? n + ' day streak · ' : '') + (done === DN ? 'all done today' : done ? done + ' of ' + DN + ' done today' : DN + ' new puzzles today') + '</span>';
+    $('daynum').textContent = n || new Date(Date.now() + IST).getUTCDate();
+    $('dTeaser').innerHTML = 'Daily puzzles<span>' + (n ? n + ' day streak · ' : '') + (done === DN ? 'all done today' : done ? done + ' of ' + DN + ' done today' : DN + ' new puzzles today') + '</span>';
   }
   drawDaily();
   window.addEventListener('pageshow', drawDaily);
 
-  // ── Your name: the same one the games use (saved on this phone as cf_name) ──
-  const NAME_MAX = 20;
-  const readName = () => { for (const st of [sessionStorage, localStorage]) { try { const v = st.getItem('cf_name'); if (v) return JSON.parse(v); } catch(e) {} } return null; };
-  const cleanName = n => String(n || '').replace(/[\u0000-\u001f\u007f]/g, '').replace(/\s+/g, ' ').trim().slice(0, NAME_MAX);
-  function saveName(n){ const v = JSON.stringify(n); try { sessionStorage.setItem('cf_name', v); } catch(e) {} try { localStorage.setItem('cf_name', v); } catch(e) {} }
-  let myName = cleanName(readName());
-  if (!myName) { myName = 'Guest-' + (1000 + Math.floor(Math.random() * 9000)); saveName(myName); }
-  function drawName(){
-    const ini = (myName.match(/[A-Za-z0-9]/) || ['?'])[0].toUpperCase();
-    document.getElementById('topName').textContent = myName;
-    document.getElementById('meName').textContent = myName.toUpperCase();
-    document.getElementById('topAv').textContent = ini; document.getElementById('meAv').textContent = ini;
+  // ═════ Account: guest or Google, and your username ═════
+  // (sign-in, usernames and Google all live in core/core.js; this part only draws them)
+  const C = window.Cinefied, ME = C.me;
+  function drawMe(){
+    const u = ME.username || '';
+    const ini = ((u.match(/[a-z0-9]/) || ['?'])[0]).toUpperCase();
+    $('topName').textContent = u ? '@' + u : '';
+    $('topAv').textContent = u ? ini : '';
+    $('meName').textContent = u ? '@' + u.toUpperCase() : '';
+    $('meAv').textContent = u ? ini : '';
+    $('meTags').innerHTML = ME.guest ? '<span class="tagp">Guest</span>' : '<span class="tagp g">Saved to Google</span>';
+    $('saveCard').hidden = !ME.guest;
+    $('acctRow').hidden = ME.guest; $('signOut').hidden = ME.guest;
+    $('acctMail').textContent = ME.email || 'Google';
+    $('foundMe').textContent = u ? '@' + u : 'a guest';
   }
-  drawName();
-  const nameIn = document.getElementById('nameIn');
-  const openSheet = () => { nameIn.value = myName; document.body.classList.add('open'); setTimeout(() => { nameIn.focus(); nameIn.select(); }, 350); };
-  const closeSheet = () => { nameIn.blur(); document.body.classList.remove('open'); };
-  document.querySelector('[data-close]').addEventListener('click', closeSheet);
-  document.getElementById('nameBtn').addEventListener('click', openSheet);
-  document.getElementById('nameForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const n = cleanName(nameIn.value);
-    if (!n) return say('Type a name first');
-    myName = n; saveName(n); drawName(); closeSheet(); say('Name saved');
+  C.onMe(drawMe);
+  drawMe();
+
+  // ── one username box, used on the first-open screen and in Change username ──
+  function usernameBox(inp, field, note, btn, mode){
+    let n = 0, t = null;
+    const base = '3 to 15 letters, numbers or _';
+    function set(cls, text, ok){ field.className = 'ufield' + (cls ? ' ' + cls : ''); note.className = 'unote' + (cls === 'ok' ? ' ok' : cls === 'bad' ? ' bad' : ''); note.textContent = text; btn.disabled = !ok; }
+    function check(){
+      const v = inp.value = inp.value.toLowerCase().replace(/\s/g, '');
+      clearTimeout(t); const my = ++n;
+      if (!v) return set('', base, false);
+      if (/[^a-z0-9_]/.test(v)) return set('bad', 'Only letters, numbers and _', false);
+      if (v.length < 3) return set('', (3 - v.length) + ' more to go', false);
+      if (mode === 'rename' && v === ME.username) return set('', "That's your username now", false);
+      set('wait', 'Checking…', false);
+      t = setTimeout(async () => {
+        let s; try { s = await C.usernameStatus(v); } catch (e) { s = 'offline'; }
+        if (my !== n) return;
+        if (s === 'free' || s === 'mine') set('ok', '@' + v + ' is free', true);
+        else if (s === 'taken') set('bad', '@' + v + ' is taken. Try another, like @' + (v.slice(0, 12) + '_' + (10 + Math.random() * 89 | 0)) + '?', false);
+        else if (s === 'bad') set('bad', 'Only letters, numbers and _', false);
+        else set('bad', "Couldn't check. Are you online?", false);
+      }, 450);
+    }
+    inp.addEventListener('input', check);
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter' && !btn.disabled) btn.click(); });
+    return { check, set, reset(v){ inp.value = v || ''; check(); } };
+  }
+
+  // ── first open: pick a username ──
+  const pkBox = usernameBox($('pkIn'), $('pkField'), $('pkNote'), $('pkGo'), 'claim');
+  function showPick(){
+    if ($('pk').classList.contains('on')) return;
+    let old = null; try { old = JSON.parse(localStorage.getItem('cf_name') || 'null'); } catch (e) {}
+    pkBox.reset(C.suggestUsername(old));   // an old name from before accounts becomes the suggestion
+    $('pkLead').textContent = ME.guest ? 'Your friends find you by it, and it shows in every game you play.'
+      : 'Signed in with Google. Now pick the name your friends will find you by.';
+    $('pkGoogle').hidden = !ME.guest;
+    $('pk').classList.add('on');
+  }
+  function hidePick(){ $('pk').classList.remove('on'); $('pkIn').blur(); }
+  $('pkGo').addEventListener('click', async () => {
+    const b = $('pkGo'); b.classList.add('busy'); b.textContent = 'SAVING…';
+    try { const u = await C.claimUsername($('pkIn').value); hidePick(); say('Welcome, @' + u); }
+    catch (e) { pkBox.set('bad', C.message(e), false); }
+    finally { b.classList.remove('busy'); b.textContent = "LET'S GO"; }
   });
-  // a game page may have changed the name: pick it up when we come back
-  window.addEventListener('pageshow', () => { const n = cleanName(readName()); if (n && n !== myName) { myName = n; drawName(); } });
+  $('pkGoogle').addEventListener('click', async () => {
+    try {
+      const r = await C.linkGoogle();
+      if (r.redirecting) return;
+      if (ME.username) { hidePick(); say('Welcome back, @' + ME.username); }
+      else showPickAgain();
+    } catch (e) { if (e.code !== 'popup_closed') say(C.message(e)); }
+  });
+  function showPickAgain(){ $('pk').classList.remove('on'); showPick(); }
+
+  // ── sheets ──
+  function openSheet(id){ document.querySelectorAll('.sheet.show').forEach(s => s.classList.remove('show')); document.body.classList.add('open'); $(id).classList.add('show'); }
+  function closeSheets(){ document.body.classList.remove('open'); document.querySelectorAll('.sheet.show').forEach(s => s.classList.remove('show')); $('rnIn').blur(); }
+  document.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeSheets(); });
+
+  // ── change username (once every 30 days) ──
+  const rnBox = usernameBox($('rnIn'), $('rnField'), $('rnNote'), $('rnGo'), 'rename');
+  function lockSheet(next){
+    const days = Math.max(1, Math.ceil((next - Date.now()) / 864e5));
+    $('lockDays').textContent = days; $('lockWord').textContent = days === 1 ? 'day' : 'days';
+    $('lockDate').textContent = 'Next change: ' + new Date(next).toLocaleDateString('en-IN', { day:'numeric', month:'short' });
+    openSheet('sh-locked');
+  }
+  $('renameBtn').addEventListener('click', () => {
+    if (!ME.username) return showPick();
+    const next = C.nextRename();
+    if (next > Date.now()) return lockSheet(next);
+    rnBox.reset(''); openSheet('sh-rename'); setTimeout(() => $('rnIn').focus(), 350);
+  });
+  $('rnGo').addEventListener('click', async () => {
+    const b = $('rnGo'); b.classList.add('busy'); b.textContent = 'SAVING…';
+    try { const u = await C.renameUsername($('rnIn').value); closeSheets(); say('You are now @' + u); }
+    catch (e) { if (e.code === 'too_soon' && e.next) { closeSheets(); lockSheet(e.next); } else rnBox.set('bad', C.message(e), false); }
+    finally { b.classList.remove('busy'); b.textContent = 'SAVE'; }
+  });
+
+  // ── Google: save this guest, or switch to an account that already exists ──
+  $('gLink').addEventListener('click', async () => {
+    const b = $('gLink'); b.classList.add('busy');
+    try {
+      const r = await C.linkGoogle();
+      if (r.found) openSheet('sh-found');
+      else if (r.ok) say('Progress saved to your Google account');
+    } catch (e) { if (e.code !== 'popup_closed') say(C.message(e)); }
+    finally { b.classList.remove('busy'); }
+  });
+  $('foundStay').addEventListener('click', () => { C.stayGuest(); closeSheets(); });
+  $('foundSwitch').addEventListener('click', async () => {
+    const b = $('foundSwitch'); b.classList.add('busy');
+    try { await C.switchAccount(); closeSheets(); if (ME.username) say('Switched to @' + ME.username); else showPick(); }
+    catch (e) { say(C.message(e)); }
+    finally { b.classList.remove('busy'); }
+  });
+  $('signOut').addEventListener('click', () => openSheet('sh-out'));
+  $('outGo').addEventListener('click', async () => {
+    const b = $('outGo'); b.classList.add('busy');
+    try { await C.signOut(); closeSheets(); showTab('home'); showPick(); say('Signed out'); }
+    catch (e) { say(C.message(e)); }
+    finally { b.classList.remove('busy'); }
+  });
+
+  // sign in when the page opens: a player without a username picks one first
+  C.init().then(async () => {
+    const r = await C.afterRedirect().catch(() => null);   // back from a Google sign-in page
+    if (r && r.found) openSheet('sh-found');
+    if (!ME.username) showPick();
+  }).catch(() => { if (!ME.username) showPick(); say("You seem to be offline"); });
 
   // ── Profile ──
-  document.getElementById('sound').addEventListener('click', e => {
+  $('sound').addEventListener('click', e => {
     const b = e.currentTarget; const on = !b.classList.contains('on');
     b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
     try { localStorage.setItem('cf_sound', on ? '1' : '0'); } catch(e) {}
     if (on && audio()) spClick(.5);   // a little tick so you know it is on
   });
-  try { if (localStorage.getItem('cf_sound') === '0') { const b = document.getElementById('sound'); b.classList.remove('on'); b.setAttribute('aria-pressed', 'false'); } } catch(e) {}
+  try { if (localStorage.getItem('cf_sound') === '0') { const b = $('sound'); b.classList.remove('on'); b.setAttribute('aria-pressed', 'false'); } } catch(e) {}
 
   // ── One click handler for the whole app ──
   document.addEventListener('click', e => {
@@ -704,7 +846,11 @@
     const soon = e.target.closest('[data-soon]');
     if (soon) return say(`${soon.dataset.soon} — coming soon`);
     const g = e.target.closest('[data-game]');
-    if (g) { if (PAGE[g.dataset.game]) return openGame(g.dataset.game, g.closest('.card,.marquee') || g); return say(`${g.dataset.game} — coming soon`); }
+    if (g) {
+      if (!ME.username) return showPick();
+      if (PAGE[g.dataset.game]) return openGame(g.dataset.game, g.closest('.card,.marquee') || g);
+      return say(`${g.dataset.game} — coming soon`);
+    }
   });
 
   // ═════ Splash: lamp clicks on, the name lights up, then it glides into the top bar ═════
@@ -745,28 +891,29 @@
     g.gain.cancelScheduledValues(t); g.gain.setValueAtTime(g.gain.value, t);
     g.gain.linearRampToValueAtTime(0, t + .6); o.stop(t + .7); o2.stop(t + .7); hum = null;
   }
-  function soundOn(){ return document.getElementById('sound').classList.contains('on'); }
+  function soundOn(){ return $('sound').classList.contains('on'); }
 
   function playSplash(){
     spTimers.forEach(clearTimeout); spTimers = []; humOff();
-    const sp = document.getElementById('sp');
-    sp.className = 'sp'; document.getElementById('spBy').classList.remove('show');
+    const sp = $('sp');
+    sp.className = 'sp'; $('spBy').classList.remove('show');
     document.body.classList.add('splashing');
-    if (reduceMotion) { sp.classList.add('on','lit'); document.getElementById('spBy').classList.add('show'); spLater(1200, splashToHome); return; }
+    if (reduceMotion) { sp.classList.add('on','lit'); $('spBy').classList.add('show'); spLater(1200, splashToHome); return; }
     spLater(600, () => { spClick(); sp.classList.add('on'); });
     spLater(680, () => sp.classList.remove('on'));
     spLater(800, () => { spClick(.25); sp.classList.add('on'); humOn(); });
     spLater(900, () => sp.classList.add('lit'));
-    spLater(1500, () => document.getElementById('spBy').classList.add('show'));
+    spLater(1500, () => $('spBy').classList.add('show'));
     spLater(2900, splashToHome);
   }
   function splashToHome(){
     spTimers.forEach(clearTimeout); spTimers = [];
-    const sp = document.getElementById('sp'), word = document.getElementById('spWord');
+    const sp = $('sp'), word = $('spWord');
     if (sp.classList.contains('gone')) return;
     sp.classList.add('on','lit');
     showTab('home'); window.scrollTo(0,0);
-    const target = document.querySelector('.top .brand');
+    // the name lands in the top bar, or on the "pick a username" screen if that is showing
+    const target = $('pk').classList.contains('on') ? document.querySelector('#pk .brand') : document.querySelector('.top .brand');
     const a = word.getBoundingClientRect(), b = target.getBoundingClientRect();
     const f = document.createElement('div'); f.className = 'sp-fly'; f.innerHTML = 'CINE<span>FIED</span>';
     f.style.left = b.left + 'px'; f.style.top = b.top + 'px'; document.body.appendChild(f);
@@ -778,12 +925,12 @@
     }));
     setTimeout(() => { document.body.classList.remove('splashing'); f.remove(); }, 760);
   }
-  document.getElementById('sp').addEventListener('click', splashToHome);   // tap to skip
+  $('sp').addEventListener('click', splashToHome);   // tap to skip
   // the intro plays once per visit; coming back from a game skips it
   let seen = false; try { seen = sessionStorage.getItem('cf_intro') === '1'; } catch(e) {}
   // it starts on its own. Phones don't let a page make sound before the first tap, so the first run is silent
   // (the app version can play it); "Replay intro" in Profile plays it with sound.
-  if (seen) document.getElementById('sp').classList.add('on','lit','gone');
+  if (seen) $('sp').classList.add('on','lit','gone');
   else { document.body.classList.add('splashing'); try { sessionStorage.setItem('cf_intro', '1'); } catch(e) {} audio(); playSplash(); }
 
   // ═════ Games: tap a card → it grows to fill the screen, then the game's page opens ═════
@@ -806,7 +953,7 @@
     document.querySelectorAll('.expander').forEach(e => e.remove()); opening = false;
     if (cur === 'home') { drawBar(); schedule(); }
   });
-  document.getElementById('replaySplash').addEventListener('click', () => { audio(); playSplash(); });
+  $('replaySplash').addEventListener('click', () => { audio(); playSplash(); });
 </script>
 </body>
 </html>
