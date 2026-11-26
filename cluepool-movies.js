@@ -34,6 +34,6 @@
     if (!h[0].some(a => h[2].some(b => b.k !== a.k))) return null;     // tiers 1 and 3 would show the same hint
     return { n: m.title.trim(), y: m.year, a: names(hero), h };
   }
-  const MOVIES = ALL.map(build).filter(Boolean);
+  const MOVIES = ALL.filter(m => m && m.level !== 'hard').map(build).filter(Boolean);   // hard movies stay out
   module.exports = MOVIES;
 })(this);
