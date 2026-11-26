@@ -100,6 +100,18 @@
 
   @media (prefers-reduced-motion:reduce){#game .gs.in,.chip.moved,.bub,.verdict h1{animation:none}}
 
+  /* the theme of this list */
+  .theme{margin:4px 0 12px;padding:12px 14px 13px;border-radius:16px;text-align:center;
+         background:radial-gradient(100% 120% at 0% 0%,color-mix(in srgb,var(--accent2) 22%,transparent),transparent 70%),var(--surface);
+         border:1px solid color-mix(in srgb,var(--accent2) 40%,var(--border))}
+  .theme small{display:block;font-size:10px;letter-spacing:3px;color:var(--accent2)}
+  .theme b{display:block;font-family:var(--display);font-weight:400;font-size:34px;letter-spacing:2px;line-height:1;margin-top:5px;overflow-wrap:anywhere}
+  .theme em{display:block;font-style:normal;font-size:11px;color:var(--muted);margin-top:5px}
+  /* waiting room: no settings, just a note */
+  #cfSummary.tnote{flex-direction:column;gap:4px;padding:12px 14px;border-radius:14px;cursor:default;
+         border:1px dashed color-mix(in srgb,var(--accent2) 45%,var(--border));background:none;box-shadow:none;color:var(--muted);font-size:11px;line-height:1.5}
+  #cfSummary.tnote b{font-family:var(--display);font-weight:400;font-size:19px;letter-spacing:1.5px;color:var(--accent2)}
+
   #leaveSheet p{font-size:12px;color:var(--muted);line-height:1.6;margin-top:6px}
   .gwait{text-align:center;font-size:12.5px;color:var(--muted);padding:12px 0}
   .gwait::after{content:"";animation:dots 1.4s steps(4) infinite}
@@ -111,9 +123,10 @@
   <section class="gs" id="g-build">
     <div class="bar">
       <button class="icon-btn" type="button" data-leave aria-label="Leave"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-      <div class="t-mid"><b class="cat"></b><small>Everyone can move</small></div>
+      <div class="t-mid"><b>RANK TOGETHER</b><small>Everyone can move</small></div>
       <div class="who" id="who"></div>
     </div>
+    <div class="theme"><small>THEME</small><b class="cat"></b><em id="thSub"></em></div>
     <div class="board" id="board"></div>
     <div class="pool-l">To place</div>
     <div class="pool" id="pool" data-tier=""></div>
@@ -166,7 +179,11 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
-<script src="data/words.js"></script>
+<script src="data/movies.js?v=1.0.0"></script>
+<script src="data/people.js?v=1.0.0"></script>
+<script src="data/directors.js?v=1.0.0"></script>
+<script src="data/tierd.js?v=1.0.0"></script>
+<script src="core/pick.js?v=1.1.0"></script>
 <script src="core/core.js?v=0.2.1"></script>
 <script src="core/howto.js?v=0.2.0"></script>
 <script src="core/core-ui.js?v=0.2.3"></script>
@@ -177,7 +194,7 @@
   const $ = id => document.getElementById(id);
   const game = $('game');
   const TIERS = ['S', 'A', 'B', 'C', 'D'];
-  const CATS = ['actors', 'actresses', 'movies', 'directors', 'characters', 'mixed'];
+  const PK = CinefiedPick, N = 10;     // every list has 10 to rank
   const REACTS = {
     'On the placement': ['🔥 Idhi next level', '📈 Konchem respect ivvu bro', '📉 kinda pettali bro', '😤 Idhi insult laga undi', '🫡 sarele kani', '🤦 Idhi too much ra rey', '🧨 controversial',
       '🔥 Absolutely S tier', "💀 No way that's S", '📈 Too low, move it up', '📉 Too high, move it down', '✅ I agree with this', '❌ Hard disagree'],
@@ -186,7 +203,6 @@
     'Energy': ['🔊 CHAT IS THIS REAL', "😂 I can't defend this", '🤝 We move', '⚡ Bold choice'],
   };
   const ALL_REACTS = new Set(Object.values(REACTS).flat());
-  const cap = s => String(s).charAt(0).toUpperCase() + String(s).slice(1);
 
   let V = null, shown = null, code = null, advancing = null;
   const seenSay = {};          // uid -> last reaction time shown
@@ -261,7 +277,8 @@
   }
   function render() {
     if (!V || !V.room.state) return;
-    document.querySelectorAll('#game .cat').forEach(e => { e.textContent = String(st().cat || '').toUpperCase(); });
+    document.querySelectorAll('#game .cat').forEach(e => { e.textContent = String(st().name || st().cat || '').toUpperCase(); });
+    $('thSub').textContent = st().sub || '';
     const p = ph();
     if (p === 'build') { drawBuild(); show('g-build'); }
     else if (p === 'vote') { drawVote(); show('g-vote'); }
@@ -282,15 +299,37 @@
       advancing = key; C.setPhase('result', Object.assign({}, st(), { final })).catch(() => { advancing = null; });
     }
   }
+  // ══ themes (data/tierd.js) and the names each one deals from ══
+  const W = PK.words();
+  const released = PK.movies().filter(m => m.year > 0);
+  const PPL = window.CinefiedPeople || {};
+  const charLabel = {};          // 'Pasupathi' -> 'Pasupathi (Athadu)'
+  (PPL.CHARACTERS || []).forEach(c => { if (c && PK.filled(c.name) && !charLabel[c.name.trim()]) charLabel[c.name.trim()] = PK.filled(c.film) ? `${c.name.trim()} (${c.film.trim()})` : c.name.trim(); });
+  const musicCount = {};
+  released.forEach(m => PK.list(m.music).forEach(x => { musicCount[x] = (musicCount[x] || 0) + 1; }));
+  const POOLS = {
+    movies: released.map(m => m.title.trim()),
+    actors: W.actors, actresses: W.actresses, characters: W.characters, directors: W.directors,
+    music: Object.keys(musicCount).filter(x => musicCount[x] >= 3),
+  };
+  const BY = { director: 'his movies', hero: 'his movies', music: 'his albums' };
+  const NOUN = { movies: 'movies', actors: 'actors', actresses: 'actresses', characters: 'characters', directors: 'directors', music: 'music directors' };
+  function poolOf(t) {
+    if (Array.isArray(t.items)) return t.items.map(x => t.type === 'characters' ? (charLabel[x] || x) : x);
+    const k = ['director', 'hero', 'music'].find(x => t[x]);
+    if (k) return released.filter(m => PK.list(m[k]).includes(t[k])).map(m => m.title.trim());
+    return POOLS[t.type] || [];
+  }
+  const subOf = t => { const k = ['director', 'hero', 'music'].find(x => t[x]); return k ? `${N} of ${BY[k]}` : `${N} random ${NOUN[t.type] || 'picks'}`; };
+  // a theme with fewer than 10 to deal is skipped (check.js warns about it)
+  const THEMES = (window.CinefiedTierd || []).filter(t => t && t.id && t.name && new Set(poolOf(t)).size >= N);
+  const themes = PK.deck('cf_tierd_themes', THEMES);   // no theme repeats until every one has been played
   function newList(v, round) {
-    const s = (v.room.settings || {});
-    const cat = CATS.includes(s.category) ? s.category : 'actors';
-    const n = [8, 10, 12, 15].includes(Number(s.count)) ? Number(s.count) : 10;
-    const W = window.ImposterWords;
-    const pool = cat === 'mixed' ? Object.values(W).flat() : W[cat];
-    const pick = [...new Set(pool)].sort(() => Math.random() - 0.5).slice(0, n);
+    const t = themes.next();
+    if (!t) return { round, name: 'Tier\'d', sub: '', items: {} };
+    const pick = PK.shuffle([...new Set(poolOf(t))]).slice(0, N);
     const its = {}; pick.forEach((s2, i) => { its['i' + i] = { s: s2, t: '', n: i }; });
-    return { round, cat, items: its };
+    return { round, theme: t.id, name: t.name, sub: subOf(t), items: its };
   }
 
   // ══ dragging (finger or mouse); the page scrolls by itself near the top and bottom ══
@@ -378,7 +417,7 @@
   // ── how to play: the animated steps (drawn by core/howto.js) ──
   const HOWTO = {
     steps: [
-      { d: 3200, t: 'Everyone gets the same list: actors, movies, directors and more.' },
+      { d: 3200, t: "Every list comes with a theme, like Banger climaxes or Rajamouli's movies. Everyone ranks the same 10." },
       { d: 5600, t: 'Drag each name into a tier, S at the top, D at the bottom. Anyone can move anything, so argue it out.' },
       { d: 3400, t: 'When everything is placed and everyone taps DONE, the list is final.' },
       { d: 4200, t: "Everyone votes APPROVE or RATIO. More approves than ratios and the list is APPROVED; otherwise it's RATIO'D." }
@@ -442,15 +481,18 @@
       id: 'tierd', name: "Tier'd", shelf: 'Play together', color: 'var(--accent2)', glyph: 'T',
       pitch: 'Rank Telugu cinema together, S to D. Then everyone votes: approved, or ratio\'d?',
       facts: ['2 to 8 players', 'Each on own phone', '~10 min'],
-      rules: ['Everyone gets the same list: actors, movies, directors and more.',
+      rules: ["Every list comes with a theme, like Banger climaxes or Rajamouli's movies. Everyone ranks the same 10.",
               'Drag each name into a tier, S at the top, D at the bottom. Anyone can move anything, so argue it out.',
               'When everything is placed and everyone taps DONE, the list is final.',
               "Everyone votes APPROVE or RATIO. More approves than ratios and the list is APPROVED; otherwise it's RATIO'D."],
       min: 2, max: 8,
-      settings: [
-        { key: 'category', label: 'Category', options: CATS, default: 'actors', show: cap },
-        { key: 'count', label: 'Items', options: [8, 10, 12, 15], default: 10, summary: v => `${v} items` },
-      ],
+      settings: [],
+      // no settings: the summary line becomes a note about the themes
+      wait: () => {
+        const sm = document.getElementById('cfSummary');
+        sm.className = 'summary tnote'; sm.disabled = true;
+        sm.innerHTML = '<b>A NEW THEME EVERY LIST</b>Picked at random when the game starts. 10 names to rank each time.';
+      },
       startPhase: 'build',
       startState: v => newList(v, 1),
     },
