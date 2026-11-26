@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied shared game screens · v0.3.0
+   Cinefied shared game screens · v0.4.0
    The entry page, the code pad and the waiting room, drawn once
    for every multiplayer game. A game page calls:
 
@@ -11,6 +11,7 @@
    which also opens by itself every time the game page is opened.
    Players play under their username (picked on the home page, changed
    only from Profile); a player without one is sent home to pick it.
+   Each game started counts +1 "games played" for every player in it.
    ════════════════════════════════════════════════════════════════ */
 (function (global) {
   'use strict';
@@ -49,6 +50,8 @@
   const AV = ['var(--accent)', 'var(--blue)', 'var(--purple)', 'var(--green)', 'var(--accent2)', 'var(--yellow)'];
   const avColor = uid => { let h = 0; for (const ch of uid) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return AV[h % AV.length]; };
   const initial = n => esc((String(n || '?').match(/[A-Za-z0-9]/) || ['?'])[0].toUpperCase());
+  // a player's picture in the waiting room: their chosen one, or their letter on a colour
+  const pic = (p, mine) => { const a = C.avatar(p.av, p.name); return { bg: a.bg || (mine ? 'linear-gradient(135deg,var(--accent),var(--accent2))' : avColor(p.uid)), html: a.html }; };
 
   // The entry page's room buttons, and (for games with other ways to play) the Online / Local / Computer tabs.
   const WHO = '<div><span class="who-chip" style="cursor:default"><span class="pfp" id="cfMeAv"></span>Playing as <b id="cfMeName"></b></span></div>';
@@ -170,7 +173,11 @@ ${G.howto && global.CinefiedHowTo
     if (id === 'pad') { padReset(); setTimeout(() => $('cfCodeIn').focus(), 250); }
   }
   function closeSheets() { if (HT) HT.stop(); document.querySelectorAll('#cinefied-ui .sheet').forEach(s => s.classList.remove('open')); $('cfScrim').classList.remove('open'); $('cfCodeIn').blur(); }
-  function drawMe() { const n = C.getName(); $('cfMeName').textContent = '@' + n; const av = $('cfMeAv'); av.textContent = (n.match(/[A-Za-z0-9]/) || ['?'])[0].toUpperCase(); av.style.setProperty('--pc', 'linear-gradient(135deg,var(--accent),var(--accent2))'); }
+  function drawMe() {
+    const n = C.getName(), a = C.avatar(C.me.av, n), el = $('cfMeAv');
+    $('cfMeName').textContent = '@' + n; el.innerHTML = a.html;
+    el.style.setProperty('--pc', a.bg || 'linear-gradient(135deg,var(--accent),var(--accent2))');
+  }
 
   // ── code pad ────────────────────────────────────────────────
   const boxes = () => [...$('cfBoxes').querySelectorAll('span')];
@@ -215,7 +222,7 @@ ${G.howto && global.CinefiedHowTo
       if (!p) return `<button class="seat open" type="button" data-open="invite" style="animation:none"><span class="pfp">+</span>Invite</button>`;
       const off = p.online === false, mine = p.uid === v.me;
       return `<button class="seat${mine ? ' me' : ''}${off ? ' off' : ''}" type="button" data-uid="${C.sid(p.uid)}"${old.has(p.uid) ? ' style="animation:none"' : ''}>
-        <span class="pfp" style="--pc:${mine ? 'linear-gradient(135deg,var(--accent),var(--accent2))' : avColor(p.uid)}">${initial(p.name)}${p.uid === room.leader ? ICON.crown : ''}</span>
+        <span class="pfp" style="--pc:${pic(p, mine).bg}">${pic(p, mine).html}${p.uid === room.leader ? ICON.crown : ''}</span>
         ${esc(p.name)}${mine ? '<small>you</small>' : off ? '<small>offline</small>' : ''}</button>`;
     }).join('');
     const need = L.min - v.online.length;
@@ -252,7 +259,7 @@ ${G.howto && global.CinefiedHowTo
       if (inGame) { inGame = false; if (opts.onLobby) opts.onLobby(v); }
       go('s-wait'); drawWait(v);
     } else {
-      if (!inGame) { inGame = true; hideScreens(); if (opts.onStart) opts.onStart(v); }
+      if (!inGame) { inGame = true; hideScreens(); if (C.played) C.played(G.id); if (opts.onStart) opts.onStart(v); }
       else if (opts.onUpdate) opts.onUpdate(v);
     }
   }
