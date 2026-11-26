@@ -1,6 +1,6 @@
 /* Cinefied cloud referee · Cloud Functions (2nd gen), Singapore.
    The game rules are in referee.js (Imposter), pictionary.js, wavelength.js and cluepool.js.
-   Usernames are in account.js. This file only connects them to Firebase. */
+   Usernames are in account.js, games played and Daily streaks in stats.js. This file only connects them to Firebase. */
 const { onCall, HttpsError } = require('firebase-functions/v2/https');
 const { onValueDeleted } = require('firebase-functions/v2/database');
 const { onSchedule } = require('firebase-functions/v2/scheduler');
@@ -9,6 +9,7 @@ const admin = require('firebase-admin');
 const crypto = require('crypto');
 const { makeGames } = require('./games.js');
 const { makeAccount } = require('./account.js');
+const { makeStats } = require('./stats.js');
 const PARTS = {
   Referee: require('./referee.js'), ImposterWords: require('./words.js'),
   Pictionary: require('./pictionary.js'), PictionaryMovies: require('./pictionary-words.js'),
@@ -41,8 +42,11 @@ const account = makeAccount({
   now: () => Date.now(),
   // a guest = signed in without Google (Firebase anonymous sign-in)
   isGuest: async uid => (await admin.auth().getUser(uid)).providerData.length === 0,
+  deleteUser: uid => admin.auth().deleteUser(uid),
   db: dbTools,
 });
+
+const stats = makeStats({ now: () => Date.now(), db: dbTools });
 
 // Every phone talks to the referee through this one door.
 exports.referee = onCall({ cors: true }, async request => {
@@ -54,6 +58,12 @@ exports.referee = onCall({ cors: true }, async request => {
 exports.account = onCall({ cors: true }, async request => {
   if (!request.auth || !request.auth.uid) throw new HttpsError('unauthenticated', 'signin');
   return account.handle(request.auth.uid, request.data || {});
+});
+
+// Games played and Daily results.
+exports.stats = onCall({ cors: true }, async request => {
+  if (!request.auth || !request.auth.uid) throw new HttpsError('unauthenticated', 'signin');
+  return stats.handle(request.auth.uid, request.data || {});
 });
 
 // A player left or was removed: let the round move on (or stop it if it cannot continue).
