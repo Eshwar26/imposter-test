@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied shared game screens · v0.2.4
+   Cinefied shared game screens · v0.3.0
    The entry page, the code pad and the waiting room, drawn once
    for every multiplayer game. A game page calls:
 
@@ -9,6 +9,8 @@
    Needs core.js and core.css. A game that passes game.howto (a scene for
    core/howto.js, loaded before this file) gets the animated HOW TO PLAY,
    which also opens by itself every time the game page is opened.
+   Players play under their username (picked on the home page, changed
+   only from Profile); a player without one is sent home to pick it.
    ════════════════════════════════════════════════════════════════ */
 (function (global) {
   'use strict';
@@ -49,7 +51,7 @@
   const initial = n => esc((String(n || '?').match(/[A-Za-z0-9]/) || ['?'])[0].toUpperCase());
 
   // The entry page's room buttons, and (for games with other ways to play) the Online / Local / Computer tabs.
-  const WHO = '<div><button class="who-chip" type="button" data-open="namesheet"><span class="pfp" id="cfMeAv"></span>Playing as <b id="cfMeName"></b> · change</button></div>';
+  const WHO = '<div><span class="who-chip" style="cursor:default"><span class="pfp" id="cfMeAv"></span>Playing as <b id="cfMeName"></b></span></div>';
   const ROOM_BTNS = '<button class="btn" type="button" id="cfCreate">CREATE ROOM</button><button class="btn outline" type="button" data-open="pad">JOIN WITH CODE</button>';
   function modesHTML() {
     return `<div class="seg" role="tablist">${G.modes.map((m, i) =>
@@ -142,14 +144,6 @@ ${G.howto && global.CinefiedHowTo
 
 <section class="sheet" id="psheet" aria-label="Player"><div class="grab"></div><div class="center-msg" id="cfPBody"></div></section>
 
-<section class="sheet" id="namesheet" aria-label="Your name">
-  <div class="grab"></div>
-  <h3>YOUR NAME</h3>
-  <p class="sub">This is how other players see you</p>
-  <form id="cfNameForm"><input class="name-in" id="cfNameIn" maxlength="${C.NAME_MAX}" autocomplete="off" spellcheck="false">
-  <button class="btn" type="submit" style="margin-top:14px">SAVE</button></form>
-</section>
-
 <div class="toast" id="cfToast" role="status"></div>
 <div class="rejoin hide" id="cfRejoin"><p>REJOINING</p></div>`;
     const host = document.createElement('div'); host.id = 'cinefied-ui'; host.innerHTML = html;
@@ -174,10 +168,9 @@ ${G.howto && global.CinefiedHowTo
     $(id).classList.add('open'); $('cfScrim').classList.add('open');
     if (id === 'rules' && HT) HT.play();
     if (id === 'pad') { padReset(); setTimeout(() => $('cfCodeIn').focus(), 250); }
-    if (id === 'namesheet') { $('cfNameIn').value = C.getName(); setTimeout(() => $('cfNameIn').select(), 250); }
   }
   function closeSheets() { if (HT) HT.stop(); document.querySelectorAll('#cinefied-ui .sheet').forEach(s => s.classList.remove('open')); $('cfScrim').classList.remove('open'); $('cfCodeIn').blur(); }
-  function drawMe() { const n = C.getName(); $('cfMeName').textContent = n; const av = $('cfMeAv'); av.textContent = (n.match(/[A-Za-z0-9]/) || ['?'])[0].toUpperCase(); av.style.setProperty('--pc', 'linear-gradient(135deg,var(--accent),var(--accent2))'); }
+  function drawMe() { const n = C.getName(); $('cfMeName').textContent = '@' + n; const av = $('cfMeAv'); av.textContent = (n.match(/[A-Za-z0-9]/) || ['?'])[0].toUpperCase(); av.style.setProperty('--pc', 'linear-gradient(135deg,var(--accent),var(--accent2))'); }
 
   // ── code pad ────────────────────────────────────────────────
   const boxes = () => [...$('cfBoxes').querySelectorAll('span')];
@@ -321,7 +314,6 @@ ${G.howto && global.CinefiedHowTo
     };
     $('cfShare').addEventListener('click', share);
     $('cfShare2').addEventListener('click', () => { closeSheets(); share(); });
-    $('cfNameForm').addEventListener('submit', e => { e.preventDefault(); C.setName($('cfNameIn').value); drawMe(); closeSheets(); say('Name saved'); });
   }
 
   // ── start ───────────────────────────────────────────────────
@@ -333,6 +325,9 @@ ${G.howto && global.CinefiedHowTo
     if (had) $('cfRejoin').classList.remove('hide');
     try {
       await C.init();
+      // no username yet (e.g. a game link opened before the app): pick one on the home page first
+      if (!C.me.username) { location.replace('index.html'); return; }
+      drawMe();
       const code = await C.resume(G.id);
       if (!code) { go('s-entry', true); showHowTo(); }
     } catch (e) {
