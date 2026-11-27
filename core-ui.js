@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied shared game screens · v0.4.0
+   Cinefied shared game screens · v0.5.0
    The entry page, the code pad and the waiting room, drawn once
    for every multiplayer game. A game page calls:
 
@@ -12,6 +12,8 @@
    Players play under their username (picked on the home page, changed
    only from Profile); a player without one is sent home to pick it.
    Each game started counts +1 "games played" for every player in it.
+   Friends: the Invite seat lists your online friends; opening a game page with
+   ?join=CODE joins that room, and ?invite=UID makes a room and invites that friend.
    ════════════════════════════════════════════════════════════════ */
 (function (global) {
   'use strict';
@@ -132,10 +134,11 @@ ${G.howto && global.CinefiedHowTo
 
 <section class="sheet" id="invite" aria-label="Invite">
   <div class="grab"></div>
-  <h3>FILL THIS SEAT</h3>
-  <p class="sub">Send the room code to a friend</p>
-  <button class="btn" type="button" id="cfShare2">SHARE ROOM CODE</button>
-  <p class="share-note">Inviting friends straight from the app comes with accounts and the friends list.</p>
+  <h3 id="cfInvH">INVITE FRIENDS</h3>
+  <p class="sub" id="cfInvSub">They get an alert and join this room with one tap. No code needed.</p>
+  <div class="flist" id="cfInvList"></div>
+  <p class="share-note" id="cfInvNote"></p>
+  <button class="btn outline" type="button" id="cfShare2">SHARE ROOM CODE</button>
 </section>
 
 <section class="sheet" id="setsheet" aria-label="Game settings">
@@ -171,12 +174,40 @@ ${G.howto && global.CinefiedHowTo
     $(id).classList.add('open'); $('cfScrim').classList.add('open');
     if (id === 'rules' && HT) HT.play();
     if (id === 'pad') { padReset(); setTimeout(() => $('cfCodeIn').focus(), 250); }
+    if (id === 'invite') openInvite();
   }
-  function closeSheets() { if (HT) HT.stop(); document.querySelectorAll('#cinefied-ui .sheet').forEach(s => s.classList.remove('open')); $('cfScrim').classList.remove('open'); $('cfCodeIn').blur(); }
+  function closeSheets() { if (stopInv) { stopInv(); stopInv = null; } if (HT) HT.stop(); document.querySelectorAll('#cinefied-ui .sheet').forEach(s => s.classList.remove('open')); $('cfScrim').classList.remove('open'); $('cfCodeIn').blur(); }
   function drawMe() {
     const n = C.getName(), a = C.avatar(C.me.av, n), el = $('cfMeAv');
     $('cfMeName').textContent = '@' + n; el.innerHTML = a.html;
     el.style.setProperty('--pc', a.bg || 'linear-gradient(135deg,var(--accent),var(--accent2))');
+  }
+
+  // ── invite friends into this room ──
+  let stopInv = null; const invited = {};
+  function openInvite() {
+    const list = $('cfInvList'), note = $('cfInvNote');
+    if (C.me.guest || !C.watchFriends) {
+      $('cfInvH').textContent = 'FILL THIS SEAT'; $('cfInvSub').textContent = 'Send the room code to a friend';
+      list.innerHTML = ''; note.textContent = 'Sign in with Google in Profile to invite friends straight from the app.'; return;
+    }
+    $('cfInvH').textContent = 'INVITE FRIENDS'; $('cfInvSub').textContent = 'They get an alert and join this room with one tap. No code needed.';
+    list.innerHTML = '<p class="share-note">Loading your friends…</p>'; note.textContent = '';
+    if (stopInv) stopInv();
+    stopInv = C.watchFriends(st => {
+      const inRoom = last && last.room && last.room.players ? last.room.players : {};
+      const free = st.friends.filter(f => f.on && !f.game && !inRoom[f.uid]).sort((a, b) => a.username < b.username ? -1 : 1);
+      list.innerHTML = free.map(f => { const a = C.avatar(f.av, f.username); return `<div class="fr"><span class="pfp" style="--pc:${a.bg || avColor(f.uid)}">${a.html}</span><span class="grow">@${esc(f.username)}<small>Online</small></span>
+        ${invited[f.uid] ? '<button class="mini-btn done" type="button" disabled>INVITED</button>' : `<button class="mini-btn" type="button" data-inv="${C.sid(f.uid)}">INVITE</button>`}</div>`; }).join('');
+      note.textContent = free.length ? 'Friends who are offline or already in a game aren\'t listed. Not on Cinefied yet? Share the room code.'
+        : st.friends.length ? 'None of your friends are free right now. Share the room code instead.' : 'Add friends in the Friends tab to invite them here. For now, share the room code.';
+    });
+  }
+  async function sendInvite(uid) {
+    if (!last) return;
+    invited[uid] = true; openInvite();
+    try { await C.friendsCall('invite', { to: uid, code: last.code }); say('Invite sent'); }
+    catch (e) { delete invited[uid]; openInvite(); say(C.message(e)); }
   }
 
   // ── code pad ────────────────────────────────────────────────
@@ -293,6 +324,7 @@ ${G.howto && global.CinefiedHowTo
           <div class="two"><button class="btn outline" type="button" data-close>CANCEL</button><button class="btn" type="button" id="cfKick">REMOVE</button></div>`;
         return openSheet('psheet');
       }
+      const inv = e.target.closest('[data-inv]'); if (inv) return void sendInvite(inv.dataset.inv);
       if (e.target.closest('#cfKick')) { const p = picked; closeSheets(); C.kick(p.uid).then(() => say(`${p.name} was removed`)).catch(err => say(C.message(err))); return; }
       const goBtn = e.target.closest('#cfGo');
       if (goBtn && !starting) {
@@ -335,7 +367,22 @@ ${G.howto && global.CinefiedHowTo
       // no username yet (e.g. a game link opened before the app): pick one on the home page first
       if (!C.me.username) { location.replace('index.html'); return; }
       drawMe();
-      const code = await C.resume(G.id);
+      if (C.alerts) C.alerts({ say });
+      // from an invite or "let in": ?join=CODE. From the Friends tab's Invite: ?invite=UID (make a room, invite them)
+      const q = new URLSearchParams(location.search), joinCode = q.get('join'), inviteUid = q.get('invite');
+      if (joinCode || inviteUid) history.replaceState(null, '', location.pathname);
+      let code = await C.resume(G.id);
+      if (!code && joinCode) {
+        try { code = await C.joinRoom(joinCode, { game: G.id }); }
+        catch (err) { say(C.message(err)); }
+      }
+      if (!code && inviteUid) {
+        const settings = {}; (G.settings || []).forEach(s => { settings[s.key] = s.default; });
+        try {
+          code = await C.createRoom({ game: G.id, min: G.min, max: G.max, settings, ref: !!G.referee });
+          C.friendsCall('invite', { to: inviteUid, code }).then(() => say('Invite sent'), err => say(C.message(err)));
+        } catch (err) { say(C.message(err)); }
+      }
       if (!code) { go('s-entry', true); showHowTo(); }
     } catch (e) {
       go('s-entry', true); say(C.message({ code: 'offline' })); showHowTo();
