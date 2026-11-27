@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════
-   Cinefied core · v0.4.0
+   Cinefied core · v0.5.0
    Everything every multiplayer game needs, written once:
    sign-in and your account (guest or Google, your username),
    rooms, joining, online/offline, rejoining after a refresh,
@@ -13,7 +13,7 @@
 (function (global) {
   'use strict';
 
-  const VERSION = '0.4.0';
+  const VERSION = '0.5.0';
   const REGION = 'asia-southeast1';   // where the cloud functions run
 
   const CONFIG = {
@@ -76,6 +76,15 @@
     referee_down: 'Could not reach the game server. Try again.',
     // accounts
     no_username: 'Pick a username first.',
+    need_google: 'Sign in with Google to add friends.',
+    not_found: 'No player with that username.',
+    already: 'You are already friends.',
+    full: 'You have 100 friends already. Remove one to add more.',
+    their_full: 'They have 100 friends already.',
+    not_friends: 'You are not friends any more.',
+    already_in: 'They are already in this room.',
+    full_room: 'That room is full.',
+    no_request: 'That request is gone.',
     bad_name: 'Only lowercase letters, numbers and _, 3 to 15 of them.',
     taken: 'That username is taken.',
     has_name: 'You already have a username.',
@@ -114,6 +123,8 @@
       me.renamedAt = p && p.renamedAt ? p.renamedAt : 0;
       me.av = p && p.av ? p.av : '';
       me.createdAt = p && p.createdAt ? p.createdAt : 0;
+      // the server keeps a note of who is signed in with Google (only they show up in friend search)
+      if (p && p.username && !me.guest !== !!p.google) call('friends', { action: 'sync' }).catch(() => {});
     } else if (cached.uid !== user.uid) { me.username = null; me.renamedAt = 0; me.av = ''; me.createdAt = 0; }
     meChanged();
   }
@@ -131,6 +142,7 @@
       let user = await new Promise(res => { const off = auth.onAuthStateChanged(u => { off(); res(u); }); });
       if (!user) user = (await auth.signInAnonymously()).user;
       await loadProfile(user);
+      startPresence();
       setTimeout(() => { flushPlayed(); syncDaily(); }, 0);   // anything played while offline or on a page without the core
       return me;
     })();
@@ -198,6 +210,8 @@
     try {
       await user.linkWithPopup(provider());
       await user.reload(); await loadProfile(auth.currentUser);
+      call('friends', { action: 'sync' }).catch(() => {});
+      startPresence();
       return { ok: true };
     } catch (e) {
       if (e.code === 'auth/credential-already-in-use' || e.code === 'auth/email-already-in-use') {
@@ -228,8 +242,9 @@
     if (me.username && me.guest) { try { await call('account', { action: 'drop' }); } catch (e) {} }
     const cred = pendingCred; pendingCred = null;
     const r = await auth.signInWithCredential(cred);
-    forgetPhone();
+    forgetPhone(); stopPresence();
     await loadProfile(r.user);
+    startPresence();
     await pullDaily().catch(() => {});
     return me;
   }
@@ -238,6 +253,7 @@
   async function signOut() {
     await init();
     if (code) await leave();
+    stopPresence();
     await auth.signOut();
     store.del(USER_KEY); forgetPhone();
     me.username = null; me.renamedAt = 0; me.guest = true; me.email = ''; me.av = ''; me.createdAt = 0;
@@ -250,6 +266,7 @@
   async function deleteAccount() {
     await init();
     if (code) await leave();
+    stopPresence();
     await account({ action: 'delete' });
     try { await auth.signOut(); } catch (e) {}
     store.del(USER_KEY); forgetPhone();
@@ -361,6 +378,156 @@
     return { bg: AV_COLORS[+m[1]], html: icon ? `<svg viewBox="0 0 24 24" class="av-ic" style="width:56%;height:56%;stroke:#fff;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round">${icon}</svg>` : letter };
   }
 
+  // ═════════════ FRIENDS (signed in with Google only) ═════════════
+  // presence/{uid} = { on, at, game, phase }: friends see if you're online and what you're playing
+  let presRef = null, presConn = null, pres = { game: null, phase: null };
+  function presenceData(on) { const d = { on, at: TS() }; if (on && pres.game) { d.game = pres.game; d.phase = pres.phase; } return d; }
+  function startPresence() {
+    if (me.guest || !me.uid || !db || presRef) return;
+    presRef = db.ref('presence/' + me.uid);
+    presConn = db.ref('.info/connected');
+    presConn.on('value', s => {
+      if (s.val() !== true || !presRef) return;
+      presRef.onDisconnect().set({ on: false, at: TS() });
+      presRef.set(presenceData(true)).catch(() => {});
+    });
+  }
+  function stopPresence() {
+    if (presConn) presConn.off();
+    if (presRef) { presRef.onDisconnect().cancel(); presRef.set({ on: false, at: TS() }).catch(() => {}); }
+    presRef = presConn = null;
+  }
+  function setPresence(p) {
+    if (pres.game === p.game && pres.phase === p.phase) return;
+    pres = p;
+    if (presRef) presRef.set(presenceData(true)).catch(() => {});
+  }
+
+  async function friendsCall(action, data) {
+    await init();
+    let r;
+    try { r = await call('friends', Object.assign({ action }, data || {})); } catch (e) { console.error(e); throw fail('server_down'); }
+    if (!r.ok) throw fail(r.error || 'busy', r);
+    return r;
+  }
+  // Find players by the start of their username (2+ letters). Only players signed in with Google.
+  async function searchPlayers(raw) {
+    const q = String(raw || '').toLowerCase().replace(/[^a-z0-9_]/g, '');
+    if (q.length < 2) return [];
+    await init();
+    const snap = await db.ref('usernames').orderByKey().startAt(q).endAt(q + '\uf8ff').limitToFirst(12).get();
+    let blocked = {}; try { blocked = (await db.ref('blocks/' + me.uid).get()).val() || {}; } catch (e) {}
+    const uids = []; snap.forEach(c => { if (c.val() !== me.uid && !blocked[c.val()]) uids.push(c.val()); });
+    const ps = await Promise.all(uids.map(u => playerCard(u)));
+    return ps.filter(p => p && p.google).slice(0, 8);
+  }
+  // What anyone can see about a player: name, picture, since when, streak and games played.
+  async function playerCard(uid) {
+    await init();
+    const p = (await db.ref('users/' + uid).get()).val();
+    if (!p || !p.username) return null;
+    const st = p.pub && p.pub.st, alive = st && (st.last === dayKey() || st.last === dayKey(Date.now() - DAYMS));
+    return { uid, username: p.username, av: p.av || '', google: !!p.google, createdAt: p.createdAt || 0,
+             streak: alive ? st.cur : 0, games: (p.pub && p.pub.gp) || 0 };
+  }
+
+  // Watch your friends, requests and sent requests. cb gets
+  // { friends: [{uid, username, av, on, at, game, phase}], requests: [{uid, username, av}], sent: {uid: true} }
+  function watchFriends(cb) {
+    let stopped = false;
+    const subs = [], pres = {}, cards = {};
+    let F = {}, R = {}, S = {};
+    const emit = () => {
+      if (stopped) return;
+      const friends = Object.keys(F).filter(u => cards[u]).map(u => Object.assign({ uid: u }, cards[u], pres[u] || { on: false, at: 0 }));
+      const requests = Object.keys(R).filter(u => cards[u]).map(u => Object.assign({ uid: u }, cards[u]));
+      cb({ friends, requests, sent: Object.assign({}, S) });
+    };
+    const card = u => { if (cards[u]) return; cards[u] = null; playerCard(u).then(c => { cards[u] = c || { username: '?', av: '' }; emit(); }).catch(() => {}); };
+    const watchPres = u => {
+      if (pres[u] !== undefined) return; pres[u] = null;
+      const r = db.ref('presence/' + u), h = r.on('value', s => { pres[u] = s.val() || { on: false, at: 0 }; emit(); }, () => {});
+      subs.push(() => r.off('value', h));
+    };
+    init().then(() => {
+      if (stopped) return;
+      const on = (path, set) => { const r = db.ref(path + '/' + me.uid), h = r.on('value', s => { set(s.val() || {}); emit(); }, () => {}); subs.push(() => r.off('value', h)); };
+      on('friends', v => { F = v; Object.keys(F).forEach(u => { card(u); watchPres(u); }); });
+      on('requests', v => { R = v; Object.keys(R).forEach(card); });
+      on('sent', v => { S = v; });
+    });
+    return () => { stopped = true; subs.forEach(f => f()); };
+  }
+
+  // ── alerts: invites, join requests and friend requests, shown at the top while the app is open ──
+  const PAGE_OF = g => String(g || '').replace(/[^a-z]/g, '') + '.html';
+  const GAME_NAMES = { imposter: 'Imposter', tierd: "Tier'd", pictionary: 'Pictionary', likely: "Who's More Likely", wavelength: 'Wavelength',
+    cluepool: 'Clue Pool', blindspot: 'Blindspot', tictactoe: 'Tic Tac Toe', lines: 'Lines' };
+  const gameName = g => GAME_NAMES[g] || g;
+  let alertsOn = false;
+  function alerts(opts) {
+    const o = opts || {};
+    if (alertsOn) return; alertsOn = true;
+    init().then(() => {
+      if (me.guest) { alertsOn = false; return; }
+      if (!document.getElementById('cf-alert-css')) {
+        const st = document.createElement('style'); st.id = 'cf-alert-css';
+        st.textContent = `.cf-al{position:fixed;left:50%;top:calc(10px + env(safe-area-inset-top,0px));z-index:90;width:min(430px,calc(100% - 24px));transform:translate(-50%,-150%);transition:transform .45s cubic-bezier(.2,.7,.2,1);
+          background:var(--surface2,#1c1c28);color:var(--text,#e8e8f0);border:1px solid var(--border,#2a2a3d);border-radius:18px;padding:12px 14px;box-shadow:0 14px 40px rgba(0,0,0,.35);font-family:var(--mono,monospace)}
+          .cf-al.show{transform:translate(-50%,0)}
+          .cf-al .l{font-size:9.5px;letter-spacing:2px;color:var(--muted,#7070a0);text-transform:uppercase;margin-bottom:8px}
+          .cf-al .r{display:flex;align-items:center;gap:12px}.cf-al .g{flex:1;min-width:0;font-size:12.5px;line-height:1.45}.cf-al .g small{display:block;color:var(--muted,#7070a0);font-size:11px}
+          .cf-al .p{width:42px;height:42px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:var(--display,sans-serif);font-size:20px;color:#fff;background:var(--pc)}
+          .cf-al .a{display:flex;gap:8px;margin-top:10px}.cf-al .a button{flex:1;border:0;border-radius:999px;padding:9px;font-family:var(--display,sans-serif);font-size:16px;letter-spacing:1.5px;cursor:pointer;background:var(--accent,#ff3f3f);color:#fff}
+          .cf-al .a button.n{background:none;color:var(--muted,#7070a0);box-shadow:inset 0 0 0 1px var(--border,#2a2a3d)}
+          .cf-al .t{height:3px;border-radius:2px;background:var(--border,#2a2a3d);margin-top:10px;overflow:hidden}.cf-al .t i{display:block;height:100%;width:100%;background:var(--accent2,#ff8c42)}
+          .cf-al.show .t i{animation:cfal 20s linear forwards}@keyframes cfal{to{width:0}}`;
+        document.head.appendChild(st);
+      }
+      const box = document.createElement('div'); box.className = 'cf-al'; document.body.appendChild(box);
+      const queue = []; let showing = false, timer = null;
+      const notifOn = () => { try { return localStorage.getItem('cf_notif') !== '0'; } catch (e) { return true; } };
+      function next() {
+        if (showing || !queue.length) return;
+        const it = queue.shift(); showing = true;
+        const a = avatar(it.av, it.name);
+        const who = `<b>@${esc(it.name)}</b>`;
+        const T = {
+          invite: ['Invite', `${who} invited you to <b>${esc(gameName(it.game))}</b><small>${it.n ? it.n + (it.n === 1 ? ' player' : ' players') + ' in the room' : ''}</small>`, ['LATER', 'JOIN']],
+          ask: ['Wants to join', `${who} wants to join your room`, ['NO', 'LET IN']],
+          in: ['You\'re in', `${who} let you in. Joining ${esc(gameName(it.game))}…`, null],
+          req: ['Friend request', `${who} sent you a friend request`, ['LATER', 'VIEW']],
+          friend: ['New friend', `${who} and you are friends now`, null],
+        }[it.t];
+        if (!T) { showing = false; return next(); }
+        box.innerHTML = `<div class="l">${T[0]}</div><div class="r"><span class="p" style="--pc:${a.bg || 'var(--accent2)'}">${a.html}</span><div class="g">${T[1]}</div></div>`
+          + (T[2] ? `<div class="a"><button class="n" data-a="no">${T[2][0]}</button><button data-a="yes">${T[2][1]}</button></div><div class="t"><i></i></div>` : '');
+        box.classList.remove('show'); void box.offsetWidth; box.classList.add('show');
+        const done = () => { clearTimeout(timer); box.classList.remove('show'); box.onclick = null; showing = false; setTimeout(next, 500); };
+        if (it.t === 'in') { timer = setTimeout(() => { location.href = PAGE_OF(it.game) + '?join=' + it.code; }, 1200); return; }
+        timer = setTimeout(done, T[2] ? 20000 : 4000);
+        box.onclick = e => {
+          const b = e.target.closest('[data-a]'); if (!b) return;
+          const yes = b.dataset.a === 'yes';
+          if (it.t === 'invite' && yes) { location.href = PAGE_OF(it.game) + '?join=' + it.code; return; }
+          if (it.t === 'ask') friendsCall(yes ? 'admit' : 'refuse', { from: it.from }).catch(err => o.say && o.say(message(err)));
+          if (it.t === 'req' && yes) { if (o.openFriends) o.openFriends(); else location.href = 'index.html#friends'; }
+          done();
+        };
+      }
+      const ref = db.ref('inbox/' + me.uid);
+      ref.on('child_added', s => {
+        const it = s.val(); ref.child(s.key).remove().catch(() => {});
+        if (!it) return;
+        const age = Date.now() - (it.at || 0), fresh = ['invite', 'ask', 'in'].includes(it.t) ? age < 120000 : age < 864e5;
+        if (!fresh) return;
+        if (it.t !== 'in' && !notifOn()) return;
+        if (it.t === 'invite' && room && code === it.code) return;   // already in that room
+        queue.push(it); next();
+      });
+    }).catch(() => { alertsOn = false; });
+  }
+
   // ── your name in games: your username ─────────────────────────
   function getName() { return me.username || 'player'; }
   function setName() { return getName(); }   // names are changed only from Profile now
@@ -456,6 +623,7 @@
   function enter(c) {
     return new Promise(resolve => {
       code = c; room = null; priv = null;
+      if (!me.guest && db) db.ref('roomOf/' + me.uid).set(c).catch(() => {});
       const meRef = db.ref(`rooms/${c}/players/${me.uid}`);
       connRef = db.ref('.info/connected');
       connRef.on('value', s => {
@@ -483,6 +651,7 @@
     room = r;
     const g = r.game;
     store.set(SESSION_KEY, { code, game: g }, true);
+    setPresence({ game: g, phase: r.phase === 'waiting' ? 'waiting' : 'play' });
     watchLeader();
     emit('update', {
       becameLeader: !!before && before.leader !== me.uid && r.leader === me.uid,
@@ -521,6 +690,8 @@
     roomRef = connRef = privRef = leaderTimer = watchedLeader = null;
     code = null; room = null; priv = null;
     store.del(SESSION_KEY, true);
+    setPresence({ game: null, phase: null });
+    if (!me.guest && db && me.uid) db.ref('roomOf/' + me.uid).remove().catch(() => {});
   }
 
   async function leave() {
@@ -581,6 +752,8 @@
     // stats
     played, flushPlayed, syncDaily, pullDaily, getStats, dayKey,
     AV_COLORS, AV_ICONS, avatar,
+    // friends
+    friendsCall, searchPlayers, playerCard, watchFriends, alerts, gameName, pageOf: PAGE_OF,
     // rooms
     createRoom, joinRoom, resume, leave, kick, updateSettings, setPhase, updateMe, referee, txnState,
     onChange, message, esc, sid,
