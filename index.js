@@ -1,6 +1,6 @@
 /* Cinefied cloud referee · Cloud Functions (2nd gen), Singapore.
    The game rules are in referee.js (Imposter), pictionary.js, wavelength.js and cluepool.js.
-   Usernames are in account.js, games played and Daily streaks in stats.js. This file only connects them to Firebase. */
+   Usernames are in account.js, games played and Daily streaks in stats.js, friends in friends.js. This file only connects them to Firebase. */
 const { onCall, HttpsError } = require('firebase-functions/v2/https');
 const { onValueDeleted } = require('firebase-functions/v2/database');
 const { onSchedule } = require('firebase-functions/v2/scheduler');
@@ -10,6 +10,7 @@ const crypto = require('crypto');
 const { makeGames } = require('./games.js');
 const { makeAccount } = require('./account.js');
 const { makeStats } = require('./stats.js');
+const { makeFriends } = require('./friends.js');
 const PARTS = {
   Referee: require('./referee.js'), ImposterWords: require('./words.js'),
   Pictionary: require('./pictionary.js'), PictionaryMovies: require('./pictionary-words.js'),
@@ -48,6 +49,13 @@ const account = makeAccount({
 
 const stats = makeStats({ now: () => Date.now(), db: dbTools });
 
+const friends = makeFriends({
+  now: () => Date.now(),
+  id: () => Date.now().toString(36) + crypto.randomBytes(4).toString('hex'),
+  isGoogle: async uid => (await admin.auth().getUser(uid)).providerData.some(p => p.providerId === 'google.com'),
+  db: dbTools,
+});
+
 // Every phone talks to the referee through this one door.
 exports.referee = onCall({ cors: true }, async request => {
   if (!request.auth || !request.auth.uid) throw new HttpsError('unauthenticated', 'signin');
@@ -66,16 +74,25 @@ exports.stats = onCall({ cors: true }, async request => {
   return stats.handle(request.auth.uid, request.data || {});
 });
 
+// Friends: requests, invites and "ask to join".
+exports.friends = onCall({ cors: true }, async request => {
+  if (!request.auth || !request.auth.uid) throw new HttpsError('unauthenticated', 'signin');
+  return friends.handle(request.auth.uid, request.data || {});
+});
+
 // A player left or was removed: let the round move on (or stop it if it cannot continue).
 exports.playerGone = onValueDeleted({ ref: '/rooms/{code}/players/{uid}', instance: INSTANCE }, event => referee.playerGone(event.params.code));
 
-// A room was deleted: throw away its hidden words, votes and drawings.
-exports.roomGone = onValueDeleted({ ref: '/rooms/{code}', instance: INSTANCE }, event => referee.wipeRoom(event.params.code));
+// A room was deleted: throw away its hidden words, votes, drawings and join requests.
+exports.roomGone = onValueDeleted({ ref: '/rooms/{code}', instance: INSTANCE }, async event => {
+  await db.ref(`asks/${event.params.code}`).remove();
+  return referee.wipeRoom(event.params.code);
+});
 
 // Once an hour: delete rooms nobody closed.
 exports.sweep = onSchedule({ schedule: 'every 60 minutes', timeZone: 'Asia/Kolkata' }, async () => {
   const snap = await db.ref('rooms').orderByChild('createdAt').endAt(Date.now() - ROOM_MAX_AGE_MS).limitToFirst(200).once('value');
   const up = {};
-  snap.forEach(child => { up[`rooms/${child.key}`] = null; up[`private/${child.key}`] = null; up[`secret/${child.key}`] = null; up[`draw/${child.key}`] = null; });
+  snap.forEach(child => { up[`rooms/${child.key}`] = null; up[`private/${child.key}`] = null; up[`secret/${child.key}`] = null; up[`draw/${child.key}`] = null; up[`asks/${child.key}`] = null; });
   if (Object.keys(up).length) await db.ref().update(up);
 });
