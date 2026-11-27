@@ -1,4 +1,4 @@
-/* Cinefied stats · v0.1.0
+/* Cinefied stats · v0.2.0
    Games played and Daily streaks, kept in the player's account.
    Only the server writes stats/, so counts and streaks can't be edited by hand.
 
@@ -8,6 +8,7 @@
      stats/{uid}/streak            = { cur, best, last }   days in a row with any Daily puzzle played
      stats/{uid}/pz/{puz}          = { cur, best, last }   days in a row for each puzzle
      stats/{uid}/imported          = true once this player's old phone history was copied in
+     users/{uid}/pub               = { gp, st }   games played and streak, shown on your profile card to others
 
    Actions (called from core.js through the "stats" function):
      played { game }   +1 game played
@@ -55,6 +56,7 @@ function makeStats({ db, now }) {
     });
     if (!counted) return { ok: true, counted: false };
     await db.txn(`stats/${uid}/games/${game}`, n => (n || 0) + 1);
+    await db.txn(`users/${uid}/pub/gp`, n => (n || 0) + 1);   // the total other players see on your profile card
     return { ok: true, counted: true };
   }
 
@@ -83,7 +85,7 @@ function makeStats({ db, now }) {
     const streak = run(keys);
     const pz = {};
     for (const p of PUZ) pz[p] = run(keys.filter(k => all[k] && all[k][p]));
-    await db.update({ [`stats/${uid}/streak`]: streak, [`stats/${uid}/pz`]: pz });
+    await db.update({ [`stats/${uid}/streak`]: streak, [`stats/${uid}/pz`]: pz, [`users/${uid}/pub/st`]: streak });
     return { ok: true, streak, saved: n };
   }
 
