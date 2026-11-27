@@ -8,13 +8,68 @@
       }
     },
     "usernames": {
-      "$name": {
-        ".read": "auth != null"
-      }
+      ".read": "auth != null"
     },
     "stats": {
       "$uid": {
         ".read": "auth != null && auth.uid === $uid"
+      }
+    },
+    "friends": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid"
+      }
+    },
+    "requests": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid"
+      }
+    },
+    "sent": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid"
+      }
+    },
+    "blocks": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid"
+      }
+    },
+    "inbox": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        "$id": {
+          ".write": "auth != null && auth.uid === $uid && !newData.exists()"
+        }
+      }
+    },
+    "presence": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || root.child('friends').child($uid).child(auth.uid).exists())",
+        ".write": "auth != null && auth.uid === $uid",
+        ".validate": "newData.hasChildren(['on', 'at'])",
+        "on": {
+          ".validate": "newData.isBoolean()"
+        },
+        "at": {
+          ".validate": "newData.isNumber() && newData.val() <= now"
+        },
+        "game": {
+          ".validate": "newData.isString() && newData.val().length <= 24"
+        },
+        "phase": {
+          ".validate": "newData.isString() && newData.val().length <= 10"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "roomOf": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+        ".validate": "newData.isString() && newData.val().matches(/^[23456789ABCDEFGHJKMNPQRSTUVWXYZ]{6}$/)"
       }
     },
     "rooms": {
