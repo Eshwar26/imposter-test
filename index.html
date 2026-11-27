@@ -286,6 +286,46 @@
   .icons button.on svg{stroke:#fff}
   .del-in{width:100%;margin-top:14px;background:var(--surface2);border:1.5px solid var(--border);border-radius:14px;padding:13px 14px;color:var(--text);font-family:var(--mono);font-size:16px;outline:none}
 
+  /* friends */
+  .fsearch{position:relative;margin:14px 20px 0}
+  .fsearch span{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px}
+  .fsearch input{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:12px 14px 12px 30px;color:var(--text);font-family:var(--mono);font-size:16px;outline:none}
+  .fsearch input:focus{border-color:var(--accent2)}
+  .fres{margin:10px 20px 0;background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--lift);overflow:hidden}
+  .fres .none{font-size:11.5px;color:var(--muted);padding:14px 16px}
+  .flist2{margin:0 20px;background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--lift);overflow:hidden}
+  .frow{display:flex;align-items:center;gap:12px;padding:12px 12px 12px 14px;cursor:pointer;width:100%;background:none;border:0;color:var(--text);text-align:left;font-family:var(--mono)}
+  .frow + .frow{border-top:1px solid var(--border)}
+  .frow .pf{width:42px;height:42px;flex:none;border-radius:50%;display:grid;place-items:center;position:relative;font-family:var(--display);font-size:20px;color:#fff;background:var(--pc)}
+  .frow .pf.on::after{content:"";position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-radius:50%;background:var(--green);box-shadow:0 0 0 2.5px var(--surface)}
+  .frow.off .pf{opacity:.55}
+  .frow .grow{flex:1;min-width:0}
+  .frow b{display:block;font-size:13.5px;font-weight:500}
+  .frow small{display:block;font-size:11px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .frow small.play{color:var(--green)}
+  .mb{border:0;border-radius:999px;padding:6px 11px;font-family:var(--display);font-size:14px;letter-spacing:1.5px;cursor:pointer;background:var(--accent);color:#fff;flex:none}
+  .mb.ask{background:none;color:var(--accent2);box-shadow:inset 0 0 0 1.5px var(--accent2)}
+  .mb.ghost{background:none;color:var(--muted);box-shadow:inset 0 0 0 1px var(--border)}
+  .mb.done{background:none;color:var(--green);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--green) 45%,transparent)}
+  .mb[disabled]{cursor:default}
+  .fempty{margin:0 20px;padding:26px 18px;border-radius:16px;border:1px dashed var(--border);text-align:center}
+  .fempty b{display:block;font-family:var(--display);font-weight:400;font-size:22px;letter-spacing:1.5px}
+  .fempty p{font-size:11.5px;color:var(--muted);line-height:1.6;margin-top:6px}
+  .pcard{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .pcard .avatar{width:84px;height:84px;font-size:40px}
+  .pcard h3{margin-top:12px;font-size:30px}
+  .pcard .nums{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;margin-top:16px}
+  .pcard .nums div{background:var(--surface2);border-radius:14px;padding:12px}
+  .pcard .nums b{display:block;font-family:var(--display);font-weight:400;font-size:28px;line-height:1}
+  .pcard .nums small{display:block;font-size:10px;color:var(--muted);margin-top:5px}
+  .bigbtn.done{background:none;color:var(--green);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--green) 45%,transparent)}
+  .bigbtn.red{background:none;color:var(--accent);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--accent) 50%,transparent)}
+  .gpick{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+  .gpick button{border:1px solid var(--border);background:var(--surface2);color:var(--text);border-radius:12px;padding:12px;font-family:var(--display);font-size:17px;letter-spacing:1.2px;cursor:pointer;text-align:left}
+  .gpick button:active{border-color:var(--accent)}
+  .tab{position:relative}
+  .tab .badge{position:absolute;top:0;left:calc(50% + 6px);min-width:16px;height:16px;border-radius:8px;background:var(--accent);color:#fff;font-size:9.5px;display:grid;place-items:center;padding:0 4px;letter-spacing:0}
+
   /* ── Username field (first open and Change username) ── */
   .ufield{position:relative;display:block;margin-top:20px}
   .ufield span{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px}
@@ -446,11 +486,19 @@
   <!-- ═════════ FRIENDS ═════════ -->
   <div class="view" id="v-friends">
     <div class="page-title"><h1>FRIENDS</h1></div>
-    <div class="soon" style="--c:var(--blue)">
+    <!-- guests: friends need a Google account -->
+    <div class="soon" style="--c:var(--blue)" id="fGuest" hidden>
       <span class="g" aria-hidden="true">F</span>
-      <div class="eyebrow">Coming soon</div>
+      <div class="eyebrow">Sign in to add friends</div>
       <h2>PLAY WITH YOUR FRIENDS</h2>
-      <p>Add friends, see who's online and invite them straight into your game. For now, share your room code.</p>
+      <p>Sign in with Google to add friends, see who's online and invite them straight into your game. For now, share your room code.</p>
+      <button class="gbtn" type="button" id="gLink2" style="margin-top:16px;position:relative"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Sign in with Google</button>
+    </div>
+    <!-- signed in -->
+    <div id="fMain" hidden>
+      <div class="fsearch"><span>@</span><input id="fIn" placeholder="search players by username" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"></div>
+      <div id="fResults"></div>
+      <div id="fBody"></div>
     </div>
   </div>
 
@@ -494,6 +542,7 @@
         </div>
       </div>
       <div class="setting"><span>Sound<small>The intro sound</small></span><button class="switch on" id="sound" type="button" aria-label="Sound" aria-pressed="true"></button></div>
+      <div class="setting" id="notifRow" hidden><span>Notifications<small>Friend requests, invites and join requests</small></span><button class="switch on" id="notif" type="button" aria-label="Notifications" aria-pressed="true"></button></div>
       <div class="setting" id="acctRow" hidden><span>Account<small class="mail" id="acctMail"></small></span></div>
       <button class="setting" type="button" data-soon="About Midnight Labs"><span>About Midnight Labs</span><span class="chev">›</span></button>
       <button class="setting" type="button" data-soon="Privacy policy"><span>Privacy policy</span><span class="chev">›</span></button>
@@ -565,6 +614,8 @@
   <input class="del-in" id="delIn" autocomplete="off" autocapitalize="off" spellcheck="false">
   <div class="two"><button class="bigbtn outline" type="button" data-close>CANCEL</button><button class="bigbtn" type="button" id="delGo" disabled>DELETE</button></div>
 </section>
+
+<section class="sheet" id="sh-f" aria-label="Friend"><div class="grab"></div><div id="shFBody"></div></section>
 
 <section class="sheet" id="sh-out" aria-label="Sign out">
   <div class="grab"></div>
@@ -785,7 +836,8 @@
     const since = ME.createdAt ? '<span class="tagp">Playing since ' + new Date(ME.createdAt).toLocaleDateString('en-IN', { month:'short', year:'numeric' }) + '</span>' : '';
     $('meTags').innerHTML = (ME.guest ? '<span class="tagp">Guest</span>' : '<span class="tagp g">Saved to Google</span>') + since;
     $('saveCard').hidden = !ME.guest;
-    $('acctRow').hidden = ME.guest; $('signOut').hidden = ME.guest;
+    $('acctRow').hidden = ME.guest; $('signOut').hidden = ME.guest; $('notifRow').hidden = ME.guest;
+    if (typeof friendsMode === 'function') friendsMode();
     $('acctMail').textContent = ME.email || 'Google';
     $('foundMe').textContent = u ? '@' + u : 'a guest';
   }
@@ -958,12 +1010,127 @@
     finally { b.classList.remove('busy'); b.textContent = 'DELETE'; }
   });
 
+  // ═════ FRIENDS (signed in with Google only) ═════
+  // var (not let): drawMe() runs before this part of the page and already calls friendsMode()
+  var stopF = null, FST = { friends: [], requests: [], sent: {} }, asked = {};
+  const pfHTML = (av, name, uid, on) => { const a = C.avatar(av, name); return `<span class="pf${on ? ' on' : ''}" style="--pc:${a.bg || 'var(--blue)'}">${a.html}</span>`; };
+  function ago(ms){
+    if (!ms) return 'a while ago';
+    const m = Math.max(1, Math.round((Date.now() - ms) / 6e4));
+    return m < 60 ? m + ' min ago' : m < 1440 ? Math.round(m / 60) + 'h ago' : m < 2880 ? 'yesterday' : Math.round(m / 1440) + ' days ago';
+  }
+  function friendsMode(){
+    const guest = !ME.username || ME.guest;
+    $('fGuest').hidden = !guest; $('fMain').hidden = guest;
+    if (guest) { if (stopF) { stopF(); stopF = null; } FST = { friends: [], requests: [], sent: {} }; badge(); return; }
+    if (!stopF) stopF = C.watchFriends(st => { FST = st; drawFriends(); badge(); });
+    C.alerts({ say, openFriends: () => showTab('friends') });   // starts once; also right after signing in with Google
+  }
+  function badge(){
+    const t = document.querySelector('.tab[data-tab=friends]'), n = FST.requests.length;
+    let b = t.querySelector('.badge');
+    if (!n) { if (b) b.remove(); return; }
+    if (!b) { b = document.createElement('span'); b.className = 'badge'; t.appendChild(b); }
+    b.textContent = n;
+  }
+  function drawFriends(){
+    const fs = FST.friends.slice().sort((a, b) => a.username < b.username ? -1 : 1);
+    const online = fs.filter(f => f.on && !f.game), playing = fs.filter(f => f.on && f.game), offline = fs.filter(f => !f.on).sort((a, b) => (b.at || 0) - (a.at || 0));
+    const row = f => {
+      const st = f.on && f.game ? `<small class="play">${f.phase === 'waiting' ? 'In ' + esc(C.gameName(f.game)) + ' room' : 'Playing ' + esc(C.gameName(f.game))}</small>` : f.on ? '<small>Online</small>' : `<small>Last seen ${ago(f.at)}</small>`;
+      const act = f.on && f.game ? (f.phase === 'waiting' ? (asked[f.uid] ? '<button class="mb done" disabled>ASKED</button>' : `<button class="mb ask" data-ask="${f.uid}">ASK TO JOIN</button>`) : '<button class="mb ghost" disabled>IN A GAME</button>')
+        : f.on ? `<button class="mb" data-invite="${f.uid}">INVITE</button>` : '';
+      return `<div class="frow${f.on ? '' : ' off'}" data-fmenu="${f.uid}">${pfHTML(f.av, f.username, f.uid, f.on)}<div class="grow"><b>@${esc(f.username)}</b>${st}</div>${act}</div>`;
+    };
+    const group = (t, list) => list.length ? `<div class="sec-label">${t} <em>${list.length}</em></div><div class="flist2">${list.map(row).join('')}</div>` : '';
+    const reqs = FST.requests.length ? `<div class="sec-label">REQUESTS <em>${FST.requests.length}</em></div><div class="flist2">${FST.requests.map(r =>
+      `<div class="frow" data-card="${r.uid}">${pfHTML(r.av, r.username)}<div class="grow"><b>@${esc(r.username)}</b><small>sent a request</small></div><button class="mb" data-accept="${r.uid}">ACCEPT</button><button class="mb ghost" data-decline="${r.uid}">NO</button></div>`).join('')}</div>` : '';
+    $('fBody').innerHTML = reqs + (fs.length ? group('ONLINE', online) + group('PLAYING NOW', playing) + group('OFFLINE', offline)
+      : '<div class="sec-label">YOUR FRIENDS</div><div class="fempty"><b>NO FRIENDS YET</b><p>Search for your friends by their username. Once they accept, you\'ll see when they\'re online and can invite them straight into a game.</p></div>');
+  }
+
+  // search, then a player's card, then Add friend
+  let sT = null, sN = 0;
+  $('fIn').addEventListener('input', () => {
+    const inp = $('fIn'); inp.value = inp.value.toLowerCase().replace(/[^a-z0-9_]/g, '');
+    clearTimeout(sT); const q = inp.value, my = ++sN;
+    if (q.length < 2) { $('fResults').innerHTML = ''; return; }
+    sT = setTimeout(async () => {
+      let hits = []; try { hits = await C.searchPlayers(q); } catch (e) { hits = null; }
+      if (my !== sN) return;
+      $('fResults').innerHTML = '<div class="fres">' + (hits === null ? '<div class="none">Couldn\'t search. Are you online?</div>'
+        : hits.length ? hits.map(p => `<div class="frow" data-card="${p.uid}">${pfHTML(p.av, p.username)}<div class="grow"><b>@${esc(p.username)}</b><small>${isFriend(p.uid) ? 'Your friend' : FST.sent[p.uid] ? 'Request sent' : p.createdAt ? 'Playing since ' + new Date(p.createdAt).toLocaleDateString('en-IN', { month:'short', year:'numeric' }) : ''}</small></div><span class="chev">›</span></div>`).join('')
+        : `<div class="none">No player called @${esc(q)}. Players need to sign in with Google before they show up here.</div>`) + '</div>';
+    }, 280);
+  });
+  const isFriend = uid => FST.friends.some(f => f.uid === uid);
+  const sheetF = html => { $('shFBody').innerHTML = html; openSheet('sh-f'); };
+  async function showCard(uid){
+    let p; try { p = await C.playerCard(uid); } catch (e) { p = null; }
+    if (!p) return say('No player with that username');
+    const a = C.avatar(p.av, p.username), since = p.createdAt ? new Date(p.createdAt).toLocaleDateString('en-IN', { month:'short', year:'numeric' }) : '';
+    const req = FST.requests.some(r => r.uid === uid);
+    const btn = isFriend(uid) ? '<button class="bigbtn done" disabled>FRIENDS</button>'
+      : req ? `<button class="bigbtn" data-accept="${uid}">ACCEPT REQUEST</button>`
+      : FST.sent[uid] ? `<button class="bigbtn done" disabled>REQUEST SENT</button><button class="bigbtn outline" data-cancel="${uid}">CANCEL REQUEST</button>`
+      : `<button class="bigbtn" data-add="${uid}">ADD FRIEND</button>`;
+    sheetF(`<div class="pcard"><span class="avatar" style="${a.bg ? 'background:' + a.bg : ''}">${a.html}</span><h3>@${esc(p.username.toUpperCase())}</h3>
+      ${since ? `<div class="tagrow"><span class="tagp">Playing since ${since}</span></div>` : ''}
+      <div class="nums"><div><b>${p.streak}</b><small>Day streak</small></div><div><b>${p.games}</b><small>Games played</small></div></div></div>
+      ${btn}${isFriend(uid) || req ? '' : '<p class="sub" style="text-align:center;margin-top:10px">They become your friend once they accept.</p>'}`);
+  }
+  function friendMenu(uid){
+    const f = FST.friends.find(x => x.uid === uid); if (!f) return;
+    const a = C.avatar(f.av, f.username);
+    sheetF(`<div class="pcard"><span class="avatar" style="${a.bg ? 'background:' + a.bg : ''}">${a.html}</span><h3>@${esc(f.username.toUpperCase())}</h3></div>
+      <button class="bigbtn outline" data-remove="${uid}">REMOVE FRIEND</button>
+      <button class="bigbtn red" data-block="${uid}">BLOCK</button>
+      <p class="sub" style="text-align:center;margin-top:10px">Block removes @${esc(f.username)} and stops them sending you requests or invites.</p>`);
+  }
+  function gamePicker(uid){
+    const f = FST.friends.find(x => x.uid === uid); if (!f) return;
+    sheetF(`<h3>INVITE @${esc(f.username.toUpperCase())}</h3><p class="sub">Pick a game. A room opens for you and @${esc(f.username)} gets the invite.</p>
+      <div class="gpick">${SHELVES[0].games.map(g => `<button type="button" data-gp="${g.p}" data-for="${uid}">${esc(g.n)}</button>`).join('')}</div>`);
+  }
+  const fdo = async (action, data, ok) => { try { const r = await C.friendsCall(action, data); if (ok) say(typeof ok === 'function' ? ok(r) : ok); return r; } catch (e) { say(C.message(e)); return null; } };
+  document.addEventListener('click', async e => {
+    const t = e.target, d = k => t.closest('[data-' + k + ']');
+    let b;
+    if ((b = d('accept'))) { e.stopPropagation(); closeSheets(); return void fdo('accept', { from: b.dataset.accept }, 'You\'re friends now'); }
+    if ((b = d('decline'))) { e.stopPropagation(); return void fdo('decline', { from: b.dataset.decline }); }
+    if ((b = d('add'))) { b.disabled = true; const r = await fdo('request', { to: b.dataset.add }, r => r.friends ? 'You\'re friends now' : 'Request sent'); if (r) { closeSheets(); $('fIn').dispatchEvent(new Event('input')); } else b.disabled = false; return; }
+    if ((b = d('cancel'))) { await fdo('cancel', { to: b.dataset.cancel }, 'Request cancelled'); closeSheets(); return; }
+    if ((b = d('remove'))) { closeSheets(); return void fdo('remove', { uid: b.dataset.remove }, 'Friend removed'); }
+    if ((b = d('block'))) { closeSheets(); return void fdo('block', { uid: b.dataset.block }, 'Blocked'); }
+    if ((b = d('invite'))) return gamePicker(b.dataset.invite);
+    if ((b = d('gp'))) { closeSheets(); location.href = b.dataset.gp + '?invite=' + encodeURIComponent(b.dataset.for); return; }
+    if ((b = d('ask'))) {
+      const uid = b.dataset.ask; asked[uid] = true; drawFriends();
+      const r = await fdo('ask', { to: uid });
+      if (!r) { delete asked[uid]; drawFriends(); return; }
+      if (r.code) { location.href = C.pageOf(r.game) + '?join=' + r.code; return; }
+      say(r.again ? 'Already asked. Wait for the leader' : 'Asked the room leader to let you in');
+      setTimeout(() => { delete asked[uid]; drawFriends(); }, 60000);
+      return;
+    }
+    if ((b = d('card'))) return void showCard(b.dataset.card);
+    if ((b = d('fmenu')) && !t.closest('button')) return friendMenu(b.dataset.fmenu);
+  });
+  $('gLink2').addEventListener('click', () => $('gLink').click());
+  // notifications on or off (this phone)
+  const notifSw = $('notif');
+  try { if (localStorage.getItem('cf_notif') === '0') { notifSw.classList.remove('on'); notifSw.setAttribute('aria-pressed', 'false'); } } catch(e) {}
+  notifSw.addEventListener('click', () => { const on = !notifSw.classList.contains('on'); notifSw.classList.toggle('on', on); notifSw.setAttribute('aria-pressed', on); try { localStorage.setItem('cf_notif', on ? '1' : '0'); } catch(e) {} });
+
   // sign in when the page opens: a player without a username picks one first
   C.init().then(async () => {
     const r = await C.afterRedirect().catch(() => null);   // back from a Google sign-in page
     if (r && r.found) openSheet('sh-found');
     if (!ME.username) showPick();
     if (ME.username && await C.pullDaily().catch(() => false)) drawDaily();   // a new phone: Daily history comes back
+    friendsMode();
+    C.alerts({ say, openFriends: () => showTab('friends') });
+    if (location.hash === '#friends') { history.replaceState(null, '', location.pathname); showTab('friends'); }
   }).catch(() => { if (!ME.username) showPick(); say("You seem to be offline"); });
 
   // ── Profile ──
