@@ -82,7 +82,12 @@ function makeAccount({ db, now, isGuest, deleteUser }) {
   // Delete everything about this player (the Play Store needs this), then the sign-in itself.
   async function remove(uid) {
     const me = await db.get(`users/${uid}`);
-    const up = { [`users/${uid}`]: null, [`stats/${uid}`]: null };
+    const up = { [`users/${uid}`]: null, [`stats/${uid}`]: null, [`requests/${uid}`]: null, [`sent/${uid}`]: null,
+                 [`blocks/${uid}`]: null, [`inbox/${uid}`]: null, [`presence/${uid}`]: null, [`roomOf/${uid}`]: null, [`friends/${uid}`]: null };
+    // take this player off every friend's list, and drop the requests they sent
+    const fr = (await db.get(`friends/${uid}`)) || {}, out = (await db.get(`sent/${uid}`)) || {};
+    Object.keys(fr).forEach(f => { up[`friends/${f}/${uid}`] = null; });
+    Object.keys(out).forEach(t => { up[`requests/${t}/${uid}`] = null; });
     if (me && me.username && (await db.get(`usernames/${me.username}`)) === uid) up[`usernames/${me.username}`] = null;
     await db.update(up);
     if (deleteUser) { try { await deleteUser(uid); } catch (e) { /* already gone */ } }
