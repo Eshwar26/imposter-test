@@ -308,6 +308,7 @@
   .mb.ghost{background:none;color:var(--muted);box-shadow:inset 0 0 0 1px var(--border)}
   .mb.done{background:none;color:var(--green);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--green) 45%,transparent)}
   .mb[disabled]{cursor:default}
+  .frow .live{width:8px;height:8px;border-radius:50%;background:var(--green);flex:none;margin-right:6px;animation:live 1.6s ease-in-out infinite}
   .fempty{margin:0 20px;padding:26px 18px;border-radius:16px;border:1px dashed var(--border);text-align:center}
   .fempty b{display:block;font-family:var(--display);font-weight:400;font-size:22px;letter-spacing:1.5px}
   .fempty p{font-size:11.5px;color:var(--muted);line-height:1.6;margin-top:6px}
@@ -1038,13 +1039,13 @@
     const online = fs.filter(f => f.on && !f.game), playing = fs.filter(f => f.on && f.game), offline = fs.filter(f => !f.on).sort((a, b) => (b.at || 0) - (a.at || 0));
     const row = f => {
       const st = f.on && f.game ? `<small class="play">${f.phase === 'waiting' ? 'In ' + esc(C.gameName(f.game)) + ' room' : 'Playing ' + esc(C.gameName(f.game))}</small>` : f.on ? '<small>Online</small>' : `<small>Last seen ${ago(f.at)}</small>`;
-      const act = f.on && f.game ? (f.phase === 'waiting' ? (asked[f.uid] ? '<button class="mb done" disabled>ASKED</button>' : `<button class="mb ask" data-ask="${f.uid}">ASK TO JOIN</button>`) : '<button class="mb ghost" disabled>IN A GAME</button>')
+      const act = f.on && f.game ? (f.phase === 'waiting' ? (asked[f.uid] ? '<button class="mb done" disabled>ASKED</button>' : `<button class="mb ask" data-ask="${f.uid}">ASK TO JOIN</button>`) : '<span class="live" aria-hidden="true"></span>')
         : f.on ? `<button class="mb" data-invite="${f.uid}">INVITE</button>` : '';
       return `<div class="frow${f.on ? '' : ' off'}" data-fmenu="${f.uid}">${pfHTML(f.av, f.username, f.uid, f.on)}<div class="grow"><b>@${esc(f.username)}</b>${st}</div>${act}</div>`;
     };
     const group = (t, list) => list.length ? `<div class="sec-label">${t} <em>${list.length}</em></div><div class="flist2">${list.map(row).join('')}</div>` : '';
     const reqs = FST.requests.length ? `<div class="sec-label">REQUESTS <em>${FST.requests.length}</em></div><div class="flist2">${FST.requests.map(r =>
-      `<div class="frow" data-card="${r.uid}">${pfHTML(r.av, r.username)}<div class="grow"><b>@${esc(r.username)}</b><small>sent a request</small></div><button class="mb" data-accept="${r.uid}">ACCEPT</button><button class="mb ghost" data-decline="${r.uid}">NO</button></div>`).join('')}</div>` : '';
+      `<div class="frow" data-card="${r.uid}">${pfHTML(r.av, r.username)}<div class="grow"><b>@${esc(r.username)}</b><small>sent a request</small></div><button class="mb" data-accept="${r.uid}">ACCEPT</button><button class="mb ghost" data-decline="${r.uid}">DECLINE</button></div>`).join('')}</div>` : '';
     $('fBody').innerHTML = reqs + (fs.length ? group('ONLINE', online) + group('PLAYING NOW', playing) + group('OFFLINE', offline)
       : '<div class="sec-label">YOUR FRIENDS</div><div class="fempty"><b>NO FRIENDS YET</b><p>Search for your friends by their username. Once they accept, you\'ll see when they\'re online and can invite them straight into a game.</p></div>');
   }
@@ -1071,7 +1072,7 @@
     const a = C.avatar(p.av, p.username), since = p.createdAt ? new Date(p.createdAt).toLocaleDateString('en-IN', { month:'short', year:'numeric' }) : '';
     const req = FST.requests.some(r => r.uid === uid);
     const btn = isFriend(uid) ? '<button class="bigbtn done" disabled>FRIENDS</button>'
-      : req ? `<button class="bigbtn" data-accept="${uid}">ACCEPT REQUEST</button>`
+      : req ? `<button class="bigbtn" data-accept="${uid}">ACCEPT REQUEST</button><button class="bigbtn outline" data-decline="${uid}">DECLINE</button>`
       : FST.sent[uid] ? `<button class="bigbtn done" disabled>REQUEST SENT</button><button class="bigbtn outline" data-cancel="${uid}">CANCEL REQUEST</button>`
       : `<button class="bigbtn" data-add="${uid}">ADD FRIEND</button>`;
     sheetF(`<div class="pcard"><span class="avatar" style="${a.bg ? 'background:' + a.bg : ''}">${a.html}</span><h3>@${esc(p.username.toUpperCase())}</h3>
@@ -1097,7 +1098,7 @@
     const t = e.target, d = k => t.closest('[data-' + k + ']');
     let b;
     if ((b = d('accept'))) { e.stopPropagation(); closeSheets(); return void fdo('accept', { from: b.dataset.accept }, 'You\'re friends now'); }
-    if ((b = d('decline'))) { e.stopPropagation(); return void fdo('decline', { from: b.dataset.decline }); }
+    if ((b = d('decline'))) { e.stopPropagation(); closeSheets(); return void fdo('decline', { from: b.dataset.decline }, 'Request declined'); }
     if ((b = d('add'))) { b.disabled = true; const r = await fdo('request', { to: b.dataset.add }, r => r.friends ? 'You\'re friends now' : 'Request sent'); if (r) { closeSheets(); $('fIn').dispatchEvent(new Event('input')); } else b.disabled = false; return; }
     if ((b = d('cancel'))) { await fdo('cancel', { to: b.dataset.cancel }, 'Request cancelled'); closeSheets(); return; }
     if ((b = d('remove'))) { closeSheets(); return void fdo('remove', { uid: b.dataset.remove }, 'Friend removed'); }
