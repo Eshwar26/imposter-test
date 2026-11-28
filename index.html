@@ -302,7 +302,7 @@
   .frow .grow{flex:1;min-width:0}
   .frow b{display:block;font-size:13.5px;font-weight:500}
   .frow small{display:block;font-size:11px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .frow small.play{color:var(--green)}
+  .frow small.fplay{color:var(--green)}
   .mb{border:0;border-radius:999px;padding:6px 11px;font-family:var(--display);font-size:14px;letter-spacing:1.5px;cursor:pointer;background:var(--accent);color:#fff;flex:none}
   .mb.ask{background:none;color:var(--accent2);box-shadow:inset 0 0 0 1.5px var(--accent2)}
   .mb.ghost{background:none;color:var(--muted);box-shadow:inset 0 0 0 1px var(--border)}
@@ -373,23 +373,24 @@
   .sp{position:fixed;inset:0;z-index:50;background:#050508;display:flex;flex-direction:column;align-items:center;justify-content:center;
       padding-bottom:18vh;transition:opacity .45s;color-scheme:dark}
   .sp.gone{opacity:0;pointer-events:none}
-  .sp svg{width:min(92%,380px);height:auto;overflow:visible}
-  .sp .lamp-body{fill:none}
-  .sp .shade{fill:#24242f} .sp .shade-in{fill:#15151c}
-  .sp .bulb{fill:#3a3a44}
-  .sp.on .bulb{fill:#fff6dc;filter:drop-shadow(0 0 10px #ffd27a) drop-shadow(0 0 24px rgba(255,210,122,.8))}
-  .sp .cone{opacity:0;transition:opacity .35s ease-out;mix-blend-mode:screen}
-  .sp.on .cone{opacity:1}
-  .sp .pool{opacity:0;transition:opacity .5s ease-out .1s}
-  .sp.on .pool{opacity:1}
-  .sp .word{font-family:var(--display);font-size:72px;letter-spacing:6px;text-anchor:middle}
-  .sp .word tspan{fill:#16161e;transition:fill .5s ease-out}
-  .sp.lit .word .w1{fill:#e8e8f0} .sp.lit .word .w2{fill:#ff3f3f}
-  .sp.lit .word{filter:drop-shadow(0 0 14px rgba(255,210,122,.25))}
-  .sp .pend{transform-box:view-box;transform-origin:180px -700px}
-  .sp.on .pend{animation:spsway 3.6s ease-in-out infinite}
-  @keyframes spsway{0%{transform:rotate(.5deg)}50%{transform:rotate(-.5deg)}100%{transform:rotate(.5deg)}}
-  .sp .by{font-size:12px;letter-spacing:5px;color:#7070a0;opacity:0;transform:translateY(6px);transition:opacity .6s,transform .6s;margin-top:-6px}
+  .sp-rig{display:flex;flex-direction:column;align-items:center;gap:22px}
+  .sp-rig.shk{animation:sprig .42s cubic-bezier(.3,.6,.4,1)}
+  @keyframes sprig{0%{transform:none}10%{transform:translate(-7px,5px) rotate(-.6deg)}22%{transform:translate(6px,-5px) rotate(.5deg)}
+    36%{transform:translate(-4px,3px) rotate(-.3deg)}52%{transform:translate(3px,-2px)}70%{transform:translate(-1px,1px)}100%{transform:none}}
+  .sp-icon{width:96px}
+  .sp-icon.bump{animation:spbump .28s ease-out}
+  @keyframes spbump{0%{transform:scale(1)}35%{transform:scale(1.07) translateY(2px)}100%{transform:scale(1)}}
+  .sp-arm,.sp-top{height:16px;border:1.5px solid #141418;border-radius:2px;background:repeating-linear-gradient(-55deg,#f2f2f2 0 9px,#141418 9px 18px)}
+  .sp-arm{transform-origin:3px 14px;transform:rotate(-30deg);transition:transform .13s cubic-bezier(.7,0,1,.6)}
+  .sp-arm.snap{transform:rotate(0)}
+  .sp-top{margin-top:2px}
+  .sp-body{height:58px;background:#1b1b20;border:1.5px solid #2c2c36;border-radius:0 0 4px 4px;display:grid;place-items:center}
+  .sp-body b{width:46px;height:3px;background:#ff3f3f;border-radius:2px;box-shadow:0 10px 0 #3a3a46,0 -10px 0 #3a3a46}
+  .sp .word{font-family:var(--display);font-size:60px;letter-spacing:4px;line-height:1;white-space:nowrap;color:#e8e8f0}
+  .sp .word span{color:#ff3f3f}
+  .sp .word i{font-style:normal;opacity:0;display:inline-block;transform:translateY(10px);transition:opacity .25s,transform .25s}
+  .sp .word i.show,.sp.lit .word i{opacity:1;transform:none}
+  .sp .by{font-size:12px;letter-spacing:5px;color:#7070a0;opacity:0;transform:translateY(6px);transition:opacity .6s,transform .6s}
   .sp .by.show{opacity:1;transform:none}
   .sp .by b{color:#e8e8f0;font-weight:500}
   .sp-fly{position:fixed;z-index:60;font-family:var(--display);font-size:30px;letter-spacing:3px;line-height:1;white-space:nowrap;pointer-events:none;
@@ -400,32 +401,18 @@
   /* ═════ Game page: the tapped card expands into it ═════ */
   .expander{position:fixed;z-index:30;overflow:hidden;pointer-events:none;
             background:radial-gradient(110% 80% at 0% 0%, color-mix(in srgb,var(--c) 30%,transparent), transparent 70%),var(--surface2)}
-  @media (prefers-reduced-motion:reduce){.sp.on .pend{animation:none}.sp .word tspan,.sp .cone,.sp .pool,.sp .by{transition-duration:.01s}}
+  @media (prefers-reduced-motion:reduce){.sp-rig.shk,.sp-icon.bump{animation:none}.sp .word i,.sp .by,.sp-arm{transition-duration:.01s}}
 </style>
 </head>
 <body>
 
 <!-- ═════ SPLASH ═════ -->
-<div class="sp" id="sp" aria-label="Cinefied by Midnight Labs">
-  <svg viewBox="0 0 360 350">
-    <defs>
-      <linearGradient id="spBeam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a" stop-opacity=".55"/><stop offset=".7" stop-color="#ffd27a" stop-opacity=".12"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></linearGradient>
-      <radialGradient id="spPool" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd27a" stop-opacity=".22"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
-    </defs>
-    <ellipse class="pool" cx="180" cy="270" rx="185" ry="56" fill="url(#spPool)"/>
-    <text class="word" id="spWord" x="180" y="282" textLength="272" lengthAdjust="spacingAndGlyphs"><tspan class="w1">CINE</tspan><tspan class="w2">FIED</tspan></text>
-    <g class="pend">
-      <line x1="180" y1="-700" x2="180" y2="128" stroke="#2c2c3a" stroke-width="2.5"/>
-      <g transform="translate(180 128)">
-        <polygon class="cone" points="-36,50 36,50 150,166 -150,166" fill="url(#spBeam)"/>
-        <rect x="-7" y="-4" width="14" height="10" rx="2" fill="#2c2c3a"/>
-        <path class="shade" d="M-10 4 L10 4 L46 50 L-46 50 Z"/>
-        <path class="shade-in" d="M-42 47 L42 47 L46 50 L-46 50 Z"/>
-        <circle class="bulb" cx="0" cy="51" r="10"/>
-      </g>
-    </g>
-  </svg>
-  <p class="by" id="spBy">BY <b>MIDNIGHT LABS</b></p>
+<div class="sp" id="sp" aria-label="Cinefied by Afterhour Club">
+  <div class="sp-rig" id="spRig">
+    <div class="sp-icon" id="spIcon"><div class="sp-arm" id="spArm"></div><div class="sp-top"></div><div class="sp-body"><b></b></div></div>
+    <div class="word" id="spWord"><i>C</i><i>I</i><i>N</i><i>E</i><span><i>F</i><i>I</i><i>E</i><i>D</i></span></div>
+    <p class="by" id="spBy">BY <b>AFTERHOUR CLUB</b></p>
+  </div>
 </div>
 
 <!-- ═════ PICK A USERNAME (first open) ═════ -->
@@ -545,12 +532,12 @@
       <div class="setting"><span>Sound<small>The intro sound</small></span><button class="switch on" id="sound" type="button" aria-label="Sound" aria-pressed="true"></button></div>
       <div class="setting" id="notifRow" hidden><span>Notifications<small>Friend requests, invites and join requests</small></span><button class="switch on" id="notif" type="button" aria-label="Notifications" aria-pressed="true"></button></div>
       <div class="setting" id="acctRow" hidden><span>Account<small class="mail" id="acctMail"></small></span></div>
-      <button class="setting" type="button" data-soon="About Midnight Labs"><span>About Midnight Labs</span><span class="chev">›</span></button>
+      <button class="setting" type="button" data-soon="About Afterhour Club"><span>About Afterhour Club</span><span class="chev">›</span></button>
       <button class="setting" type="button" data-soon="Privacy policy"><span>Privacy policy</span><span class="chev">›</span></button>
       <button class="setting red" type="button" id="signOut" hidden><span>Sign out</span></button>
       <button class="setting red" type="button" id="delBtn"><span>Delete account<small>Removes your username, streaks and stats</small></span></button>
     </div>
-    <p class="foot">CINEFIED · BY MIDNIGHT LABS · v0.4</p>
+    <p class="foot">CINEFIED · BY AFTERHOUR CLUB · v0.4</p>
   </div>
 </div>
 
@@ -1038,7 +1025,7 @@
     const fs = FST.friends.slice().sort((a, b) => a.username < b.username ? -1 : 1);
     const online = fs.filter(f => f.on && !f.game), playing = fs.filter(f => f.on && f.game), offline = fs.filter(f => !f.on).sort((a, b) => (b.at || 0) - (a.at || 0));
     const row = f => {
-      const st = f.on && f.game ? `<small class="play">${f.phase === 'waiting' ? 'In ' + esc(C.gameName(f.game)) + ' room' : 'Playing ' + esc(C.gameName(f.game))}</small>` : f.on ? '<small>Online</small>' : `<small>Last seen ${ago(f.at)}</small>`;
+      const st = f.on && f.game ? `<small class="fplay">${f.phase === 'waiting' ? 'In ' + esc(C.gameName(f.game)) + ' room' : 'Playing ' + esc(C.gameName(f.game))}</small>` : f.on ? '<small>Online</small>' : `<small>Last seen ${ago(f.at)}</small>`;
       const act = f.on && f.game ? (f.phase === 'waiting' ? (asked[f.uid] ? '<button class="mb done" disabled>ASKED</button>' : `<button class="mb ask" data-ask="${f.uid}">ASK TO JOIN</button>`) : '<span class="live" aria-hidden="true"></span>')
         : f.on ? `<button class="mb" data-invite="${f.uid}">INVITE</button>` : '';
       return `<div class="frow${f.on ? '' : ' off'}" data-fmenu="${f.uid}">${pfHTML(f.av, f.username, f.uid, f.on)}<div class="grow"><b>@${esc(f.username)}</b>${st}</div>${act}</div>`;
@@ -1139,7 +1126,7 @@
     const b = e.currentTarget; const on = !b.classList.contains('on');
     b.classList.toggle('on', on); b.setAttribute('aria-pressed', on);
     try { localStorage.setItem('cf_sound', on ? '1' : '0'); } catch(e) {}
-    if (on && audio()) spClick(.5);   // a little tick so you know it is on
+    if (on && audio()) spClap(.5);   // a little clap so you know it is on
   });
   try { if (localStorage.getItem('cf_sound') === '0') { const b = $('sound'); b.classList.remove('on'); b.setAttribute('aria-pressed', 'false'); } } catch(e) {}
 
@@ -1158,8 +1145,8 @@
     }
   });
 
-  // ═════ Splash: lamp clicks on, the name lights up, then it glides into the top bar ═════
-  let ac = null, hum = null, spTimers = [];
+  // ═════ Splash: the clapperboard claps twice (CINE, FIED), then the name glides into the top bar ═════
+  let ac = null, spTimers = [];
   const spLater = (ms, fn) => spTimers.push(setTimeout(fn, ms));
   // sound needs a tap before a phone lets a page play it, so it is switched on from the tap that starts the intro
   function audio(){
@@ -1167,55 +1154,48 @@
     if (ac && ac.state === 'suspended') ac.resume().catch(() => {});
     return ac;
   }
-  // the lamp switch: a sharp tick plus a short knock, pitched so a phone speaker can play it
-  function spClick(vol = .7){
+  // the clap of the board: a burst of filtered noise for the crack, a low knock under it, and a short room echo
+  function spClap(vol = 1){
     if (!ac || !soundOn()) return;
-    const t = ac.currentTime;
-    const n = ac.createBuffer(1, Math.floor(ac.sampleRate * .04), ac.sampleRate), d = n.getChannelData(0);
-    for (let i = 0; i < d.length; i++) d[i] = (Math.random()*2-1) * Math.pow(1 - i/d.length, 5);
-    const src = ac.createBufferSource(); src.buffer = n;
-    const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 2600; bp.Q.value = .8;
-    const g = ac.createGain(); g.gain.value = vol * 1.6; src.connect(bp).connect(g).connect(ac.destination); src.start(t);
-    const o = ac.createOscillator(), og = ac.createGain(); o.type = 'triangle';
-    o.frequency.setValueAtTime(900, t); o.frequency.exponentialRampToValueAtTime(240, t + .05);
-    og.gain.setValueAtTime(vol * .5, t); og.gain.exponentialRampToValueAtTime(.001, t + .07);
-    o.connect(og).connect(ac.destination); o.start(t); o.stop(t + .09);
-  }
-  // the bulb's warm buzz: a soft low tone with enough overtones to come through small speakers
-  function humOn(){
-    if (!ac || !soundOn()) return;
-    const t = ac.currentTime;
-    const o = ac.createOscillator(), o2 = ac.createOscillator(), lp = ac.createBiquadFilter(), g = ac.createGain();
-    o.type = 'sawtooth'; o.frequency.value = 120; o2.type = 'triangle'; o2.frequency.value = 240;
-    lp.type = 'lowpass'; lp.frequency.value = 1100;
-    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.05, t + .4);
-    o.connect(lp); o2.connect(lp); lp.connect(g).connect(ac.destination); o.start(t); o2.start(t); hum = {o, o2, g};
-  }
-  function humOff(){
-    if (!hum || !ac) return; const {o, o2, g} = hum; const t = ac.currentTime;
-    g.gain.cancelScheduledValues(t); g.gain.setValueAtTime(g.gain.value, t);
-    g.gain.linearRampToValueAtTime(0, t + .6); o.stop(t + .7); o2.stop(t + .7); hum = null;
+    const t = ac.currentTime, out = ac.createGain(); out.gain.value = .9 * vol; out.connect(ac.destination);
+    const dl = ac.createDelay(); dl.delayTime.value = .045; const fb = ac.createGain(); fb.gain.value = .28;
+    const wet = ac.createGain(); wet.gain.value = .35; dl.connect(fb); fb.connect(dl); dl.connect(wet); wet.connect(out);
+    const len = Math.floor(ac.sampleRate * .18), buf = ac.createBuffer(1, len, ac.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 4);
+    const n = ac.createBufferSource(); n.buffer = buf;
+    const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1700; bp.Q.value = .9;
+    const hp = ac.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 500;
+    const g = ac.createGain(); g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(1.4, t + .002); g.gain.exponentialRampToValueAtTime(.0001, t + .16);
+    n.connect(bp); bp.connect(hp); hp.connect(g); g.connect(out); g.connect(dl);
+    const o = ac.createOscillator(); o.type = 'sine'; o.frequency.setValueAtTime(210, t); o.frequency.exponentialRampToValueAtTime(90, t + .09);
+    const og = ac.createGain(); og.gain.setValueAtTime(.0001, t); og.gain.exponentialRampToValueAtTime(.9 * vol, t + .003); og.gain.exponentialRampToValueAtTime(.0001, t + .12);
+    o.connect(og); og.connect(out); o.start(t); o.stop(t + .14); n.start(t); n.stop(t + .18);
   }
   function soundOn(){ return $('sound').classList.contains('on'); }
 
   function playSplash(){
-    spTimers.forEach(clearTimeout); spTimers = []; humOff();
-    const sp = $('sp');
-    sp.className = 'sp'; $('spBy').classList.remove('show');
+    spTimers.forEach(clearTimeout); spTimers = [];
+    const sp = $('sp'), arm = $('spArm'), ls = [...document.querySelectorAll('#spWord i')];
+    sp.className = 'sp'; $('spBy').classList.remove('show'); arm.classList.remove('snap'); ls.forEach(l => l.classList.remove('show'));
     document.body.classList.add('splashing');
-    if (reduceMotion) { sp.classList.add('on','lit'); $('spBy').classList.add('show'); spLater(1200, splashToHome); return; }
-    spLater(600, () => { spClick(); sp.classList.add('on'); });
-    spLater(680, () => sp.classList.remove('on'));
-    spLater(800, () => { spClick(.25); sp.classList.add('on'); humOn(); });
-    spLater(900, () => sp.classList.add('lit'));
-    spLater(1500, () => $('spBy').classList.add('show'));
-    spLater(2900, splashToHome);
+    if (reduceMotion) { sp.classList.add('lit'); arm.classList.add('snap'); $('spBy').classList.add('show'); spLater(1200, splashToHome); return; }
+    const again = (el, c) => { el.classList.remove(c); void el.offsetWidth; el.classList.add(c); };
+    const show = list => list.forEach((l, i) => spLater(i * 40, () => l.classList.add('show')));
+    // clap 1: CINE, the whole screen shakes
+    spLater(700, () => arm.classList.add('snap'));
+    spLater(840, () => { spClap(1); again($('spRig'), 'shk'); show(ls.slice(0, 4)); });
+    spLater(1150, () => arm.classList.remove('snap'));
+    // clap 2: FIED, the board gives a small bounce
+    spLater(1600, () => arm.classList.add('snap'));
+    spLater(1740, () => { spClap(.7); again($('spIcon'), 'bump'); show(ls.slice(4)); });
+    spLater(2300, () => $('spBy').classList.add('show'));
+    spLater(3300, splashToHome);
   }
   function splashToHome(){
     spTimers.forEach(clearTimeout); spTimers = [];
     const sp = $('sp'), word = $('spWord');
     if (sp.classList.contains('gone')) return;
-    sp.classList.add('on','lit');
+    sp.classList.add('lit'); $('spArm').classList.add('snap');
     showTab('home'); window.scrollTo(0,0);
     // the name lands in the top bar, or on the "pick a username" screen if that is showing
     const target = $('pk').classList.contains('on') ? document.querySelector('#pk .brand') : document.querySelector('.top .brand');
@@ -1224,7 +1204,7 @@
     f.style.left = b.left + 'px'; f.style.top = b.top + 'px'; document.body.appendChild(f);
     const s = a.width / Math.max(1, f.getBoundingClientRect().width);
     f.style.transform = `translate(${a.left - b.left}px, ${a.top - b.top}px) scale(${s})`;
-    humOff(); sp.classList.add('gone');
+    sp.classList.add('gone');
     requestAnimationFrame(() => requestAnimationFrame(() => {
       f.style.transition = 'transform .7s cubic-bezier(.32,.72,0,1)'; f.style.transform = 'none';
     }));
@@ -1235,7 +1215,7 @@
   let seen = false; try { seen = sessionStorage.getItem('cf_intro') === '1'; } catch(e) {}
   // it starts on its own. Phones don't let a page make sound before the first tap, so the first run is silent
   // (the app version can play it); "Replay intro" in Profile plays it with sound.
-  if (seen) $('sp').classList.add('on','lit','gone');
+  if (seen) $('sp').classList.add('lit','gone');
   else { document.body.classList.add('splashing'); try { sessionStorage.setItem('cf_intro', '1'); } catch(e) {} audio(); playSplash(); }
 
   // ═════ Games: tap a card → it grows to fill the screen, then the game's page opens ═════
