@@ -1,5 +1,5 @@
 /* Wavelength scales: l = left end of the dial, r = right end.
-   Edit freely (keep the same shape), then: npx firebase deploy --only functions
+   Edit freely (keep the same shape)
    100 scales, reviewed 2026-11-28. */
 (function (root) {
   const SCALES = [
